@@ -1,0 +1,120 @@
+version: 2.1
+
+node_cache_key: &node_cache_key
+  key: node-deps-{{ checksum ".circleci/config.yml" }}-{{ checksum "package-lock.json" }}
+
+deploy_cache_key: &deploy_cache_key
+  key: deploy-{{ checksum ".circleci/config.yml" }}
+filter_all: &filter_all
+  filters:
+    branches:
+      only: /.*/
+    tags:
+      only: /.*/
+
+filter_demo: &filter_demo
+  filters:
+    branches:
+      only: main
+    tags:
+      only: demo
+
+filter_prod: &filter_prod
+  filters:
+    branches:
+      ignore: /.*/
+    tags:
+      only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+
+env_param: &env_param
+  env:
+    type: enum
+    default: "demo"
+    enum: ["demo", "prod"]
+
+workflows:
+  test-and-deploy:
+    jobs:
+      - build:
+          <<: *filter_all
+      - test:
+          <<: *filter_all
+          requires:
+            - build
+      - deploy:
+          name: Deploy to demo
+          <<: *filter_demo
+          tag: demo
+          requires:
+            - test
+      - deploy:
+          name: Deploy to prod
+          env: prod
+          <<: *filter_prod
+          requires:
+            - test
+
+jobs: 
+  build:
+    executor: default
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *node_cache_key
+      - run:
+          name: placeholder
+          command: echo "building"
+      - save_cache:
+          <<: *node_cache_key
+          paths:
+            - node_modules
+
+  test:
+    executor: default
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *node_cache_key
+      - run:
+          name: placeholder
+          command: echo "testing"
+          # TODO (allie): add test result & artifact storage
+
+  deploy:
+    docker: 
+      - image: circleci/python:3.6
+    parameters:
+      <<: *env_param
+      tag:
+        type: string
+        default: ""
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - restore_cache:
+          <<: *node_cache_key
+      - run:
+          name: Install Requirements
+          command: |
+            if [[ ! -d ~/.venv ]]; then
+              python3 -m venv ~/.venv
+              source ~/.venv/bin/activate
+              pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git
+            fi
+      - run:
+          name: Deploy
+          environment:
+            ENV: <<parameters.env>>
+            TAG: <<parameters.tag>>
+          command: |
+            TAG=${TAG:-$CIRCLE_TAG}
+            source ~/.venv/bin/activate
+            echo "deploying"
+
+executors:
+  default:
+    docker:
+      - image: cimg/node:14.18
+    environment: 
+      JOBS: 2
