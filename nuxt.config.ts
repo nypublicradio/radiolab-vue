@@ -4,6 +4,8 @@ import { defineNuxtConfig } from 'nuxt3'
 export default defineNuxtConfig({
   buildModules: [],
   css: [
+    //'primevue/resources/themes/saga-blue/theme.css',
+    // 'assets/theme/white-paper.min.css',
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
     'nypr-design-system-vue3/src/assets/library/primeflex.min.css'
@@ -14,14 +16,13 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           // additionalData: `@import "~/src/assets/library/primeflex.min.css"; @import "~/src/assets/themes/white-paper/_theme.scss"; @import "primevue/resources/primevue.min.css"; @import "primeicons/primeicons.css";`,
-          //additionalData: `@import "storybook-vue/src/assets/themes/white-paper/_theme.scss";`,
+          additionalData: `@import "nypr-design-system-vue3/src/assets/themes/white-paper/_theme.scss";`,
         },
       },
     },
   },
   components: [
     '~/components',
-    // '~/node_modules/storybook-vue/src/v2/src/components',
-    // { path: '~/node_modules/storybook-vue/v2/src/components/', extensions: ['vue'] }
+    // { path: '~/node_modules/nypr-design-system-vue3/v2/src/components/', extensions: ['vue'] }
   ],
 })
