@@ -11,4 +11,10 @@
     ></v2-v-tag>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+
+.p-tag-holder {
+    position: relative;
+    margin-top: 30px;
+}
+</style>

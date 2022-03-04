@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "nypr-design-system-vue3/src/assets/themes/white-paper/_theme.scss";`,
+          additionalData: `@import "nypr-design-system-vue3/src/assets/themes/white-paper/_theme.scss"; @import "~/assets/scss/global.scss";`,
         },
       },
     },
