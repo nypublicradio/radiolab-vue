@@ -7,13 +7,14 @@ export default defineNuxtConfig({
     //'primevue/resources/themes/saga-blue/theme.css',
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
-    'nypr-design-system-vue3/src/assets/library/primeflex.min.css'
+    // 'nypr-design-system-vue3/src/assets/library/primeflex.min.css',
+    'nypr-design-system-vue3/src/assets/themes/white-label/white-label.min.css'
   ],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "nypr-design-system-vue3/src/assets/themes/white-paper/_theme.scss"; @import "~/assets/scss/global.scss";`,
+            additionalData: `@import "nypr-design-system-vue3/src/assets/themes/white-label/variables.scss"; @import "nypr-design-system-vue3/src/assets/themes/white-label/_mixins.scss";`,
         },
       },
     },
