@@ -2,15 +2,11 @@
 import { ref } from 'vue'
 
 const darkMode = ref(false)
-const pageBase = ref()
-const toggleMode = () => {
-  darkMode.value = !darkMode.value
-}
 
 </script>
 
 <template>
-  <div ref="pageBase" class="page-base" :data-theme="darkMode ? 'dark' : 'default'">
+  <div class="page-base" :data-theme="darkMode ? 'dark' : 'default'">
     <div>home</div>
     <div class="md:hidden">primeflex test</div>
     <Button label="PrimeVue Button"></Button>
@@ -20,7 +16,7 @@ const toggleMode = () => {
     <br />
     <br />
     <p>Dark Mode</p>
-    <InputSwitch v-model="checked1" @click="toggleMode" />
+    <InputSwitch v-model="darkMode" />
 
     <v2-v-image-with-caption
       class="mt-4"
