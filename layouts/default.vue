@@ -13,28 +13,25 @@ useMeta({
       content: "width=device-width, initial-scale=1",
     },
   ],
-});
+})
 
 const props = defineProps({
   /*   propVar: {
       type: Boolean,
       default: false,
     }, */
-});
+})
 </script>
 
 <template>
   <div id="root" class="isPlayer">
     <div class="header">header</div>
     <main>
-      <slot>
-        <!-- <button @click="emit('change')">{{ anyVar }}</button> -->
-      </slot>
+      <slot />
     </main>
     <div class="footer">footer</div>
   </div>
 </template>
 
 <style lang="scss">
-
 </style>
