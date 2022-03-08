@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import VTag from 'nypr-design-system-vue3/v2/src/components/VTag'
+import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption'
+import VSimpleResponsiveImage from 'nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage'
 
 const darkMode = ref(false)
 
@@ -10,17 +13,17 @@ const darkMode = ref(false)
     <div>home</div>
     <div class="md:hidden">primeflex test</div>
     <Button label="PrimeVue Button"></Button>
-    <v2-v-tag name="tag" />
-    <v2-v-tag name="news page" slug="/news" />
-    <v2-v-tag name="google site" slug="https://www.google.com" />
+    <v-tag name="v-tag!" />
+    <v-tag name="tag" />
+    <v-tag name="news page" slug="/news" />
+    <v-tag name="google site" slug="https://www.google.com" />
     <br />
     <br />
-    <p>Dark Mode</p>
+    <p>Toggle Dark Mode</p>
     <InputSwitch v-model="darkMode" />
 
-    <v2-v-image-with-caption
+    <v-image-with-caption
       class="mt-4"
-      style="max-width: 600px; margin: 0 auto"
       alt="Fallback alt text here"
       image="https://cms.demo.nypr.digital/images/212141/fill-%width%x%height%|format-jpeg|jpegquality-%quality%/"
       credit="Credit Text Here"
@@ -32,9 +35,9 @@ const darkMode = ref(false)
       :height="400"
       allowPreview
     />
-    <v2-v-simple-responsive-image
+
+    <v-simple-responsive-image
       class="mt-4"
-      style="max-width: 600px; margin: 0 auto"
       alt="Fallback alt text here"
       src="https://cms.demo.nypr.digital/images/212141/fill-%width%x%height%|format-jpeg|jpegquality-%quality%/"
       :width="600"

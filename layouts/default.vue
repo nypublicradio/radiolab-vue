@@ -25,11 +25,11 @@ const props = defineProps({
 
 <template>
   <div id="root" class="isPlayer">
-    <div class="header">header</div>
+    <radiolab-header />
     <main>
       <slot />
     </main>
-    <div class="footer">footer</div>
+    <radiolab-footer />
   </div>
 </template>
 
