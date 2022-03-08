@@ -12,6 +12,7 @@ const darkMode = ref(false)
   <div class="page-base" :data-theme="darkMode ? 'dark' : 'default'">
     <div>home</div>
     <div class="md:hidden">primeflex test</div>
+
     <Button label="PrimeVue Button"></Button>
     <v-tag name="v-tag" />
     <v-tag name="tag" />
