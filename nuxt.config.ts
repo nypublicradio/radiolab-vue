@@ -18,6 +18,9 @@ export default defineNuxtConfig({
         },
       },
     },
+/*     resolve: {
+        dedupe: ['vue']
+    }, */
   },
   components: true,
 })

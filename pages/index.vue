@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import VTag from 'nypr-design-system-vue3/v2/src/components/VTag'
-import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption'
-import VSimpleResponsiveImage from 'nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage'
+import VTag from 'nypr-design-system-vue3/v2/src/components/VTag.vue'
+import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import VSimpleResponsiveImage from 'nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage.vue'
 
 const darkMode = ref(false)
 
@@ -13,7 +13,7 @@ const darkMode = ref(false)
     <div>home</div>
     <div class="md:hidden">primeflex test</div>
     <Button label="PrimeVue Button"></Button>
-    <v-tag name="v-tag!" />
+    <v-tag name="v-tag" />
     <v-tag name="tag" />
     <v-tag name="news page" slug="/news" />
     <v-tag name="google site" slug="https://www.google.com" />
