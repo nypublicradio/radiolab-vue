@@ -14,13 +14,18 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-            additionalData: `@import "nypr-design-system-vue3/src/assets/themes/white-label/variables.scss"; @import "nypr-design-system-vue3/src/assets/themes/white-label/_mixins.scss";`,
+          additionalData: `@import "nypr-design-system-vue3/src/assets/themes/white-label/variables.scss"; @import "nypr-design-system-vue3/src/assets/themes/white-label/_mixins.scss";`,
         },
       },
     },
-/*     resolve: {
-        dedupe: ['vue']
-    }, */
+    /*     resolve: {
+            dedupe: ['vue']
+        }, */
   },
   components: true,
+  build: {
+    transpile: [
+      'primevue'
+    ]
+  }
 })
