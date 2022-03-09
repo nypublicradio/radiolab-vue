@@ -1,7 +1,7 @@
-# NODE version 14.7.0 
-# Nuxt 3 Minimal Starter
+# Radiolab Web Client
+### Nuxt 3 & NODE version 14.7.0 
 
-We recommend to look at the [documentation](https://v3.nuxtjs.org).
+We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
 
 ## Setup
 
