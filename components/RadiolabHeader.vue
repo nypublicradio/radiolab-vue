@@ -53,6 +53,13 @@ const menuItems = ref([
         label: 'Merch Store',
       }
     ]
+  },
+  {
+    label: 'How to listen',
+    class: 'gap',
+  },
+  {
+    label: 'Become a member',
   }
 ])
 
@@ -73,28 +80,53 @@ const props = defineProps({
 
 <template>
   <div>
-    <Menubar :model="menuItems">
+    <Menubar :model="menuItems" autoDisplay="false">
       <template #start>
-        <nuxt-link to="/">
+        <nuxt-link to="/" class="logo-holder-link">
           <img alt="logo" src="/rl-logo-no-icon.svg" class="logo mr-2" />
         </nuxt-link>
       </template>
-      <template #end>
-        <Menubar :model="[menuItems[0], menuItems[1]]"></Menubar>
-      </template>
+      <!--  <template #end>
+        <Button :label="menuItems[2].label" icon class="p-button-text p-button-plain" />
+        <Button :label="menuItems[3].label" icon class="p-button-text p-button-plain" />
+        
+      </template>-->
     </Menubar>
   </div>
 </template>
 
 <style lang="scss">
 .p-menubar {
-  justify-content: space-between;
-  .logo {
-    width: 100px;
-    height: auto;
+  @include media(">lg") {
+    justify-content: space-between;
+  }
+  .logo-holder-link {
+    display: flex;
+    .logo {
+      width: 100px;
+      height: auto;
+    }
+  }
+  .p-menubar-button {
+    order: -1;
+  }
+  .p-menuitem {
+    &.gap {
+      @include media(">lg") {
+        margin-left: calc(50vw - 430px);
+      }
+    }
+    .p-menuitem-link {
+      .p-menuitem-icon {
+        display: none;
+      }
+    }
   }
   .p-menubar-end {
     margin-left: unset;
+    .nested-menu {
+      border: none;
+    }
   }
 }
 </style>

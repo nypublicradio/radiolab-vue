@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "nuxt3": "^3.0.0-27446051.40d325e",
-    "nypr-design-system-vue3": "github:bonomite/nypr-design-system-vue3#d4c0de6c3522ba032085e3ebf8038c203ae202de"
+    "nypr-design-system-vue3": "github:bonomite/nypr-design-system-vue3#dec036e50c500111cea25419f1f4c83e628b3e75"
   },
   "dependencies": {
     "primeicons": "^5.0.0",
