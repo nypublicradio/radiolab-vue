@@ -1,8 +1,8 @@
 import { defineNuxtPlugin } from "#app"
-import PrimeVue from "primevue/config"
-import Button from "primevue/button"
-import InputSwitch from 'primevue/inputswitch';
-import Image from 'primevue/image';
+import PrimeVue from "primevue/config/config.esm.js"
+import Button from "primevue/button/button.esm.js"
+import InputSwitch from 'primevue/inputswitch/inputswitch.esm.js'
+import Image from 'primevue/image/image.esm.js'
 // import Tag from "primevue/tag"
 // import Menubar from 'primevue/menubar';
 // import InputText from 'primevue/inputText';
