@@ -19,6 +19,20 @@ Start the development server on http://localhost:3000
 npm dev
 ```
 
+#### Notes
+
+If you have trouble starting the development server, make sure you have Nuxt installed by running:
+
+```bash
+npm install nuxt3
+```
+
+Also make sure you are running on Node 14.17.0:
+
+```bash
+nvm use 14.17.0
+```
+
 ## Production
 
 Build the application for production:
