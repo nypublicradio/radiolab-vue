@@ -1,67 +1,6 @@
 <script setup>
 import { ref/* , computed, onMounted, defineEmit */ } from "vue"
-
-const menuItems = ref([
-  {
-    label: 'Podcasts',
-    items: [
-      {
-        label: 'Episodes',
-        to: '/news',
-      },
-      {
-        label: 'Radio Shows',
-      },
-      {
-        label: 'Projects',
-      },
-      {
-        label: 'Radiolab for Kids',
-      }
-    ]
-  },
-  {
-    label: 'About',
-    items: [
-      {
-        label: 'About the Show',
-      },
-      {
-        label: 'Team',
-      },
-      {
-        label: 'Announcements',
-      },
-      {
-        label: 'Read the Credits',
-      },
-      {
-        label: 'Pitch us',
-      }
-    ]
-  },
-  {
-    label: 'For listeners',
-    items: [
-      {
-        label: 'The Lab',
-      },
-      {
-        label: 'Read the Credits',
-      },
-      {
-        label: 'Merch Store',
-      }
-    ]
-  },
-  {
-    label: 'How to listen',
-    class: 'gap',
-  },
-  {
-    label: 'Become a member',
-  }
-])
+const menuItems = useHeaderMenu()
 
 const props = defineProps({
   //   propVar: {
