@@ -1,7 +1,7 @@
-import { mount } from '@vue/test-utils'
-import { toHaveNoViolations } from 'jest-axe'
-import RadiolabHeader from '../components/RadiolabHeader.vue'
 import axe from './axe-helper'
+import { mount } from '@vue/test-utils'
+import RadiolabHeader from '../components/RadiolabHeader.vue'
+import { toHaveNoViolations } from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
