@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { toHaveNoViolations } from 'jest-axe'
-import RadiolabFooter from '../components/RadiolabFooter.vue'
 import axe from './axe-helper'
+import RadiolabFooter from '../components/RadiolabFooter.vue'
 
 expect.extend(toHaveNoViolations)
 
