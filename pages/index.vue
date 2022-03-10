@@ -9,7 +9,7 @@ const darkMode = ref(false)
 </script>
 
 <template>
-  <div class="page-base" :data-theme="darkMode ? 'dark' : 'default'">
+  <div class="page-base" :data-color-mode="darkMode ? 'dark' : 'default'">
     <div>home</div>
     <div class="md:hidden">primeflex test</div>
 
