@@ -69,6 +69,7 @@ onMounted(() => {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    height: 230px;
     .menu-item {
       width: 170px;
       .flexible-link,
