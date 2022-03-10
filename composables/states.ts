@@ -23,17 +23,20 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
     label: 'Podcasts',
     items: [
       {
-        label: 'Episodes',
+        label: 'Podcasts Episodes',
         to: '/news',
       },
       {
-        label: 'Radio Shows',
+        label: 'On The Radio',
+        to: '/news',
       },
       {
-        label: 'Projects',
+        label: 'Series',
+        to: '/news',
       },
       {
         label: 'Radiolab for Kids',
+        to: '/news',
       }
     ]
   },
@@ -42,18 +45,23 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
     items: [
       {
         label: 'About the Show',
+        to: '/news',
       },
       {
         label: 'Team',
+        to: '/news',
       },
       {
         label: 'Announcements',
+        to: '/news',
       },
       {
         label: 'Read the Credits',
+        to: '/news',
       },
       {
-        label: 'Pitch us',
+        label: 'Contact us',
+        to: '/news',
       }
     ]
   },
@@ -61,21 +69,57 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
     label: 'For listeners',
     items: [
       {
-        label: 'The Lab',
+        label: 'Join The Lab',
+        to: '/news',
       },
       {
-        label: 'Read the Credits',
-      },
-      {
-        label: 'Merch Store',
+        label: 'Swag Lab',
+        to: '/news',
       }
     ]
   },
   {
     label: 'How to listen',
+    to: '/news',
     class: 'gap',
   },
   {
     label: 'Become a member',
-  }
+    to: '/news',
+  },
+  {
+    label: 'FAQs',
+    visible: false,
+    to: '/news',
+  },
+  {
+    label: 'Sponsorship',
+    visible: false,
+    to: '/news',
+  },
+  {
+    label: 'Diversity (DEI)',
+    visible: false,
+    to: '/news',
+  },
+  {
+    label: 'Listener Panel',
+    visible: false,
+    to: '/news',
+  },
+  {
+    label: 'Terms of Use',
+    visible: false,
+    to: '/news',
+  },
+  {
+    label: 'Privacy Policy',
+    visible: false,
+    to: '/news',
+  },
+  {
+    label: 'Accessibility',
+    visible: false,
+    to: '/news',
+  },
 ])

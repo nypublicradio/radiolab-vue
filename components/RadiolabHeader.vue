@@ -18,8 +18,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <div>
-    <Menubar :model="menuItems" autoDisplay="false">
+  <div class="header">
+    <Menubar :model="menuItems">
       <template #start>
         <nuxt-link to="/" class="logo-holder-link">
           <img alt="logo" src="/rl-logo-no-icon.svg" class="logo mr-2" />
@@ -35,36 +35,38 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-.p-menubar {
-  @include media(">lg") {
-    justify-content: space-between;
-  }
-  .logo-holder-link {
-    display: flex;
-    .logo {
-      width: 100px;
-      height: auto;
+.header {
+  .p-menubar {
+    @include media(">lg") {
+      justify-content: space-between;
     }
-  }
-  .p-menubar-button {
-    order: -1;
-  }
-  .p-menuitem {
-    &.gap {
-      @include media(">lg") {
-        margin-left: calc(50vw - 430px);
+    .logo-holder-link {
+      display: flex;
+      .logo {
+        width: 100px;
+        height: auto;
       }
     }
-    .p-menuitem-link {
-      .p-menuitem-icon {
-        display: none;
+    .p-menubar-button {
+      order: -1;
+    }
+    .p-menuitem {
+      &.gap {
+        @include media(">lg") {
+          margin-left: calc(50vw - 430px);
+        }
+      }
+      .p-menuitem-link {
+        .p-menuitem-icon {
+          display: none;
+        }
       }
     }
-  }
-  .p-menubar-end {
-    margin-left: unset;
-    .nested-menu {
-      border: none;
+    .p-menubar-end {
+      margin-left: unset;
+      .nested-menu {
+        border: none;
+      }
     }
   }
 }
