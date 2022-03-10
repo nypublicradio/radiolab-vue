@@ -19,15 +19,16 @@
     "jest-axe": "^5.0.1",
     "jest-canvas-mock": "^2.3.1",
     "nuxt3": "^3.0.0-27446051.40d325e",
-    "nypr-design-system-vue3": "github:bonomite/nypr-design-system-vue3#3658c108fa3ff309d8cc6a5983751203c63d8c13",
+    "nypr-design-system-vue3": "github:bonomite/nypr-design-system-vue3#5163d7fb53808ac11fcc2b194fb4c4ef5136304e",
     "typescript": "^4.5.4",
     "ts-jest": "^27.1.2",
     "vue-jest": "^5.0.0-alpha.10",
     "vue3-jest": "^27.0.0-alpha.1"
   },
   "dependencies": {
+    "jest": "^27.4.5",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.1",
-    "jest": "^27.4.5"
+    "sass": "^1.49.9"
   }
 }
