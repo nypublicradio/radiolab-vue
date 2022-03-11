@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onBeforeMount } from "vue"
 import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import BecomeMember from './BecomeMember.vue'
 const menuItems = useHeaderMenu()
 const menuItemsFooter = ref([])
 const props = defineProps({
@@ -29,8 +30,8 @@ onMounted(() => {
 <template>
   <div class="site-footer grid grid-nogutter">
     <div class="col-12 md:col-6">
-      <!-- <become-member-section /> -->
-      become-member-section
+      <become-member />
+      <a href="https://www.google.com">This is a base sample link</a>
     </div>
     <div class="col-12 md:col-6">
       <!-- <subscribe-section /> -->
