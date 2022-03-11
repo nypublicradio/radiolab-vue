@@ -1,10 +1,5 @@
 version: 2.1
 
-node_cache_key: &node_cache_key
-  key: node-deps-{{ checksum ".circleci/config.yml" }}-{{ checksum "package-lock.json" }}
-
-deploy_cache_key: &deploy_cache_key
-  key: deploy-{{ checksum ".circleci/config.yml" }}
 filter_all: &filter_all
   filters:
     branches:
@@ -26,91 +21,77 @@ filter_prod: &filter_prod
     tags:
       only: /^v[0-9]+\.[0-9]+\.[0-9]+/
 
-env_param: &env_param
-  env:
-    type: enum
-    default: "demo"
-    enum: ["demo", "prod"]
-
 workflows:
   test-and-deploy:
     jobs:
-      - build:
-          <<: *filter_all
       - test:
           <<: *filter_all
-          requires:
-            - build
       - deploy:
-          name: Deploy to demo
+          name: Deploy (demo)
+          context: "AWS Deploy"
           <<: *filter_demo
           tag: demo
           requires:
             - test
       - deploy:
-          name: Deploy to prod
+          name: Deploy (prod)
+          context: "AWS Deploy"
           env: prod
           <<: *filter_prod
           requires:
             - test
 
 jobs: 
-  build:
-    executor: default
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *node_cache_key
-      - run:
-          name: placeholder
-          command: echo "building"
-      - save_cache:
-          <<: *node_cache_key
-          paths:
-            - node_modules
-
   test:
     executor: default
     steps:
       - checkout
-      - restore_cache:
-          <<: *node_cache_key
       - run:
           name: placeholder
-          command: echo "testing"
-          # TODO (allie): add test result & artifact storage
+          command: |
+            npm ci
+            npm run test        
 
   deploy:
     docker: 
       - image: circleci/python:3.6
     parameters:
-      <<: *env_param
+      env:
+        type: enum
+        default: "demo"
+        enum: ["demo", "prod"]
       tag:
         type: string
         default: ""
     steps:
       - checkout
       - setup_remote_docker:
-          version: 19.03.13
-      - restore_cache:
-          <<: *node_cache_key
-      - run:
-          name: Install Requirements
-          command: |
-            if [[ ! -d ~/.venv ]]; then
-              python3 -m venv ~/.venv
-              source ~/.venv/bin/activate
-              pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git
-            fi
+          version: 19.03.13            
       - run:
           name: Deploy
           environment:
             ENV: <<parameters.env>>
             TAG: <<parameters.tag>>
+            ROLE: radiolab-vue-<<parameters.env>>
           command: |
             TAG=${TAG:-$CIRCLE_TAG}
+
+            python3 -m venv ~/.venv
             source ~/.venv/bin/activate
-            echo "deploying"
+            pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git
+            
+            nyprsetuptools DockerDeploy \
+              --fargate \
+              --cpu=256 \
+              --memory-reservation=512 \
+              --ecr-repository=radiolab-vue \
+              --ecs-cluster=radiolab-vue \
+              --ports=3000 \
+              --execution-role=$ROLE \
+              --task-role=$ROLE \
+              --environment=$ENV \
+              --tag=$TAG \
+              --wait=300 
 
 executors:
   default:
