@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="footer grid grid-nogutter">
+  <div class="site-footer grid grid-nogutter">
     <div class="col-12 md:col-6">
       <!-- <become-member-section /> -->
       become-member-section
@@ -63,7 +63,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-.footer {
+.site-footer {
   padding: spacing(4);
   .menu {
     display: flex;

@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="header">
+  <div class="site-header">
     <Menubar :model="menuItems">
       <template #start>
         <nuxt-link to="/" class="logo-holder-link">
@@ -35,7 +35,7 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-.header {
+.site-header {
   .p-menubar {
     @include media(">lg") {
       justify-content: space-between;
