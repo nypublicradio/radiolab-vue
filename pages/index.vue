@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import VTag from 'nypr-design-system-vue3/v2/src/components/VTag.vue'
+/* import VTag from 'nypr-design-system-vue3/v2/src/components/VTag.vue'
 import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import VSimpleResponsiveImage from 'nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage.vue'
-
+ */
 const darkMode = ref(false)
 
 </script>
@@ -11,7 +11,7 @@ const darkMode = ref(false)
 <template>
   <div class="page-base" :data-color-mode="darkMode ? 'dark' : 'default'">
     <div>home</div>
-    <div class="md:hidden">primeflex test</div>
+    <!--     <div class="md:hidden">primeflex test</div>
 
     <Button label="PrimeVue Button"></Button>
     <v-tag name="v-tag" />
@@ -43,7 +43,7 @@ const darkMode = ref(false)
       src="https://cms.demo.nypr.digital/images/212141/fill-%width%x%height%|format-jpeg|jpegquality-%quality%/"
       :width="600"
       :height="400"
-    />
+    />-->
   </div>
 </template>
 

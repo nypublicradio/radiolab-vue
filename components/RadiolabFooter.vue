@@ -2,6 +2,7 @@
 import { onMounted, onBeforeMount } from "vue"
 import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import BecomeMember from './BecomeMember.vue'
+import Newsletter from './Newsletter.vue'
 const menuItems = useHeaderMenu()
 const menuItemsFooter = ref([])
 const props = defineProps({
@@ -28,34 +29,35 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="site-footer grid grid-nogutter">
-    <div class="col-12 md:col-6">
-      <become-member />
-      <a href="https://www.google.com">This is a base sample link</a>
-    </div>
-    <div class="col-12 md:col-6">
-      <!-- <subscribe-section /> -->
-      subscribe-section
-    </div>
-    <div class="col-12 md:col-3">
-      <!-- <subscribe-section /> -->
-      left
-    </div>
-    <div class="col-12 md:col-9">
-      <!-- <subscribe-section /> -->
+  <div class="site-footer" data-color-mode="blue">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <become-member />
+      </div>
+      <div class="col-12 md:col-6">
+        <!-- <subscribe-section /> -->
+        <newsletter />
+      </div>
+      <div class="col-12 md:col-3">
+        <!-- <subscribe-section /> -->
+        <p>left</p>
+      </div>
+      <div class="col-12 md:col-9">
+        <!-- <subscribe-section /> -->
 
-      <!-- <ul role="menubar">
+        <!-- <ul role="menubar">
       <li v-for="item in menuItemsFooter" role="none" class="menuitem">
         <v-flexible-link :to="item.to ? item.to : item.url">
           <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
         </v-flexible-link>
       </li>
-      </ul>-->
-      <div class="menu" role="menubar">
-        <div v-for="item in menuItemsFooter" role="none" class="menu-item">
-          <v-flexible-link :to="item.to ? item.to : item.url">
-            <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
-          </v-flexible-link>
+        </ul>-->
+        <div class="menu" role="menubar">
+          <div v-for="item in menuItemsFooter" role="none" class="menu-item">
+            <v-flexible-link :to="item.to ? item.to : item.url">
+              <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
+            </v-flexible-link>
+          </div>
         </div>
       </div>
     </div>
@@ -66,6 +68,7 @@ onMounted(() => {
 <style lang="scss">
 .site-footer {
   padding: spacing(4);
+  background-color: var(--surface-ground);
   .menu {
     display: flex;
     flex-wrap: wrap;

@@ -34,4 +34,20 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
+:root,
+[data-color-mode="blue"] {
+  --surface-ground: #0454d6;
+  --link-button-color: var(--primary-light-color);
+  --text-color: var(--white100);
+  --text-color-secondary: var(--white300);
+}
+div,
+span {
+  &[data-color-mode="blue"] {
+    .p-button:not(.p-button-text) {
+      background: var(--white);
+      color: #0454d6;
+    }
+  }
+}
 </style>

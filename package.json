@@ -18,7 +18,7 @@
     "babel-jest": "^27.4.6",
     "jest-axe": "^5.0.1",
     "jest-canvas-mock": "^2.3.1",
-    "nuxt3": "^3.0.0-27449998.32cf973",
+    "nuxt3": "^3.0.0-27439932.78761c2",
     "nypr-design-system-vue3": "github:bonomite/nypr-design-system-vue3#802d8243b3a4d97bd81474178c34dcf07940b72e",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4",
