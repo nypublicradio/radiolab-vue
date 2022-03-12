@@ -32,9 +32,9 @@ const linkTo = (url) => {
           </span>
         </h2>
       </div>
-      <div :class="`col-12 right`">
-        <v-flexible-link to="/" raw>
-          <Button label="Become a member" />
+      <div :class="`col-12 right mt-4`">
+        <v-flexible-link to="/" raw class="mt-4">
+          <Button class="p-button-lg" label="Become a member" />
         </v-flexible-link>
       </div>
     </div>

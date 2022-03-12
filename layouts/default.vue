@@ -34,9 +34,12 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
+body {
+  background: #ffffff;
+}
+
 :root,
 [data-color-mode="blue"] {
-  --surface-ground: #0454d6;
   --link-button-color: var(--primary-light-color);
   --text-color: var(--white100);
   --text-color-secondary: var(--white300);
@@ -47,6 +50,23 @@ span {
     .p-button:not(.p-button-text) {
       background: var(--white);
       color: #0454d6;
+      border-radius: 25px;
+      border-color: #ffffff;
+      margin-left: spacing(3);
+      span {
+        font-weight: 600;
+      }
+    }
+    .p-inputtext {
+      border-radius: 25px;
+      background-color: rgba(10, 11, 12, 0.1);
+      border: none;
+      padding-left: spacing(6);
+      &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #f4f2f0;
+        opacity: 0.4; /* Firefox */
+      }
     }
   }
 }

@@ -25,11 +25,11 @@ const submitEmail = () => {
       <div :class="`col-12 left`">
         <h2>Sign up for the newsletter</h2>
       </div>
-      <div :class="`col-12 right w-100`">
+      <div :class="`col-12 right w-100 mt-4`">
         <span class="white-space-nowrap flex">
           <div class="field flex-grow-1">
             <InputText
-              class="w-full"
+              class="w-full p-inputtext-lg"
               :class="[{ 'p-invalid': emailAddressError }]"
               type="email"
               placeholder="Email address"
@@ -42,7 +42,7 @@ const submitEmail = () => {
               class="p-error"
             >Username is not available.</small>
           </div>
-          <Button @click="submitEmail" label="Subscribe" />
+          <Button @click="submitEmail" class="p-button-lg" label="Subscribe" />
         </span>
       </div>
     </div>

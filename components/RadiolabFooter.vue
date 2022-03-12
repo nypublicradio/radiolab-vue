@@ -38,11 +38,17 @@ onMounted(() => {
         <!-- <subscribe-section /> -->
         <newsletter />
       </div>
-      <div class="col-12 md:col-3">
+    </div>
+    <div class="grid mt-8">
+      <div class="col-12 md:col-2 flex flex-column justify-content-between">
         <!-- <subscribe-section /> -->
-        <p>left</p>
+        <p>Test the outer edges of what you think you know</p>
+        <span>
+          <p>Produced by WNYC Studios</p>
+          <p>© 2022 WNYC Studios</p>
+        </span>
       </div>
-      <div class="col-12 md:col-9">
+      <div class="col-12 md:col-10">
         <!-- <subscribe-section /> -->
 
         <!-- <ul role="menubar">
@@ -52,7 +58,7 @@ onMounted(() => {
         </v-flexible-link>
       </li>
         </ul>-->
-        <div class="menu" role="menubar">
+        <div class="menu mb-6 px-0 md:px-8" role="menubar">
           <div v-for="item in menuItemsFooter" role="none" class="menu-item">
             <v-flexible-link :to="item.to ? item.to : item.url">
               <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
@@ -68,17 +74,22 @@ onMounted(() => {
 <style lang="scss">
 .site-footer {
   padding: spacing(4);
-  background-color: var(--surface-ground);
+  background-color: #0454d6;
+  h2 {
+    font-size: var(--font-size-16);
+  }
   .menu {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    height: 230px;
+    height: 220px;
+
     .menu-item {
-      width: 170px;
       .flexible-link,
       .flexible-link .p-button {
         text-decoration: none !important;
+        color: #f4f2f0;
+        font-size: var(--font-size-5);
       }
     }
   }

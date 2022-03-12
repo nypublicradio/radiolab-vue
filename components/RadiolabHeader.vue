@@ -36,7 +36,10 @@ const props = defineProps({
 
 <style lang="scss">
 .site-header {
+  background: transparent;
   .p-menubar {
+    background: transparent;
+    border: none;
     @include media(">lg") {
       justify-content: space-between;
     }

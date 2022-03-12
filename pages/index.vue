@@ -10,8 +10,40 @@ const darkMode = ref(false)
 
 <template>
   <div class="page-base" :data-color-mode="darkMode ? 'dark' : 'default'">
-    <div>home</div>
-    <!--     <div class="md:hidden">primeflex test</div>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <p>home</p>
+    <!--     <p class="md:hidden">primeflex test</p>
 
     <Button label="PrimeVue Button"></Button>
     <v-tag name="v-tag" />
@@ -48,7 +80,4 @@ const darkMode = ref(false)
 </template>
 
 <style lang="scss">
-.page-base {
-  background-color: var(--surface-ground);
-}
 </style>
