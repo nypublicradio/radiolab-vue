@@ -22,12 +22,12 @@ const submitEmail = () => {
 <template>
   <div class="newsletter">
     <div class="grid">
-      <div :class="`col-12 left`">
+      <div :class="`col-12 left lg:pr-8`">
         <h2>Sign up for the newsletter</h2>
       </div>
       <div :class="`col-12 right w-100 mt-4`">
-        <span class="white-space-nowrap flex">
-          <div class="field flex-grow-1">
+        <span class="grid">
+          <div class="field col-12 lg:col-8">
             <InputText
               class="w-full p-inputtext-lg"
               :class="[{ 'p-invalid': emailAddressError }]"
@@ -42,7 +42,11 @@ const submitEmail = () => {
               class="p-error"
             >Username is not available.</small>
           </div>
-          <Button @click="submitEmail" class="p-button-lg" label="Subscribe" />
+          <div
+            class="col-12 lg:col-4 align-self-end flex lg:justify-content-start justify-content-end"
+          >
+            <Button @click="submitEmail" class="p-button-lg" label="Subscribe" />
+          </div>
         </span>
       </div>
     </div>

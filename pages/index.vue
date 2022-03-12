@@ -9,41 +9,40 @@ const darkMode = ref(false)
 </script>
 
 <template>
-  <div class="page-base" :data-color-mode="darkMode ? 'dark' : 'default'">
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
+  <div class="home-page" :data-color-mode="darkMode ? 'dark' : 'default'">
+    <section>
+      <div class="content">
+        <div class="grid">
+          <div class="col">
+            <p>auto fit</p>
+          </div>
+          <div class="col">
+            <p>auto fit</p>
+          </div>
+          <div class="col">
+            <p>auto fit</p>
+          </div>
+          <div class="col">
+            <p>auto fit</p>
+          </div>
+          <div class="col">
+            <p>auto fit</p>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="grid">
+          <div class="col-12 md:col-4">
+            <p>col-4</p>
+          </div>
+          <div class="col-12 md:col-8">
+            <p>col-8</p>
+          </div>
+        </div>
+      </div>
+      <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p> -->
 
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <p>home</p>
-    <!--     <p class="md:hidden">primeflex test</p>
+      <!--     <p class="md:hidden">primeflex test</p>
 
     <Button label="PrimeVue Button"></Button>
     <v-tag name="v-tag" />
@@ -75,9 +74,14 @@ const darkMode = ref(false)
       src="https://cms.demo.nypr.digital/images/212141/fill-%width%x%height%|format-jpeg|jpegquality-%quality%/"
       :width="600"
       :height="400"
-    />-->
+      />-->
+    </section>
   </div>
 </template>
 
 <style lang="scss">
+.home-page .grid p {
+  background-color: var(--surface-100);
+  padding: spacing(2);
+}
 </style>

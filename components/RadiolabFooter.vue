@@ -30,66 +30,80 @@ onMounted(() => {
 
 <template>
   <div class="site-footer" data-color-mode="blue">
-    <div class="grid">
-      <div class="col-12 md:col-6">
-        <become-member />
-      </div>
-      <div class="col-12 md:col-6">
-        <!-- <subscribe-section /> -->
-        <newsletter />
-      </div>
-    </div>
-    <div class="grid mt-8">
-      <div class="col-12 md:col-2 flex flex-column justify-content-between">
-        <!-- <subscribe-section /> -->
-        <p>Test the outer edges of what you think you know</p>
-        <span>
-          <p>Produced by WNYC Studios</p>
-          <p>© 2022 WNYC Studios</p>
-        </span>
-      </div>
-      <div class="col-12 md:col-10">
-        <!-- <subscribe-section /> -->
+    <section>
+      <div class="content max-width">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <become-member />
+          </div>
+          <div class="col-12 md:col-6">
+            <!-- <subscribe-section /> -->
+            <newsletter />
+          </div>
+        </div>
+        <div class="grid mt-8">
+          <div class="col-12 md:col-2 flex flex-column justify-content-between">
+            <!-- <subscribe-section /> -->
+            <p>Test the outer edges of what you think you know</p>
+            <span>
+              <p>Produced by WNYC Studios</p>
+              <p>© 2022 WNYC Studios</p>
+            </span>
+          </div>
+          <div class="col-12 md:col-10">
+            <!-- <subscribe-section /> -->
 
-        <!-- <ul role="menubar">
+            <!-- <ul role="menubar">
       <li v-for="item in menuItemsFooter" role="none" class="menuitem">
         <v-flexible-link :to="item.to ? item.to : item.url">
           <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
         </v-flexible-link>
       </li>
-        </ul>-->
-        <div class="menu mb-6 px-0 md:px-8" role="menubar">
-          <div v-for="item in menuItemsFooter" role="none" class="menu-item">
-            <v-flexible-link :to="item.to ? item.to : item.url">
-              <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
-            </v-flexible-link>
+            </ul>-->
+            <div class="menu mb-6 px-0 md:px-8" role="menubar">
+              <div v-for="item in menuItemsFooter" role="none" class="menu-item">
+                <v-flexible-link :to="item.to ? item.to : item.url">
+                  <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
+                </v-flexible-link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
   <!-- <Menubar :model="menuItemsFooter"></Menubar> -->
 </template>
 
 <style lang="scss">
 .site-footer {
-  padding: spacing(4);
-  background-color: #0454d6;
-  h2 {
-    font-size: var(--font-size-16);
-  }
-  .menu {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    height: 220px;
+  section {
+    .content {
+      padding: spacing(10);
+      @include media("<medium") {
+        padding: spacing(4);
+      }
+    }
+    background-color: #0454d6;
+    h2 {
+      font-size: var(--font-size-16);
+      @include media("<medium") {
+        font-size: var(--font-size-12);
+      }
+    }
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      height: 220px;
 
-    .menu-item {
-      .flexible-link,
-      .flexible-link .p-button {
-        text-decoration: none !important;
-        color: #f4f2f0;
-        font-size: var(--font-size-5);
+      .menu-item {
+        .flexible-link,
+        .flexible-link .p-button {
+          text-decoration: none !important;
+          color: #f4f2f0;
+          font-size: var(--font-size-5);
+        }
       }
     }
   }

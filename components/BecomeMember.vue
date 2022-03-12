@@ -23,9 +23,9 @@ const linkTo = (url) => {
     <div class="grid">
       <div :class="`col-12 left`">
         <h2>
-          Unlock exclusives in
+          Unlock exclusives
           <span class="white-space-nowrap">
-            The Lab
+            in The Lab
             <span>
               <img alt="icon" src="/rl-icon.svg" class="icon" />
             </span>

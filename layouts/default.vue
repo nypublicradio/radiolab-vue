@@ -52,7 +52,6 @@ span {
       color: #0454d6;
       border-radius: 25px;
       border-color: #ffffff;
-      margin-left: spacing(3);
       span {
         font-weight: 600;
       }

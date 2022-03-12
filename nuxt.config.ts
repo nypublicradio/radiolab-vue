@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     // 'nypr-design-system-vue3/src/assets/library/primeflex.min.css',
     'nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
     'primevue/resources/primevue.min.css',
-    'primeicons/primeicons.css'
+    'primeicons/primeicons.css',
+    '~/assets/scss/global.scss',
   ],
   vite: {
     css: {
