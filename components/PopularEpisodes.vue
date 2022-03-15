@@ -6,20 +6,14 @@ import VCard from 'nypr-design-system-vue3/v2/src/components/VCard.vue'
 import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
 const dataLoaded = ref(false)
 const episodes = ref([])
-const errorMessage = ref(null)
 onMounted(async () => {
   await axios
     .get(
       'https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=3'
     )
     .then((response) => {
-      console.log('kim')
       episodes.value = response.data.data.attributes['bucket-items']
       dataLoaded.value = true
-    })
-    .catch((error) => {
-      console.log(error)
-      errorMessage.value = error
     })
 })
 </script>
