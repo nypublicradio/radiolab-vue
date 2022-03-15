@@ -31,24 +31,26 @@ onMounted(async () => {
         <p class="latest-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
       </div>
     </div>
-    <div class="flex justify-content-between">
-      <h2 class="mb-4">Recent Episodes</h2>
-      <nuxt-link class="all-episodes" to="/episodes">All Episodes</nuxt-link>
-    </div>
-    <div class="recent-episodes grid">
-      <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-4">
-        <v-card
-          :image="episode.attributes['image-main'].url"
-          :alt="episode.attributes['image-main']['alt-text']"
-          :title="episode.attributes.title"
-          :titleLink="`/episodes/${episode.attributes.slug}`"
-          :subtitle="formatDate(episode.attributes['publish-at'])"
-          responsive
-          bp="max"
-        >
-          <p class="mb-5">{{ episode.attributes.tease}}</p>
-          <p class="recent-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
-        </v-card>
+    <div class="recent-episodes">
+      <div class="flex justify-content-between">
+        <h2 class="mb-4">Recent Episodes</h2>
+        <nuxt-link class="all-episodes" to="/episodes">All Episodes</nuxt-link>
+      </div>
+      <div class="grid">
+        <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-4">
+          <v-card
+            :image="episode.attributes['image-main'].url"
+            :alt="episode.attributes['image-main']['alt-text']"
+            :title="episode.attributes.title"
+            :titleLink="`/episodes/${episode.attributes.slug}`"
+            :subtitle="formatDate(episode.attributes['publish-at'])"
+            responsive
+            bp="max"
+          >
+            <p class="mb-5">{{ episode.attributes.tease}}</p>
+            <p class="recent-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
+          </v-card>
+        </div>
       </div>
     </div>
   </div>
@@ -86,6 +88,10 @@ onMounted(async () => {
   svg {
     margin-right: 7px;
   }
+}
+
+.recent-episodes  {
+  margin: 0 115px;
 }
 
 .recent-episodes .v-card {
