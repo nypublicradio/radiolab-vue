@@ -2,6 +2,7 @@ FROM node:14.19.0 as build
 WORKDIR /code
 
 COPY ./package.json .
+COPY ./package-lock.json .
 RUN npm ci
 RUN npm install sass
 
