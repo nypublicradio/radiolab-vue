@@ -1,9 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-/* import VTag from 'nypr-design-system-vue3/v2/src/components/VTag.vue'
-import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
-import VSimpleResponsiveImage from 'nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage.vue'
- */
+
 const darkMode = ref(false)
 
 </script>
@@ -40,41 +37,6 @@ const darkMode = ref(false)
           </div>
         </div>
       </div>
-      <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p> -->
-
-      <!--     <p class="md:hidden">primeflex test</p>
-
-    <Button label="PrimeVue Button"></Button>
-    <v-tag name="v-tag" />
-    <v-tag name="tag" />
-    <v-tag name="news page" slug="/news" />
-    <v-tag name="google site" slug="https://www.google.com" />
-    <br />
-    <br />
-    <p>Toggle Dark Mode</p>
-    <InputSwitch v-model="darkMode" />
-
-    <v-image-with-caption
-      class="mt-4"
-      alt="Fallback alt text here"
-      image="https://cms.demo.nypr.digital/images/212141/fill-%width%x%height%|format-jpeg|jpegquality-%quality%/"
-      credit="Credit Text Here"
-      creditUrl="https://www.Credit-URL-Here.com"
-      caption="Caption Text Here"
-      title="Title Text Here"
-      description="Description Text Here"
-      :width="600"
-      :height="400"
-      allowPreview
-    />
-
-    <v-simple-responsive-image
-      class="mt-4"
-      alt="Fallback alt text here"
-      src="https://cms.demo.nypr.digital/images/212141/fill-%width%x%height%|format-jpeg|jpegquality-%quality%/"
-      :width="600"
-      :height="400"
-      />-->
     </section>
   </div>
 </template>

@@ -5,7 +5,7 @@ We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
 
 ## Setup
 
-Make sure to install the dependencies
+This project expect node version `14.19.0`.
 
 ```bash
 npm install
@@ -13,24 +13,10 @@ npm install
 
 ## Development
 
-Start the development server on http://localhost:3000
+Start the development server on `http://localhost:3000`
 
 ```bash
 npm dev
-```
-
-#### Notes
-
-If you have trouble starting the development server, make sure you have Nuxt installed by running:
-
-```bash
-npm install nuxt3
-```
-
-Also make sure you are running on Node 14.17.0:
-
-```bash
-nvm use 14.17.0
 ```
 
 ## Production
@@ -38,7 +24,6 @@ nvm use 14.17.0
 Build the application for production:
 
 ```bash
-npm build
+docker build -t radiolab-vue .
+docker run radiolab-vue -p 3000:3000
 ```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).

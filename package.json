@@ -19,13 +19,15 @@
     "jest-axe": "^5.0.1",
     "jest-canvas-mock": "^2.3.1",
     "nuxt3": "^3.0.0-27439932.78761c2",
-    "nypr-design-system-vue3": "github:bonomite/nypr-design-system-vue3#c2eecda128269ebcb48d1ed7801cad40d36a1b09",
+    "nypr-design-system-vue3": "github:nypublicradio/nypr-design-system-vue3#bc27b0a8ff46ad01914bf3307166c66583f10c11",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4",
     "vue-jest": "^5.0.0-alpha.10",
     "vue3-jest": "^27.0.0-alpha.1"
   },
   "dependencies": {
+    "@sentry/tracing": "^6.18.2",
+    "@sentry/vue": "^6.18.2",
     "jest": "^27.4.5",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.1",
