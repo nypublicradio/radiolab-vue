@@ -27,6 +27,13 @@ section {
   padding: 0.75rem;
 }
 
+/*component overrides that will eventually go in the extensions.scss file in the theme*/
+
+.p-button{
+  font-weight: var(--font-weight-500);
+}
+
+// style-modes
 :root,
 [data-style-mode="blue"] {
   --link-button-color: var(--primary-light-color);
@@ -37,7 +44,6 @@ section {
 * {
   &[data-style-mode="blue"] {
     .p-button:not(.p-button-text) {
-      background: var(--white);
       color: #0454d6;
       border-color: #ffffff;
       span {
@@ -56,3 +62,5 @@ section {
     }
   }
 }
+
+/*component overrides that will eventually go in the extensions.scss file in the theme*/
