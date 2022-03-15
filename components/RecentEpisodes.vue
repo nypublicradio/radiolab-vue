@@ -25,9 +25,9 @@ onMounted(async () => {
         <img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" />
       </div>
       <div class="latest-episode-content col-12 xl:col-4 p-8">
-        <p class="uppercase mb-2">Latest Episode</p>
+        <p class="latest-episode-header mb-2">Latest Episode</p>
         <h2 class="mb-4"><nuxt-link :to="episodes[0].attributes.url" v-html="episodes[0].attributes.title" class="latest-episode-title" /></h2>
-        <p v-html="episodes[0].attributes.tease" class="mb-5" />
+        <p v-html="episodes[0].attributes.tease" class="latest-episode-tease mb-5" />
         <p class="latest-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
       </div>
     </div>
@@ -46,9 +46,10 @@ onMounted(async () => {
             :subtitle="formatDate(episode.attributes['publish-at'])"
             responsive
             bp="max"
+            class="radiolab-card"
           >
             <p v-html="episode.attributes.tease" class="mb-5" />
-            <p class="recent-episodes-podcasts"><apple-podcasts /> Apple Podcasts</p>
+            <p class="radiolab-card-podcasts"><apple-podcasts /> Apple Podcasts</p>
           </v-card>
         </div>
       </div>
@@ -68,6 +69,9 @@ onMounted(async () => {
 .latest-episode .latest-episode-title {
   color: var(--primary-text-color);
   text-decoration: none;
+  font-weight: 400;
+  font-size: var(--font-size-16);
+  line-height: var(--font-size-16);
 }
 
 .latest-episode .latest-episode-image {
@@ -85,22 +89,26 @@ onMounted(async () => {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
-.latest-episode .latest-episode-podcasts,
-.recent-episodes .recent-episodes-podcasts {
-  display: flex;
-  align-content: flex-start;
+
+.latest-episode .latest-episode-header {
+  font-size: var(--font-size-5);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  svg {
-    margin-right: 7px;
-  }
+}
+
+.latest-episode-tease {
+  font-size: var(--font-size-6);
+  line-height: 24px;
 }
 
 .latest-episode .latest-episode-podcasts {
-  font-size: 20px;
-}
-.recent-episodes .recent-episodes-podcasts svg {
-  width: 18px;
-  height: 18px;
+  display: flex;
+  align-content: flex-start;
+  text-transform: uppercase;
+  font-size: var(--font-size-8);
+  svg {
+    margin-right: 7px;
+  }
 }
 
 .recent-episodes  {
@@ -119,30 +127,6 @@ onMounted(async () => {
   padding: 0 45px;
 }
 
-.recent-episodes .v-card {
-  background: var(--white100);
-  border-radius: 20px;
-  box-shadow: none;
-}
-
-.recent-episodes .v-card .card-details {
-  display: flex;
-  flex-direction: column;
-  padding: 1.25rem 1.25rem 2.25rem;
-}
-
-.recent-episodes .v-card .card-subtitle {
-  display: flex;
-  order: 1;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.recent-episodes .v-card .card-title,
-.recent-episodes .v-card .card-slot {
-  order: 2;
-}
-
 .all-episodes {
   background: var(--white100);
   border-radius: 80px;
@@ -152,6 +136,6 @@ onMounted(async () => {
   text-align: center;
   color: var(--primary-text-color);
   text-decoration: none;
-  font-size: 16px;
+  font-size: var(--font-size-6);
 }
 </style>

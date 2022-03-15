@@ -1,0 +1,49 @@
+.radiolab-card.v-card {
+    background: var(--white100);
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+.radiolab-card.v-card .card-details {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.25rem 2.25rem;
+}
+
+.radiolab-card.v-card .card-subtitle {
+    display: flex;
+    order: 1;
+    text-transform: uppercase;
+    font-size: var(--font-size-5);
+    line-height: 30px;
+}
+
+.radiolab-card.v-card .card-title,
+.radiolab-card.v-card .card-slot {
+    order: 2;
+}
+
+.radiolab-card.v-card .card-title-link h2 {
+    font-size: var(--font-size-10);
+    line-height: 28px;
+}
+
+.radiolab-card.v-card .card-slot p {
+    font-size: var(--font-size-5);
+    line-height: 20px;
+}
+
+.radiolab-card.v-card .radiolab-card-podcasts {
+    font-size: var(--font-size-8);
+    display: flex;
+    align-content: flex-start;
+    text-transform: uppercase;
+    svg {
+        margin-right: 7px;
+    }
+}
+
+.radiolab-card.v-card .radiolab-card-podcasts svg {
+    width: 18px;
+    height: 18px;
+}
