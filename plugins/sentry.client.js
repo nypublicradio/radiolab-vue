@@ -21,7 +21,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         sampleRate: 1,
         tracesSampleRate: 1,
         environment: config.ENV || 'dev',
-        beforeSend(event, hint) {
+        beforeSend(event) {
             return event;
         }
     });
