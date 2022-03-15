@@ -22,9 +22,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         tracesSampleRate: 1,
         environment: config.ENV || 'dev',
         beforeSend(event, hint) {
-            if (event.exception) {
-                console.error(`sent to sentry: ${hint.originalException}`, { event, hint });
-            }
             return event;
         }
     });
