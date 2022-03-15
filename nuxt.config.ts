@@ -24,5 +24,9 @@ export default defineNuxtConfig({
     transpile: [
       'primevue'
     ]
+  },
+  publicRuntimeConfig: {
+    SENTRY_DSN: process.env['SENTRY_DSN'],
+    ENV: process.env['ENV']
   }
 })
