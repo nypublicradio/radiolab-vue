@@ -1,4 +1,5 @@
-export const formatDate = function (date) {
+// formats a date in the format of ShortMonthName DD, YYYY
+export const formatDate = function ( date ) {
     const formattedDate = new Date( date )
     const day = formattedDate.getDate()
     const month = formattedDate.toLocaleString( 'default', { month: 'short' } )
