@@ -21,13 +21,13 @@ onMounted(async () => {
 <template>
   <div v-if="dataLoaded">
     <div class="latest-episode grid justify-content-center">
-      <div class="col-8 p-0">
+      <div class="col-12 xl:col-8 p-0">
         <img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" />
       </div>
-      <div class="latest-episode-content col-4 p-8">
+      <div class="latest-episode-content col-12 xl:col-4 p-8">
         <p class="uppercase mb-2">Latest Episode</p>
-        <h2 class="mb-4"><nuxt-link :to="episodes[0].attributes.url">{{ episodes[0].attributes.title }}</nuxt-link></h2>
-        <p class="mb-5">{{ episodes[0].attributes.tease}}</p>
+        <h2 class="mb-4"><nuxt-link :to="episodes[0].attributes.url" v-html="episodes[0].attributes.title" class="latest-episode-title" /></h2>
+        <p v-html="episodes[0].attributes.tease" class="mb-5" />
         <p class="latest-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
       </div>
     </div>
@@ -37,7 +37,7 @@ onMounted(async () => {
         <nuxt-link class="all-episodes" to="/episodes">All Episodes</nuxt-link>
       </div>
       <div class="grid">
-        <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-4">
+        <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-12 xl:col-4">
           <v-card
             :image="episode.attributes['image-main'].url"
             :alt="episode.attributes['image-main']['alt-text']"
@@ -47,8 +47,8 @@ onMounted(async () => {
             responsive
             bp="max"
           >
-            <p class="mb-5">{{ episode.attributes.tease}}</p>
-            <p class="recent-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
+            <p v-html="episode.attributes.tease" class="mb-5" />
+            <p class="recent-episodes-podcasts"><apple-podcasts /> Apple Podcasts</p>
           </v-card>
         </div>
       </div>
@@ -61,7 +61,13 @@ onMounted(async () => {
 
 <style lang="scss">
 .latest-episode  {
+  max-width: 100%;
   margin-bottom: 100px;
+}
+
+.latest-episode .latest-episode-title {
+  color: #0A0B0C;
+  text-decoration: none;
 }
 
 .latest-episode .latest-episode-image {
@@ -79,9 +85,8 @@ onMounted(async () => {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
-
-.latest-episode-podcasts,
-.recent-episode-podcasts {
+.latest-episode .latest-episode-podcasts,
+.recent-episodes .recent-episodes-podcasts {
   display: flex;
   align-content: flex-start;
   text-transform: uppercase;
@@ -90,8 +95,28 @@ onMounted(async () => {
   }
 }
 
+.latest-episode .latest-episode-podcasts {
+  font-size: 20px;
+}
+.recent-episodes .recent-episodes-podcasts svg {
+  width: 18px;
+  height: 18px;
+}
+
 .recent-episodes  {
   margin: 0 115px;
+  @include media("<xl") {
+    margin: 0;
+  }
+}
+
+.recent-episodes > .grid {
+  margin: 0 -45px;
+}
+
+.recent-episodes .grid>.col,
+.recent-episodes .grid>[class*=col] {
+  padding: 0 45px;
 }
 
 .recent-episodes .v-card {
