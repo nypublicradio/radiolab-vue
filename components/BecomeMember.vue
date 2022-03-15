@@ -34,7 +34,7 @@ const linkTo = (url) => {
       </div>
       <div :class="`col-12 right mt-4`">
         <v-flexible-link to="/" raw class="mt-4">
-          <Button class="p-button-lg" label="Become a member" />
+          <Button class="p-button-lg p-button-rounded" label="Become a member" />
         </v-flexible-link>
       </div>
     </div>

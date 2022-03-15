@@ -9,7 +9,7 @@ const darkMode = ref(false)
 </script>
 
 <template>
-  <div class="home-page" :data-color-mode="darkMode ? 'dark' : 'default'">
+  <div class="home-page" :data-style-mode="darkMode ? 'dark' : 'default'">
     <section>
       <div class="content">
         <div class="grid">

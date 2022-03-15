@@ -23,27 +23,28 @@ section{
   }
 }
 
+.p-inputtext.p-inputtext-lg {
+    padding: 0.75rem;
+}
 
 :root,
-[data-color-mode="blue"] {
+[data-style-mode="blue"] {
   --link-button-color: var(--primary-light-color);
   --text-color: var(--white100);
   --text-color-secondary: var(--white300);
 }
-div,
-span {
-  &[data-color-mode="blue"] {
+
+* {
+  &[data-style-mode="blue"] {
     .p-button:not(.p-button-text) {
       background: var(--white);
       color: #0454d6;
-      border-radius: 25px;
       border-color: #ffffff;
       span {
         font-weight: 600;
       }
     }
     .p-inputtext {
-      border-radius: 25px;
       background-color: rgba(10, 11, 12, 0.1);
       border: none;
       padding-left: spacing(6);

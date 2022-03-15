@@ -45,7 +45,7 @@ const submitEmail = () => {
           <div
             class="col-12 lg:col-4 align-self-end flex lg:justify-content-start justify-content-end"
           >
-            <Button @click="submitEmail" class="p-button-lg" label="Subscribe" />
+            <Button @click="submitEmail" class="p-button-lg p-button-rounded" label="Subscribe" />
           </div>
         </span>
       </div>

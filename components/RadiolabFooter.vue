@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="site-footer" data-color-mode="blue">
+  <div class="site-footer" data-style-mode="blue">
     <section>
       <div class="content max-width">
         <div class="grid">
@@ -63,7 +63,7 @@ onMounted(() => {
             <div class="menu mb-6 px-0 md:px-8" role="menubar">
               <div v-for="item in menuItemsFooter" role="none" class="menu-item">
                 <v-flexible-link :to="item.to ? item.to : item.url">
-                  <Button class="p-button-text p-button-plain">{{ item.label }}</Button>
+                  <Button class="p-button-text p-button-rounded p-button-plain">{{ item.label }}</Button>
                 </v-flexible-link>
               </div>
             </div>
