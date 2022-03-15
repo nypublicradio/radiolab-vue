@@ -85,12 +85,7 @@ onMounted(() => {
       }
     }
     background-color: #0454d6;
-    h2 {
-      font-size: var(--font-size-16);
-      @include media("<medium") {
-        font-size: var(--font-size-12);
-      }
-    }
+
     .menu {
       display: flex;
       flex-wrap: wrap;

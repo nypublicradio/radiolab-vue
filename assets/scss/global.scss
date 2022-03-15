@@ -1,30 +1,30 @@
-$maxWidth : 1440px;
-$contentWidth : 1256px;
+$maxWidth: 1440px;
+$contentWidth: 1256px;
 
 body {
   background: #ffffff;
 }
 
-section{
+section {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  .content{
+  .content {
     width: 100%;
     max-width: $contentWidth;
     padding: spacingXY(10, 18);
     @include media("<medium") {
-      padding: spacingXY(6,4);
+      padding: spacingXY(6, 4);
     }
-    &.max-width{
+    &.max-width {
       max-width: $maxWidth;
     }
   }
 }
 
 .p-inputtext.p-inputtext-lg {
-    padding: 0.75rem;
+  padding: 0.75rem;
 }
 
 :root,
@@ -56,4 +56,3 @@ section{
     }
   }
 }
-
