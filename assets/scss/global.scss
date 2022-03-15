@@ -1,0 +1,24 @@
+$maxWidth : 1440px;
+$contentWidth : 1256px;
+
+body {
+  background: #ffffff;
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .content{
+    width: 100%;
+    max-width: $contentWidth;
+    padding: spacingXY(10, 18);
+    @include media("<medium") {
+      padding: spacingXY(6,4);
+    }
+    &.max-width{
+      max-width: $maxWidth;
+    }
+  }
+}
