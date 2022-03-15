@@ -27,7 +27,7 @@ const linkTo = (url) => {
           <span class="white-space-nowrap">
             in The Lab
             <span>
-              <img alt="icon" src="/rl-icon.svg" class="icon" />
+              <img alt="icon" src="/rl-icon-stripes.svg" class="icon" />
             </span>
           </span>
         </h2>
