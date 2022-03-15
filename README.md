@@ -1,5 +1,4 @@
 # Radiolab Web Client
-### Nuxt 3 & NODE version 14.7.0 
 
 We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
 
@@ -9,7 +8,10 @@ This project expect node version `14.19.0`.
 
 ```bash
 npm install
+npm i nuxt3@3.0.0-27439932.78761c2
 ```
+
+^ we are using this version of NUXT3 till the release candidate!
 
 ## Development
 
