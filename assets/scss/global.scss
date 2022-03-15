@@ -23,13 +23,15 @@ section {
   }
 }
 
-.p-inputtext.p-inputtext-lg {
-  padding: 0.75rem;
+/*component overrides that will eventually go in the extensions.scss file in the theme*/
+.p-inputtext {
+  padding-left: spacing(6);
+  &.p-inputtext-lg {
+    padding: 0.75rem spacing(6);
+  }
 }
 
-/*component overrides that will eventually go in the extensions.scss file in the theme*/
-
-.p-button{
+.p-button {
   font-weight: var(--font-weight-500);
 }
 
@@ -41,24 +43,18 @@ section {
   --text-color-secondary: var(--white300);
 }
 
-* {
-  &[data-style-mode="blue"] {
-    .p-button:not(.p-button-text) {
-      color: #0454d6;
-      border-color: #ffffff;
-      span {
-        font-weight: 600;
-      }
-    }
-    .p-inputtext {
-      background-color: rgba(10, 11, 12, 0.1);
-      border: none;
-      padding-left: spacing(6);
-      &::placeholder {
-        /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: #f4f2f0;
-        opacity: 0.4; /* Firefox */
-      }
+[data-style-mode="blue"] {
+  .p-button:not(.p-button-text) {
+    color: var(--blue-500);
+    border-color: var(--white);
+  }
+  .p-inputtext {
+    background-color: rgba(10, 11, 12, 0.1);
+    border: none;
+    color: var(--primary-color);
+    &::placeholder {
+      color: var(--white100);
+      opacity: 0.4;
     }
   }
 }

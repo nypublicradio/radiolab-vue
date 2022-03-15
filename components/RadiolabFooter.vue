@@ -44,10 +44,11 @@ onMounted(() => {
         <div class="grid mt-8">
           <div class="col-12 md:col-2 flex flex-column justify-content-between">
             <!-- <subscribe-section /> -->
+            <img alt="small white Radiolab logo icon" src="/rl-icon-solid-white.svg" class="icon" />
             <p>Test the outer edges of what you think you know</p>
             <span>
-              <p>Produced by WNYC Studios</p>
-              <p>© 2022 WNYC Studios</p>
+              <p class="footer mb-2">Produced by WNYC Studios</p>
+              <p class="footer">© 2022 WNYC Studios</p>
             </span>
           </div>
           <div class="col-12 md:col-10">

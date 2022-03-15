@@ -21,7 +21,7 @@ const linkTo = (url) => {
 <template>
   <div class="become-a-member">
     <div class="grid">
-      <div :class="`col-12 left`">
+      <div :class="`col-12 left md:pr-8`">
         <h2>
           Unlock exclusives
           <span class="white-space-nowrap">
