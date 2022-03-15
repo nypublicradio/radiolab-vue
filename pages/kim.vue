@@ -1,5 +1,5 @@
 <template>
   <div>
-    <recent-episodes />
+    <popular-episodes />
   </div>
 </template>
