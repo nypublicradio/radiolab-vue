@@ -66,7 +66,7 @@ onMounted(async () => {
 }
 
 .latest-episode .latest-episode-title {
-  color: #0A0B0C;
+  color: var(--primary-text-color);
   text-decoration: none;
 }
 
@@ -81,7 +81,7 @@ onMounted(async () => {
 }
 
 .latest-episode .latest-episode-content {
-  background: #F4F2F0;
+  background: var(--white100);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -120,7 +120,7 @@ onMounted(async () => {
 }
 
 .recent-episodes .v-card {
-  background: #F4F2F0;
+  background: var(--white100);
   border-radius: 20px;
   box-shadow: none;
 }
@@ -144,13 +144,13 @@ onMounted(async () => {
 }
 
 .all-episodes {
-  background: #F4F2F0;
+  background: var(--white100);
   border-radius: 80px;
   width: 110px;
   height: 26px;
   line-height: 26px;
   text-align: center;
-  color: #0A0B0C;
+  color: var(--primary-text-color);
   text-decoration: none;
   font-size: 16px;
 }
