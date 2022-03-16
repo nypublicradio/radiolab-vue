@@ -22,11 +22,11 @@ onMounted(async () => {
   <div v-if="dataLoaded">
     <div class="latest-episode grid justify-content-center">
       <div class="col-12 xl:col-8 p-0">
-        <img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" />
+        <nuxt-link :to="`/episodes/${episodes[0].attributes.slug}`"><img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" /></nuxt-link>
       </div>
       <div class="latest-episode-content col-12 xl:col-4 p-8">
         <p class="latest-episode-header mb-2">Latest Episode</p>
-        <h2 class="mb-4"><nuxt-link :to="episodes[0].attributes.url" v-html="episodes[0].attributes.title" class="latest-episode-title" /></h2>
+        <h2 class="mb-4"><nuxt-link :to="`/episodes/${episodes[0].attributes.slug}`" v-html="episodes[0].attributes.title" class="latest-episode-title" /></h2>
         <p v-html="episodes[0].attributes.tease" class="latest-episode-tease mb-5" />
         <p class="latest-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
       </div>
