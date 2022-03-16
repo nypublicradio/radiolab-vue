@@ -27,5 +27,5 @@ Build the application for production:
 
 ```bash
 docker build -t radiolab-vue .
-docker run radiolab-vue -p 3000:3000
+docker run -p 3000:3000 -e NUXT_HOST=0.0.0.0 radiolab-vue
 ```
