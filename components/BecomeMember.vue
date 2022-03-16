@@ -25,9 +25,10 @@ const linkTo = (url) => {
         <h2>
           Unlock exclusives
           <span class="white-space-nowrap">
-            in The Lab
+            in
+            <v-flexible-link raw rawHover="underline" to="https://google.com">The Lab</v-flexible-link>
             <span>
-              <img alt="icon" src="/rl-icon-stripes.svg" class="icon" />
+              <img alt="icon" src="/rl-icon-stripes.svg" class="icon ml-2 pb-2" />
             </span>
           </span>
         </h2>

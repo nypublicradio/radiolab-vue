@@ -39,6 +39,7 @@ section {
 :root,
 [data-style-mode="blue"] {
   --link-button-color: var(--primary-light-color);
+  --link-button-hover-color: var(--primary-light-color);
   --text-color: var(--white100);
   --text-color-secondary: var(--white300);
 }
@@ -46,11 +47,14 @@ section {
 [data-style-mode="blue"] {
   .p-button:not(.p-button-text) {
     color: var(--blue-500);
-    border-color: var(--white);
+    &:hover {
+      color: var(--primary-color);
+    }
+    // border-color: var(--white);
   }
   .p-inputtext {
     background-color: rgba(10, 11, 12, 0.1);
-    border: none;
+    border-color: transparent;
     color: var(--primary-color);
     &::placeholder {
       color: var(--white100);
