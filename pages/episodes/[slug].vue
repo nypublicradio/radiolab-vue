@@ -2,13 +2,14 @@
 import { onMounted, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
+import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const episode = ref([])
 const route = useRoute()
 onMounted(async () => {
   await axios
     .get(
-      `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug[0]}/`
+      `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
     )
     .then((response) => {
       episode.value = response.data.data.attributes
@@ -25,7 +26,7 @@ onMounted(async () => {
       <h1 v-html="episode.title" />
       <p v-html="episode.tease" />
     </div>
-    <p v-else>Loading animation goes here!</p>
+    <skeleton v-else />
   </div>
 </template>
 

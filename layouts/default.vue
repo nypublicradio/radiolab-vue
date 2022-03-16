@@ -1,6 +1,4 @@
 <script setup>
-//import { onMounted, ref } from "vue";
-
 useMeta({
   title: "RadioLab",
   meta: [
@@ -14,24 +12,14 @@ useMeta({
     },
   ],
 })
-
-const props = defineProps({
-  /*   propVar: {
-      type: Boolean,
-      default: false,
-    }, */
-})
 </script>
 
 <template>
   <div id="root" class="isPlayer">
     <radiolab-header />
-    <main>
+    <main class="mb-100">
       <slot />
     </main>
     <radiolab-footer />
   </div>
 </template>
-
-<style lang="scss">
-</style>

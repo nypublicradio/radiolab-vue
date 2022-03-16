@@ -4,6 +4,7 @@ import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from 'nypr-design-system-vue3/v2/src/components/VCard.vue'
 import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
+import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const episodes = ref([])
 onMounted(async () => {
@@ -19,8 +20,8 @@ onMounted(async () => {
 </script>
  
 <template>
-  <div v-if="dataLoaded">
-    <div class="latest-episode grid justify-content-center">
+  <div>
+    <div v-if="dataLoaded" class="latest-episode grid justify-content-center">
       <div class="col-12 xl:col-8 p-0">
         <nuxt-link :to="`/episodes/${episodes[0].attributes.slug}`"><img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" /></nuxt-link>
       </div>
@@ -31,12 +32,13 @@ onMounted(async () => {
         <p class="latest-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
       </div>
     </div>
+    <latest-episode-skeleton v-else />
     <div class="recent-episodes">
       <div class="flex justify-content-between">
         <h2 class="mb-4">Recent Episodes</h2>
         <nuxt-link class="all-episodes" to="/episodes">All Episodes</nuxt-link>
       </div>
-      <div class="grid">
+      <div v-if="dataLoaded" class="grid">
         <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-12 xl:col-4">
           <v-card
             :image="episode.attributes['image-main'].url"
@@ -44,8 +46,7 @@ onMounted(async () => {
             :title="episode.attributes.title"
             :titleLink="`/episodes/${episode.attributes.slug}`"
             :subtitle="formatDate(episode.attributes['publish-at'])"
-            width="100%"
-            height="225"
+            :height="225"
             :max-width="episode.attributes['image-main'].w"
             :max-height="episode.attributes['image-main'].h"
             responsive
@@ -57,10 +58,8 @@ onMounted(async () => {
           </v-card>
         </div>
       </div>
+      <skeleton v-else />
     </div>
-  </div>
-  <div v-else>
-    <p>Loading Animation Goes Here!</p>
   </div>
 </template>
 

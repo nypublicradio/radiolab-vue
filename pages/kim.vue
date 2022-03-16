@@ -1,7 +1,5 @@
 <template>
   <div>
-    <recent-episodes />
-    <br><br><br><br>
-    <popular-episodes />
+    <h1>kim's test page</h1>
   </div>
 </template>
