@@ -19,7 +19,7 @@ onMounted(async () => {
 </script>
  
 <template>
-  <div v-if="episodes" class="popular-episodes">
+  <div v-if="dataLoaded" class="popular-episodes">
     <div class="flex justify-content-between">
       <h2 class="mb-4">Popular Episodes</h2>
       <nuxt-link class="all-episodes" to="/episodes">All Episodes</nuxt-link>
@@ -32,6 +32,10 @@ onMounted(async () => {
           :title="episode.attributes.title"
           :titleLink="`/episodes/${episode.attributes.slug}`"
           :subtitle="formatDate(episode.attributes['publish-at'])"
+          width="100%"
+          height="225"
+          :max-width="episode.attributes['image-main'].w"
+          :max-height="episode.attributes['image-main'].h"
           responsive
           bp="max"
           class="radiolab-card"

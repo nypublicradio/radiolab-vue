@@ -44,6 +44,10 @@ onMounted(async () => {
             :title="episode.attributes.title"
             :titleLink="`/episodes/${episode.attributes.slug}`"
             :subtitle="formatDate(episode.attributes['publish-at'])"
+            width="100%"
+            height="225"
+            :max-width="episode.attributes['image-main'].w"
+            :max-height="episode.attributes['image-main'].h"
             responsive
             bp="max"
             class="radiolab-card"
