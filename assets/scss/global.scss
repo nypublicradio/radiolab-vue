@@ -1,5 +1,5 @@
 $maxWidth: 1440px;
-$contentWidth: 1256px;
+$contentWidth: 1366px;
 
 body {
   background: #ffffff;
@@ -14,7 +14,7 @@ section {
     width: 100%;
     max-width: $contentWidth;
     padding: spacingXY(10, 18);
-    @include media('<medium') {
+    @include media("<medium") {
       padding: spacingXY(6, 4);
     }
     &.max-width {
@@ -23,4 +23,4 @@ section {
   }
 }
 
-@import 'cards';
+@import "cards";

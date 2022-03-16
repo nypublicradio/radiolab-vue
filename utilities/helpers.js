@@ -6,3 +6,10 @@ export const formatDate = function ( date ) {
     const year = formattedDate.getFullYear()
     return `${ month } ${ day }, ${ year }`
 }
+
+export const publisherImageFormatter = ( url ) => {
+    console.log('url = ', url)
+    console.log('url = ', url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%"))
+    return result = url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%");
+
+}
