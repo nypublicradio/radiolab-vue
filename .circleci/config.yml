@@ -107,7 +107,8 @@ jobs:
               --execution-role=$ROLE \
               --task-role=$ROLE \
               --environment=$ENV \
-              --tag=$TAG 
+              --tag=$TAG \
+              --wait=300
 
 executors:
   default:
