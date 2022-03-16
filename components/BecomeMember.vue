@@ -1,19 +1,13 @@
 <script setup>
 //import { ref, computed, onMounted, defineEmit } from "vue"
 import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-const router = useRouter()
 /* const props = defineProps({
   bp: {
     type: String,
     default: 'md',
   },
 }) */
-const routeTo = (page) => {
-  router.push(page)
-}
-const linkTo = (url) => {
-  window.open(url, '_blank')
-}
+
 //const emit = defineEmit(["change", "click"]);
 
 </script>
