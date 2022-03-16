@@ -1,19 +1,11 @@
 <script setup>
-import { onMounted, onBeforeMount } from "vue"
+import { onMounted } from "vue"
 import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import BecomeMember from './BecomeMember.vue'
 import Newsletter from './Newsletter.vue'
 const menuItems = useHeaderMenu()
 const menuItemsFooter = ref([])
-const props = defineProps({
-  //   propVar: {
-  //     type: Boolean,
-  //     default: false,
-  //   },
-})
-//const emit = defineEmit(["change", "click"]);
 
-// lifecycle hooks
 onMounted(() => {
   console.log('menuItems = ', menuItems.value)
   for (const [i, v] of menuItems.value.entries()) {
@@ -37,13 +29,11 @@ onMounted(() => {
             <become-member />
           </div>
           <div class="col-12 md:col-6">
-            <!-- <subscribe-section /> -->
             <newsletter />
           </div>
         </div>
         <div class="grid mt-8 bottom">
           <div class="col-12 md:col-3 flex flex-column justify-content-between left">
-            <!-- <subscribe-section /> -->
             <div class="mb-4 xl:pr-8">
               <img alt="small white Radiolab logo icon" src="/rl-icon-solid-white.svg" class="icon" />
               <p class="sub">Test the outer edges of what you think you know</p>
@@ -69,7 +59,6 @@ onMounted(() => {
       </div>
     </section>
   </div>
-  <!-- <Menubar :model="menuItemsFooter"></Menubar> -->
 </template>
 
 <style lang="scss">
@@ -132,34 +121,5 @@ onMounted(() => {
       }
     }
   }
-  /* ul {
-    display: block;
-    column-count: 4;
-    column-gap: 0px;
-    list-style-type: none;
-    .menu-item {
-      width: 100px;
-      .flexible-link,
-      .flexible-link .p-button {
-        text-decoration: none !important;
-      }
-    }
-  } */
-  /*   .p-menubar {
-    ul {
-      // flex-wrap: wrap;
-      // flex-direction: column;
-      display: block;
-      column-count: 4;
-      .p-menuitem {
-        width: 200px;
-        .p-menuitem-link {
-          .p-menuitem-icon {
-            display: none;
-          }
-        }
-      }
-    }
-  } */
 }
 </style>

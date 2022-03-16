@@ -1,14 +1,5 @@
 <script setup>
-//import { ref, computed, onMounted, defineEmit } from "vue"
 import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-/* const props = defineProps({
-  bp: {
-    type: String,
-    default: 'md',
-  },
-}) */
-
-//const emit = defineEmit(["change", "click"]);
 
 </script>
 

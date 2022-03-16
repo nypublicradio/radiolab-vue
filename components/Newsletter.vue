@@ -1,14 +1,6 @@
 <script setup>
-import { ref/* , computed, onMounted, defineEmit */ } from "vue"
+import { ref } from "vue"
 
-/* const props = defineProps({
-  bp: {
-    type: String,
-    default: 'md',
-  },
-}) */
-
-//const emit = defineEmit(["change", "click"]);
 
 const emailAddress = ref('')
 const emailAddressError = ref(false)
