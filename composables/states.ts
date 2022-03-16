@@ -1,4 +1,4 @@
-export const colorModes = {
+export const styleModes = {
     DEFAULT: 'default',
     DARK: 'dark',
 }
@@ -16,7 +16,7 @@ export const playPreferences = {
     RSS: 'rss',
 }
 
-export const useColorMode = () => useState<string>('colorMode', () => colorModes.DEFAULT)
+export const useColorMode = () => useState<string>('colorMode', () => styleModes.DEFAULT)
 export const usePlayPreference = () => useState<string>('playPreference', () => playPreferences.SITE)
 export const useHeaderMenu = () => useState('headerMenu', () => [
   {

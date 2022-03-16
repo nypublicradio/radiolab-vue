@@ -23,7 +23,6 @@ section {
   }
 }
 
-/*component overrides that will eventually go in the extensions.scss file in the theme*/
 .p-inputtext {
   padding-left: spacing(6);
   &.p-inputtext-lg {
@@ -31,6 +30,7 @@ section {
   }
 }
 
+/*component overrides that will eventually go in the extensions.scss file in the theme*/
 .p-button {
   font-weight: var(--font-weight-500);
 }
@@ -50,7 +50,6 @@ section {
     &:hover {
       color: var(--primary-color);
     }
-    // border-color: var(--white);
   }
   .p-inputtext {
     background-color: rgba(10, 11, 12, 0.1);
