@@ -24,8 +24,12 @@ filter_prod: &filter_prod
 workflows:
   test-and-deploy:
     jobs:
+      - build:
+          <<: *filter_all
       - test:
           <<: *filter_all
+          requires:
+            - build
       - deploy:
           name: Deploy (demo)
           context: "AWS Deploy"
@@ -42,12 +46,25 @@ workflows:
             - test
 
 jobs: 
+  # Note (allie): This is its own job because I don't 
+  # want to run the tests in an environment that has the
+  # built project. 
+  build:
+    executor: default
+    steps:
+      - checkout
+      - run: 
+          name: Assert that it builds
+          command: |
+            npm ci
+            npm run build
+
   test:
     executor: default
     steps:
       - checkout
       - run:
-          name: placeholder
+          name: Run unit tests
           command: |
             npm ci
             npm run test        
@@ -91,7 +108,7 @@ jobs:
               --task-role=$ROLE \
               --environment=$ENV \
               --tag=$TAG \
-              --wait=300 
+              --wait=300
 
 executors:
   default:
