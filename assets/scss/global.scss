@@ -1,5 +1,5 @@
 $maxWidth: 1440px;
-$contentWidth: 1256px;
+$contentWidth: 1366px;
 
 body {
   background: #ffffff;
@@ -10,21 +10,23 @@ section {
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
-
-.content {
-  width: 100%;
-  max-width: $contentWidth;
-  padding: spacingXY(10, 18);
-  @include media('<medium') {
-    padding: spacingXY(6, 4);
+  .content {
+    width: 100%;
+    max-width: $contentWidth;
+    padding: spacingXY(10, 18);
+    @include media("<medium") {
+      padding: spacingXY(6, 4);
+    }
+    &.max-width {
+      max-width: $maxWidth;
+    }
   }
   &.max-width {
     max-width: $maxWidth;
   }
 }
 
-@import 'cards';
+@import "cards";
 
 .p-skeleton {
   width: 100%;

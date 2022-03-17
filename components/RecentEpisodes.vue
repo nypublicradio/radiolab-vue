@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from 'nypr-design-system-vue3/v2/src/components/VCard.vue'
+import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
 import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
@@ -23,13 +24,31 @@ onMounted(async () => {
   <div>
     <div v-if="dataLoaded" class="latest-episode grid justify-content-center">
       <div class="col-12 xl:col-8 p-0">
-        <nuxt-link :to="`/episodes/${episodes[0].attributes.slug}`"><img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" /></nuxt-link>
+        <!-- <nuxt-link :to="`/episodes/${episodes[0].attributes.slug}`">
+          <img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" />
+        </nuxt-link>-->
+        <v-image-with-caption
+          :image="episodes[0].attributes['image-main'].url"
+          :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
+          :alt="episodes[0].attributes['image-main']['alt-text']"
+          :max-width="episodes[0].attributes['image-main'].w"
+          :max-height="episodes[0].attributes['image-main'].h"
+          :ratio="[4, 3]"
+        />
       </div>
       <div class="latest-episode-content col-12 xl:col-4 p-8">
         <p class="latest-episode-header mb-2">Latest Episode</p>
-        <h2 class="mb-4"><nuxt-link :to="`/episodes/${episodes[0].attributes.slug}`" v-html="episodes[0].attributes.title" class="latest-episode-title" /></h2>
+        <h2 class="mb-4">
+          <nuxt-link
+            :to="`/episodes/${episodes[0].attributes.slug}`"
+            v-html="episodes[0].attributes.title"
+            class="latest-episode-title"
+          />
+        </h2>
         <p v-html="episodes[0].attributes.tease" class="latest-episode-tease mb-5" />
-        <p class="latest-episode-podcasts"><apple-podcasts /> Apple Podcasts</p>
+        <p class="latest-episode-podcasts">
+          <apple-podcasts />Apple Podcasts
+        </p>
       </div>
     </div>
     <latest-episode-skeleton v-else />
@@ -50,11 +69,14 @@ onMounted(async () => {
             :max-width="episode.attributes['image-main'].w"
             :max-height="episode.attributes['image-main'].h"
             responsive
+            :ratio="[4, 3]"
             bp="max"
             class="radiolab-card"
           >
             <p v-html="episode.attributes.tease" class="mb-5" />
-            <p class="radiolab-card-podcasts"><apple-podcasts /> Apple Podcasts</p>
+            <p class="radiolab-card-podcasts">
+              <apple-podcasts />Apple Podcasts
+            </p>
           </v-card>
         </div>
       </div>
@@ -64,7 +86,7 @@ onMounted(async () => {
 </template>
 
 <style lang="scss">
-.latest-episode  {
+.latest-episode {
   max-width: 100%;
   margin-bottom: 100px;
 }
@@ -122,12 +144,12 @@ onMounted(async () => {
 }
 
 .recent-episodes > .grid {
-  margin: 0 -45px;
+  margin: 0 -33px;
 }
 
-.recent-episodes .grid>.col,
-.recent-episodes .grid>[class*=col] {
-  padding: 0 45px;
+.recent-episodes .grid > .col,
+.recent-episodes .grid > [class*="col"] {
+  padding: 0 33px;
 }
 
 .all-episodes {

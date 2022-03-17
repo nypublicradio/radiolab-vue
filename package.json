@@ -19,7 +19,7 @@
     "jest-axe": "^5.0.1",
     "jest-canvas-mock": "^2.3.1",
     "nuxt3": "^3.0.0-27439932.78761c2",
-    "nypr-design-system-vue3": "github:nypublicradio/nypr-design-system-vue3#d58c637f9b31b28d0b1622dc0f2fd22bcd4ac24d",
+    "nypr-design-system-vue3": "github:nypublicradio/nypr-design-system-vue3#21cbc1961003913dd37a3b6d49a0fdf46f438eff",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4",
     "vue-jest": "^5.0.0-alpha.10",
