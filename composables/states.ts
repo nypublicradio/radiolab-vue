@@ -5,30 +5,30 @@ export const styleModes = {
 
 export const playPreferences = {
     SITE: 'site',
-    POCKET: 'pocket',
     APPLE: 'apple',
-    GOOGLE: 'google',
-    TUNEIN: 'tunein',
-    STITCHER: 'stitcher',
     SPOTIFY: 'spotify',
-    IHEART: 'iheart',
+    OVERCAST: 'overcast',
+    STITCHER: 'stitcher',
+    NPRONE: 'nprone',
+    GOOGLE: 'google',
+    CASTBOX: 'castbox',
     AMAZON: 'amazon',
+    POCKET: 'pocket',
+    PODCASTADDICT: 'podcastaddict',
     RSS: 'rss',
 }
-// Apple
-// Spotify
-// Overcast
-// Stitcher
-// NPR One
-// Google Podcasts
-// Castbox
-// Amazon Music
-// Pocketcasts
-// Podcast Addict
-// RSS
 
+/**
+ * Global state for possible dark mode
+ */
 export const useColorMode = () => useState<string>('colorMode', () => styleModes.DEFAULT)
+/**
+ * Global state for the users media selection preference. This will stored in local storage
+ */
 export const usePlayPreference = () => useState<string>('playPreference', () => playPreferences.SITE)
+/**
+ * Global state for the menu
+ */
 export const useHeaderMenu = () => useState('headerMenu', () => [
   {
     label: 'Podcasts',

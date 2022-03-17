@@ -6,7 +6,7 @@ const emailAddress = ref('')
 const emailAddressError = ref(false)
 const submitEmail = () => {
   //validate etc...
-  console.log('submitEmail', emailAddress.value)
+  // console.log('submitEmail', emailAddress.value)
 }
 
 </script>

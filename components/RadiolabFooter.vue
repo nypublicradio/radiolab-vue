@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue"
+import { onMounted } from 'vue'
 import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import BecomeMember from './BecomeMember.vue'
 import Newsletter from './Newsletter.vue'
@@ -7,7 +7,7 @@ const menuItems = useHeaderMenu()
 const menuItemsFooter = ref([])
 
 onMounted(() => {
-  console.log('menuItems = ', menuItems.value)
+  // console.log('menuItems = ', menuItems.value)
   for (const [i, v] of menuItems.value.entries()) {
     if (v.items) {
       for (const [i, item] of v.items.entries()) {
@@ -41,7 +41,7 @@ onMounted(() => {
           </div>
           <div class="col-12 md:col-9 right">
             <div class="menu mb:mb-6 px-0 md:px-8" role="menubar">
-              <div v-for="item in menuItemsFooter" role="none" class="menu-item">
+              <div v-for="item in menuItemsFooter" role="none" class="menu-item" :key="item.to">
                 <v-flexible-link :to="item.to ? item.to : item.url">
                   <!-- <Button class="p-button-text p-button-rounded p-button-plain">{{ item.label }}</Button> -->
                   {{ item.label }}

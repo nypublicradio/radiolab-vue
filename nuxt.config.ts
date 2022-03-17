@@ -16,7 +16,7 @@ export default defineNuxtConfig({
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color:'#ff3904' }
     ]
   },
-  //buildModules: ['nypr-design-system-vue3/nuxt'],
+  // buildModules: ['nypr-design-system-vue3/nuxt'],
   css: [
     //'primevue/resources/themes/saga-blue/theme.css',
     // 'nypr-design-system-vue3/src/assets/library/primeflex.min.css',

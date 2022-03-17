@@ -8,29 +8,29 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/core": "^7.17.7",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
-    "@jest/globals": "^27.4.4",
+    "@jest/globals": "^27.5.1",
     "@vue/compiler-sfc": "^3.2.31",
     "@vue/test-utils": "^2.0.0-rc.18",
     "@vue/vue3-jest": "^27.0.0-alpha.4",
-    "babel-jest": "^27.4.6",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
     "jest-axe": "^5.0.1",
     "jest-canvas-mock": "^2.3.1",
     "nuxt3": "^3.0.0-27439932.78761c2",
     "nypr-design-system-vue3": "github:nypublicradio/nypr-design-system-vue3#4b63e5dbb350154af205632ba0982cda8e3df18b",
-    "ts-jest": "^27.1.2",
     "typescript": "^4.5.4",
-    "vue-jest": "^5.0.0-alpha.10",
     "vue3-jest": "^27.0.0-alpha.1"
   },
   "dependencies": {
+    "@nuxt/test-utils": "^0.2.2",
     "@sentry/tracing": "^6.18.2",
     "@sentry/vue": "^6.18.2",
-    "jest": "^27.4.5",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.1",
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "ts-jest": "^27.1.3"
   }
 }
