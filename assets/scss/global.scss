@@ -1,9 +1,11 @@
 $maxWidth: 1440px;
 $contentWidth: 1366px;
 $headerHeight: 70px;
+$playerHeight: 100px;
 
 :root {
-  --header-height: $headerHeight;
+  --header-height: #{$headerHeight};
+  --player-height: #{$playerHeight};
   --header-z-index: 900;
 }
 

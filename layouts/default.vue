@@ -1,6 +1,6 @@
 <script setup>
-//import { onMounted, ref } from "vue";
-
+import { ref } from "vue"
+const isPlayer = ref(false)
 useMeta({
   title: "RadioLab",
   meta: [
@@ -24,7 +24,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div id="root" class="isPlayer">
+  <div id="root" :class="[{ 'isPlayer': isPlayer }]">
     <radiolab-header />
     <main>
       <slot />
@@ -34,4 +34,7 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
+#root.isPlayer {
+  padding-bottom: var(--player-height);
+}
 </style>
