@@ -1,6 +1,15 @@
 # Radiolab Web Client
 ### Nuxt 3 & NODE version 14.19.0 
 
+## IMPORTANT
+if you get this error, or any other error:
+"nuxi requires @nuxt/kit to be installed in your project. Try installing nuxt3 or @nuxt/bridge"
+
+irst run this install to fix it:
+```bash
+npm i nuxt3@3.0.0-27439932.78761c2
+```
+
 We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
 
 ## Setup

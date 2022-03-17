@@ -15,6 +15,17 @@ export const playPreferences = {
     AMAZON: 'amazon',
     RSS: 'rss',
 }
+// Apple
+// Spotify
+// Overcast
+// Stitcher
+// NPR One
+// Google Podcasts
+// Castbox
+// Amazon Music
+// Pocketcasts
+// Podcast Addict
+// RSS
 
 export const useColorMode = () => useState<string>('colorMode', () => styleModes.DEFAULT)
 export const usePlayPreference = () => useState<string>('playPreference', () => playPreferences.SITE)
@@ -23,11 +34,11 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
     label: 'Podcasts',
     items: [
       {
-        label: 'Podcasts Episodes',
+        label: 'Episodes',
         to: '/news',
       },
       {
-        label: 'On The Radio',
+        label: 'Radio Shows',
         to: '/news',
       },
       {
@@ -56,20 +67,20 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
         to: '/news',
       },
       {
-        label: 'Read the Credits',
-        to: '/news',
-      },
-      {
-        label: 'Contact us',
+        label: 'Pitch Us',
         to: '/news',
       }
     ]
   },
   {
-    label: 'For listeners',
+    label: 'For Listeners',
     items: [
       {
-        label: 'Join The Lab',
+        label: 'The Lab',
+        to: '/news',
+      },
+      {
+        label: 'Read the credits',
         to: '/news',
       },
       {
@@ -81,11 +92,12 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
   {
     label: 'How to listen',
     to: '/news',
-    class: 'gap',
+    class: 'gap alone',
   },
   {
     label: 'Become a member',
     to: '/news',
+    class: 'button alone',
   },
   {
     label: 'FAQs',

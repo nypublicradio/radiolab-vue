@@ -1,8 +1,17 @@
 $maxWidth: 1440px;
-$contentWidth: 1256px;
+$contentWidth: 1366px;
+$headerHeight: 70px;
+
+:root {
+  --header-height: $headerHeight;
+  --header-z-index: 900;
+}
 
 body {
   background: #ffffff;
+}
+main {
+  padding-top: $headerHeight;
 }
 
 section {
