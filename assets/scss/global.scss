@@ -5,31 +5,22 @@ body {
   background: #ffffff;
 }
 
-main {
-  width: 100%;
-  max-width: $maxWidth;
-  margin: 0 auto;
-  padding: spacingXY(10, 18);
-  @include media('<medium') {
-    padding: spacingXY(6, 4);
-  }
-}
-
 section {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  .content {
-    width: 100%;
-    max-width: $contentWidth;
-    padding: spacingXY(10, 18);
-    @include media('<medium') {
-      padding: spacingXY(6, 4);
-    }
-    &.max-width {
-      max-width: $maxWidth;
-    }
+}
+
+.content {
+  width: 100%;
+  max-width: $contentWidth;
+  padding: spacingXY(10, 18);
+  @include media('<medium') {
+    padding: spacingXY(6, 4);
+  }
+  &.max-width {
+    max-width: $maxWidth;
   }
 }
 
@@ -38,6 +29,15 @@ section {
 .p-skeleton {
   width: 100%;
   height: 1rem;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: spacingXY(6, 6);
+  @include media('<xl') {
+    padding: spacingXY(4, 4);
+  }
 }
 
 .mb-100 {

@@ -33,13 +33,13 @@ onMounted(async () => {
       </div>
     </div>
     <latest-episode-skeleton v-else />
-    <div class="recent-episodes">
+    <div class="recent-episodes container">
       <div class="flex justify-content-between">
-        <h2 class="mb-4">Recent Episodes</h2>
+        <h3 class="mb-4">Recent Episodes</h3>
         <nuxt-link class="all-episodes" to="/episodes">All Episodes</nuxt-link>
       </div>
       <div v-if="dataLoaded" class="grid">
-        <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-12 xl:col-4">
+        <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-12 xl:col-4 mb-5">
           <v-card
             :image="episode.attributes['image-main'].url"
             :alt="episode.attributes['image-main']['alt-text']"
@@ -115,9 +115,9 @@ onMounted(async () => {
 }
 
 .recent-episodes  {
-  margin: 0 115px;
+  padding: 0 115px;
   @include media("<xl") {
-    margin: 0;
+    padding: spacingXY(6, 4);
   }
 }
 

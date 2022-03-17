@@ -17,9 +17,9 @@ onMounted(async () => {
 </script>
  
 <template>
-  <div class="radiolab-series">
+  <div class="radiolab-series container">
     <div class="flex justify-content-between">
-      <h2 class="mb-4">Series</h2>
+      <h3 class="mb-4">Series</h3>
       <nuxt-link class="all-series" to="/episodes">All Series</nuxt-link>
     </div>
     <div v-if="dataLoaded" class="grid">

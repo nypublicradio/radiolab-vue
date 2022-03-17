@@ -41,7 +41,7 @@ async function onPage(event) {
  
 <template>
   <div>
-    <div class="episode-archive">
+    <div class="episode-archive container">
       <h1 class="mb-100">Episode Archive</h1>
       <div v-if="dataLoaded" class="grid">
         <div v-for="(episode, index) in episodes" :key="index" class="col-12 xl:col-4 mb-100">

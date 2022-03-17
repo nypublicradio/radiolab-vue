@@ -20,7 +20,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <div v-if="dataLoaded" class="episode">
+    <div v-if="dataLoaded" class="episode container">
       <img :src="episode['image-main'].url" :alt="episode['image-main'].alt-text" class="episode-image" />
       <p>{{ formatDate(episode['publish-at']) }}</p>
       <h1 v-html="episode.title" />

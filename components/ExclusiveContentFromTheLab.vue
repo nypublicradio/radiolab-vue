@@ -17,9 +17,9 @@ onMounted(async () => {
 </script>
  
 <template>
-  <div class="exclusive-content-from-the-lab">
+  <div class="exclusive-content-from-the-lab container">
     <div class="flex justify-content-between">
-      <h2 class="mb-4">Exclusive content from The Lab</h2>
+      <h3 class="mb-4">Exclusive content from The Lab</h3>
       <nuxt-link class="become-a-member" to="/episodes">Become a member</nuxt-link>
     </div>
     <div v-if="dataLoaded" class="grid">
