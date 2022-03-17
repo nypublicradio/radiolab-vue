@@ -7,9 +7,10 @@ export const formatDate = function ( date ) {
     return `${ month } ${ day }, ${ year }`
 }
 
+// format the url of a publisher image so it works with our design system components
 export const publisherImageFormatter = ( url ) => {
-    console.log('url = ', url)
-    console.log('url = ', url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%"))
-    return result = url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%");
+    // console.log('url = ', url)
+    // console.log('url = ', url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%"))
+    return url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%")
 
 }

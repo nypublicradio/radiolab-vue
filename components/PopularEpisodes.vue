@@ -16,7 +16,6 @@ onBeforeMount(async () => {
     .then((response) => {
       episodes.value = response.data.data.attributes['bucket-items']
       dataLoaded.value = true
-      console.log('episodes = ', episodes.value)
     })
 })
 </script>
