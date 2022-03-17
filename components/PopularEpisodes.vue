@@ -39,7 +39,6 @@ onBeforeMount(async () => {
           :max-width="episode.attributes['image-main'].w"
           :max-height="episode.attributes['image-main'].h"
           responsive
-          :ratio="[3,2]"
           bp="max"
           :ratio="[4, 3]"
           class="radiolab-card"
