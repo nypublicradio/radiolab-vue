@@ -35,8 +35,7 @@ const menuItems = useHeaderMenu()
   width: 100%;
   z-index: var(--header-z-index);
   section {
-    background: var(--white);
-    border-bottom: 1px solid var(--primary-color);
+    background: var(--white);  
     justify-items: stretch;
     .content {
       padding: spacingTRBL(0, 10, 0, 10);
@@ -161,6 +160,7 @@ const menuItems = useHeaderMenu()
               width: 200vw;
               height: 47px;
               z-index: -1;
+              border-top: 1px solid var(--primary-color);
               border-bottom: 1px solid var(--primary-color);
             }
             .p-menuitem-link:after {
