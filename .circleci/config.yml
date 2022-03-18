@@ -53,6 +53,7 @@ jobs:
     executor: default
     steps:
       - checkout
+      - setup_npmrc
       - run: 
           name: Assert that it builds
           command: |
@@ -63,6 +64,7 @@ jobs:
     executor: default
     steps:
       - checkout
+      - setup_npmrc
       - run:
           name: Run unit tests
           command: |
@@ -82,6 +84,7 @@ jobs:
         default: ""
     steps:
       - checkout
+      - setup_npmrc
       - setup_remote_docker:
           version: 19.03.13            
       - run:
@@ -110,6 +113,17 @@ jobs:
               --tag=$TAG \
               --wait=300
 
+commands:
+  setup_npmrc:
+    description: Setup .npmrc
+    steps:
+      - run:
+          command: |
+            cat <<EOT >> .npmrc
+            @nypublicradio:registry=https://npm.pkg.github.com
+            //npm.pkg.github.com/:_authToken=$PAT
+            EOT
+    
 executors:
   default:
     docker:
