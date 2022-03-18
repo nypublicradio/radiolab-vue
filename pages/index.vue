@@ -11,3 +11,5 @@ const darkMode = ref(false)
     <popular-episodes class="mb-8" />
   </div>
 </template>
+
+<style lang="scss"></style>
