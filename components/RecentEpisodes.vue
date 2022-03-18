@@ -1,12 +1,6 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
-import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
-import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
-import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const episodes = ref([])
 onBeforeMount(async () => {
