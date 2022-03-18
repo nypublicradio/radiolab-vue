@@ -13,13 +13,6 @@ useMeta({
     },
   ],
 })
-
-const props = defineProps({
-  /*   propVar: {
-      type: Boolean,
-      default: false,
-    }, */
-})
 </script>
 
 <template>
