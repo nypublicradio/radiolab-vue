@@ -1,8 +1,8 @@
-import { mount } from '@vue/test-utils'
+//import { mount } from '@vue/test-utils'
 import { describe, test, expect } from '@jest/globals'
-import { toHaveNoViolations } from 'jest-axe'
+//import { toHaveNoViolations } from 'jest-axe'
 //import RadiolabFooter from '../components/RadiolabFooter.vue'
-import axe from './axe-helper'
+//import axe from './axe-helper'
 
 /* expect.extend(toHaveNoViolations)
 
