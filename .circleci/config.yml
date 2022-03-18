@@ -115,14 +115,12 @@ jobs:
 
 commands:
   setup_npmrc:
-    description: Setup .npmrc
     steps:
       - run:
+          name: Setup .npmrc
           command: |
-            cat <<EOT >> .npmrc
-            @nypublicradio:registry=https://npm.pkg.github.com
-            //npm.pkg.github.com/:_authToken=$PAT
-            EOT
+            echo "@nypublicradio:registry=https://npm.pkg.github.com" > .npmrc
+            echo "//npm.pkg.github.com/:_authToken=$PAT" >> .npmrc
     
 executors:
   default:
