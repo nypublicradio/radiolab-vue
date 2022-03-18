@@ -1,4 +1,5 @@
 <script setup>
+import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import LockIcon from '~/components/icons/LockIcon.vue'
 const props = defineProps({
   alt: {
@@ -34,7 +35,13 @@ const props = defineProps({
 
 <template>
     <nuxt-link :to="url" class="mini-card p-4">
-        <img :src="image" :alt="alt" class="mini-card-image" />
+        <v-image-with-caption
+          :image="image"
+          :alt="alt"
+          :width="80"
+          :height="80"
+          class="mini-card-image"
+        />
         <div class="mini-card-content">
           <p class="mini-card-subtitle"><lock-icon v-if="membersOnly" /> {{props.subtitle}}</p>
           <h3 v-html="props.title" class="mini-card-title" />
@@ -45,14 +52,21 @@ const props = defineProps({
 
 <style lang="scss">
 .mini-card {
-    border: 1px solid #F4F2F0;
+    border: 1px solid var(--primary-color);
     border-radius: 20px;
     width: 100%;
     height: 100%;
     text-decoration: none;
     display: flex;
+    transition: var(--transition-duration);
+    &:hover {
+      background: var(--primary-color);
+    }
 }
-.mini-card .mini-card-image {
+.mini-card .image-with-caption {
+  width: 100px;
+}
+.mini-card .mini-card-image .simple-responsive-image-holder .image {
     width: 80px;
     height: 80px;
     border-radius: 10px;

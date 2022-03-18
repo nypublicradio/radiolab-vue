@@ -5,9 +5,9 @@ const darkMode = ref(false)
 
 <template>
   <div class="home-page" :data-style-mode="darkMode ? 'dark' : 'default'">
-    <recent-episodes class="mb-100" />
-    <exclusive-content-from-the-lab class="mb-100" />
-    <radiolab-series class="mb-100" />
-    <popular-episodes class="mb-100" />
+    <recent-episodes class="mb-8" />
+    <exclusive-content-from-the-lab class="mb-8" />
+    <radiolab-series class="mb-8" />
+    <popular-episodes class="mb-8" />
   </div>
 </template>

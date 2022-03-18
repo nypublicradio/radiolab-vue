@@ -17,7 +17,7 @@ useMeta({
 <template>
   <div id="root" class="isPlayer">
     <radiolab-header />
-    <main class="mb-100">
+    <main class="mb-8">
       <slot />
     </main>
     <radiolab-footer />

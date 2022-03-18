@@ -4,7 +4,7 @@ We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
 
 ## Setup
 
-This project expect node version `14.19.0`.
+This project expects node version `14.19.0`.
 
 ```bash
 npm install

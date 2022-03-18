@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const episode = ref([])
 const route = useRoute()
-onMounted(async () => {
+onBeforeMount(async () => {
   await axios
     .get(
       `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`

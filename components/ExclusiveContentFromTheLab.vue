@@ -1,10 +1,11 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import Skeleton from 'primevue/skeleton'
+import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 const dataLoaded = ref(false)
 const episodes = ref([])
-onMounted(async () => {
+onBeforeMount(async () => {
   await axios
     .get(
       'https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=3'
@@ -20,7 +21,7 @@ onMounted(async () => {
   <div class="exclusive-content-from-the-lab container">
     <div class="flex justify-content-between">
       <h3 class="mb-4">Exclusive content from The Lab</h3>
-      <nuxt-link class="become-a-member" to="/episodes">Become a member</nuxt-link>
+        <v-flexible-link class="become-a-member" to="/become-a-member"><button class="p-button-sm">Become a member</button></v-flexible-link>
     </div>
     <div v-if="dataLoaded" class="grid">
       <div v-for="(episode, index) in episodes.slice(0,3)" :key="index" class="col-12 xl:col-4">
@@ -40,15 +41,8 @@ onMounted(async () => {
 </template>
 
 <style lang="scss">
-.become-a-member {
+.become-a-member button {
     background: var(--blue-500);
-    border-radius: 80px;
-    width: 163px;
-    height: 26px;
-    line-height: 26px;
-    text-align: center;
     color: var(--white100);
-    text-decoration: none;
-    font-size: var(--font-size-6);
 }
 </style>

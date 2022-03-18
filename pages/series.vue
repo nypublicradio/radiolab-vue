@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>become a member WIP</h1>
+    <h1>series WIP</h1>
   </div>
 </template>

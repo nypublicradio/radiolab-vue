@@ -14,7 +14,7 @@ section {
     width: 100%;
     max-width: $contentWidth;
     padding: spacingXY(10, 18);
-    @include media("<medium") {
+    @include media('<medium') {
       padding: spacingXY(6, 4);
     }
     &.max-width {
@@ -26,7 +26,19 @@ section {
   }
 }
 
-@import "cards";
+button.p-button-sm {
+  border-radius: 80px;
+  border: none;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  font-size: var(--font-size-6);
+  padding: 0 12px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+@import 'cards';
 
 .p-skeleton {
   width: 100%;
@@ -40,8 +52,4 @@ section {
   @include media('<xl') {
     padding: spacingXY(4, 4);
   }
-}
-
-.mb-100 {
-  margin-bottom: 100px;
 }

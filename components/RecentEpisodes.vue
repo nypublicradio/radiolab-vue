@@ -1,14 +1,15 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from 'nypr-design-system-vue3/v2/src/components/VCard.vue'
+import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
 import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const episodes = ref([])
-onMounted(async () => {
+onBeforeMount(async () => {
   await axios
     .get(
       'https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=4'
@@ -24,16 +25,14 @@ onMounted(async () => {
   <div>
     <div v-if="dataLoaded" class="latest-episode grid justify-content-center">
       <div class="col-12 xl:col-8 p-0">
-        <!-- <nuxt-link :to="`/episodes/${episodes[0].attributes.slug}`">
-          <img class="latest-episode-image" :src="episodes[0].attributes['image-main'].url" :alt="episodes[0].attributes['image-main']['alt-text']" />
-        </nuxt-link>-->
         <v-image-with-caption
-          :image="episodes[0].attributes['image-main'].url"
+          :image="episodes[0].attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
           :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
           :alt="episodes[0].attributes['image-main']['alt-text']"
           :max-width="episodes[0].attributes['image-main'].w"
           :max-height="episodes[0].attributes['image-main'].h"
           :ratio="[4, 3]"
+          class="latest-episode-image"
         />
       </div>
       <div class="latest-episode-content col-12 xl:col-4 p-8">
@@ -55,7 +54,7 @@ onMounted(async () => {
     <div class="recent-episodes container">
       <div class="flex justify-content-between">
         <h3 class="mb-4">Recent Episodes</h3>
-        <nuxt-link class="all-episodes" to="/episodes">All Episodes</nuxt-link>
+        <v-flexible-link to="/episodes"><button class="p-button-sm">All Episodes</button></v-flexible-link>
       </div>
       <div v-if="dataLoaded" class="grid">
         <div v-for="(episode, index) in episodes.slice(1,4)" :key="index" class="col-12 xl:col-4 mb-5">
@@ -105,6 +104,7 @@ onMounted(async () => {
   height: auto;
   width: 100%;
   object-fit: cover;
+  overflow-y: hidden;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 }
@@ -150,17 +150,5 @@ onMounted(async () => {
 .recent-episodes .grid > .col,
 .recent-episodes .grid > [class*="col"] {
   padding: 0 33px;
-}
-
-.all-episodes {
-  background: var(--white100);
-  border-radius: 80px;
-  width: 110px;
-  height: 26px;
-  line-height: 26px;
-  text-align: center;
-  color: var(--primary-text-color);
-  text-decoration: none;
-  font-size: var(--font-size-6);
 }
 </style>
