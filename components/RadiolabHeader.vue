@@ -22,7 +22,7 @@ const menuItems = useHeaderMenu()
           </template>-->
         </Menubar>
         <v-flexible-link raw to="news">
-          <Button class="flex lg:hidden p-button-rounded" >Become a member</Button>
+          <Button class="flex lg:hidden p-button-rounded">Become a member</Button>
         </v-flexible-link>
       </div>
     </section>
@@ -256,13 +256,31 @@ const menuItems = useHeaderMenu()
     }
     .p-menubar {
       // both desktop and menu styles
-      .p-menuitem.button {
-        .p-menuitem-link {
-          background: var(--primary-color) !important;
-          border-radius: 2em;
-          padding: 0.75rem 1.5rem !important;
-          .p-menuitem-icon {
-            display: none;
+      .p-menuitem {
+        // simulate regular Button
+        &.button {
+          .p-menuitem-link {
+            background: var(--primary-color) !important;
+            border-radius: 2rem;
+            padding: 0.75rem 1.5rem !important;
+            transition: background var(--transition-duration);
+            -webkit-transition: background var(--transition-duration);
+            &:hover {
+              background: var(--black100) !important;
+              .p-menuitem-text {
+                color: var(--primary-color) !important;
+              }
+            }
+            &:after {
+              display: none;
+            }
+            .p-menuitem-text {
+              transition: color var(--transition-duration);
+              -webkit-transition: color var(--transition-duration);
+            }
+            .p-menuitem-icon {
+              display: none;
+            }
           }
         }
       }
