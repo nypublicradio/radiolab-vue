@@ -1,5 +1,6 @@
 import { defineNuxtPlugin } from '#app'
 import Button from 'primevue/button/button.esm.js'
+import InputText from 'primevue/inputtext/inputtext.esm.js'
 import Image from 'primevue/image/image.esm.js'
 import InputSwitch from 'primevue/inputswitch/inputswitch.esm.js'
 import Menubar from 'primevue/menubar/menubar.esm.js';
@@ -12,6 +13,7 @@ import PrimeVue from 'primevue/config/config.esm.js'
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(PrimeVue, { ripple: true })
+    nuxtApp.vueApp.component('InputText', InputText)
     nuxtApp.vueApp.component('Button', Button)
     nuxtApp.vueApp.component('Image', Image)
     nuxtApp.vueApp.component('InputSwitch', InputSwitch)
