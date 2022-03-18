@@ -22,7 +22,7 @@ const menuItems = useHeaderMenu()
           </template>-->
         </Menubar>
         <v-flexible-link raw to="news">
-          <Button class="flex lg:hidden p-button-rounded" label="Become a member" />
+          <Button class="flex lg:hidden p-button-rounded" >Become a member</Button>
         </v-flexible-link>
       </div>
     </section>
@@ -35,7 +35,7 @@ const menuItems = useHeaderMenu()
   width: 100%;
   z-index: var(--header-z-index);
   section {
-    background: var(--white);  
+    background: var(--white);
     justify-items: stretch;
     .content {
       padding: spacingTRBL(0, 10, 0, 10);

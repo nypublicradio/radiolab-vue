@@ -7,7 +7,7 @@ const menuItems = useHeaderMenu()
 const menuItemsFooter = ref([])
 
 onMounted(() => {
-  // console.log('menuItems = ', menuItems.value)
+
   for (const [i, v] of menuItems.value.entries()) {
     if (v.items) {
       for (const [i, item] of v.items.entries()) {

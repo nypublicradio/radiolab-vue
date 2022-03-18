@@ -8,10 +8,6 @@ useMeta({
       name: "description",
       content: "RadioLab website description.",
     },
-    {
-      name: "viewport",
-      content: "width=device-width, initial-scale=1",
-    },
   ],
 })
 
