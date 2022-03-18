@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
-import VCard from 'nypr-design-system-vue3/v2/src/components/VCard.vue'
+import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
 const dataLoaded = ref(false)
 const episodes = ref([])

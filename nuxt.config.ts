@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   css: [
     //'primevue/resources/themes/saga-blue/theme.css',
     // 'nypr-design-system-vue3/src/assets/library/primeflex.min.css',
-    'nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
+    '@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
     '~/assets/scss/global.scss',
@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss";`,
+          additionalData: `@import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss";`,
         },
       },
     },
