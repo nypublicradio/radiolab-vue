@@ -22,11 +22,12 @@ section {
   align-items: center;
   width: 100%;
   .content {
-    width: 100%;
+    width: 90%;
     max-width: $contentWidth;
-    padding: spacingXY(10, 18);
+    padding: spacingXY(10, 12);
     @include media("<medium") {
       padding: spacingXY(6, 4);
+      width: 100%;
     }
     &.max-width {
       max-width: $maxWidth;
@@ -43,6 +44,7 @@ section {
       background: var(--lightblue-500);
     }
     .content {
+      width: 90%;
       background: var(--white);
       border-radius: 1rem 1rem 0 0;
     }

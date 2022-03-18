@@ -50,6 +50,7 @@ const menuItems = useHeaderMenu()
   section {
     justify-items: stretch;
     .content {
+      width: 100%;
       padding: spacingTRBL(0, 10, 0, 10);
       @include media("<lg") {
         //padding: spacingTRBL(0, 6, 0, 6);
