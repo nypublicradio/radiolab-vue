@@ -1,24 +1,131 @@
-$maxWidth : 1440px;
-$contentWidth : 1256px;
+$maxWidth: 1440px;
+$contentWidth: 1366px;
+$headerHeight: 70px;
+$playerHeight: 100px;
+
+:root {
+  --header-height: #{$headerHeight};
+  --player-height: #{$playerHeight};
+  --header-z-index: 900;
+}
 
 body {
   background: #ffffff;
 }
 
-section{
+section {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  .content{
-    width: 100%;
+  .content {
+    width: 90%;
     max-width: $contentWidth;
-    padding: spacingXY(10, 18);
+    padding: spacingXY(10, 12);
     @include media("<medium") {
-      padding: spacingXY(6,4);
+      padding: spacingXY(6, 4);
+      width: 100%;
     }
-    &.max-width{
+    &.max-width {
       max-width: $maxWidth;
     }
   }
+  &.head-color {
+    background: var(--primary-color);
+    padding-top: calc(var(--header-height) * 2);
+    margin-top: calc(var(--header-height) * -1);
+    position: relative;
+    &.yellow {
+      background: var(--gold-500);
+      &:before {
+        background: -moz-linear-gradient(top,  rgba(245,184,12,1) 40%, rgba(242,218,218,1) 100%);
+        background: -webkit-linear-gradient(top,  rgba(245,184,12,1) 40%,rgba(242,218,218,1) 100%);
+        background: linear-gradient(to bottom,  rgba(245,184,12,1) 40%,rgba(242,218,218,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5b80c', endColorstr='#f2dada',GradientType=0 );
+      }
+    }
+    &.lightblue {
+      background: var(--lightblue-500);
+    }
+    &:before{
+      content: "";
+      transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2) ;
+      -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2) ;
+      
+      //default alpha gradient
+      background: -moz-linear-gradient(top,  rgba(255,255,255,0) 68%, rgba(255,255,255,0.46) 100%);
+      background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 68%,rgba(255,255,255,0.46) 100%);
+      background: linear-gradient(to bottom,  rgba(255,255,255,0) 68%,rgba(255,255,255,0.46) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#75ffffff',GradientType=0 );
+ 
+      content: "";
+      border-radius: 0 0 100% 100%;
+      height: calc(242% - 5vw);
+      width: 112%;
+      left: -6%;
+      right: 0;
+      top: calc(-115% - 5vw);
+
+      margin: auto;
+      position: absolute;
+      @include media(">xxl") {
+        height: 225%;
+        top: -145%;
+      }
+      @include media("<md") {
+        top: calc(-115% - 3vw);
+        height: calc(235% - 10vw);
+      } 
+      @include media("<xs") {
+        height: calc(245% - 21vw);
+      }
+    }
+    .content {
+      width: 90%;
+      z-index: 1;
+      background: var(--white);
+      border-radius: 1rem 1rem 0 0;
+    }
+  }
 }
+
+.p-inputtext {
+  padding-left: spacing(6);
+  &.p-inputtext-lg {
+    padding: 0.75rem spacing(6);
+  }
+}
+
+/*component overrides that will eventually go in the extensions.scss file in the theme*/
+.p-button {
+  font-weight: var(--font-weight-500);
+}
+
+// style-modes
+:root,
+[data-style-mode="blue"] {
+  --link-button-color: var(--primary-light-color);
+  --link-button-hover-color: var(--primary-light-color);
+  --text-color: var(--white100);
+  --text-color-secondary: var(--white300);
+}
+
+[data-style-mode="blue"] {
+  .p-button:not(.p-button-text) {
+    color: var(--blue-500);
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+  .p-inputtext {
+    background-color: rgba(10, 11, 12, 0.1);
+    border-color: transparent;
+    color: var(--primary-color);
+    &::placeholder {
+      color: var(--white100);
+      opacity: 0.4;
+    }
+  }
+}
+
+/*component overrides that will eventually go in the extensions.scss file in the theme*/

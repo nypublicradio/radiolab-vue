@@ -6,7 +6,16 @@ const darkMode = ref(false)
 </script>
 
 <template>
-  <div class="home-page" :data-style-mode="darkMode ? 'dark' : 'default'">
+  <div class="home-page page" :data-style-mode="darkMode ? 'dark' : 'default'">
+    <section>
+      <div class="content">
+        <div class="grid">
+          <div class="col">
+            <p>auto fit</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section>
       <div class="content">
         <div class="grid">
@@ -37,6 +46,35 @@ const darkMode = ref(false)
           </div>
         </div>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </section>
   </div>
 </template>

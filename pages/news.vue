@@ -2,9 +2,65 @@
 </script>
 
 <template>
-  <div>
-    <div>news</div>
-    <nuxt-link to="/">home</nuxt-link>
+  <div class="news-page page" :data-style-mode="darkMode ? 'dark' : 'default'">
+    <section class="head-color yellow">
+      <div class="content">
+        <div class="grid">
+          <div class="col">
+            <p>news</p>
+          </div>
+          <div class="col">
+            <p>news</p>
+          </div>
+          <div class="col">
+            <p>news</p>
+          </div>
+          <div class="col">
+            <p>news</p>
+          </div>
+          <div class="col">
+            <p>news</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="content">
+        <div class="grid">
+          <div class="col">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
