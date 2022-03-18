@@ -1,5 +1,6 @@
 <script setup>
 //import { ref/* , computed, onMounted, defineEmit */ } from "vue"
+import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 const menuItems = useHeaderMenu()
 
 </script>

@@ -1,4 +1,6 @@
 <script setup>
+import VImageWithCaption from 'nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import LockIcon from '~/components/icons/LockIcon.vue'
 const props = defineProps({
   alt: {
     type: String,

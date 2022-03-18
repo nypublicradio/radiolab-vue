@@ -1,5 +1,8 @@
 <script setup>
 import { onMounted } from 'vue'
+import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import BecomeMember from './BecomeMember.vue'
+import Newsletter from './Newsletter.vue'
 const menuItems = useHeaderMenu()
 const menuItemsFooter = ref([])
 
