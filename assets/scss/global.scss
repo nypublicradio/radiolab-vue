@@ -12,9 +12,6 @@ $playerHeight: 100px;
 body {
   background: #ffffff;
 }
-main {
-  //padding-top: $headerHeight;
-}
 
 section {
   display: flex;
@@ -37,14 +34,55 @@ section {
     background: var(--primary-color);
     padding-top: calc(var(--header-height) * 2);
     margin-top: calc(var(--header-height) * -1);
+    position: relative;
     &.yellow {
       background: var(--gold-500);
+      &:before {
+        background: -moz-linear-gradient(top,  rgba(245,184,12,1) 40%, rgba(242,218,218,1) 100%);
+        background: -webkit-linear-gradient(top,  rgba(245,184,12,1) 40%,rgba(242,218,218,1) 100%);
+        background: linear-gradient(to bottom,  rgba(245,184,12,1) 40%,rgba(242,218,218,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5b80c', endColorstr='#f2dada',GradientType=0 );
+      }
     }
-    &.blue {
+    &.lightblue {
       background: var(--lightblue-500);
+    }
+    &:before{
+      content: "";
+      transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2) ;
+      -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2) ;
+      
+      //default alpha gradient
+      background: -moz-linear-gradient(top,  rgba(255,255,255,0) 68%, rgba(255,255,255,0.46) 100%);
+      background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 68%,rgba(255,255,255,0.46) 100%);
+      background: linear-gradient(to bottom,  rgba(255,255,255,0) 68%,rgba(255,255,255,0.46) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#75ffffff',GradientType=0 );
+ 
+      content: "";
+      border-radius: 0 0 100% 100%;
+      height: calc(242% - 5vw);
+      width: 112%;
+      left: -6%;
+      right: 0;
+      top: calc(-115% - 5vw);
+
+      margin: auto;
+      position: absolute;
+      @include media(">xxl") {
+        height: 225%;
+        top: -145%;
+      }
+      @include media("<md") {
+        top: calc(-115% - 3vw);
+        height: calc(235% - 10vw);
+      } 
+      @include media("<xs") {
+        height: calc(245% - 21vw);
+      }
     }
     .content {
       width: 90%;
+      z-index: 1;
       background: var(--white);
       border-radius: 1rem 1rem 0 0;
     }

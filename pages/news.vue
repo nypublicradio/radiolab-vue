@@ -3,7 +3,7 @@
 
 <template>
   <div class="news-page page" :data-style-mode="darkMode ? 'dark' : 'default'">
-    <section class="head-color blue">
+    <section class="head-color yellow">
       <div class="content">
         <div class="grid">
           <div class="col">

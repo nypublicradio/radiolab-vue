@@ -7,21 +7,9 @@ const darkMode = ref(false)
 
 <template>
   <div class="home-page page" :data-style-mode="darkMode ? 'dark' : 'default'">
-    <section class="head-color yellow">
+    <section>
       <div class="content">
         <div class="grid">
-          <div class="col">
-            <p>auto fit</p>
-          </div>
-          <div class="col">
-            <p>auto fit</p>
-          </div>
-          <div class="col">
-            <p>auto fit</p>
-          </div>
-          <div class="col">
-            <p>auto fit</p>
-          </div>
           <div class="col">
             <p>auto fit</p>
           </div>
