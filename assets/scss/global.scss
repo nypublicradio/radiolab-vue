@@ -13,7 +13,7 @@ body {
   background: #ffffff;
 }
 main {
-  padding-top: $headerHeight;
+  //padding-top: $headerHeight;
 }
 
 section {
@@ -30,6 +30,21 @@ section {
     }
     &.max-width {
       max-width: $maxWidth;
+    }
+  }
+  &.head-color {
+    background: var(--primary-color);
+    padding-top: calc(var(--header-height) * 2);
+    margin-top: calc(var(--header-height) * -1);
+    &.yellow {
+      background: var(--gold-500);
+    }
+    &.blue {
+      background: var(--lightblue-500);
+    }
+    .content {
+      background: var(--white);
+      border-radius: 1rem 1rem 0 0;
     }
   }
 }

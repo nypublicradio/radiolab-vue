@@ -31,11 +31,23 @@ const menuItems = useHeaderMenu()
 
 <style lang="scss">
 .site-header {
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   z-index: var(--header-z-index);
+  transition: background-color var(--transition-duration);
+  -webkit-transition: background-color var(--transition-duration);
+  background-color: var(--white);
+  &.at-top {
+    background-color: transparent;
+    .p-submenu-list {
+      &:after {
+        border-color: transparent !important;
+        background-color: transparent !important;
+      }
+    }
+  }
   section {
-    background: var(--white);
     justify-items: stretch;
     .content {
       padding: spacingTRBL(0, 10, 0, 10);
@@ -89,6 +101,7 @@ const menuItems = useHeaderMenu()
         }
         //top menu
         .p-menuitem-link {
+          background: transparent !important;
           position: relative;
           border-radius: 2rem;
           overflow: visible;
@@ -135,13 +148,17 @@ const menuItems = useHeaderMenu()
           width: auto;
           background: transparent;
           top: 0;
-          transition: top var(--transition-duration);
-          -webkit-transition: top var(--transition-duration);
+          opacity: 0;
+          pointer-events: none;
+          transition: top var(--transition-duration),
+            opacity var(--transition-duration);
+          -webkit-transition: top var(--transition-duration),
+            opacity var(--transition-duration);
           display: flex;
           z-index: -1;
           .p-menuitem-link {
             &:after {
-              bottom: -0.3rem;
+              bottom: -0.4rem;
             }
           }
         }
@@ -150,9 +167,15 @@ const menuItems = useHeaderMenu()
             opacity: 1;
           }
           .p-submenu-list {
-            top: 56px;
+            top: 53px;
+            opacity: 1;
+            pointer-events: auto;
             &:after {
-              background: rgb(255, 255, 255);
+              transition: background-color var(--transition-duration),
+                border-color var(--transition-duration);
+              -webkit-transition: background-color var(--transition-duration),
+                border-color var(--transition-duration);
+              background-color: var(--white);
               content: "";
               left: -100vw;
               top: 1px;
@@ -193,10 +216,10 @@ const menuItems = useHeaderMenu()
         width: 100vw;
         padding-left: 2rem;
         margin-left: -1rem;
-        justify-items: flex-start;
         justify-content: flex-start;
         background: white;
         border-radius: 0;
+        height: var(--header-height);
         .pi-bars {
           &:before {
             content: "\e90b";

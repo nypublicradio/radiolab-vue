@@ -14,9 +14,14 @@ export default defineNuxtConfig({
       { rel: 'apple-touch-icon', sizes:"180x180", href: '/apple-touch-icon.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color:'#ff3904' }
-    ]
+    ],
+    // bodyAttrs: {
+    //   ref: 'el',
+    //   class:'bodyy'
+    // }
   },
   // buildModules: ['nypr-design-system-vue3/nuxt'],
+  buildModules: ['@vueuse/nuxt'],
   css: [
     //'primevue/resources/themes/saga-blue/theme.css',
     // 'nypr-design-system-vue3/src/assets/library/primeflex.min.css',

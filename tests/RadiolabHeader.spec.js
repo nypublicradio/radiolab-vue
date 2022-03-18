@@ -1,4 +1,4 @@
-import { mount, shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { describe, test, expect } from '@jest/globals'
 import { toHaveNoViolations } from 'jest-axe'
 import RadiolabHeader from '../components/RadiolabHeader.vue'
