@@ -7,6 +7,7 @@ $playerHeight: 100px;
   --header-height: #{$headerHeight};
   --player-height: #{$playerHeight};
   --header-z-index: 900;
+  --line-clamp: 3;
 }
 
 body {
@@ -18,8 +19,9 @@ section {
   flex-direction: column;
   align-items: center;
   width: 100%;
+
   .content {
-    width: 90%;
+    width: 100%;
     max-width: $contentWidth;
     padding: spacingXY(10, 12);
     @include media("<medium") {
@@ -38,26 +40,26 @@ section {
     &.yellow {
       background: var(--gold-500);
       &:before {
-        background: -moz-linear-gradient(top,  rgba(245,184,12,1) 40%, rgba(242,218,218,1) 100%);
-        background: -webkit-linear-gradient(top,  rgba(245,184,12,1) 40%,rgba(242,218,218,1) 100%);
-        background: linear-gradient(to bottom,  rgba(245,184,12,1) 40%,rgba(242,218,218,1) 100%);
+        background: -moz-linear-gradient(top, rgba(245, 184, 12, 1) 40%, rgba(242, 218, 218, 1) 100%);
+        background: -webkit-linear-gradient(top, rgba(245, 184, 12, 1) 40%, rgba(242, 218, 218, 1) 100%);
+        background: linear-gradient(to bottom, rgba(245, 184, 12, 1) 40%, rgba(242, 218, 218, 1) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5b80c', endColorstr='#f2dada',GradientType=0 );
       }
     }
     &.lightblue {
       background: var(--lightblue-500);
     }
-    &:before{
+    &:before {
       content: "";
-      transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2) ;
-      -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2) ;
-      
+      transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
+      -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
+
       //default alpha gradient
-      background: -moz-linear-gradient(top,  rgba(255,255,255,0) 68%, rgba(255,255,255,0.46) 100%);
-      background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 68%,rgba(255,255,255,0.46) 100%);
-      background: linear-gradient(to bottom,  rgba(255,255,255,0) 68%,rgba(255,255,255,0.46) 100%);
+      background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 68%, rgba(255, 255, 255, 0.46) 100%);
+      background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 68%, rgba(255, 255, 255, 0.46) 100%);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 68%, rgba(255, 255, 255, 0.46) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#75ffffff',GradientType=0 );
- 
+
       content: "";
       border-radius: 0 0 100% 100%;
       height: calc(242% - 5vw);
@@ -75,7 +77,7 @@ section {
       @include media("<md") {
         top: calc(-115% - 3vw);
         height: calc(235% - 10vw);
-      } 
+      }
       @include media("<xs") {
         height: calc(245% - 21vw);
       }
@@ -142,7 +144,8 @@ button.p-button-sm {
   cursor: pointer;
 }
 
-@import 'cards';
+@import "cards";
+@import "truncate";
 
 .p-skeleton {
   width: 100%;
@@ -153,7 +156,7 @@ button.p-button-sm {
   width: 100%;
   margin: 0 auto;
   padding: spacingXY(6, 6);
-  @include media('<xl') {
+  @include media("<xl") {
     padding: spacingXY(4, 4);
   }
 }

@@ -1,5 +1,5 @@
 <script setup>
-import VFlexibleLink from 'nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 
 </script>
 
