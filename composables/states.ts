@@ -21,6 +21,9 @@ const playServices = [
   { name: 'Podcast Addict', icon: 'podcastaddict' },
   { name: 'RSS', icon: 'rss' }
 ]
+/**
+ * Global state for media selection options.
+ */
 export const usePlayServices = () => useState('playServices', () => playServices )
 /**
  * Global state for the users media selection preference. This will stored in local storage
@@ -31,7 +34,6 @@ export const usePlayServicePreference = () => useState('playServicePreference', 
     return JSON.parse(window.localStorage.getItem('selectedPlayService'))
   } else {
     // default to play on site
-    console.log('it is = ', playServices[0])
     return playServices[0]
   }
 })

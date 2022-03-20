@@ -21,7 +21,6 @@ const selectedPlayService = ref(playServicePreference)
 // lifecycle hooks
 onUpdated(() => {
   window.localStorage.setItem("selectedPlayService", JSON.stringify(selectedPlayService.value))
-  console.log('selectedPlayService = ', selectedPlayService.value)
 })
 </script>
 
