@@ -1,8 +1,8 @@
-.truncate {
+@mixin truncate() {
     display: -webkit-box;
     position: relative;
     background: inherit;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     word-break: var(--word-break, "none");
     overflow: hidden;
@@ -22,13 +22,26 @@
         transition: 0.2s;
         width: 3em;
     }
-    &.t1lines {
-        -webkit-line-clamp: 1;
-    }
     &.t2lines {
         -webkit-line-clamp: 2;
+    }
+    &.t3lines {
+        -webkit-line-clamp: 3;
     }
     &.t4lines {
         -webkit-line-clamp: 4;
     }
+}
+
+.truncate {
+    @include truncate();
+}
+@mixin t2lines() {
+    -webkit-line-clamp: 2;
+}
+@mixin t3lines() {
+    -webkit-line-clamp: 3;
+}
+@mixin t4lines() {
+    -webkit-line-clamp: 4;
 }

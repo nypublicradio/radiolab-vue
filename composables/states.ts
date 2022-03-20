@@ -7,25 +7,34 @@ export const styleModes = {
  */
 export const useColorMode = () => useState<string>('colorMode', () => styleModes.DEFAULT)
 
-
-export const playServices = () => useState('playServices', () => [
+const playServices = [
   { name: 'Play on our site', icon: 'site' },
-  { name: 'Apple', icon: 'apple' },
+  { name: 'Apple Podcasts', icon: 'apple' },
   { name: 'Spotify', icon: 'spotify' },
   { name: 'Overcast', icon: 'overcast' },
   { name: 'Stitcher', icon: 'stitcher' },
   { name: 'NPR One', icon: 'nprone' },
-  { name: 'Google', icon: 'google' },
+  { name: 'Google Podcasts', icon: 'google' },
   { name: 'Castbox', icon: 'castbox' },
-  { name: 'Amazon', icon: 'amazon' },
-  { name: 'Pocket Cast', icon: 'pocket' },
+  { name: 'Amazon Music', icon: 'amazon' },
+  { name: 'Pocket Cast', icon: 'pocketcast' },
   { name: 'Podcast Addict', icon: 'podcastaddict' },
   { name: 'RSS', icon: 'rss' }
-])
+]
+export const usePlayServices = () => useState('playServices', () => playServices )
 /**
  * Global state for the users media selection preference. This will stored in local storage
  */
-export const usePlayServicePreference = () => useState<string>('playServicePreference', () => playServices[0])
+export const usePlayServicePreference = () => useState('playServicePreference', () => {
+  // if local storage is available, use it
+  if (window.localStorage.getItem('selectedPlayService')) {    
+    return JSON.parse(window.localStorage.getItem('selectedPlayService'))
+  } else {
+    // default to play on site
+    console.log('it is = ', playServices[0])
+    return playServices[0]
+  }
+})
 
 
 /**

@@ -1,53 +1,44 @@
 <script setup>
-import { ref, onMounted } from "vue"
+/**
+TODO: Eventually the left side will have to be Clickable to initiate the play service.. and only the right arrow will be to select from the menu
+*/
+import { ref, onUpdated } from "vue"
 
-const selectedPlayService = ref()
-const playServices = ref([
-  { name: 'Play on our site', icon: 'site' },
-  { name: 'Apple', icon: 'apple' },
-  { name: 'Spotify', icon: 'spotify' },
-  { name: 'Overcast', icon: 'overcast' },
-  { name: 'Stitcher', icon: 'stitcher' },
-  { name: 'NPR One', icon: 'nprone' },
-  { name: 'Google', icon: 'google' },
-  { name: 'Castbox', icon: 'castbox' },
-  { name: 'Amazon', icon: 'amazon' },
-  { name: 'Pocket Cast', icon: 'pocket' },
-  { name: 'Podcast Addict', icon: 'podcastaddict' },
-  { name: 'RSS', icon: 'rss' }
-])
+const props = defineProps({
+  label: {
+    default: true,
+    type: Boolean,
+  }
+})
+
+const playServices = usePlayServices()
+const playServicePreference = usePlayServicePreference()
+
+const selectedPlayService = ref(playServicePreference)
+
 //const emit = defineEmit(["change", "click"]);
 
 // lifecycle hooks
-onMounted(() => {
-
+onUpdated(() => {
+  window.localStorage.setItem("selectedPlayService", JSON.stringify(selectedPlayService.value))
+  console.log('selectedPlayService = ', selectedPlayService.value)
 })
 </script>
 
 <template>
   <div class="play-selector">
-    <Dropdown
-      v-model="selectedPlayService"
-      :options="playServices"
-      class="dd"
-      optionLabel="name"
-      optionValue="code"
-      placeholder="Select a City"
-    />
-    <Dropdown
-      v-model="selectedPlayService"
-      :options="playServices"
-      class="dd"
-      optionLabel="brand"
-      placeholder="Select a Car"
-    >
+    <Dropdown v-model="selectedPlayService" :options="playServices" placeholder="Select a Service">
+      <template #value="slotProps">
+        <div class="service-item service-item-value" v-if="slotProps.value">
+          <img alt="icon" :src="'play-service-icons/' + slotProps.value.icon + '.svg'" />
+          <div v-if="label" class="uppercase">{{ slotProps.value.name }}</div>
+        </div>
+        <span v-else>{{ slotProps.placeholder }}</span>
+      </template>
       <template #option="slotProps">
-        <div class="p-dropdown-car-option">
-          <img
-            :alt="slotProps.option.icon"
-            :src="'demo/images/car/' + slotProps.option.icon + '.svg'"
-          />
-          <span>{{ slotProps.option.name }}</span>
+        <div class="service-item">
+          <img alt="icon" :src="'play-service-icons/' + slotProps.option.icon + '.svg'" />
+          <div v-if="label">{{ slotProps.option.name }}</div>
         </div>
       </template>
     </Dropdown>
@@ -57,8 +48,41 @@ onMounted(() => {
 <style lang="scss">
 .play-selector {
   width: 100%;
-  .dd {
+  .p-dropdown {
     width: 100%;
+    background: transparent;
+    border: none;
+    .p-dropdown-label {
+      padding-left: 0;
+      border-radius: 0;
+    }
+    .p-dropdown-trigger {
+      color: var(--black100);
+      background: var(--white);
+      border-radius: 2rem;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-self: center;
+      .p-dropdown-trigger-icon {
+        font-size: 11px;
+      }
+    }
+  }
+}
+.p-dropdown-panel,
+.p-dropdown-label {
+  .service-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: spacing(2);
+      vertical-align: middle;
+      margin-top: -2px;
+    }
   }
 }
 </style>

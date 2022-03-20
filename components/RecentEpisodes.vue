@@ -24,7 +24,7 @@ onBeforeMount(async () => {
  
 <template>
   <section>
-    <div class="content px-0">
+    <div class="content px-0 pt-2">
       <div class="grid">
         <div class="col">
           <div v-if="dataLoaded" class="latest-episode grid">
@@ -48,9 +48,6 @@ onBeforeMount(async () => {
                 <h2 class="mb-3 inline-block" v-html="episodes[0].attributes.title"></h2>
               </v-flexible-link>
               <p v-html="episodes[0].attributes.tease" class="latest-episode-tease mb-5 truncate" />
-              <p class="latest-episode-podcasts">
-                <apple-podcasts />Apple Podcasts
-              </p>
               <play-selector />
             </div>
           </div>
@@ -63,8 +60,8 @@ onBeforeMount(async () => {
         <div v-if="dataLoaded" class="grid">
           <div class="col flex justify-content-between">
             <h3 class="mb-4">Recent Episodes</h3>
-            <v-flexible-link to="/episodes">
-              <button class="p-button-sm">All Episodes</button>
+            <v-flexible-link raw to="/episodes">
+              <Button class="p-button-rounded p-button-sm">All Episodes</Button>
             </v-flexible-link>
           </div>
         </div>
@@ -88,10 +85,8 @@ onBeforeMount(async () => {
               bp="max"
               class="radiolab-card"
             >
-              <p v-html="episode.attributes.tease" class="mb-5" />
-              <p class="radiolab-card-podcasts">
-                <apple-podcasts />Apple Podcasts
-              </p>
+              <p v-html="episode.attributes.tease" class="mb-5 truncate t3lines" />
+              <play-selector />
             </v-card>
           </div>
         </div>
@@ -130,23 +125,6 @@ onBeforeMount(async () => {
 
 .latest-episode-tease {
   line-height: 24px;
-}
-
-.latest-episode .latest-episode-podcasts {
-  display: flex;
-  align-content: flex-start;
-  text-transform: uppercase;
-  font-size: var(--font-size-8);
-  svg {
-    margin-right: 7px;
-  }
-}
-
-.recent-episodes {
-  padding: 0 115px;
-  @include media("<xl") {
-    padding: spacingXY(6, 4);
-  }
 }
 
 .recent-episodes > .grid {

@@ -101,6 +101,9 @@ section {
 /*component overrides that will eventually go in the extensions.scss file in the theme*/
 .p-button {
   font-weight: var(--font-weight-500);
+  &.p-button-sm {
+    padding: 2px 12px;
+  }
 }
 
 // style-modes
@@ -132,20 +135,8 @@ section {
 
 /*component overrides that will eventually go in the extensions.scss file in the theme*/
 
-button.p-button-sm {
-  border-radius: 80px;
-  border: none;
-  height: 26px;
-  line-height: 26px;
-  text-align: center;
-  font-size: var(--font-size-6);
-  padding: 0 12px;
-  width: fit-content;
-  cursor: pointer;
-}
-
-@import "cards";
 @import "truncate";
+@import "cards";
 
 .p-skeleton {
   width: 100%;
