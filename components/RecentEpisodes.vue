@@ -13,7 +13,7 @@ const episodes = ref([])
 onBeforeMount(async () => {
   await axios
     .get(
-      'https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=4'
+      'https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=5'
     )
     .then((response) => {
       episodes.value = response.data.included
@@ -27,7 +27,7 @@ onBeforeMount(async () => {
     <div class="content px-0 pt-2">
       <div class="grid">
         <div class="col">
-          <div v-if="dataLoaded" class="latest-episode grid">
+          <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">
             <div class="col-12 xl:col-7 p-0">
               <v-image-with-caption
                 :image="episodes[0].attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
@@ -35,11 +35,11 @@ onBeforeMount(async () => {
                 :alt="episodes[0].attributes['image-main']['alt-text']"
                 :max-width="episodes[0].attributes['image-main'].w"
                 :max-height="episodes[0].attributes['image-main'].h"
-                :ratio="[4, 3]"
+                :ratio="[8, 5]"
                 class="latest-episode-image"
               />
             </div>
-            <div class="latest-episode-content col-12 xl:col-5 p-7">
+            <div class="latest-episode-content col-12 xl:col-5 p-4 xl:p-7">
               <h5 class="mb-2">Latest Episode</h5>
               <v-flexible-link
                 :to="`/episodes/${episodes[0].attributes.slug}`"
@@ -47,7 +47,10 @@ onBeforeMount(async () => {
               >
                 <h2 class="mb-3 inline-block" v-html="episodes[0].attributes.title"></h2>
               </v-flexible-link>
-              <p v-html="episodes[0].attributes.tease" class="latest-episode-tease mb-5 truncate" />
+              <p
+                v-html="episodes[0].attributes.tease"
+                class="latest-episode-tease mb-5 truncate t3lines"
+              />
               <play-selector />
             </div>
           </div>
@@ -55,51 +58,59 @@ onBeforeMount(async () => {
         </div>
       </div>
     </div>
-    <section class="recent-episodes">
-      <div class="content">
-        <div v-if="dataLoaded" class="grid">
-          <div class="col flex justify-content-between">
-            <h3 class="mb-4">Recent Episodes</h3>
-            <v-flexible-link raw to="/episodes">
-              <Button class="p-button-rounded p-button-sm">All Episodes</Button>
-            </v-flexible-link>
+  </section>
+  <section>
+    <div class="content">
+      <div class="grid">
+        <div class="col">
+          <div class="recent-episodes">
+            <div v-if="dataLoaded" class="col flex justify-content-between">
+              <h3 class="mb-4">Recent Episodes</h3>
+              <v-flexible-link raw to="/episodes">
+                <Button class="p-button-rounded p-button-sm">All Episodes</Button>
+              </v-flexible-link>
+            </div>
+            <div v-if="dataLoaded" class="grid">
+              <div
+                v-if="dataLoaded"
+                v-for="(episode, index) in episodes.slice(1, 5)"
+                :key="index"
+                class="col-12 md:col-6 xl:col-4 mb-5"
+                :class="{ 'xl:hidden': index === 3 }"
+              >
+                <v-card
+                  :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+                  :alt="episode.attributes['image-main']['alt-text']"
+                  :title="episode.attributes.title"
+                  :titleLink="`/episodes/${episode.attributes.slug}`"
+                  :eyebrow="formatDate(episode.attributes['publish-at'])"
+                  :blurb="episode.attributes.tease"
+                  :height="225"
+                  :max-width="episode.attributes['image-main'].w"
+                  :max-height="episode.attributes['image-main'].h"
+                  responsive
+                  :ratio="[4, 3]"
+                  bp="max"
+                  class="radiolab-card"
+                >
+                  <div class="divider"></div>
+                  <play-selector />
+                </v-card>
+              </div>
+            </div>
+            <skeleton v-else />
           </div>
         </div>
-        <div v-if="dataLoaded" class="grid">
-          <div
-            v-for="(episode, index) in episodes.slice(1, 4)"
-            :key="index"
-            class="col-12 xl:col-4 mb-5"
-          >
-            <v-card
-              :image="episode.attributes['image-main'].url"
-              :alt="episode.attributes['image-main']['alt-text']"
-              :title="episode.attributes.title"
-              :titleLink="`/episodes/${episode.attributes.slug}`"
-              :subtitle="formatDate(episode.attributes['publish-at'])"
-              :height="225"
-              :max-width="episode.attributes['image-main'].w"
-              :max-height="episode.attributes['image-main'].h"
-              responsive
-              :ratio="[4, 3]"
-              bp="max"
-              class="radiolab-card"
-            >
-              <p v-html="episode.attributes.tease" class="mb-5 truncate t3lines" />
-              <play-selector />
-            </v-card>
-          </div>
-        </div>
-        <skeleton v-else />
       </div>
-    </section>
+    </div>
   </section>
 </template>
 
 <style lang="scss">
 .latest-episode {
   max-width: 100%;
-  margin-bottom: 100px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .latest-episode .latest-episode-title {
@@ -113,14 +124,10 @@ onBeforeMount(async () => {
   width: 100%;
   object-fit: cover;
   overflow-y: hidden;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
 }
 
 .latest-episode .latest-episode-content {
   background: var(--white100);
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
 .latest-episode-tease {
@@ -128,11 +135,11 @@ onBeforeMount(async () => {
 }
 
 .recent-episodes > .grid {
-  margin: 0 -33px;
+  margin: 0 -24px;
 }
 
 .recent-episodes .grid > .col,
 .recent-episodes .grid > [class*="col"] {
-  padding: 0 33px;
+  padding: 0 24px;
 }
 </style>

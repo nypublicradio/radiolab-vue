@@ -1,3 +1,5 @@
+@import "cards";
+
 $maxWidth: 1440px;
 $contentWidth: 1366px;
 $headerHeight: 70px;
@@ -19,13 +21,13 @@ section {
   flex-direction: column;
   align-items: center;
   width: 100%;
-
+  padding: 0 spacing(2) 0 spacing(2);
   .content {
     width: 100%;
     max-width: $contentWidth;
-    padding: spacingXY(10, 12);
-    @include media("<medium") {
-      padding: spacingXY(6, 4);
+    padding: spacingXY(10, 28);
+    @include media("<lg") {
+      padding: spacingXY(6, 0);
       width: 100%;
     }
     &.max-width {
@@ -134,9 +136,6 @@ section {
 }
 
 /*component overrides that will eventually go in the extensions.scss file in the theme*/
-
-@import "truncate";
-@import "cards";
 
 .p-skeleton {
   width: 100%;

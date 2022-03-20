@@ -47,19 +47,21 @@ onUpdated(() => {
 
 <style lang="scss">
 .play-selector {
-  width: 100%;
+  margin-left: -1rem;
+  width: calc(100% + 2rem);
   .p-dropdown {
     width: 100%;
     background: transparent;
     border: none;
     .p-dropdown-label {
-      padding-left: 0;
+      padding-left: 1rem;
       border-radius: 0;
     }
     .p-dropdown-trigger {
       color: var(--black100);
       background: var(--white);
       border-radius: 2rem;
+      margin-right: 1rem;
       width: 20px;
       height: 20px;
       display: flex;

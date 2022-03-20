@@ -12,7 +12,7 @@ const episodes = ref([])
 onBeforeMount(async () => {
   await axios
     .get(
-      'https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=3'
+      'https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=4'
     )
     .then((response) => {
       episodes.value = response.data.data.attributes['bucket-items']
@@ -22,51 +22,59 @@ onBeforeMount(async () => {
 </script>
  
 <template>
-  <div class="popular-episodes">
-    <div class="flex justify-content-between">
-      <h3 class="mb-4">Popular Episodes</h3>
-      <v-flexible-link to="/episodes"><button class="p-button-sm">All Episodes</button></v-flexible-link>
-    </div>
-    <div v-if="dataLoaded" class="grid">
-      <div v-for="(episode, index) in episodes.slice(0,3)" :key="index" class="col-12 xl:col-4 mb-5">
-        <v-card
-          :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
-          :alt="episode.attributes['image-main']['alt-text']"
-          :title="episode.attributes.title"
-          :titleLink="`/episodes/${episode.attributes.slug}`"
-          :subtitle="formatDate(episode.attributes['publish-at'])"
-          :max-width="episode.attributes['image-main'].w"
-          :max-height="episode.attributes['image-main'].h"
-          responsive
-          bp="max"
-          :ratio="[4, 3]"
-          class="radiolab-card"
-        >
-          <p v-html="episode.attributes.tease" class="mb-5" />
-          <p class="radiolab-card-podcasts">
-            <apple-podcasts />Apple Podcasts
-          </p>
-        </v-card>
+  <section>
+    <div class="content">
+      <div class="grid">
+        <div class="col">
+          <div class="popular-episodes">
+            <div v-if="dataLoaded" class="flex justify-content-between">
+              <h3 class="mb-4">Popular Episodes</h3>
+              <v-flexible-link raw to="/episodes">
+                <Button class="p-button-rounded p-button-sm">All Episodes</Button>
+              </v-flexible-link>
+            </div>
+            <div v-if="dataLoaded" class="grid">
+              <div
+                v-for="(episode, index) in episodes.slice(0, 4)"
+                :key="index"
+                class="col-12 md:col-6 xl:col-4 mb-5"
+                :class="{ 'xl:hidden': index === 3 }"
+              >
+                <v-card
+                  :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+                  :alt="episode.attributes['image-main']['alt-text']"
+                  :title="episode.attributes.title"
+                  :titleLink="`/episodes/${episode.attributes.slug}`"
+                  :eyebrow="formatDate(episode.attributes['publish-at'])"
+                  :blurb="episode.attributes.tease"
+                  :height="225"
+                  :max-width="episode.attributes['image-main'].w"
+                  :max-height="episode.attributes['image-main'].h"
+                  responsive
+                  :ratio="[4, 3]"
+                  bp="max"
+                  class="radiolab-card"
+                >
+                  <div class="divider"></div>
+                  <play-selector />
+                </v-card>
+              </div>
+            </div>
+            <skeleton v-else />
+          </div>
+        </div>
       </div>
     </div>
-    <skeleton v-else />
-  </div>
+  </section>
 </template>
 
 <style lang="scss">
-.popular-episodes {
-  padding: 0 115px;
-  @include media("<xl") {
-    padding: spacingXY(6, 4);
-  }
-}
-
 .popular-episodes > .grid {
-  margin: 0 -33px;
+  margin: 0 -24px;
 }
 
 .popular-episodes .grid > .col,
 .popular-episodes .grid > [class*="col"] {
-  padding: 0 33px;
+  padding: 0 24px;
 }
 </style>

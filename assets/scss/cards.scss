@@ -5,38 +5,44 @@
     height: 100%;
 }
 .radiolab-card.v-card .card-details {
-    display: flex;
-    flex-direction: column;
-    padding: 1.25rem 1.25rem 2.25rem;
+    padding: 1.25rem 1.25rem 1.25rem;
+}
+
+.radiolab-card.v-card .card-slot {
+    .divider {
+        position: relative;
+        display: block;
+        width: calc(100% + 2.5rem);
+        height: 2px;
+        background-color: var(--white);
+        margin-bottom: 1rem;
+        margin-left: -1.25rem;
+    }
 }
 
 .radiolab-card.v-card .card-subtitle {
-    display: flex;
-    order: 1;
     text-transform: uppercase;
     font-size: var(--font-size-5);
     line-height: 30px;
 }
 
-.radiolab-card.v-card .card-title,
-.radiolab-card.v-card .card-slot {
-    order: 2;
-    display: flex;
-    flex-direction: column;
-    height: -webkit-fill-available;
-    justify-content: space-between;
-}
-
 .radiolab-card.v-card .card-title-link h2 {
     font-size: var(--font-size-10);
+    font-weight: var(--font-weight-500);
     line-height: 28px;
+    margin-bottom: spacing(4);
     @include truncate();
     @include t2lines();
 }
 
-.radiolab-card.v-card .card-slot p {
+.radiolab-card.v-card .card-blurb {
     font-size: var(--font-size-5);
     line-height: 20px;
+    @include truncate();
+    @include t3lines();
+    @include media(">xl") {
+        min-height: 60px;
+    }
 }
 
 .radiolab-card.v-card .radiolab-card-podcasts {

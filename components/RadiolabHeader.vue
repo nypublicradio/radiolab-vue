@@ -70,6 +70,9 @@ const menuItems = useHeaderMenu()
       background: transparent;
       border: none;
       padding: 1rem 0.5rem;
+      @include media("<xl") {
+        padding: 1rem 0.5rem 1rem 0;
+      }
       .p-menubar-button {
         color: var(--black100);
         .pi-bars {
