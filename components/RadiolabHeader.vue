@@ -1,5 +1,6 @@
 <script setup>
 //import { ref/* , computed, onMounted, defineEmit */ } from "vue"
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 const menuItems = useHeaderMenu()
 
 </script>
@@ -7,7 +8,9 @@ const menuItems = useHeaderMenu()
 <template>
   <div class="site-header">
     <section>
-      <div class="content max-width flex lg:block align-items-center justify-content-between pr-3">
+      <div
+        class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4"
+      >
         <Menubar :model="menuItems">
           <template #start>
             <nuxt-link to="/" class="logo-holder-link">
@@ -54,10 +57,10 @@ const menuItems = useHeaderMenu()
       @include media("<lg") {
         //padding: spacingTRBL(0, 6, 0, 6);
         padding: 0;
+        padding-right: 1em;
       }
       @include media("<md") {
         // padding: spacingTRBL(0, 1, 0, 1);
-        padding: 0;
       }
     }
 
@@ -67,6 +70,9 @@ const menuItems = useHeaderMenu()
       background: transparent;
       border: none;
       padding: 1rem 0.5rem;
+      @include media("<xl") {
+        padding: 1rem 0.5rem 1rem 0;
+      }
       .p-menubar-button {
         color: var(--black100);
         .pi-bars {
