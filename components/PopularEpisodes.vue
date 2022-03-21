@@ -4,7 +4,6 @@ import { formatDate, publisherImageFormatter } from '~/utilities/helpers'
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
 import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const episodes = ref([])

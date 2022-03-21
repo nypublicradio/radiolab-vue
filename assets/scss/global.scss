@@ -108,16 +108,14 @@ section {
   }
 }
 
-// style-modes
-:root,
+// style-mode over rides
+
 [data-style-mode="blue"] {
   --link-button-color: var(--primary-light-color);
   --link-button-hover-color: var(--primary-light-color);
   --text-color: var(--white100);
   --text-color-secondary: var(--white300);
-}
 
-[data-style-mode="blue"] {
   .p-button:not(.p-button-text) {
     color: var(--blue-500);
     &:hover {
@@ -140,13 +138,4 @@ section {
 .p-skeleton {
   width: 100%;
   height: 1rem;
-}
-
-.container {
-  width: 100%;
-  margin: 0 auto;
-  padding: spacingXY(6, 6);
-  @include media("<xl") {
-    padding: spacingXY(4, 4);
-  }
 }

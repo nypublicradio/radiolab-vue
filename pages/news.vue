@@ -1,4 +1,9 @@
 <script setup>
+useMeta({
+  bodyAttrs: {
+    class: 'has-head-color'
+  }
+})
 </script>
 
 <template>
