@@ -71,8 +71,12 @@ onUpdated(() => {
     }
   }
 }
+.p-dropdown-panel{
+  box-shadow: var(--shadow);
+}
 .p-dropdown-panel,
 .p-dropdown-label {
+  border-radius: 0 0 20px 20px;
   .service-item {
     display: flex;
     width: 100%;

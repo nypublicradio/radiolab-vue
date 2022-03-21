@@ -36,15 +36,14 @@ const props = defineProps({
 
 <template>
   <div class="mini-card p-4">
-    <nuxt-link :to="url">
       <v-image-with-caption
         :image="image"
         :alt="alt"
+        :imageUrl="url"
         :width="80"
         :height="80"
         class="mini-card-image"
       />
-    </nuxt-link>
     <div class="mini-card-content">
       <p class="mini-card-subtitle">
         <lock-icon v-if="membersOnly" />
