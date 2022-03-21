@@ -16,7 +16,6 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       episodes.value = response.data.included
-      console.log('episodes.value = ', episodes.value)
       dataLoaded.value = true
     })
 })
