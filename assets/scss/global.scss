@@ -25,7 +25,7 @@ section {
   .content {
     width: 100%;
     max-width: $contentWidth;
-    padding: spacingXY(10, 28);
+    padding: spacingXY(10, 0);
     @include media("<lg") {
       padding: spacingXY(6, 0);
       width: 100%;
@@ -34,14 +34,39 @@ section {
       max-width: $maxWidth;
     }
   }
+
+  $head-color-height: 280px;
+  $head-color-height-mobile: 360px;
+
+  @mixin head-color-before {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: height calc(var(--transition-duration) * 2);
+      -webkit-transition: height calc(var(--transition-duration) * 2);
+      height: $head-color-height;
+      @include media("<md") {
+        height: $head-color-height-mobile;
+      }
+      background: var(--gold-500);
+    }
+  }
+
   &.head-color {
-    background: var(--primary-color);
+    // background: var(--primary-color);
     padding-top: calc(var(--header-height) * 2);
     margin-top: calc(var(--header-height) * -1);
     position: relative;
+
     &.yellow {
-      background: var(--gold-500);
+      @include head-color-before();
       &:before {
+        background: var(--gold-500);
+      }
+      &:after {
         background: -moz-linear-gradient(top, rgba(245, 184, 12, 1) 40%, rgba(242, 218, 218, 1) 100%);
         background: -webkit-linear-gradient(top, rgba(245, 184, 12, 1) 40%, rgba(242, 218, 218, 1) 100%);
         background: linear-gradient(to bottom, rgba(245, 184, 12, 1) 40%, rgba(242, 218, 218, 1) 100%);
@@ -49,9 +74,12 @@ section {
       }
     }
     &.lightblue {
-      background: var(--lightblue-500);
+      @include head-color-before();
+      &:before {
+        background: var(--lightblue-500);
+      }
     }
-    &:before {
+    &:after {
       content: "";
       transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
       -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
@@ -62,30 +90,28 @@ section {
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 68%, rgba(255, 255, 255, 0.46) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#75ffffff',GradientType=0 );
 
-      content: "";
       border-radius: 0 0 100% 100%;
-      height: calc(242% - 5vw);
+      //height: calc(242% - 5vw);
       width: 112%;
       left: -6%;
       right: 0;
-      top: calc(-115% - 5vw);
+      //top: calc(-115% - 5vw);
+      height: calc($head-color-height * 2.5);
+      top: calc($head-color-height * -1.6);
 
       margin: auto;
       position: absolute;
-      @include media(">xxl") {
-        height: 225%;
-        top: -145%;
-      }
+
       @include media("<md") {
-        top: calc(-115% - 3vw);
-        height: calc(235% - 10vw);
-      }
-      @include media("<xs") {
-        height: calc(245% - 21vw);
+        height: calc($head-color-height-mobile * 2);
+        top: calc($head-color-height-mobile * -1);
       }
     }
     .content {
       width: 90%;
+      @include media("<md") {
+        width: 95%;
+      }
       z-index: 1;
       background: var(--white);
       border-radius: 1rem 1rem 0 0;

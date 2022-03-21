@@ -22,7 +22,7 @@ onBeforeMount(async () => {
  
 <template>
   <section>
-    <div class="content">
+    <div class="content px-0 md:px-4 lg:px-8">
       <div class="grid">
         <div class="col">
           <div class="popular-episodes">
