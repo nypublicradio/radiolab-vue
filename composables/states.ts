@@ -8,18 +8,18 @@ export const styleModes = {
 export const useColorMode = () => useState<string>('colorMode', () => styleModes.DEFAULT)
 
 const playServices = [
-  { name: 'Play on our site', icon: 'site' },
-  { name: 'Apple Podcasts', icon: 'apple' },
-  { name: 'Spotify', icon: 'spotify' },
-  { name: 'Overcast', icon: 'overcast' },
-  { name: 'Stitcher', icon: 'stitcher' },
-  { name: 'NPR One', icon: 'nprone' },
-  { name: 'Google Podcasts', icon: 'google' },
-  { name: 'Castbox', icon: 'castbox' },
-  { name: 'Amazon Music', icon: 'amazon' },
-  { name: 'Pocket Cast', icon: 'pocketcast' },
-  { name: 'Podcast Addict', icon: 'podcastaddict' },
-  { name: 'RSS', icon: 'rss' }
+  { name: 'Listen', icon: 'site', url:'' },
+  { name: 'Apple Podcasts', icon: 'apple', url: 'https://itunes.apple.com/us/podcast/radiolab/id152249110?mt=2' },
+  { name: 'Spotify', icon: 'spotify', url: 'https://open.spotify.com/show/2hmkzUtix0qTqvtpPcMzEL' },
+  { name: 'Overcast', icon: 'overcast', url: '' },
+  { name: 'Stitcher', icon: 'stitcher', url: 'https://www.stitcher.com/podcast/wnycs-radiolab' },
+  { name: 'NPR One', icon: 'nprone', url: '' },
+  { name: 'Google Podcasts', icon: 'google', url: 'https://podcasts.google.com/feed/aHR0cDovL2ZlZWRzLndueWMub3JnL3JhZGlvbGFi' },
+  { name: 'Castbox', icon: 'castbox', url: 'https://castbox.fm/channel/Radiolab-id129730?country=us' },
+  { name: 'Amazon Music', icon: 'amazon', url: 'https://music.amazon.com/podcasts/779c24b4-dfe8-497a-83bb-67e729c1177b/Radiolab' },
+  { name: 'Pocket Cast', icon: 'pocketcast', url: 'https://pca.st/radiolab' },
+  { name: 'Podcast Addict', icon: 'podcastaddict', url: 'https://podcastaddict.com/podcast/191' },
+  { name: 'RSS', icon: 'rss', url:'http://feeds.wnyc.org/radiolab' }
 ]
 /**
  * Global state for media selection options.
@@ -48,7 +48,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
     items: [
       {
         label: 'Episodes',
-        to: '/news',
+        to: '/episodes',
       },
       {
         label: 'Radio Shows',
@@ -56,11 +56,11 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
       },
       {
         label: 'Series',
-        to: '/news',
+        to: '/series',
       },
       {
         label: 'Radiolab for Kids',
-        to: '/news',
+        to: '/radiolab-kids',
       }
     ]
   },
@@ -73,7 +73,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
       },
       {
         label: 'Team',
-        to: '/news',
+        to: '/team',
       },
       {
         label: 'Announcements',
@@ -81,7 +81,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
       },
       {
         label: 'Pitch Us',
-        to: '/news',
+        to: '/pitch-us',
       }
     ]
   },
@@ -94,7 +94,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
       },
       {
         label: 'Read the credits',
-        to: '/news',
+        to: '/read-the-credits',
       },
       {
         label: 'Swag Lab',
@@ -104,7 +104,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
   },
   {
     label: 'How to listen',
-    to: '/news',
+    to: '/how-to-listen',
     class: 'gap alone',
   },
   {
