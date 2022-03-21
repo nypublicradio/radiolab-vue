@@ -32,6 +32,19 @@ const menuItems = useHeaderMenu()
 </template>
 
 <style lang="scss">
+.has-head-color {
+  .site-header {
+    &.at-top {
+      background-color: transparent;
+      .p-submenu-list {
+        &:after {
+          border-color: transparent !important;
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+}
 .site-header {
   position: sticky;
   top: 0;
@@ -40,15 +53,6 @@ const menuItems = useHeaderMenu()
   transition: background-color var(--transition-duration);
   -webkit-transition: background-color var(--transition-duration);
   background-color: var(--white);
-  &.at-top {
-    background-color: transparent;
-    .p-submenu-list {
-      &:after {
-        border-color: transparent !important;
-        background-color: transparent !important;
-      }
-    }
-  }
   section {
     justify-items: stretch;
     .content {
@@ -162,6 +166,22 @@ const menuItems = useHeaderMenu()
             opacity var(--transition-duration);
           display: flex;
           z-index: -1;
+          &:after {
+            transition: background-color var(--transition-duration),
+              border-color var(--transition-duration);
+            -webkit-transition: background-color var(--transition-duration),
+              border-color var(--transition-duration);
+            background-color: var(--white);
+            content: "";
+            left: -100vw;
+            top: 1px;
+            position: absolute;
+            width: 200vw;
+            height: 47px;
+            z-index: -1;
+            border-top: 1px solid var(--primary-color);
+            border-bottom: 1px solid var(--primary-color);
+          }
           .p-menuitem-link {
             &:after {
               bottom: -0.4rem;
@@ -176,22 +196,7 @@ const menuItems = useHeaderMenu()
             top: 53px;
             opacity: 1;
             pointer-events: auto;
-            &:after {
-              transition: background-color var(--transition-duration),
-                border-color var(--transition-duration);
-              -webkit-transition: background-color var(--transition-duration),
-                border-color var(--transition-duration);
-              background-color: var(--white);
-              content: "";
-              left: -100vw;
-              top: 1px;
-              position: absolute;
-              width: 200vw;
-              height: 47px;
-              z-index: -1;
-              border-top: 1px solid var(--primary-color);
-              border-bottom: 1px solid var(--primary-color);
-            }
+
             .p-menuitem-link:after {
               opacity: 0;
             }

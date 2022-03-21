@@ -3,7 +3,7 @@ import { onBeforeMount, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-import ApplePodcasts from '~/components/icons/ApplePodcasts.vue'
+import PlaySelector from '~/components/PlaySelector.vue'
 import Skeleton from 'primevue/skeleton'
 import Paginator from 'primevue/paginator'
 const dataLoaded = ref(false)
@@ -41,30 +41,46 @@ async function onPage(event) {
  
 <template>
   <div>
-    <div class="episode-archive container">
-      <h1 class="mb-8">Episode Archive</h1>
-      <div v-if="dataLoaded" class="grid">
-        <div v-for="(episode, index) in episodes" :key="index" class="col-12 xl:col-4 mb-8">
-          <v-card
-            :image="episode.attributes['image-main'].url"
-            :alt="episode.attributes['image-main']['alt-text']"
-            :title="episode.attributes.title"
-            :titleLink="`/episodes/${episode.attributes.slug}`"
-            :subtitle="formatDate(episode.attributes['publish-at'])"
-            :max-width="episode.attributes['image-main'].w"
-            :max-height="episode.attributes['image-main'].h"
-            responsive
-            bp="max"
-            class="radiolab-card"
-          >
-            <p v-html="episode.attributes.tease" class="mb-5" />
-            <p class="radiolab-card-podcasts"><apple-podcasts /> Apple Podcasts</p>
-          </v-card>
+    <section>
+      <div class="content">
+        <div class="grid">
+          <div class="col">
+            <div class="episode-archive">
+              <h1 class="mb-8">Episode Archive</h1>
+              <div v-if="dataLoaded" class="grid">
+                <div v-for="(episode, index) in episodes" :key="index" class="col-12 xl:col-4 mb-8">
+                  <v-card
+                    :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+                    :alt="episode.attributes['image-main']['alt-text']"
+                    :title="episode.attributes.title"
+                    :titleLink="`/episodes/${episode.attributes.slug}`"
+                    :eyebrow="formatDate(episode.attributes['publish-at'])"
+                    :blurb="episode.attributes.tease"
+                    :max-width="episode.attributes['image-main'].w"
+                    :max-height="episode.attributes['image-main'].h"
+                    responsive
+                    :ratio="[4, 3]"
+                    bp="max"
+                    class="radiolab-card"
+                  >
+                    <div class="divider"></div>
+                    <play-selector />
+                  </v-card>
+                </div>
+              </div>
+              <skeleton v-else />
+              <paginator
+                v-show="dataLoaded"
+                :first="0"
+                :rows="12"
+                :total-records="totalCount"
+                @page="onPage($event)"
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <skeleton v-else />
-      <paginator v-show="dataLoaded" :first="0" :rows="12" :total-records="totalCount" @page="onPage($event)" />
-    </div>
+    </section>
   </div>
 </template>
 
@@ -74,20 +90,20 @@ async function onPage(event) {
   line-height: var(--font-size-16);
 }
 
-.episode-archive .image-with-caption-image {
+/* .episode-archive .image-with-caption-image {
   height: 300px;
   width: 100%;
   object-fit: cover;
   overflow-y: hidden;
-}
+} */
 
 .episode-archive > .grid {
-    margin: 0 -35px;
+  margin: 0 -24px;
 }
 
 .episode-archive .grid > .col,
-.episode-archive .grid > [class*='col'] {
-    padding: 0 35px;
+.episode-archive .grid > [class*="col"] {
+  padding: 0 24px;
 }
 
 .episode-archive .p-paginator {
