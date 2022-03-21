@@ -90,7 +90,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
     items: [
       {
         label: 'The Lab',
-        to: '/news',
+        to: '/the-lab',
       },
       {
         label: 'Read the credits',
@@ -109,7 +109,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
   },
   {
     label: 'Become a member',
-    to: '/news',
+    to: '/become-a-member',
     class: 'button alone',
   },
   {
