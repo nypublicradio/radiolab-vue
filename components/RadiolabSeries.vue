@@ -36,7 +36,7 @@ onBeforeMount(async () => {
                 class="col-12 xl:col-4"
               >
                 <mini-card
-                  :image="episode.attributes['image-main'].url"
+                  :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
                   :alt="episode.attributes['image-main']['alt-text']"
                   :url="episode.attributes.url"
                   members-only
