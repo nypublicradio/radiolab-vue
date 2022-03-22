@@ -35,7 +35,7 @@ function submitForm() {
 <template>
     <div>
         <span v-if="submissionStatus !== 'success'" class="grid">
-            <div class="field col-12 lg:col-8 justify-content-center">
+            <div class="col-12 lg:col-8 justify-content-center">
                 <InputText
                     v-if="!submitted"
                     class="w-full p-inputtext-lg"
