@@ -42,6 +42,7 @@ const isMobile = computed(() => {
           <div class="col-12 lg:col-8">
             <div class="grid">
               <div class="col">
+                <episode-head-skeleton />
                 <div v-if="dataLoaded" class="episode flex">
                   <v-image-with-caption
                     :image="episode['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
@@ -54,18 +55,23 @@ const isMobile = computed(() => {
                     class="episode-image"
                   />
                   <div class="episode-content">
-                    <p class="date">{{ formatDate(episode['publish-at']) }}</p>
-                    <h2 class="title" v-html="episode.title" />
+                    <p class="date mb-1">{{ formatDate(episode['publish-at']) }}</p>
+                    <h2 class="title mb-0 md:mb-5" v-html="episode.title" />
                     <episode-tools class="hidden md:block">episode tools</episode-tools>
                   </div>
                 </div>
-                <skeleton v-else />
+                <episode-head-skeleton v-else />
                 <episode-tools class="block md:hidden">episode tools</episode-tools>
               </div>
             </div>
             <div class="grid wide">
               <div class="col">
-                <p v-if="dataLoaded" class="mt-6" v-html="episode.tease" />
+                <p
+                  v-if="dataLoaded"
+                  class="pr-0 lg:pr-4 xl:pr-0 mt-6 html-formatting"
+                  v-html="episode.body"
+                />
+                <skeleton v-else />
               </div>
             </div>
           </div>
@@ -127,11 +133,11 @@ const isMobile = computed(() => {
       }
       .title {
         font-size: var(--font-size-12);
-        line-height: var(--font-weight-13);
+        line-height: var(--font-size-13);
         font-weight: 500;
         @include media("<md") {
           font-size: var(--font-size-8);
-          line-height: var(--font-weight-9);
+          line-height: var(--font-size-9);
         }
       }
     }

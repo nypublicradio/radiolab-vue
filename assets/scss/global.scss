@@ -1,4 +1,4 @@
-@import "cards";
+@import 'cards';
 
 $maxWidth: 1440px;
 $contentWidth: 1366px;
@@ -26,7 +26,7 @@ section {
     width: 100%;
     max-width: $contentWidth;
     padding: spacingXY(10, 0);
-    @include media("<lg") {
+    @include media('<lg') {
       padding: spacingXY(6, 0);
       width: 100%;
     }
@@ -40,7 +40,7 @@ section {
 
   @mixin head-color-before {
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -48,7 +48,7 @@ section {
       transition: height calc(var(--transition-duration) * 2);
       -webkit-transition: height calc(var(--transition-duration) * 2);
       height: $head-color-height;
-      @include media("<md") {
+      @include media('<md') {
         height: $head-color-height-mobile;
       }
       background: var(--gold-500);
@@ -80,7 +80,7 @@ section {
       }
     }
     &:after {
-      content: "";
+      content: '';
       transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
       -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
 
@@ -102,20 +102,30 @@ section {
       margin: auto;
       position: absolute;
 
-      @include media("<md") {
+      @include media('<md') {
         height: calc($head-color-height-mobile * 2);
         top: calc($head-color-height-mobile * -1);
       }
     }
     .content {
       width: 90%;
-      @include media("<md") {
+      @include media('<md') {
         width: 95%;
       }
       z-index: 1;
       background: var(--white);
       border-radius: 1rem 1rem 0 0;
     }
+  }
+}
+
+.html-formatting {
+  p {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+  }
+  strong {
+    font-weight: var(--font-weight-500);
   }
 }
 
@@ -143,7 +153,7 @@ section {
 
 // style-mode over rides
 
-[data-style-mode="blue"] {
+[data-style-mode='blue'] {
   --link-button-color: var(--primary-light-color);
   --link-button-hover-color: var(--primary-light-color);
   --text-color: var(--white100);
