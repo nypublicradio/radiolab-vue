@@ -28,7 +28,8 @@ useMeta({
 </template>
 
 <style lang="scss">
-body {
+body,
+html {
   overflow: hidden;
 }
 #body {
