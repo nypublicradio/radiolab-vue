@@ -10,26 +10,26 @@ const email = ref('')
 // submit the newsletter form and add email address to the Radiolab Newsletter list
 // list IDs are listed here https://github.com/nypublicradio/marketing-cloud-proxy/blob/main/marketing_cloud_proxy/mailchimp.py
 function submitForm() {
-            submitted.value = true
-            axios
-                .post('https://api.demo.nypr.digital/email-proxy/subscribe',
-                {
-                    list: '2fe8150dd6',
-                    email: email.value,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*'
-                    }
-                }
-            )
-            .then(() => {
-                submissionStatus.value = 'success'
-            })
-            .catch(() => {
-                submissionStatus.value = 'error'
-                submitted.value = false
-            })
+    submitted.value = true
+    axios
+        .post('https://api.demo.nypr.digital/email-proxy/subscribe',
+        {
+            list: '2fe8150dd6',
+            email: email.value,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
         }
+    )
+    .then(() => {
+        submissionStatus.value = 'success'
+    })
+    .catch(() => {
+        submissionStatus.value = 'error'
+        submitted.value = false
+    })
+}
 </script>
 
 <template>
