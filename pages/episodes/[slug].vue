@@ -8,6 +8,12 @@ import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/com
 import EpisodeTools from '~/components/EpisodeTools.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 useMeta({
+  meta: [
+    {
+      name: 'theme-color',
+      content: '#f4be2e',
+    },
+  ],
   bodyAttrs: {
     class: 'has-head-color'
   }
@@ -56,24 +62,20 @@ const isMobile = computed(() => {
                   <div class="episode-content">
                     <p class="date mb-1">{{ formatDate(episode['publish-at']) }}</p>
                     <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
-                    <episode-tools class="hidden md:block">episode tools</episode-tools>
+                    <episode-tools class="hidden md:block" :episode="episode" />
                   </div>
                 </div>
                 <episode-head-skeleton v-else />
-                <episode-tools v-if="dataLoaded" class="mt-3 block md:hidden">episode tools</episode-tools>
+                <episode-tools v-if="dataLoaded" class="mt-3 block md:hidden" :episode="episode" />
                 <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
               </div>
             </div>
-            <div class="grid wide">
-              <div class="col">
-                <p
-                  v-if="dataLoaded"
-                  class="pr-0 lg:pr-4 xl:pr-0 mt-6 html-formatting"
-                  v-html="episode.body"
-                />
-                <episode-body-text-skeleton v-else class="mt-6" />
-              </div>
-            </div>
+            <p
+              v-if="dataLoaded"
+              class="wide pr-0 lg:pr-4 xl:pr-0 mt-6 html-formatting"
+              v-html="episode.body"
+            />
+            <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 lg:col-4 xl:col-3 col-offset-0 xl:col-offset-1">
             <div class="the-lab-box">
@@ -156,7 +158,7 @@ const isMobile = computed(() => {
       font-size: var(--font-size-2);
     }
   }
-  .grid.wide {
+  .wide {
     @include media("<md") {
       margin-left: -1.5rem;
       margin-right: -1.5rem;

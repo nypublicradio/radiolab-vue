@@ -26,6 +26,7 @@ onUpdated(() => {
 
 <template>
   <div class="play-selector">
+    <!-- <Button label="Play" /> -->
     <Dropdown v-model="selectedPlayService" :options="playServices" placeholder="Select a Service">
       <template #value="slotProps">
         <div class="service-item service-item-value" v-if="slotProps.value">

@@ -1,4 +1,5 @@
 import { defineNuxtPlugin } from '#app'
+import Divider from 'primevue/divider/divider.esm.js';
 import Button from 'primevue/button/button.esm.js'
 import InputText from 'primevue/inputtext/inputtext.esm.js'
 import Image from 'primevue/image/image.esm.js'
@@ -10,6 +11,7 @@ import MegaMenu from 'primevue/megamenu/megamenu.esm.js';
 import Dropdown from 'primevue/dropdown/dropdown.esm.js';
 import Toast from 'primevue/toast/toast.esm.js';
 import ToastService from 'primevue/toastservice/toastservice.esm.js';
+import Sidebar from 'primevue/sidebar/sidebar.esm.js';
 // import Tag from "primevue/tag"
 // import Menubar from 'primevue/menubar';
 // import InputText from 'primevue/inputText';
@@ -18,6 +20,7 @@ import ToastService from 'primevue/toastservice/toastservice.esm.js';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(PrimeVue, { ripple: true })
+    nuxtApp.vueApp.component('Divider', Divider)
     nuxtApp.vueApp.component('InputText', InputText)
     nuxtApp.vueApp.component('Button', Button)
     nuxtApp.vueApp.component('Image', Image)
@@ -28,6 +31,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component('Dropdown', Dropdown)
     nuxtApp.vueApp.component('Toast', Toast)
     nuxtApp.vueApp.component('ToastService', ToastService)
+    nuxtApp.vueApp.component('Sidebar', Sidebar)
     // nuxtApp.vueApp.component('Tag', Tag)
     // nuxtApp.vueApp.component('Menubar', Menubar)
     // nuxtApp.vueApp.component('InputText', InputText)
