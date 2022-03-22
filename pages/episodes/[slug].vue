@@ -42,7 +42,6 @@ const isMobile = computed(() => {
           <div class="col-12 lg:col-8">
             <div class="grid">
               <div class="col">
-                <episode-head-skeleton />
                 <div v-if="dataLoaded" class="episode flex">
                   <v-image-with-caption
                     :image="episode['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
@@ -56,12 +55,13 @@ const isMobile = computed(() => {
                   />
                   <div class="episode-content">
                     <p class="date mb-1">{{ formatDate(episode['publish-at']) }}</p>
-                    <h2 class="title mb-0 md:mb-5" v-html="episode.title" />
+                    <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
                     <episode-tools class="hidden md:block">episode tools</episode-tools>
                   </div>
                 </div>
                 <episode-head-skeleton v-else />
-                <episode-tools class="block md:hidden">episode tools</episode-tools>
+                <episode-tools v-if="dataLoaded" class="mt-3 block md:hidden">episode tools</episode-tools>
+                <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
               </div>
             </div>
             <div class="grid wide">
@@ -71,7 +71,7 @@ const isMobile = computed(() => {
                   class="pr-0 lg:pr-4 xl:pr-0 mt-6 html-formatting"
                   v-html="episode.body"
                 />
-                <skeleton v-else />
+                <episode-body-text-skeleton v-else class="mt-6" />
               </div>
             </div>
           </div>
@@ -123,6 +123,7 @@ const isMobile = computed(() => {
       }
     }
     .episode-content {
+      flex-grow: 1;
       .date {
         font-size: var(--font-size-5);
         text-transform: uppercase;

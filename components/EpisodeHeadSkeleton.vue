@@ -8,11 +8,11 @@ import Skeleton from 'primevue/skeleton'
     <div class="episode-head-skeleton-content">
       <div class="block md:hidden">
         <skeleton width="5rem" height="13px" class="mb-2" />
-        <skeleton width="100%" height="24px" class="mb-0 md:mb-5" />
+        <skeleton width="100%" height="24px" class="mb-0 md:mb-4" />
       </div>
       <div class="hidden md:block">
         <skeleton width="7rem" class="mb-2" />
-        <skeleton width="100%" height="40px" class="mb-0 md:mb-5" />
+        <skeleton width="100%" height="40px" class="mb-0 md:mb-4" />
       </div>
       <episode-tools-skeleton class="hidden md:flex" />
     </div>
@@ -21,7 +21,6 @@ import Skeleton from 'primevue/skeleton'
 
 <style lang="scss">
 .episode-head-skeleton {
-  margin-bottom: 100px;
   .episode-head-skeleton-image {
     width: 200px !important;
     height: 200px !important;

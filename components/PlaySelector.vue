@@ -29,15 +29,15 @@ onUpdated(() => {
     <Dropdown v-model="selectedPlayService" :options="playServices" placeholder="Select a Service">
       <template #value="slotProps">
         <div class="service-item service-item-value" v-if="slotProps.value">
-          <img alt="icon" :src="'play-service-icons/' + slotProps.value.icon + '.svg'" />
+          <img alt="icon" :src="'/play-service-icons/' + slotProps.value.icon + '.svg'" />
           <div v-if="label" class="uppercase">{{ slotProps.value.name }}</div>
         </div>
         <span v-else>{{ slotProps.placeholder }}</span>
       </template>
       <template #option="slotProps">
         <div class="service-item">
-          <img alt="icon" :src="'play-service-icons/' + slotProps.option.icon + '.svg'" />
-          <div v-if="label">{{ slotProps.option.name }}</div>
+          <img alt="icon" :src="'/play-service-icons/' + slotProps.option.icon + '.svg'" />
+          <div>{{ slotProps.option.name }}</div>
         </div>
       </template>
     </Dropdown>
@@ -47,9 +47,11 @@ onUpdated(() => {
 <style lang="scss">
 .play-selector {
   margin-left: -1rem;
-  width: calc(100% + 2rem);
+  // width: calc(100% + 2rem);
+  flex-grow: 1;
   .p-dropdown {
     width: 100%;
+    height: 100%;
     background: transparent;
     border: none;
     .p-dropdown-label {
@@ -71,11 +73,12 @@ onUpdated(() => {
     }
   }
 }
-.p-dropdown-panel{
+.p-dropdown-panel {
   box-shadow: var(--shadow);
 }
 .p-dropdown-panel,
 .p-dropdown-label {
+  align-self: center;
   border-radius: 0 0 20px 20px;
   .service-item {
     display: flex;
