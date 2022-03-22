@@ -6,6 +6,7 @@ import axios from 'axios'
 import Skeleton from 'primevue/skeleton'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import EpisodeTools from '~/components/EpisodeTools.vue'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 useMeta({
   bodyAttrs: {
     class: 'has-head-color'
@@ -22,7 +23,7 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       episode.value = response.data.data.attributes
-      // console.log('episode.value = ', episode.value)
+      console.log('episode.value = ', episode.value)
       dataLoaded.value = true
     })
 })
@@ -36,9 +37,9 @@ const isMobile = computed(() => {
 <template>
   <div class="episode-page page">
     <section class="head-color yellow">
-      <div class="content p-3">
+      <div class="content p-3 md:p-6">
         <div class="grid">
-          <div class="col-12 md:col-8">
+          <div class="col-12 lg:col-8">
             <div class="grid">
               <div class="col">
                 <div v-if="dataLoaded" class="episode flex">
@@ -61,20 +62,37 @@ const isMobile = computed(() => {
                 <skeleton v-else />
                 <episode-tools class="block md:hidden">episode tools</episode-tools>
               </div>
-              <p v-html="episode.tease" />
+            </div>
+            <div class="grid wide">
+              <div class="col">
+                <p v-if="dataLoaded" class="mt-6" v-html="episode.tease" />
+              </div>
             </div>
           </div>
-          <div class="col-12 md:col-3 col-offset-0 md:col-offset-1">side grey</div>
+          <div class="col-12 lg:col-4 xl:col-3 col-offset-0 xl:col-offset-1">
+            <div class="the-lab-box">
+              <img class="mb-1" alt="THE LAB sticker" src="/the-lab-sticker-black.svg" />
+              <h4 class="mb-4">Unlock member-only exclusives and support the show</h4>
+              <h5>Exclusive Podcast Extras</h5>
+              <h5>Entire Podcast Archive</h5>
+              <h5>Listen Ad-Free</h5>
+              <h5>Behind-the-Scenes Content</h5>
+              <h5>Video Extras</h5>
+              <h5>Original Music & Playlists</h5>
+              <v-flexible-link raw to="/become-a-member">
+                <Button class="p-button-rounded black mt-4">Become a member</Button>
+              </v-flexible-link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <!-- <section>
-      <div class="content p-6">
+    <!--     <section>
+      <div class="content">
         <div class="grid">
-          <div v-if="dataLoaded" class="col">
-            <p v-html="episode.tease" />
+          <div class="col">
+            <p v-if="dataLoaded" v-html="episode.tease" />
           </div>
-          <skeleton v-else />
         </div>
       </div>
     </section>-->
@@ -92,6 +110,7 @@ const isMobile = computed(() => {
       border-radius: 20px;
       overflow: hidden;
       @include media("<md") {
+        margin-right: 0.75rem;
         width: 90px;
         height: 90px;
         border-radius: 20px;
@@ -102,12 +121,38 @@ const isMobile = computed(() => {
         font-size: var(--font-size-5);
         text-transform: uppercase;
         line-height: normal;
+        @include media("<md") {
+          font-size: var(--font-size-3);
+        }
       }
       .title {
         font-size: var(--font-size-12);
         line-height: var(--font-weight-13);
         font-weight: 500;
+        @include media("<md") {
+          font-size: var(--font-size-8);
+          line-height: var(--font-weight-9);
+        }
       }
+    }
+  }
+  .the-lab-box {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 40px;
+    img {
+      width: 100px;
+      height: auto;
+    }
+    h5 {
+      margin-bottom: 0.4rem;
+      font-size: var(--font-size-2);
+    }
+  }
+  .grid.wide {
+    @include media("<md") {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
     }
   }
 }

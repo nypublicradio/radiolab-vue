@@ -36,7 +36,7 @@ section {
   }
 
   $head-color-height: 280px;
-  $head-color-height-mobile: 360px;
+  $head-color-height-mobile: 300px;
 
   @mixin head-color-before {
     &:before {
@@ -131,6 +131,13 @@ section {
   font-weight: var(--font-weight-500);
   &.p-button-sm {
     padding: 2px 12px;
+  }
+  &.black {
+    background: var(--black500);
+    color: var(--primary-color);
+    &:hover {
+      background: var(--blue-500);
+    }
   }
 }
 
