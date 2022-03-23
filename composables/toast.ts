@@ -1,4 +1,4 @@
-import { createToast } from 'mosha-vue-toastify'
+// global config for toast notifications, styles can be found in the globals.scss
 export const useToastConfig = () => useState('toastConfig',(message) => {
     const config = {
         timeout: 6000,

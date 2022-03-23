@@ -17,6 +17,18 @@ body {
   background: #ffffff;
 }
 
+//toast notifications
+.mosha__toast{
+  background-color: var(--primary-color) !important;
+  .mosha__toast__content__text{
+    font-weight: var(--font-weight-500) !important;
+  }
+  *{
+    font-family: var(--font-family) !important;
+    color: var(--black100) !important;
+  }
+}
+
 section {
   display: flex;
   flex-direction: column;
