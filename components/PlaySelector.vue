@@ -36,7 +36,9 @@ onUpdated(() => {
 <template>
   <div class="play-selector flex justify-content-between">
     <Button class="listen-btn p-button-rounded">
-      <span class="play-icon"></span>Listen
+      <span class="play-icon">
+        <img src="/play-icon.svg" alt="play icon" />
+      </span>Listen
     </Button>
     <div>
       <Button @click="launchService(playServicePreference)" class="service-btn p-button-rounded">
@@ -63,11 +65,14 @@ onUpdated(() => {
 
 <style lang="scss">
 .play-selector {
-  margin-left: -1rem;
+  margin-left: -0.5rem;
   margin-right: -0.5rem;
   flex-grow: 1;
   .service-btn {
     border-radius: 2rem 0 0 2rem;
+  }
+  .listen-btn {
+    padding-left: 0.5rem;
   }
   .p-dropdown {
     justify-content: flex-end;
@@ -99,21 +104,11 @@ onUpdated(() => {
     }
   }
   .play-icon {
-    background-color: var(--black100);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
     margin-right: 10px;
-    &:after {
-      content: "";
-      border-color: transparent transparent transparent #fff;
-      border-style: solid;
-      border-width: 6px 0 6px 8px;
-      box-sizing: border-box;
-      top: 12px;
-      left: 23px;
-      margin: auto;
-      position: absolute;
+    img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
     }
   }
   .service-btn {
