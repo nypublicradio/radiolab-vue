@@ -1,4 +1,4 @@
-@import "cards";
+@import 'cards';
 
 $maxWidth: 1440px;
 $contentWidth: 1366px;
@@ -26,7 +26,7 @@ section {
     width: 100%;
     max-width: $contentWidth;
     padding: spacingXY(10, 28);
-    @include media("<lg") {
+    @include media('<lg') {
       padding: spacingXY(6, 0);
       width: 100%;
     }
@@ -52,7 +52,7 @@ section {
       background: var(--lightblue-500);
     }
     &:before {
-      content: "";
+      content: '';
       transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
       -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
 
@@ -62,7 +62,7 @@ section {
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 68%, rgba(255, 255, 255, 0.46) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#75ffffff',GradientType=0 );
 
-      content: "";
+      content: '';
       border-radius: 0 0 100% 100%;
       height: calc(242% - 5vw);
       width: 112%;
@@ -72,15 +72,15 @@ section {
 
       margin: auto;
       position: absolute;
-      @include media(">xxl") {
+      @include media('>xxl') {
         height: 225%;
         top: -145%;
       }
-      @include media("<md") {
+      @include media('<md') {
         top: calc(-115% - 3vw);
         height: calc(235% - 10vw);
       }
-      @include media("<xs") {
+      @include media('<xs') {
         height: calc(245% - 21vw);
       }
     }
@@ -110,7 +110,7 @@ section {
 
 // style-mode over rides
 
-[data-style-mode="blue"] {
+[data-style-mode='blue'] {
   --link-button-color: var(--primary-light-color);
   --link-button-hover-color: var(--primary-light-color);
   --text-color: var(--white100);
@@ -131,6 +131,12 @@ section {
       opacity: 0.4;
     }
   }
+  .p-inputtext.p-invalid.p-component {
+    border-color: var(--redorange-200);
+  }
+  .p-error {
+    color: var(--redorange-200);
+  }
 }
 
 /*component overrides that will eventually go in the extensions.scss file in the theme*/
@@ -138,4 +144,7 @@ section {
 .p-skeleton {
   width: 100%;
   height: 1rem;
+  &.transparent {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
 }
