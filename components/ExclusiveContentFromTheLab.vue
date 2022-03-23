@@ -55,8 +55,8 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss">
-.exclusive-content-from-the-lab .become-a-member .p-button {
+/* .exclusive-content-from-the-lab .become-a-member .p-button {
   background: var(--blue-500);
   color: var(--white100);
-}
+} */
 </style>

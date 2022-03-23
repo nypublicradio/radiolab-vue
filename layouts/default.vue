@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue"
 import { useScroll } from '@vueuse/core'
+
 const el = ref(null)
 const { x, y, isScrolling, arrivedState, directions } = useScroll(el)
 const isPlayer = ref(false)

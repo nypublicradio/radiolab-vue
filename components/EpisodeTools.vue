@@ -1,7 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
+import { createToast } from 'mosha-vue-toastify'
+const config = useToastConfig()
+
 
 const props = defineProps({
   episode: {
@@ -13,12 +16,14 @@ const props = defineProps({
 const visibleRight = ref(false)
 const dotsMenu = ref()
 const shareMenu = ref()
+const toastConfig = ref(config)
 const dotsItems = ref([
   {
     label: 'Download',
     icon: 'pi pi-download',
     command: () => {
-      console.log('downloading...')
+      window.open(props.episode['audio'], '_top')
+      createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
     }
   },
   {
@@ -59,6 +64,7 @@ const toggleDots = (event) => {
 const toggleShare = (event) => {
   shareMenu.value.toggle(event)
 }
+
 </script>
 
 <template>

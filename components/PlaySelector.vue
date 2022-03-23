@@ -41,10 +41,19 @@ onUpdated(() => {
       </span>Listen
     </Button>
     <div>
-      <Button @click="launchService(playServicePreference)" class="service-btn p-button-rounded">
+      <Button
+        :title="`Open ${playServicePreference.name}`"
+        @click="launchService(playServicePreference)"
+        class="service-btn p-button-rounded"
+      >
         <img alt="icon" :src="'/play-service-icons/' + playServicePreference.icon + '.svg'" />
       </Button>
-      <Dropdown v-model="selectedPlayService" :options="playServices" :panelClass="menuClass">
+      <Dropdown
+        title="Choose platform"
+        v-model="selectedPlayService"
+        :options="playServices"
+        :panelClass="menuClass"
+      >
         <template #value="slotProps">
           <div class="service-item service-item-value" v-if="slotProps.value">
             <!-- <img alt="icon" :src="'/play-service-icons/' + slotProps.value.icon + '.svg'" />

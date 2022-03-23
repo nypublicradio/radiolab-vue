@@ -9,8 +9,6 @@ import Menu from 'primevue/menu/menu.esm.js';
 import PrimeVue from 'primevue/config/config.esm.js'
 import MegaMenu from 'primevue/megamenu/megamenu.esm.js';
 import Dropdown from 'primevue/dropdown/dropdown.esm.js';
-import Toast from 'primevue/toast/toast.esm.js';
-import ToastService from 'primevue/toastservice/toastservice.esm.js';
 import Sidebar from 'primevue/sidebar/sidebar.esm.js';
 // import Tag from "primevue/tag"
 // import Menubar from 'primevue/menubar';
@@ -29,8 +27,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component('Menu', Menu)
     nuxtApp.vueApp.component('MegaMenu', MegaMenu)
     nuxtApp.vueApp.component('Dropdown', Dropdown)
-    nuxtApp.vueApp.component('Toast', Toast)
-    nuxtApp.vueApp.component('ToastService', ToastService)
     nuxtApp.vueApp.component('Sidebar', Sidebar)
     // nuxtApp.vueApp.component('Tag', Tag)
     // nuxtApp.vueApp.component('Menubar', Menubar)

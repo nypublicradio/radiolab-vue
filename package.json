@@ -31,6 +31,7 @@
     "@sentry/tracing": "^6.18.2",
     "@sentry/vue": "^6.18.2",
     "@vue/cli-plugin-unit-jest": "^5.0.3",
+    "mosha-vue-toastify": "^1.0.23",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.1",
     "sass": "^1.49.9",
