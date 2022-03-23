@@ -5,7 +5,6 @@ import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 const config = useToastConfig()
 
-
 const props = defineProps({
   episode: {
     type: Object,
