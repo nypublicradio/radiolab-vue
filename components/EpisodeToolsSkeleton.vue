@@ -4,8 +4,9 @@ import Skeleton from 'primevue/skeleton'
 
 <template>
   <div>
-    <div class="episode-tools-skeleton flex">
-      <skeleton width="85px" height="37.7px" />
+    <div class="episode-tools-skeleton flex flex-wrap">
+      <skeleton width="110px" height="37.7px" />
+      <skeleton width="80px" height="37.7px" />
       <skeleton width="93px" height="37.7px" />
       <skeleton width="37.7px" height="37.7px" />
       <skeleton width="37.7px" height="37.7px" />

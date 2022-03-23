@@ -4,6 +4,7 @@ $maxWidth: 1440px;
 $contentWidth: 1366px;
 $headerHeight: 70px;
 $playerHeight: 100px;
+$toolsBrealPoint: 472px;
 
 :root {
   --header-height: #{$headerHeight};
@@ -152,17 +153,20 @@ section {
 }
 
 /*component overrides that will eventually go in the extensions.scss file in the theme*/
+@mixin black-button() {
+  background: var(--black500);
+  color: var(--primary-color);
+  &:hover {
+    background: var(--blue-500);
+  }
+}
 .p-button {
   font-weight: var(--font-weight-500);
   &.p-button-sm {
     padding: 2px 12px;
   }
   &.black {
-    background: var(--black500);
-    color: var(--primary-color);
-    &:hover {
-      background: var(--blue-500);
-    }
+    @include black-button();
   }
 }
 

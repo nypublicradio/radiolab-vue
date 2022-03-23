@@ -63,8 +63,8 @@ const toggleShare = (event) => {
 
 <template>
   <div>
-    <div class="episode-tools-holder flex">
-      <play-selector :label="false" />
+    <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
+      <play-selector :label="false" menu-class="episode-tools-play-selector" />
       <Button
         v-if="!!props.episode['transcript']"
         class="p-button-sm p-button-rounded"
@@ -110,14 +110,64 @@ const toggleShare = (event) => {
 
 <style lang="scss">
 .episode-tools-holder {
-  gap: 6px;
+  gap: 12px 6px;
   width: 100%;
   .play-selector {
     margin-left: 0;
-    width: 85px;
+    margin-right: 0;
+    justify-content: flex-start !important;
+    gap: 6px;
+    margin-left: 0;
     flex-grow: 0;
+    @include media("<#{$toolsBrealPoint}") {
+      width: 100%;
+      .p-button {
+        flex-grow: 1;
+      }
+    }
+    .listen-btn {
+      @include black-button();
+    }
+    .service-btn {
+      /* border-radius: 2rem 0 0 2rem; */
+    }
+    .p-dropdown {
+      /*       justify-content: flex-end;
+      width: 40px; */
+      background-color: var(--primary-color);
+      padding-right: 10px;
+      /* border-radius: 0 2rem 2rem 0; */
+    }
+  }
+}
+.p-dropdown-panel.episode-tools-play-selector {
+  margin-top: spacing(3);
+  .p-dropdown-items-wrapper {
+    padding: 0.5rem;
     background-color: var(--primary-color);
+    .p-dropdown-item {
+      border-radius: 2rem;
+      &:hover {
+        background: var(--white) !important;
+      }
+    }
+  }
+}
+.episode-tools-menu.episode-tools-menu {
+  margin-top: spacing(3);
+  box-shadow: none;
+  background-color: var(--primary-color);
+  padding: 0.5rem;
+  .p-menuitem-link {
     border-radius: 2rem;
+    .p-menuitem-icon {
+      color: var(--black100);
+    }
+    &:hover {
+      .p-menuitem-icon {
+        color: var(--black100);
+      }
+    }
   }
 }
 .transcript {
@@ -150,23 +200,6 @@ const toggleShare = (event) => {
   }
   .p-sidebar-header {
     z-index: 1;
-  }
-}
-.episode-tools-menu.episode-tools-menu {
-  margin-top: spacing(3);
-  box-shadow: none;
-  background-color: var(--primary-color);
-  padding: 0.5rem;
-  .p-menuitem-link {
-    border-radius: 2rem;
-    .p-menuitem-icon {
-      color: var(--black100);
-    }
-    &:hover {
-      .p-menuitem-icon {
-        color: var(--black100);
-      }
-    }
   }
 }
 </style>

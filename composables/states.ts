@@ -8,7 +8,7 @@ export const styleModes = {
 export const useColorMode = () => useState<string>('colorMode', () => styleModes.DEFAULT)
 
 const playServices = [
-  { name: 'Listen', icon: 'site', url:'' },
+  /* { name: 'Listen', icon: 'site', url:'' }, */
   { name: 'Apple Podcasts', icon: 'apple', url: 'https://itunes.apple.com/us/podcast/radiolab/id152249110?mt=2' },
   { name: 'Spotify', icon: 'spotify', url: 'https://open.spotify.com/show/2hmkzUtix0qTqvtpPcMzEL' },
   { name: 'Overcast', icon: 'overcast', url: '' },
@@ -34,7 +34,7 @@ export const usePlayServicePreference = () => useState('playServicePreference', 
     return JSON.parse(window.localStorage.getItem('selectedPlayService'))
   } else {
     // default to play on site
-    return playServices[0]
+    return null
   }
 })
 

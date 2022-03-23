@@ -43,9 +43,9 @@ const isMobile = computed(() => {
 <template>
   <div class="episode-page page">
     <section class="head-color yellow">
-      <div class="content p-3 md:p-6">
+      <div class="content p-3 md:p-5 lg:p-6">
         <div class="grid">
-          <div class="col-12 lg:col-8">
+          <div class="col-12 xl:col-8">
             <div class="grid">
               <div class="col">
                 <div v-if="dataLoaded" class="episode flex">
@@ -72,12 +72,12 @@ const isMobile = computed(() => {
             </div>
             <p
               v-if="dataLoaded"
-              class="wide pr-0 lg:pr-4 xl:pr-0 mt-6 html-formatting"
+              class="wide mt-6 html-formatting"
               v-html="episode.body"
             />
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
-          <div class="col-12 lg:col-4 xl:col-3 col-offset-0 xl:col-offset-1">
+          <div class="col-12 xl:col-3 xl:col-offset-1">
             <div class="the-lab-box">
               <img class="mb-1" alt="THE LAB sticker" src="/the-lab-sticker-black.svg" />
               <h4 class="mb-4">Unlock member-only exclusives and support the show</h4>
@@ -117,6 +117,9 @@ const isMobile = computed(() => {
       height: 200px;
       border-radius: 20px;
       overflow: hidden;
+      @include media("<lg") {
+        margin-right: 1rem;
+      }
       @include media("<md") {
         margin-right: 0.75rem;
         width: 90px;
