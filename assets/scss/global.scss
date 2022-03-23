@@ -131,6 +131,12 @@ section {
       opacity: 0.4;
     }
   }
+  .p-inputtext.p-invalid.p-component {
+    border-color: var(--redorange-200);
+  }
+  .p-error {
+    color: var(--redorange-200);
+  }
 }
 
 /*component overrides that will eventually go in the extensions.scss file in the theme*/

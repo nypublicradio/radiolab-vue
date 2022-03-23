@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
-import Skeleton from 'primevue/skeleton'
 
 const submitted = ref(false)
 const submissionStatus = ref(null)
@@ -12,7 +11,7 @@ const email = ref('')
 function submitForm() {
     submitted.value = true
     axios
-        .post('https://api.demo.nypr.digital/email-proxy/subscribe',
+        .post('https://api.prod.nypr.digital/email-proxy/subscribe',
         {
             list: '2fe8150dd6',
             email: email.value,
@@ -33,11 +32,11 @@ function submitForm() {
 </script>
 
 <template>
-    <div>
+    <div class="newsletter-form">
         <span v-if="submissionStatus !== 'success'" class="grid">
-            <div class="col-12 lg:col-8 justify-content-center">
+            <div class="col-12 lg:col-8">
                 <InputText
-                    v-if="!submitted"
+                    :disabled="submitted"
                     class="w-full p-inputtext-lg"
                     :class="[{ 'p-invalid': submissionStatus === 'error' }]"
                     type="email"
@@ -46,7 +45,6 @@ function submitForm() {
                     v-model="email"
                     @keypress.enter="submitForm" 
                 />
-                <skeleton v-else class="transparent mt-3" />
                 <small
                     v-if="submissionStatus === 'error'"
                     id="email-address-field"
@@ -55,10 +53,24 @@ function submitForm() {
                     Sorry, there was an error with your submission. Please try again!
                 </small>
             </div>
-            <div class="col-12 lg:col-4 align-self-end flex lg:justify-content-start justify-content-end">
-                <Button v-if="!submitted" @click="submitForm" class="p-button-lg p-button-rounded" label="Subscribe" />
+            <div class="col-12 lg:col-4 lg:justify-content-start">
+                <Button :disabled="submitted" @click="submitForm" class="p-button-lg p-button-rounded" label="Subscribe">
+                    <i v-if="submitted" class="pi pi-spin pi-spinner" />
+                </Button>
             </div>
         </span>
         <p v-else>Thanks for signing up!</p>
     </div>
 </template>
+
+<style lang="scss">
+.newsletter-form .p-button {
+    width: 135px;
+    height: 47px;
+}
+
+.newsletter-form .pi-spinner {
+    font-size: 1.25rem;
+    margin: auto;
+}
+</style>
