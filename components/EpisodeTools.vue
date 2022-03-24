@@ -176,7 +176,7 @@ const toggleShare = (event) => {
     gap: 6px;
     margin-left: 0;
     flex-grow: 0;
-    @include media("<#{$toolsBrealPoint}") {
+    @include media("<#{$toolsBreakPoint}") {
       width: 100%;
       .p-button {
         flex-grow: 1;
