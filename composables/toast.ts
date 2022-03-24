@@ -2,7 +2,7 @@
 export const useToastConfig = (type) => {
     // console.log('type', type)
     let config = null
-    useState('toastConfig',() => {
+    useState('toastConfig', () => {
         config = {
             timeout: 6000,
             position: 'bottom-center',
@@ -11,7 +11,7 @@ export const useToastConfig = (type) => {
             type: type ? type : 'default',
             transition: 'slide',
         }
-        console.log('type',type)
+        // console.log('type', type)
     })
     return config
 }

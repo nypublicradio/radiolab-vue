@@ -18,17 +18,27 @@ body {
 }
 
 //toast notifications
-.mosha__toast{
-  *{
+.mosha__toast {
+  * {
     font-family: var(--font-family) !important;
   }
-  .mosha__toast__content__text{
+  .mosha__toast__content__text {
     font-weight: var(--font-weight-500) !important;
   }
-  &.default{
+  &.default {
     background-color: var(--primary-color) !important;
-    *{
+    * {
       color: var(--black100) !important;
+    }
+    .mosha__icon svg {
+      fill: var(--black100) !important;
+    }
+    .mosha__toast__close-icon:before {
+      color: var(--black100);
+    }
+    .mosha__toast__close-icon:hover:before {
+      color: var(--black100);
+      opacity: 0.7;
     }
   }
 }

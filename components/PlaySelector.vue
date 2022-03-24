@@ -21,16 +21,13 @@ const playServicePreference = usePlayServicePreference()
 const selectedPlayService = ref(playServicePreference)
 
 const launchService = (service) => {
-  console.log('service: ', service)
+  //updating local storage on update
+  window.localStorage.setItem("selectedPlayService", JSON.stringify(service))
+
+  //launch tab of service
+  window.open(service.url, '_blank')
 }
 
-console.log('playServicePreference: ', playServicePreference)
-//const emit = defineEmit(["change", "click"]);
-
-// lifecycle hooks
-onUpdated(() => {
-  window.localStorage.setItem("selectedPlayService", JSON.stringify(selectedPlayService.value))
-})
 </script>
 
 <template>
@@ -38,7 +35,8 @@ onUpdated(() => {
     <Button class="listen-btn p-button-rounded">
       <span class="play-icon">
         <img src="/play-icon.svg" alt="play icon" />
-      </span><span class="p-button-label">Listen</span>
+      </span>
+      <span class="p-button-label">Listen</span>
     </Button>
     <div>
       <Button
@@ -46,7 +44,11 @@ onUpdated(() => {
         @click="launchService(playServicePreference)"
         class="service-btn p-button-rounded"
       >
-        <img alt="icon" :src="'/play-service-icons/' + playServicePreference.icon + '.svg'" />
+        <img
+          v-if="selectedPlayService"
+          alt="icon"
+          :src="'/play-service-icons/' + playServicePreference.icon + '.svg'"
+        />
       </Button>
       <Dropdown
         title="Choose platform"
@@ -54,17 +56,11 @@ onUpdated(() => {
         :options="playServices"
         :panelClass="menuClass"
       >
-        <template #value="slotProps">
-          <div class="service-item service-item-value" v-if="slotProps.value">
-            <!-- <img alt="icon" :src="'/play-service-icons/' + slotProps.value.icon + '.svg'" />
-            <div v-if="label" class="uppercase">{{ slotProps.value.name }}</div>-->
-          </div>
-          <span v-else>{{ slotProps.placeholder }}</span>
-        </template>
         <template #option="slotProps">
           <div class="service-item">
             <img alt="icon" :src="'/play-service-icons/' + slotProps.option.icon + '.svg'" />
             <div>{{ slotProps.option.name }}</div>
+            <div class="hack-click" @click="launchService(slotProps.option)"></div>
           </div>
         </template>
       </Dropdown>
@@ -144,6 +140,14 @@ onUpdated(() => {
       margin-right: spacing(2);
       vertical-align: middle;
       margin-top: -2px;
+    }
+    .hack-click {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background-color: transparent;
+      left: 0;
     }
   }
 }
