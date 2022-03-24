@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import { formatDate } from '~/utilities/helpers'
+import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
+import { ShareNetwork } from 'vue-social-sharing'
 const config = useToastConfig()
+const configDanger = useToastConfig('danger')
 
 const props = defineProps({
   episode: {
@@ -15,7 +17,10 @@ const props = defineProps({
 const visibleRight = ref(false)
 const dotsMenu = ref()
 const shareMenu = ref()
+const facebookShareRef = ref(null)
+const twitterShareRef = ref(null)
 const toastConfig = ref(config)
+const toastConfigDanger = ref(configDanger)
 const dotsItems = ref([
   {
     label: 'Download',
@@ -29,30 +34,41 @@ const dotsItems = ref([
     label: 'Embed',
     icon: 'pi pi-code',
     command: () => {
-      console.log('embedding...')
+      if (copyToClipBoard(props.episode['embed-code'])) {
+        createToast('Embed code copied to the clipboard', toastConfig.value)
+      } else {
+        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
+      }
     }
   }
 ])
+
 const shareItems = ref([
   {
     label: 'Facebook',
     icon: 'pi pi-facebook',
     command: () => {
-      console.log('facebook...')
+      var facebookShare = document.getElementsByClassName('facebookShareRef')
+      facebookShare[0].click()
     }
   },
   {
     label: 'Twitter',
     icon: 'pi pi-twitter',
     command: () => {
-      console.log('twitter...')
+      var twitterShare = document.getElementsByClassName('twitterShareRef')
+      twitterShare[0].click()
     }
   },
   {
     label: 'Copy link',
     icon: 'pi pi-link',
     command: () => {
-      console.log('copy link...')
+      if (copyToClipBoard(props.episode['url'])) {
+        createToast('Episode link copied to the clipboard', toastConfig.value)
+      } else {
+        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
+      }
     }
   }
 ])
@@ -78,13 +94,13 @@ const toggleShare = (event) => {
       ></Button>
       <Button
         icon="pi pi-share-alt"
-        class="p-button-rounded"
+        class="p-button-rounded p-button-sm wh40"
         @click="toggleShare"
         aria-haspopup="true"
       />
       <Button
         icon="pi pi-ellipsis-v"
-        class="p-button-rounded"
+        class="p-button-rounded wh40"
         @click="toggleDots"
         aria-controls="overlay_menu"
       />
@@ -109,6 +125,27 @@ const toggleShare = (event) => {
       </Sidebar>
       <Menu ref="dotsMenu" :model="dotsItems" :popup="true" class="episode-tools-menu" />
       <Menu ref="shareMenu" :model="shareItems" :popup="true" class="episode-tools-menu" />
+      <div class="hidden">
+        <ShareNetwork
+          class="facebookShareRef"
+          network="facebook"
+          :url="props.episode['url']"
+          :title="props.episode['title']"
+          :description="props.episode['tease']"
+          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="props.episode['tags'].join()"
+        >Share on Facebook</ShareNetwork>
+        <ShareNetwork
+          class="twitterShareRef"
+          network="twitter"
+          :url="props.episode['url']"
+          :title="props.episode['title']"
+          :description="props.episode['tease']"
+          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="props.episode['tags'].join()"
+          twitter-user="Radiolab"
+        >Share on Twitter</ShareNetwork>
+      </div>
     </div>
   </div>
 </template>
@@ -143,6 +180,10 @@ const toggleShare = (event) => {
       padding-right: 10px;
       /* border-radius: 0 2rem 2rem 0; */
     }
+  }
+  .wh40 {
+    width: 40px;
+    height: 40px;
   }
 }
 .p-dropdown-panel.episode-tools-play-selector {

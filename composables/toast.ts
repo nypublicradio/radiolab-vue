@@ -1,6 +1,6 @@
 // global config for toast notifications, styles can be found in the globals.scss
 export const useToastConfig = (type) => {
-    console.log('type', type)
+    // console.log('type', type)
     let config = null
     useState('toastConfig',() => {
         config = {

@@ -38,7 +38,7 @@ onUpdated(() => {
     <Button class="listen-btn p-button-rounded">
       <span class="play-icon">
         <img src="/play-icon.svg" alt="play icon" />
-      </span>Listen
+      </span><span class="p-button-label">Listen</span>
     </Button>
     <div>
       <Button
@@ -113,7 +113,8 @@ onUpdated(() => {
     }
   }
   .play-icon {
-    margin-right: 10px;
+    margin-right: 6px;
+    line-height: 0;
     img {
       width: 20px;
       height: 20px;
