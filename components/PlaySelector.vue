@@ -5,13 +5,13 @@ TODO: Eventually the left side will have to be Clickable to initiate the play se
 import { ref, onUpdated } from "vue"
 
 const props = defineProps({
-  label: {
-    default: false,
-    type: Boolean,
-  },
   menuClass: {
     default: '',
     type: String,
+  },
+  episode: {
+    default: {},
+    type: Object,
   }
 })
 
@@ -28,11 +28,20 @@ const launchService = (service) => {
   window.open(service.url, '_blank')
 }
 
+const launchEpisode = () => {
+  if (props.episode.attributes) {
+    //console.log('episode', props.episode.attributes)
+  } else {
+    //console.log('episode', props.episode)
+  }
+  // TODO: trigger global player to consume episode and play
+}
+
 </script>
 
 <template>
   <div class="play-selector flex justify-content-between">
-    <Button class="listen-btn p-button-rounded">
+    <Button class="listen-btn p-button-rounded" @click="launchEpisode">
       <span class="play-icon">
         <img src="/play-icon.svg" alt="play icon" />
       </span>

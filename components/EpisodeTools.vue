@@ -85,7 +85,7 @@ const toggleShare = (event) => {
 <template>
   <div>
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
-      <play-selector :label="false" menu-class="episode-tools-play-selector" />
+      <play-selector :episode="props.episode" menu-class="episode-tools-play-selector" />
       <Button
         v-if="!!props.episode['transcript']"
         class="p-button-sm p-button-rounded"

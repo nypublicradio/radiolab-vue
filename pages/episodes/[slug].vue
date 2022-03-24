@@ -29,7 +29,7 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       episode.value = response.data.data.attributes
-      console.log('episode.value = ', episode.value)
+      // console.log('episode.value = ', episode.value)
       dataLoaded.value = true
     })
 })
@@ -70,11 +70,7 @@ const isMobile = computed(() => {
                 <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
               </div>
             </div>
-            <p
-              v-if="dataLoaded"
-              class="wide mt-6 html-formatting"
-              v-html="episode.body"
-            />
+            <p v-if="dataLoaded" class="wide mt-6 html-formatting" v-html="episode.body" />
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 xl:col-3 xl:col-offset-1">

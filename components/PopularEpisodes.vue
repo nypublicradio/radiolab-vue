@@ -55,7 +55,7 @@ onBeforeMount(async () => {
                   class="radiolab-card"
                 >
                   <div class="divider"></div>
-                  <play-selector />
+                  <play-selector :episode="episode" />
                 </v-card>
               </div>
             </div>
