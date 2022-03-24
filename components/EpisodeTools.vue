@@ -17,8 +17,6 @@ const props = defineProps({
 const visibleRight = ref(false)
 const dotsMenu = ref()
 const shareMenu = ref()
-const facebookShareRef = ref(null)
-const twitterShareRef = ref(null)
 const toastConfig = ref(config)
 const toastConfigDanger = ref(configDanger)
 const dotsItems = ref([
@@ -45,6 +43,14 @@ const dotsItems = ref([
 
 const shareItems = ref([
   {
+    label: 'Twitter',
+    icon: 'pi pi-twitter',
+    command: () => {
+      var twitterShare = document.getElementsByClassName('twitterShareRef')
+      twitterShare[0].click()
+    }
+  },
+  {
     label: 'Facebook',
     icon: 'pi pi-facebook',
     command: () => {
@@ -53,11 +59,11 @@ const shareItems = ref([
     }
   },
   {
-    label: 'Twitter',
-    icon: 'pi pi-twitter',
+    label: 'Email',
+    icon: 'pi pi-envelope',
     command: () => {
-      var twitterShare = document.getElementsByClassName('twitterShareRef')
-      twitterShare[0].click()
+      var emailShare = document.getElementsByClassName('emailShareRef')
+      emailShare[0].click()
     }
   },
   {
@@ -145,6 +151,15 @@ const toggleShare = (event) => {
           :hashtags="props.episode['tags'].join()"
           twitter-user="Radiolab"
         >Share on Twitter</ShareNetwork>
+        <ShareNetwork
+          class="emailShareRef"
+          network="email"
+          :url="props.episode['url']"
+          :title="props.episode['title']"
+          :description="props.episode['tease']"
+          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="props.episode['tags'].join()"
+        >Share on Email</ShareNetwork>
       </div>
     </div>
   </div>
