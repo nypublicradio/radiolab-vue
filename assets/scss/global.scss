@@ -147,6 +147,15 @@ section {
 }
 
 .html-formatting {
+  a {
+    &:hover,
+    &:active {
+      color: var(--blue-300);
+    }
+    &:visited {
+      color: var(--blue-500);
+    }
+  }
   p {
     margin-block-start: 1em;
     margin-block-end: 1em;
