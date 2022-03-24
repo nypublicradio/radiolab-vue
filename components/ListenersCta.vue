@@ -20,7 +20,7 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
 <style lang="scss">
 .listeners-cta {
     position: relative;
-    background: #EDC314;
+    background: var(--gold-500);
     min-height: 433px;
     border-radius: 20px;
     height: 100%;
@@ -34,7 +34,7 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
         left: -250px;
         top: -750px;
         width: 1060px;
-        background: linear-gradient(180deg, #F4A800 0%, #F4A800 70%, #F9B0D4 100%);
+        background: linear-gradient(180deg, var(--gold-500) 0%, var(--gold-500) 70%, var(--pink-500) 100%);
         height: 900px;
         border-radius: 0 0 70% 70%;
     }
@@ -54,15 +54,20 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
     width: 100%;
     border-top: solid 2px var(--white100);
     padding: 20px 0;
+    circle,
+    path {
+        fill: var(--gold-500);
+    }
     &:hover {
-        color: var(--white300) !important;
+        color: var(--white100) !important;
         text-decoration: none;
         circle,
         path {
-            stroke: var(--white300);
+            stroke: var(--gold-500);
+            fill: var(--white100);
         }
         path {
-            fill: var(--white300);
+            fill: var(--gold-500);
         }
     }
 }

@@ -37,9 +37,16 @@
     color: var(--black100);
     opacity: .2;
   }
+  &:focus {
+    border-color: var(--black100);
+    box-shadow: 0 0 0 0.025rem var(--black100);
+  }
 }
 .subscribe-to-the-newsletter .p-button {
   background: var(--black500);
+  &:hover {
+    background: var(--blue-500);
+  }
 }
 .subscribe-to-the-newsletter .p-button .p-button-label {
   color: var(--white100);
