@@ -4,7 +4,6 @@ import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
 import Skeleton from 'primevue/skeleton'
 
@@ -48,7 +47,7 @@ const episodes = ref([])
 //   return ((props.rowCount * 3) + 1)
 // })
 
-const rowCountCalc = ((props.rowCount * 3) + 1)
+const rowCountCalc = (props.startCount + ((props.rowCount * 3) + 1))
 const axiosSuccessful = ref(true)
 
 onBeforeMount(async () => {
@@ -84,8 +83,10 @@ onBeforeMount(async () => {
                 <div
                   v-for="(episode, index) in episodes.slice(props.startCount, rowCountCalc)"
                   :key="index"
+                  :ind="index"
+                  :ind-length="rowCountCalc"
                   class="col-12 md:col-6 xl:col-4 mb-5"
-                  :class="{ 'xl:hidden': index === 3 }"
+                  :class="{ 'xl:hidden': rowCount % 2 && index === rowCountCalc - 2 }"
                 >
                   <v-card
                     :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"

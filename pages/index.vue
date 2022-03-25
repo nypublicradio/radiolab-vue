@@ -11,7 +11,7 @@ const darkMode = ref(false)
       header="Recent Episodes"
       button-text="All Episodes"
       button-link="/episodes"
-      :row-count="1"
+      :row-count="3"
       :startCount="1"
       api="https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1"
       paginate
