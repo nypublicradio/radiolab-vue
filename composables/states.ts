@@ -69,7 +69,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
     items: [
       {
         label: 'About the Show',
-        to: '/news',
+        to: '/about',
       },
       {
         label: 'Team',
