@@ -43,6 +43,26 @@ body {
   }
 }
 
+.p-paginator {
+  border-color: transparent;
+  color: var(--black100);
+  .p-paginator-element,
+  .p-paginator-first,
+  .p-paginator-last,
+  .p-paginator-next,
+  .p-paginator-prev {
+    border-radius: 50% !important;
+    &:hover {
+      background: rgba(var(--primary-color-rgb), 0.4) !important;
+    }
+    &.p-highlight {
+      background: var(--primary-color) !important;
+      border-color: transparent !important;
+      color: var(--black100) !important;
+    }
+  }
+}
+
 section {
   display: flex;
   flex-direction: column;

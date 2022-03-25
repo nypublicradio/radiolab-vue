@@ -12,7 +12,7 @@ const episodes = ref([])
 onBeforeMount(async () => {
   await axios
     .get(
-      'https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=5'
+      'https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1'
     )
     .then((response) => {
       episodes.value = response.data.included
@@ -59,50 +59,6 @@ onBeforeMount(async () => {
         </div>
       </div>
     </section>
-    <section>
-      <div class="content px-0 md:px-4 lg:px-8">
-        <div class="grid">
-          <div class="col">
-            <div class="recent-episodes">
-              <div v-if="dataLoaded" class="col flex justify-content-between">
-                <h3 class="mb-4">Recent Episodes</h3>
-                <v-flexible-link raw to="/episodes">
-                  <Button class="p-button-rounded p-button-sm">All Episodes</Button>
-                </v-flexible-link>
-              </div>
-              <div v-if="dataLoaded" class="grid">
-                <div
-                  v-for="(episode, index) in episodes.slice(1, 5)"
-                  :key="index"
-                  class="col-12 md:col-6 xl:col-4 mb-5"
-                  :class="{ 'xl:hidden': index === 3 }"
-                >
-                  <v-card
-                    :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
-                    :alt="episode.attributes['image-main']['alt-text']"
-                    :title="episode.attributes.title"
-                    :titleLink="`/episodes/${episode.attributes.slug}`"
-                    :eyebrow="formatDate(episode.attributes['publish-at'])"
-                    :blurb="episode.attributes.tease"
-                    :height="225"
-                    :max-width="episode.attributes['image-main'].w"
-                    :max-height="episode.attributes['image-main'].h"
-                    responsive
-                    :ratio="[4, 3]"
-                    bp="max"
-                    class="radiolab-card"
-                  >
-                    <div class="divider"></div>
-                    <play-selector :episode="episode" />
-                  </v-card>
-                </div>
-              </div>
-              <skeleton v-else />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -138,14 +94,5 @@ onBeforeMount(async () => {
 
 .latest-episode-tease {
   line-height: 24px;
-}
-
-.recent-episodes > .grid {
-  margin: 0 -24px;
-}
-
-.recent-episodes .grid > .col,
-.recent-episodes .grid > [class*="col"] {
-  padding: 0 24px;
 }
 </style>

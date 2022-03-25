@@ -15,6 +15,7 @@ export const publisherImageFormatter = (url) => {
 
 }
 
+// global funcrtion for copying to clipboard
 export const copyToClipBoard = async (content) => {
 
   await navigator.clipboard.writeText(content)

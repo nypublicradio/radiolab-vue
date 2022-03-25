@@ -14,6 +14,8 @@ onBeforeMount(async () => {
       'https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=4'
     )
     .then((response) => {
+      // console.log('response.data.data.attributes["bucket-items"]  =', response.data.data.attributes["bucket-items"])
+      console.log('response  =', response)
       episodes.value = response.data.data.attributes['bucket-items']
       dataLoaded.value = true
     })

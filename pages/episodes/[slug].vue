@@ -77,6 +77,7 @@ const isMobile = computed(() => {
         </div>
       </div>
     </section>
+    <div v-html="episode['transcript']" style="visibility:hidden; height:0; overflow:hidden;"></div>
   </div>
 </template>
 

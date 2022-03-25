@@ -5,7 +5,6 @@ import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
-import Skeleton from 'primevue/skeleton'
 
 const props = defineProps({
   header: {
@@ -24,6 +23,10 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  path: {
+    type: String,
+    default: null,
+  },
   rowCount: {
     type: Number,
     default: 1,
@@ -31,6 +34,10 @@ const props = defineProps({
   startCount: {
     type: Number,
     default: 0,
+  },
+  startPage: {
+    type: Number,
+    default: 1,
   },
   paginate: {
     type: Boolean,
@@ -41,22 +48,27 @@ const props = defineProps({
 
 const dataLoaded = ref(false)
 const episodes = ref([])
+const totalCount = ref(null)
 
-// const rowCountCalc = (() => {
-//   console.log('rowCountCalc = ', ((props.rowCount * 3) + 1))
-//   return ((props.rowCount * 3) + 1)
-// })
+const rowCountCalc = props.paginate
+  ?
+  // Bono: I was unable to suppoort the hidden odd episode with pagination. I could not figure out the correct way to do it. When paginating, startCount is always 0 and the odd episode is not added and hidden. 
+  props.rowCount * 3
+  :
+  (props.startCount + ((props.rowCount * 3) + (props.rowCount % 2 ? 1 : 0)))
 
-const rowCountCalc = (props.startCount + ((props.rowCount * 3) + 1))
 const axiosSuccessful = ref(true)
 
 onBeforeMount(async () => {
   await axios
     .get(
-      props.api + '?limit=' + rowCountCalc
+      `${props.api}${props.startPage}?limit=${rowCountCalc}`
     )
     .then((response) => {
-      episodes.value = response.data.included
+      //episodes.value = response.data.included
+      episodes.value = eval(`response.${props.path}`)
+      //console.log('response.data.included  =', response.data.included)
+      totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
     })
     .catch(function (error) {
@@ -64,6 +76,25 @@ onBeforeMount(async () => {
       axiosSuccessful.value = false
     })
 })
+
+async function onPage(event) {
+  //event.page: New page number
+  //event.first: Index of first record
+  //event.rows: Number of rows to display in new page
+  //event.pageCount: Total number of pages
+  dataLoaded.value = false
+  await axios
+    .get(
+      `${props.api}${event.page + 1}?limit=${rowCountCalc}`
+    )
+    .then((response) => {
+      episodes.value = response.data.included
+      dataLoaded.value = true
+    }).catch(function (error) {
+      console.log(error)
+      axiosSuccessful.value = false
+    })
+}
 </script>
  
 <template>
@@ -73,20 +104,21 @@ onBeforeMount(async () => {
         <div class="grid">
           <div class="col">
             <div class="recent-episodes">
-              <div v-if="dataLoaded" class="col flex justify-content-between">
-                <h3 v-if="props.header" class="mb-4">{{ props.header }}</h3>
+              <div
+                v-if="dataLoaded"
+                class="col flex justify-content-between align-items-center mb-3"
+              >
+                <h3 v-if="props.header">{{ props.header }}</h3>
                 <v-flexible-link v-if="props.buttonText" raw to="/episodes">
                   <Button class="p-button-rounded p-button-sm">{{ props.buttonText }}</Button>
                 </v-flexible-link>
               </div>
               <div v-if="dataLoaded" class="grid">
                 <div
-                  v-for="(episode, index) in episodes.slice(props.startCount, rowCountCalc)"
+                  v-for="(episode, index) in episodes.slice(props.paginate ? 0 : props.startCount, rowCountCalc)"
                   :key="index"
-                  :ind="index"
-                  :ind-length="rowCountCalc"
                   class="col-12 md:col-6 xl:col-4 mb-5"
-                  :class="{ 'xl:hidden': rowCount % 2 && index === rowCountCalc - 2 }"
+                  :class="{ 'xl:hidden': !props.paginate && rowCount % 2 && index === episodes.length - 1 - props.startCount }"
                 >
                   <v-card
                     :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
@@ -108,7 +140,21 @@ onBeforeMount(async () => {
                   </v-card>
                 </div>
               </div>
-              <skeleton v-else />
+              <episodes-skeleton
+                v-else
+                :row-count="rowCountCalc"
+                :header="props.header"
+                :button-text="props.buttonText"
+              />
+              <paginator
+                :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
+                v-show="props.paginate"
+                :pageLinkSize="3"
+                :first="0"
+                :rows="episodes.length"
+                :total-records="totalCount"
+                @page="onPage($event)"
+              />
             </div>
           </div>
         </div>
@@ -118,45 +164,15 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss">
-.latest-episode {
-  max-width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.latest-episode .latest-episode-title {
-  text-decoration: none;
-  @include media("<lg") {
-    h2 {
-      font-size: var(--font-size-12);
-      line-height: var(--line-height-12);
-    }
-  }
-}
-
-.latest-episode .latest-episode-image {
-  max-height: 500px;
-  max-width: 100%;
-  height: auto;
-  width: 100%;
-  object-fit: cover;
-  overflow-y: hidden;
-}
-
-.latest-episode .latest-episode-content {
-  background: var(--white100);
-}
-
-.latest-episode-tease {
-  line-height: 24px;
-}
-
 .recent-episodes > .grid {
   margin: 0 -24px;
 }
-
 .recent-episodes .grid > .col,
 .recent-episodes .grid > [class*="col"] {
   padding: 0 24px;
+}
+
+.recent-episodes .p-paginator {
+  margin: auto;
 }
 </style>
