@@ -77,7 +77,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
       },
       {
         label: 'Announcements',
-        to: '/news',
+        to: '/announcements',
       },
       {
         label: 'Pitch Us',
@@ -98,7 +98,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
       },
       {
         label: 'Swag Lab',
-        to: '/news',
+        to: 'https://shop.radiolab.org',
       }
     ]
   },
@@ -115,36 +115,36 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
   {
     label: 'FAQs',
     visible: false,
-    to: '/news',
+    to: 'https://wnycstudios.zendesk.com/hc/en-us/categories/115002261607-FAQ-s',
   },
   {
     label: 'Sponsorship',
     visible: false,
-    to: '/news',
+    to: 'https://sponsorship.wnyc.org/',
   },
   {
     label: 'Diversity (DEI)',
     visible: false,
-    to: '/news',
+    to: 'https://www.nypublicradio.org/diversity-dei-overview/',
   },
   {
     label: 'Listener Panel',
     visible: false,
-    to: '/news',
+    to: 'https://www.wnycstudios.org/listener-panel',
   },
   {
     label: 'Terms of Use',
     visible: false,
-    to: '/news',
+    to: 'https://www.wnyc.org/terms/',
   },
   {
     label: 'Privacy Policy',
     visible: false,
-    to: '/news',
+    to: 'https://www.wnyc.org/privacy/',
   },
   {
     label: 'Accessibility',
     visible: false,
-    to: '/news',
+    to: 'https://media.wnyc.org/media/resources/2021/Jul/07/accessibility_policy_10.30.20.pdf',
   },
 ])
