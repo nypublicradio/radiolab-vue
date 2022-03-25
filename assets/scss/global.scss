@@ -74,7 +74,7 @@ section {
     max-width: $contentWidth;
     padding: spacingXY(10, 0);
     @include media('<lg') {
-      padding: spacingXY(6, 0);
+      padding: spacingXY(10, 6);
       width: 100%;
     }
     &.max-width {
