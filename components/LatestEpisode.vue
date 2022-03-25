@@ -1,12 +1,9 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
-import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
-import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const episodes = ref([])
 onBeforeMount(async () => {
@@ -24,7 +21,7 @@ onBeforeMount(async () => {
 <template>
   <div>
     <section>
-      <div class="content px-0 pt-2">
+      <div class="content px-3 pt-2">
         <div class="grid">
           <div class="col">
             <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">

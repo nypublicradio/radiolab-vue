@@ -1,10 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-const darkMode = ref(false)
+
 </script>
 
 <template>
-  <div class="home-page" :data-style-mode="darkMode ? 'dark' : 'default'">
+  <div>
     <latest-episode class="mb-4" />
     <episodes
       class="mb-4"

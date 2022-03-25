@@ -100,12 +100,12 @@ async function onPage(event) {
 <template>
   <div v-if="axiosSuccessful">
     <section>
-      <div class="content px-0 md:px-4 lg:px-8">
+      <div class="content lg:px-8">
         <div class="grid">
           <div class="col">
             <div class="recent-episodes">
               <div
-                v-if="dataLoaded"
+                v-if="props.header || props.buttonText"
                 class="col flex justify-content-between align-items-center mb-3"
               >
                 <h3 v-if="props.header">{{ props.header }}</h3>
@@ -117,7 +117,7 @@ async function onPage(event) {
                 <div
                   v-for="(episode, index) in episodes.slice(props.paginate ? 0 : props.startCount, rowCountCalc)"
                   :key="index"
-                  class="col-12 md:col-6 xl:col-4 mb-5"
+                  class="col-12 md:col-6 xl:col-4 mb-6"
                   :class="{ 'xl:hidden': !props.paginate && rowCount % 2 && index === episodes.length - 1 - props.startCount }"
                 >
                   <v-card

@@ -12,22 +12,22 @@ function submitForm() {
     submitted.value = true
     axios
         .post('https://api.prod.nypr.digital/email-proxy/subscribe',
-        {
-            list: '2fe8150dd6',
-            email: email.value,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+            {
+                list: '2fe8150dd6',
+                email: email.value,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
             }
-        }
-    )
-    .then(() => {
-        submissionStatus.value = 'success'
-    })
-    .catch(() => {
-        submissionStatus.value = 'error'
-        submitted.value = false
-    })
+        )
+        .then(() => {
+            submissionStatus.value = 'success'
+        })
+        .catch(() => {
+            submissionStatus.value = 'error'
+            submitted.value = false
+        })
 }
 </script>
 
@@ -43,18 +43,21 @@ function submitForm() {
                     placeholder="Email address"
                     aria-describedby="email-address-field"
                     v-model="email"
-                    @keypress.enter="submitForm" 
+                    @keypress.enter="submitForm"
                 />
                 <small
                     v-if="submissionStatus === 'error'"
                     id="email-address-field"
-                    class="p-error"
-                >
-                    Sorry, there was an error with your submission. Please try again!
-                </small>
+                    class="p-error px-4 mt-1 block"
+                >Sorry, there was an error with your submission. Please try again!</small>
             </div>
-            <div class="col-12 lg:col-4 lg:justify-content-start">
-                <Button :disabled="submitted" @click="submitForm" class="p-button-lg p-button-rounded" label="Subscribe">
+            <div class="col-12 lg:col-4 flex justify-content-end lg:justify-content-start">
+                <Button
+                    :disabled="submitted"
+                    @click="submitForm"
+                    class="p-button-lg p-button-rounded"
+                    label="Subscribe"
+                >
                     <i v-if="submitted" class="pi pi-spin pi-spinner" />
                 </Button>
             </div>

@@ -17,6 +17,11 @@ body {
   background: #ffffff;
 }
 
+.page-header {
+  font-size: var(--font-size-16);
+  line-height: var(--font-size-16);
+}
+
 //toast notifications
 .mosha__toast {
   * {
@@ -68,13 +73,13 @@ section {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0 spacing(2) 0 spacing(2);
+  padding: 0;
   .content {
     width: 100%;
     max-width: $contentWidth;
-    padding: spacingXY(10, 0);
+    padding: spacingXY(10, 6);
     @include media('<lg') {
-      padding: spacingXY(10, 6);
+      padding: spacingXY(10, 4);
       width: 100%;
     }
     &.max-width {
@@ -83,7 +88,9 @@ section {
   }
 
   $head-color-height: 280px;
-  $head-color-height-mobile: 300px;
+  $head-color-height-lg: 130px;
+  $head-color-height-md: 162px;
+  $head-color-height-sm: 210px;
 
   @mixin head-color-before {
     &:before {
@@ -95,10 +102,16 @@ section {
       transition: height calc(var(--transition-duration) * 2);
       -webkit-transition: height calc(var(--transition-duration) * 2);
       height: $head-color-height;
-      @include media('<md') {
-        height: $head-color-height-mobile;
-      }
       background: var(--gold-500);
+      @include media('<lg') {
+        height: $head-color-height-lg;
+      }
+      @include media('<md') {
+        height: $head-color-height-md;
+      }
+      @include media('<#{$toolsBreakPoint}') {
+        height: $head-color-height-sm;
+      }
     }
   }
 
@@ -107,6 +120,10 @@ section {
     padding-top: calc(var(--header-height) * 2);
     margin-top: calc(var(--header-height) * -1);
     position: relative;
+    @include media('<lg') {
+      padding-top: 0;
+      margin-top: 0;
+    }
 
     &.yellow {
       @include head-color-before();
@@ -149,19 +166,38 @@ section {
       margin: auto;
       position: absolute;
 
+      @include media('<lg') {
+        height: calc($head-color-height-lg * 2);
+        top: calc($head-color-height-lg * -1);
+      }
+
       @include media('<md') {
-        height: calc($head-color-height-mobile * 2);
-        top: calc($head-color-height-mobile * -1);
+        height: calc($head-color-height-md * 2);
+        top: calc($head-color-height-md * -1);
+      }
+      @include media('<#{$toolsBreakPoint}') {
+        height: calc($head-color-height-sm * 2);
+        top: calc($head-color-height-sm * -1);
       }
     }
     .content {
       width: 90%;
-      @include media('<md') {
-        width: 95%;
-      }
       z-index: 1;
       background: var(--white);
       border-radius: 1rem 1rem 0 0;
+    }
+  }
+  &.graphic-head {
+    background-color: var(--redorange-500);
+    background-image: url('/rl-icon-on-redorange.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 35%;
+    background-size: 540px;
+    height: 370px;
+    margin-top: calc(var(--header-height) * -1);
+
+    @include media('<lg') {
+      height: 270px;
     }
   }
 }
@@ -217,6 +253,10 @@ section {
 }
 .p-button {
   font-weight: var(--font-weight-500);
+  .p-button-label {
+    transition: all calc(var(--transition-duration) / 3);
+    -webkit-transition: all calc(var(--transition-duration) / 3);
+  }
   &.p-button-sm {
     padding: 2px 12px;
   }

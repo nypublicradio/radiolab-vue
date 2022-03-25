@@ -1,5 +1,18 @@
+<script setup>
+
+</script>
+
+
 <template>
   <div>
-    <h1>become a member WIP</h1>
+    <section>
+      <div class="content">
+        <div class="grid">
+          <div class="col-12">
+            <h1 class="page-header">Become a member</h1>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>

@@ -1,5 +1,13 @@
 <template>
   <div>
-    <h1>how-to-listen WIP</h1>
+    <section>
+      <div class="content">
+        <div class="grid">
+          <div class="col-12">
+            <h1 class="page-header">How to listen</h1>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>

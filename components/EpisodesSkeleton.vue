@@ -20,7 +20,10 @@ const props = defineProps({
 
 <template>
   <div class="recent-episodes-skeleton">
-    <div class="col flex justify-content-between align-items-end mb-3">
+    <div
+      v-if="props.header || props.buttonText"
+      class="col flex justify-content-between align-items-end mb-3"
+    >
       <skeleton v-if="props.header" width="150px" height="32px" />
       <skeleton v-if="props.buttonText" width="105px" height="25px" />
     </div>
