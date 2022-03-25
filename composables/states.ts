@@ -52,7 +52,7 @@ export const useHeaderMenu = () => useState('headerMenu', () => [
       },
       {
         label: 'Radio Shows',
-        to: '/news',
+        to: '/series',
       },
       {
         label: 'Series',
