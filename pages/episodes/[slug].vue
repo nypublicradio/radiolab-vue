@@ -3,10 +3,8 @@ import { onBeforeMount, onMounted, computed, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
-import Skeleton from 'primevue/skeleton'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import EpisodeTools from '~/components/EpisodeTools.vue'
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 useMeta({
   meta: [
     {
@@ -74,32 +72,11 @@ const isMobile = computed(() => {
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 xl:col-3 xl:col-offset-1">
-            <div class="the-lab-box">
-              <img class="mb-1" alt="THE LAB sticker" src="/the-lab-sticker-black.svg" />
-              <h4 class="mb-4">Unlock member-only exclusives and support the show</h4>
-              <h5>Exclusive Podcast Extras</h5>
-              <h5>Entire Podcast Archive</h5>
-              <h5>Listen Ad-Free</h5>
-              <h5>Behind-the-Scenes Content</h5>
-              <h5>Video Extras</h5>
-              <h5>Original Music & Playlists</h5>
-              <v-flexible-link raw to="/become-a-member">
-                <Button class="p-button-rounded black mt-4">Become a member</Button>
-              </v-flexible-link>
-            </div>
+            <membership-promo />
           </div>
         </div>
       </div>
     </section>
-    <!--     <section>
-      <div class="content">
-        <div class="grid">
-          <div class="col">
-            <p v-if="dataLoaded" v-html="episode.tease" />
-          </div>
-        </div>
-      </div>
-    </section>-->
   </div>
 </template>
 
@@ -142,19 +119,6 @@ const isMobile = computed(() => {
           line-height: var(--font-size-9);
         }
       }
-    }
-  }
-  .the-lab-box {
-    background-color: var(--primary-color);
-    border-radius: 20px;
-    padding: 40px;
-    img {
-      width: 100px;
-      height: auto;
-    }
-    h5 {
-      margin-bottom: 0.4rem;
-      font-size: var(--font-size-2);
     }
   }
   .wide {
