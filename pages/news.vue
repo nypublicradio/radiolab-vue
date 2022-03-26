@@ -7,7 +7,7 @@ useMeta({
 </script>
 
 <template>
-  <div class="news-page page" :data-style-mode="darkMode ? 'dark' : 'default'">
+  <div>
     <section class="head-color yellow">
       <div class="content">
         <div class="grid">

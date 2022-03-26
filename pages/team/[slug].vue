@@ -19,12 +19,12 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="team page">
-    <section class="head-color lightblue">
-      <div class="content">
+  <div>
+    <section>
+      <div class="content pb-0">
         <div class="grid">
-          <div class="col">
-            <h1 class="mt-4 mb-2">{{ person.name }}</h1>
+          <div class="col-12">
+            <h1 class="page-header mt-4 mb-2">{{ person.name }}</h1>
             <h3 v-if="person['job-title']">{{ person['job-title'] }}</h3>
           </div>
         </div>
@@ -33,15 +33,15 @@ onBeforeMount(async () => {
     <section>
       <div class="content mb-4">
         <div v-if="dataLoaded">
-            <v-image-with-caption
-                  :image="person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
-                  :alt="person.name"
-                  :max-width="person.image.w"
-                  :max-height="person.image.h"
-                  :ratio="[8, 5]"
-                  class="mb-6"
-            />
-            <div v-html="person.bio || person.lede" class="team-bio" />
+          <v-image-with-caption
+            :image="person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+            :alt="person.name"
+            :max-width="person.image.w"
+            :max-height="person.image.h"
+            :ratio="[8, 5]"
+            class="mb-6"
+          />
+          <div v-html="person.bio || person.lede" class="team-bio html-formatting" />
         </div>
         <skeleton v-else />
       </div>
@@ -51,6 +51,6 @@ onBeforeMount(async () => {
 
 <style lang="scss">
 .team-bio p {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 </style>

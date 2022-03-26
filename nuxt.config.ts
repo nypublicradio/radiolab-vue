@@ -16,17 +16,27 @@ export default defineNuxtConfig({
     ],
   },
   buildModules: ['@vueuse/nuxt'],
+  router: {
+    // https://router.vuejs.org/api/#routeroptions
+    // NEED NEWER VERSION OF NUXT3 to use the following, to solve the page position on route change
+    /* options: {
+      scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+      }
+    } */
+  },
   css: [
     '@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
-    '~/assets/scss/global.scss',
+    'mosha-vue-toastify/dist/style.css',
+    /* '~/assets/scss/global.scss', */
   ],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss";`,
+          additionalData: `@import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss"; @import "~/assets/scss/global.scss";`,
         },
       },
     },

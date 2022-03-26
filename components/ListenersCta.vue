@@ -4,17 +4,19 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
 </script>
 
 <template>
-  <div class="listeners-cta p-5">
-    <h2>Listeners</h2>
-    <div class="text-right">
-        <v-flexible-link to="/read-the-credits">
-            Read The Credits <arrow-right />
-        </v-flexible-link>
-        <v-flexible-link to="/pitch-us">
-            Pitch Us <arrow-right />
-        </v-flexible-link>
+    <div class="listeners-cta p-5">
+        <h2>Listeners</h2>
+        <div class="text-right">
+            <v-flexible-link to="/read-the-credits">
+                Read The Credits
+                <arrow-right />
+            </v-flexible-link>
+            <v-flexible-link to="/pitch-us">
+                Pitch Us
+                <arrow-right />
+            </v-flexible-link>
+        </div>
     </div>
-  </div>
 </template>
 
 <style lang="scss">
@@ -28,15 +30,22 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    &:after{
-        content: '';
-        position: absolute;
-        left: -250px;
-        top: -750px;
-        width: 1060px;
-        background: linear-gradient(180deg, var(--gold-500) 0%, var(--gold-500) 70%, var(--pink-500) 100%);
-        height: 900px;
+    &:after {
+        background: linear-gradient(
+            180deg,
+            var(--gold-500) 0,
+            var(--gold-500) 70%,
+            var(--pink-500) 100%
+        );
         border-radius: 0 0 70% 70%;
+        content: "";
+        height: 740px;
+        position: absolute;
+        top: -580px;
+        width: calc(100% + 500px);
+        left: -250px;
+        right: 0;
+        margin: auto;
     }
 }
 .listeners-cta h2,
@@ -45,26 +54,26 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
     font-size: var(--font-size-14);
     line-height: 48px;
     letter-spacing: 0.1em;
-    color: var(--white100);
+    color: var(--white);
     text-decoration: none;
     text-transform: uppercase;
 }
 .listeners-cta .flexible-link {
     display: block;
     width: 100%;
-    border-top: solid 2px var(--white100);
+    border-top: solid 2px var(--white);
     padding: 20px 0;
     circle,
     path {
         fill: var(--gold-500);
     }
     &:hover {
-        color: var(--white100) !important;
+        color: var(--white) !important;
         text-decoration: none;
         circle,
         path {
             stroke: var(--gold-500);
-            fill: var(--white100);
+            fill: var(--white);
         }
         path {
             fill: var(--gold-500);
