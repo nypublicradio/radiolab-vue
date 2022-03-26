@@ -6,12 +6,6 @@ import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const people = ref([])
 
-useMeta({
-  bodyAttrs: {
-    class: 'has-head-color'
-  }
-})
-
 onBeforeMount(async () => {
   await axios
     .get(
@@ -25,18 +19,18 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="team page">
-    <section class="head-color lightblue">
-      <div class="content">
+  <div>
+    <section>
+      <div class="content lg:px-8 pb-0">
         <div class="grid">
-          <div class="col">
-            <h1 class="mt-4 mb-2">The Team</h1>
+          <div class="col-12">
+            <h1 class="page-header">The Team</h1>
           </div>
         </div>
       </div>
     </section>
     <section>
-      <div class="content">
+      <div class="content lg:px-8">
         <div v-if="dataLoaded" class="grid">
           <div v-for="(person, index) in people" :key="index" class="col-12 md:col-6 xl:col-4 mb-8">
             <v-card
@@ -62,11 +56,6 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss">
-.team h1 {
-  font-size: var(--font-size-16);
-  line-height: var(--font-size-16);
-}
-
 .team > .grid {
   margin: 0 -24px;
 }
@@ -76,7 +65,7 @@ onBeforeMount(async () => {
   padding: 0 24px;
 }
 
-.team .card-eyebrow{
+.team .card-eyebrow {
   text-transform: capitalize;
 }
 </style>

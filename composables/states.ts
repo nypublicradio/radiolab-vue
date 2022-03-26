@@ -1,6 +1,6 @@
 export const styleModes = {
-    DEFAULT: 'default',
-    DARK: 'dark',
+  DEFAULT: 'default',
+  DARK: 'dark',
 }
 /**
  * Global state for possible dark mode
@@ -8,7 +8,7 @@ export const styleModes = {
 export const useColorMode = () => useState<string>('colorMode', () => styleModes.DEFAULT)
 
 const playServices = [
-  { name: 'Listen', icon: 'site', url:'' },
+  /* { name: 'Listen', icon: 'site', url:'' }, */
   { name: 'Apple Podcasts', icon: 'apple', url: 'https://itunes.apple.com/us/podcast/radiolab/id152249110?mt=2' },
   { name: 'Spotify', icon: 'spotify', url: 'https://open.spotify.com/show/2hmkzUtix0qTqvtpPcMzEL' },
   { name: 'Overcast', icon: 'overcast', url: '' },
@@ -19,18 +19,18 @@ const playServices = [
   { name: 'Amazon Music', icon: 'amazon', url: 'https://music.amazon.com/podcasts/779c24b4-dfe8-497a-83bb-67e729c1177b/Radiolab' },
   { name: 'Pocket Cast', icon: 'pocketcast', url: 'https://pca.st/radiolab' },
   { name: 'Podcast Addict', icon: 'podcastaddict', url: 'https://podcastaddict.com/podcast/191' },
-  { name: 'RSS', icon: 'rss', url:'http://feeds.wnyc.org/radiolab' }
+  { name: 'RSS', icon: 'rss', url: 'http://feeds.wnyc.org/radiolab' }
 ]
 /**
  * Global state for media selection options.
  */
-export const usePlayServices = () => useState('playServices', () => playServices )
+export const usePlayServices = () => useState('playServices', () => playServices)
 /**
  * Global state for the users media selection preference. This will stored in local storage
  */
 export const usePlayServicePreference = () => useState('playServicePreference', () => {
   // if local storage is available, use it
-  if (window.localStorage.getItem('selectedPlayService')) {    
+  if (window.localStorage.getItem('selectedPlayService')) {
     return JSON.parse(window.localStorage.getItem('selectedPlayService'))
   } else {
     // default to play on site

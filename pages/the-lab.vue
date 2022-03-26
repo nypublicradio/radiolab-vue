@@ -1,5 +1,13 @@
 <template>
   <div>
-    <h1>the lab WIP</h1>
+    <section>
+      <div class="content">
+        <div class="grid">
+          <div class="col-12">
+            <h1 class="page-header">The Lab</h1>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>

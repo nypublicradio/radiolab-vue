@@ -5,9 +5,13 @@ TODO: Eventually the left side will have to be Clickable to initiate the play se
 import { ref, onUpdated } from "vue"
 
 const props = defineProps({
-  label: {
-    default: true,
-    type: Boolean,
+  menuClass: {
+    default: '',
+    type: String,
+  },
+  episode: {
+    default: {},
+    type: Object,
   }
 })
 
@@ -16,51 +20,95 @@ const playServicePreference = usePlayServicePreference()
 
 const selectedPlayService = ref(playServicePreference)
 
-//const emit = defineEmit(["change", "click"]);
+const launchService = (service) => {
+  //updating local storage on update
+  window.localStorage.setItem("selectedPlayService", JSON.stringify(service))
 
-// lifecycle hooks
-onUpdated(() => {
-  window.localStorage.setItem("selectedPlayService", JSON.stringify(selectedPlayService.value))
-})
+  //launch tab of service
+  window.open(service.url, '_blank')
+}
+
+// This is where the magic happens. 
+// TODO: trigger global player to consume episode and play
+const launchEpisode = () => {
+  if (props.episode.attributes) {
+    //console.log('episode', props.episode.attributes)
+  } else {
+    //console.log('episode', props.episode)
+  }
+}
+
 </script>
 
 <template>
-  <div class="play-selector">
-    <Dropdown v-model="selectedPlayService" :options="playServices" placeholder="Select a Service">
-      <template #value="slotProps">
-        <div class="service-item service-item-value" v-if="slotProps.value">
-          <img alt="icon" :src="'play-service-icons/' + slotProps.value.icon + '.svg'" />
-          <div v-if="label" class="uppercase">{{ slotProps.value.name }}</div>
-        </div>
-        <span v-else>{{ slotProps.placeholder }}</span>
-      </template>
-      <template #option="slotProps">
-        <div class="service-item">
-          <img alt="icon" :src="'play-service-icons/' + slotProps.option.icon + '.svg'" />
-          <div v-if="label">{{ slotProps.option.name }}</div>
-        </div>
-      </template>
-    </Dropdown>
+  <div class="play-selector flex justify-content-between">
+    <Button class="listen-btn p-button-rounded" @click="launchEpisode">
+      <span class="play-icon">
+        <img src="/play-icon.svg" alt="play icon" />
+      </span>
+      <span class="p-button-label">Listen</span>
+    </Button>
+    <div>
+      <Button
+        :title="`Open ${playServicePreference.name}`"
+        @click="launchService(playServicePreference)"
+        class="service-btn p-button-rounded"
+      >
+        <img
+          v-if="selectedPlayService"
+          alt="icon"
+          :src="'/play-service-icons/' + playServicePreference.icon + '.svg'"
+        />
+      </Button>
+      <Dropdown
+        title="Choose platform"
+        v-model="selectedPlayService"
+        :options="playServices"
+        :panelClass="menuClass"
+      >
+        <template #option="slotProps">
+          <div class="service-item">
+            <img alt="icon" :src="'/play-service-icons/' + slotProps.option.icon + '.svg'" />
+            <div>{{ slotProps.option.name }}</div>
+            <div class="hack-click" @click="launchService(slotProps.option)"></div>
+          </div>
+        </template>
+      </Dropdown>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 .play-selector {
-  margin-left: -1rem;
-  width: calc(100% + 2rem);
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  flex-grow: 1;
+  .service-btn {
+    border-radius: 2rem 0 0 2rem;
+  }
+  .listen-btn {
+    padding-left: 0.5rem;
+  }
   .p-dropdown {
-    width: 100%;
+    justify-content: flex-end;
+    height: 40px;
+    width: 40px;
+    padding-right: 10px;
     background: transparent;
     border: none;
+    border-radius: 0 2rem 2rem 0;
+    &:hover {
+      background-color: var(--black100) !important;
+    }
     .p-dropdown-label {
-      padding-left: 1rem;
       border-radius: 0;
+      padding: 5px;
+      display: none;
     }
     .p-dropdown-trigger {
       color: var(--black100);
       background: var(--white);
       border-radius: 2rem;
-      margin-right: 1rem;
       width: 20px;
       height: 20px;
       display: flex;
@@ -70,12 +118,27 @@ onUpdated(() => {
       }
     }
   }
+  .play-icon {
+    margin-right: 6px;
+    line-height: 0;
+    img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+  }
+  .service-btn {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
 }
-.p-dropdown-panel{
+.p-dropdown-panel {
   box-shadow: var(--shadow);
 }
 .p-dropdown-panel,
 .p-dropdown-label {
+  align-self: center;
   border-radius: 0 0 20px 20px;
   .service-item {
     display: flex;
@@ -87,6 +150,14 @@ onUpdated(() => {
       margin-right: spacing(2);
       vertical-align: middle;
       margin-top: -2px;
+    }
+    .hack-click {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background-color: transparent;
+      left: 0;
     }
   }
 }

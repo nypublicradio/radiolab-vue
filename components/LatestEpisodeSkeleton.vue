@@ -21,7 +21,6 @@ import Skeleton from 'primevue/skeleton'
 <style lang="scss">
 .latest-episode-skeleton {
   width: 100%;
-  margin-bottom: 100px;
 }
 
 .latest-episode-skeleton-image {

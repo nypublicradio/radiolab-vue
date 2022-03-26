@@ -14,6 +14,8 @@ onBeforeMount(async () => {
       'https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=4'
     )
     .then((response) => {
+      // console.log('response.data.data.attributes["bucket-items"]  =', response.data.data.attributes["bucket-items"])
+      // console.log('response  =', response)
       episodes.value = response.data.data.attributes['bucket-items']
       dataLoaded.value = true
     })
@@ -22,7 +24,7 @@ onBeforeMount(async () => {
  
 <template>
   <section>
-    <div class="content">
+    <div class="content px-0 md:px-4 lg:px-8">
       <div class="grid">
         <div class="col">
           <div class="popular-episodes">
@@ -55,7 +57,7 @@ onBeforeMount(async () => {
                   class="radiolab-card"
                 >
                   <div class="divider"></div>
-                  <play-selector />
+                  <play-selector :episode="episode" />
                 </v-card>
               </div>
             </div>

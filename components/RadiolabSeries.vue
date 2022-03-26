@@ -19,7 +19,7 @@ onBeforeMount(async () => {
  
 <template>
   <section>
-    <div class="content px-0 pt-2">
+    <div class="content">
       <div class="grid">
         <div class="col">
           <div class="series">
