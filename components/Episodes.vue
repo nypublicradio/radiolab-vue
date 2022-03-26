@@ -91,7 +91,7 @@ async function onPage(event) {
       episodes.value = response.data.included
       dataLoaded.value = true
     }).catch(function (error) {
-      console.log(error)
+      // console.log(error)
       axiosSuccessful.value = false
     })
 }

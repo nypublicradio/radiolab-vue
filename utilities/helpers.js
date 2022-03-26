@@ -22,7 +22,8 @@ export const copyToClipBoard = async (content) => {
     .then(() => {
       return true
     })
-    .catch(err => {
+    .catch(() => {
+      //(err)
       return false
     })
 }

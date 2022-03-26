@@ -79,9 +79,11 @@ const shareItems = ref([
   }
 ])
 
+// toggle function for dot menu
 const toggleDots = (event) => {
   dotsMenu.value.toggle(event)
 }
+// toggle function for dot menu
 const toggleShare = (event) => {
   shareMenu.value.toggle(event)
 }

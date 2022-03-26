@@ -15,7 +15,7 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       // console.log('response.data.data.attributes["bucket-items"]  =', response.data.data.attributes["bucket-items"])
-      console.log('response  =', response)
+      // console.log('response  =', response)
       episodes.value = response.data.data.attributes['bucket-items']
       dataLoaded.value = true
     })

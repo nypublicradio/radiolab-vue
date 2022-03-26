@@ -28,13 +28,14 @@ const launchService = (service) => {
   window.open(service.url, '_blank')
 }
 
+// This is where the magic happens. 
+// TODO: trigger global player to consume episode and play
 const launchEpisode = () => {
   if (props.episode.attributes) {
     //console.log('episode', props.episode.attributes)
   } else {
     //console.log('episode', props.episode)
   }
-  // TODO: trigger global player to consume episode and play
 }
 
 </script>
