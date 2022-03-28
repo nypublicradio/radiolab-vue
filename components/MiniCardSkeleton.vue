@@ -35,8 +35,6 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-$detailsHeight: 250px;
-
 .mini-card-skeleton .grid .p-skeleton {
     border-radius: 20px;
 }
