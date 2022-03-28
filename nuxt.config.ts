@@ -44,7 +44,8 @@ export default defineNuxtConfig({
   components: true,
   build: {
     transpile: [
-      'primevue'
+      'primevue',
+      'mosha-vue-toastify'
     ]
   },
   publicRuntimeConfig: {
