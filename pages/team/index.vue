@@ -2,9 +2,9 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-import Skeleton from 'primevue/skeleton'
 const dataLoaded = ref(false)
 const people = ref([])
+const totalCount = ref(null)
 
 onBeforeMount(async () => {
   await axios
@@ -13,6 +13,7 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       people.value = response.data.included
+      totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
     })
 })
@@ -30,9 +31,9 @@ onBeforeMount(async () => {
       </div>
     </section>
     <section>
-      <div class="content lg:px-8">
+      <div class="content lg:px-8 cards">
         <div v-if="dataLoaded" class="grid">
-          <div v-for="(person, index) in people" :key="index" class="col-12 md:col-6 xl:col-4 mb-8">
+          <div v-for="(person, index) in people" :key="index" class="col-12 md:col-6 xl:col-4 mb-6">
             <v-card
               :image="person.attributes.person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
               :alt="person.attributes.person.name"
@@ -49,23 +50,23 @@ onBeforeMount(async () => {
             />
           </div>
         </div>
-        <skeleton v-else />
+        <episodes-skeleton v-else :row-count="30" />
       </div>
     </section>
   </div>
 </template>
 
 <style lang="scss">
-.team > .grid {
+.team .cards > .grid {
   margin: 0 -24px;
 }
 
-.team .grid > .col,
-.team .grid > [class*="col"] {
+.team .cards .grid > .col,
+.team .cards .grid > [class*="col"] {
   padding: 0 24px;
 }
 
-.team .card-eyebrow {
+.team .cards .card-eyebrow {
   text-transform: capitalize;
 }
 </style>

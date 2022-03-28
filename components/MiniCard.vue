@@ -36,21 +36,21 @@ const props = defineProps({
 
 <template>
   <div class="mini-card p-4">
-      <v-image-with-caption
-        :image="image"
-        :alt="alt"
-        :imageUrl="url"
-        :width="80"
-        :height="80"
-        class="mini-card-image"
-      />
+    <v-image-with-caption
+      :image="image"
+      :alt="alt"
+      :imageUrl="url"
+      :width="80"
+      :height="80"
+      class="mini-card-image"
+    />
     <div class="mini-card-content">
       <p class="mini-card-subtitle">
         <lock-icon v-if="membersOnly" />
         {{ props.subtitle }}
       </p>
       <v-flexible-link :to="url">
-        <h3 v-html="props.title" class="mini-card-title inline-block" />
+        <h3 v-html="props.title" class="mini-card-title" />
       </v-flexible-link>
       <p v-html="props.tease" class="mini-card-tease" />
     </div>
@@ -88,6 +88,8 @@ const props = defineProps({
 .mini-card .flexible-link {
   text-decoration: none;
   .mini-card-title {
+    @include truncate();
+    @include t2lines();
     font-size: var(--font-size-10);
     font-weight: var(--font-weight-500);
     line-height: 28px;

@@ -22,7 +22,7 @@ onBeforeMount(async () => {
     <div class="content">
       <div class="grid">
         <div class="col">
-          <div class="series">
+          <div>
             <div class="flex justify-content-between">
               <h3 class="mb-4">Series</h3>
               <v-flexible-link raw to="/series">
@@ -33,7 +33,7 @@ onBeforeMount(async () => {
               <div
                 v-for="(episode, index) in episodes.slice(0, 3)"
                 :key="index"
-                class="col-12 xl:col-4"
+                class="col-12 xl:col-4 mb-2"
               >
                 <mini-card
                   :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
@@ -46,7 +46,7 @@ onBeforeMount(async () => {
                 />
               </div>
             </div>
-            <skeleton v-else />
+            <mini-card-skeleton v-else />
           </div>
         </div>
       </div>

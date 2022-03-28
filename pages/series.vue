@@ -24,21 +24,4 @@
 </template>
 
 <style lang="scss">
-.series h1 {
-  font-size: var(--font-size-16);
-  line-height: var(--font-size-16);
-}
-
-.series > .grid {
-  margin: 0 -24px;
-}
-
-.series .grid > .col,
-.series .grid > [class*="col"] {
-  padding: 0 24px;
-}
-
-.series .p-paginator {
-  margin: auto;
-}
 </style>
