@@ -23,7 +23,7 @@ const dotsItems = ref([
     icon: 'pi pi-download',
     command: () => {
       window.open(props.episode['audio'], '_top')
-      // createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
+      createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
     }
   },
   {
@@ -33,7 +33,7 @@ const dotsItems = ref([
       if (copyToClipBoard(props.episode['embed-code'])) {
         createToast('Embed code copied to the clipboard', toastConfig.value)
       } else {
-        // createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
+        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
       }
     }
   }
@@ -69,9 +69,9 @@ const shareItems = ref([
     icon: 'pi pi-link',
     command: () => {
       if (copyToClipBoard(props.episode['url'])) {
-        // createToast('Episode link copied to the clipboard', toastConfig.value)
+        createToast('Episode link copied to the clipboard', toastConfig.value)
       } else {
-        // createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
+        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
       }
     }
   }
