@@ -1,9 +1,10 @@
 <script setup>
 import { onMounted } from 'vue'
+import menuItemsImport from '~/utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import BecomeMember from './BecomeMember.vue'
 import Newsletter from './Newsletter.vue'
-const menuItems = useHeaderMenu()
+const menuItems = ref(menuItemsImport)
 const menuItemsFooter = ref([])
 
 onMounted(() => {

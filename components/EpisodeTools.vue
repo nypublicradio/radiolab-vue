@@ -1,11 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import { formatDate, copyToClipBoard } from '~/utilities/helpers'
+import { formatDate, copyToClipBoard, toastGlobalConfig } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
-const config = useToastConfig()
-const configDanger = useToastConfig('danger')
 
 const props = defineProps({
   episode: {
@@ -14,11 +12,11 @@ const props = defineProps({
   }
 })
 
+const toastConfig = ref(toastGlobalConfig())
+const toastConfigDanger = ref(toastGlobalConfig('danger'))
 const visibleRight = ref(false)
 const dotsMenu = ref()
 const shareMenu = ref()
-const toastConfig = ref(config)
-const toastConfigDanger = ref(configDanger)
 const dotsItems = ref([
   {
     label: 'Download',
