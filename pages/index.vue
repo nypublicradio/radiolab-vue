@@ -29,7 +29,5 @@
       </div>
     </section>
     <radiolab-series class="mb-8" />
-
-    <!-- <popular-episodes class="mb-8" /> -->
   </div>
 </template>

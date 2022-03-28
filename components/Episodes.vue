@@ -103,7 +103,7 @@ async function onPage(event) {
       <div class="content lg:px-8">
         <div class="grid">
           <div class="col">
-            <div class="recent-episodes">
+            <div v-if="dataLoaded" class="recent-episodes">
               <div
                 v-if="props.header || props.buttonText"
                 class="col flex justify-content-between align-items-center mb-3"
@@ -113,7 +113,7 @@ async function onPage(event) {
                   <Button class="p-button-rounded p-button-sm">{{ props.buttonText }}</Button>
                 </v-flexible-link>
               </div>
-              <div v-if="dataLoaded" class="grid">
+              <div class="grid">
                 <div
                   v-for="(episode, index) in episodes.slice(props.paginate ? 0 : props.startCount, rowCountCalc)"
                   :key="index"
@@ -140,22 +140,22 @@ async function onPage(event) {
                   </v-card>
                 </div>
               </div>
-              <episodes-skeleton
-                v-else
-                :row-count="rowCountCalc"
-                :header="props.header"
-                :button-text="props.buttonText"
-              />
-              <paginator
-                :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
-                v-show="props.paginate"
-                :pageLinkSize="3"
-                :first="0"
-                :rows="episodes.length"
-                :total-records="totalCount"
-                @page="onPage($event)"
-              />
             </div>
+            <episodes-skeleton
+              v-else
+              :row-count="rowCountCalc"
+              :header="props.header"
+              :button-text="props.buttonText"
+            />
+            <paginator
+              :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
+              v-show="props.paginate"
+              :pageLinkSize="3"
+              :first="0"
+              :rows="episodes.length"
+              :total-records="totalCount"
+              @page="onPage($event)"
+            />
           </div>
         </div>
       </div>
