@@ -27,3 +27,18 @@ export const copyToClipBoard = async (content) => {
       return false
     })
 }
+
+// toast configuration
+export const toastGlobalConfig = (type) => {
+
+  return {
+    timeout: 6000,
+    position: 'bottom-center',
+    hideProgressBar: true,
+    showIcon: true,
+    type: type ? type : 'default',
+    transition: 'slide',
+  }
+
+}
+

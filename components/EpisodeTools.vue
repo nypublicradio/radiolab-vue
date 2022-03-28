@@ -1,11 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import { formatDate, copyToClipBoard } from '~/utilities/helpers'
+import { formatDate, copyToClipBoard, toastGlobalConfig } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
-const config = useToastConfig()
-const configDanger = useToastConfig('danger')
 
 const props = defineProps({
   episode: {
@@ -14,18 +12,18 @@ const props = defineProps({
   }
 })
 
+const toastConfig = ref(toastGlobalConfig())
+const toastConfigDanger = ref(toastGlobalConfig('danger'))
 const visibleRight = ref(false)
 const dotsMenu = ref()
 const shareMenu = ref()
-const toastConfig = ref(config)
-const toastConfigDanger = ref(configDanger)
 const dotsItems = ref([
   {
     label: 'Download',
     icon: 'pi pi-download',
     command: () => {
       window.open(props.episode['audio'], '_top')
-      createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
+      // createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
     }
   },
   {
@@ -35,7 +33,7 @@ const dotsItems = ref([
       if (copyToClipBoard(props.episode['embed-code'])) {
         createToast('Embed code copied to the clipboard', toastConfig.value)
       } else {
-        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
+        // createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
       }
     }
   }
@@ -71,9 +69,9 @@ const shareItems = ref([
     icon: 'pi pi-link',
     command: () => {
       if (copyToClipBoard(props.episode['url'])) {
-        createToast('Episode link copied to the clipboard', toastConfig.value)
+        // createToast('Episode link copied to the clipboard', toastConfig.value)
       } else {
-        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
+        // createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
       }
     }
   }

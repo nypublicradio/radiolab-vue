@@ -1,7 +1,8 @@
 <script setup>
-//import { ref/* , computed, onMounted, defineEmit */ } from "vue"
+import { ref } from "vue"
+import menuItemsImport from '~/utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-const menuItems = useHeaderMenu()
+const menuItems = ref(menuItemsImport)
 
 </script>
 
