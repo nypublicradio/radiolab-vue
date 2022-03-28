@@ -31,7 +31,7 @@ onBeforeMount(async () => {
       </div>
     </section>
     <section>
-      <div class="content mb-4">
+      <div class="content mb-4 pt-0">
         <div v-if="dataLoaded">
           <v-image-with-caption
             :image="person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
@@ -50,7 +50,8 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss">
-.team-bio p {
-  margin-bottom: 1rem;
+.team-slug main {
+  max-width: 768px;
+  margin: 0 auto;
 }
 </style>
