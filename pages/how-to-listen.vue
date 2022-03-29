@@ -5,7 +5,7 @@ useMeta({
   meta: [
     {
       name: 'theme-color',
-      content: '#90d8fc',
+      content: '#000000',
     },
   ],
   bodyAttrs: {

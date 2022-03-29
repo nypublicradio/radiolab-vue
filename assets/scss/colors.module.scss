@@ -1,0 +1,11 @@
+:export {
+    primaryColor: $primaryColor;
+    blue: map-get($colors, 'blue');
+    lightblue: map-get($colors, 'lightblue');
+    redorange: map-get($colors, 'redorange');
+    orange: map-get($colors, 'orange');
+    lightorange: map-get($colors, 'lightorange');
+    gold: map-get($colors, 'gold');
+    pink: map-get($colors, 'pink');
+    lightpink: map-get($colors, 'lightpink');
+}
