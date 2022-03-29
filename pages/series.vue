@@ -8,7 +8,7 @@
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <h1 class="page-header">Series</h1>
+            <h2>Series</h2>
           </div>
         </div>
       </div>

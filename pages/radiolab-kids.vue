@@ -8,7 +8,7 @@
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <h1 class="page-header">Radiolab for Kids</h1>
+            <h2>Radiolab for Kids</h2>
             <p class>Kid-friendly stories curated by Radiolab. All in one bingeable spot!</p>
           </div>
         </div>
