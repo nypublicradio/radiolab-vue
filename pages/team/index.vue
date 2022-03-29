@@ -25,7 +25,7 @@ onBeforeMount(async () => {
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col-12">
-            <h1 class="page-header">The Team</h1>
+            <h2>The Team</h2>
           </div>
         </div>
       </div>

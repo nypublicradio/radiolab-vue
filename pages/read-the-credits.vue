@@ -4,7 +4,7 @@
       <div class="content">
         <div class="grid">
           <div class="col-12">
-            <h1 class="page-header">Read the credits</h1>
+            <h2>Read the credits</h2>
           </div>
         </div>
       </div>

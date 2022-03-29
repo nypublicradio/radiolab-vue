@@ -15,13 +15,13 @@ useMeta({
 <template>
   <div>
     <section class="graphic-head flex justify-content-center align-content-center">
-      <h1 class="page-header text-center font-semibold">Announcements</h1>
+      <h2 class="text-center font-semibold">Announcements</h2>
     </section>
     <section>
       <div class="content">
         <div class="grid">
           <div class="col-12">
-            <h1 class="page-header">Announcements</h1>
+            <h2>Announcements</h2>
           </div>
         </div>
       </div>

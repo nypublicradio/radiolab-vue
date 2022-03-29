@@ -15,7 +15,7 @@ useMeta({
 <template>
   <div class="error-page">
     <section class="graphic-head flex justify-content-center align-content-center">
-      <h1 class="page-header text-center font-semibold">Nope.</h1>
+      <h2 class="text-center font-semibold">Nope.</h2>
     </section>
     <section class="white100">
       <div class="content p-3 md:p-8">
