@@ -38,7 +38,7 @@ useMeta({
               />
             </div>
             <Divider align="center" class="my-6">
-              <span>or</span>
+              <h3>or</h3>
             </Divider>
             <h3 class="mb-5">Streaming platforms</h3>
 
@@ -64,7 +64,7 @@ useMeta({
               </div>
             </div>
             <Divider align="center" class="my-6">
-              <span>or</span>
+              <h3>or</h3>
             </Divider>
             <h3>On the radio</h3>
             <p
