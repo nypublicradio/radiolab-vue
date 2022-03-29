@@ -8,7 +8,7 @@
       <div class="content">
         <div class="grid">
           <div class="col-12">
-            <h1 class="page-header">Pitch Us</h1>
+            <h2>Pitch Us</h2>
             <p class="mb-3">Have an idea for us? We'd love to hear it.</p>
             <p class="mb-3">
               We want your ideas, your obsessions, the stories you can't stop

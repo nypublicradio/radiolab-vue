@@ -9,7 +9,7 @@
         <div class="grid">
           <div class="col">
             <div class="episode-archive">
-              <h1 class="page-header">Episode Archive</h1>
+              <h2>Episode Archive</h2>
             </div>
           </div>
         </div>

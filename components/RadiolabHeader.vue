@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import menuItemsImport from '~/utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import RadiolabLogo from '~/components/icons/RadiolabLogo.vue'
 const menuItems = ref(menuItemsImport)
 
 </script>
@@ -15,7 +16,7 @@ const menuItems = ref(menuItemsImport)
         <Menubar :model="menuItems">
           <template #start>
             <nuxt-link to="/" class="logo-holder-link">
-              <img alt="logo" src="/rl-logo-no-icon.svg" class="logo mr-2" />
+              <radiolab-logo class="logo mr-2" />
             </nuxt-link>
           </template>
           <!--  <template #end>
@@ -24,7 +25,7 @@ const menuItems = ref(menuItemsImport)
         
           </template>-->
         </Menubar>
-        <v-flexible-link raw to="news">
+        <v-flexible-link raw to="become-a-member">
           <Button class="flex lg:hidden p-button-rounded">Become a member</Button>
         </v-flexible-link>
       </div>
@@ -41,6 +42,25 @@ const menuItems = ref(menuItemsImport)
         &:after {
           border-color: transparent !important;
           background-color: transparent !important;
+        }
+      }
+    }
+  }
+}
+.invert-menu-color {
+  .site-header.at-top {
+    .radiolab-logo .st0 {
+      fill: var(--white100);
+    }
+    .p-menuitem:not(.button) .p-menuitem-link {
+      &:after {
+        background: var(--white100) !important;
+      }
+      .p-menuitem-text,
+      .p-submenu-icon {
+        color: var(--white100) !important;
+        .p-submenu-icon {
+          color: var(--white100) !important;
         }
       }
     }
@@ -120,7 +140,7 @@ const menuItems = ref(menuItemsImport)
             display: none;
           }
           .p-submenu-icon {
-            color: var(--black100) !important;
+            color: var(--black100);
             font-size: 0.75rem;
             margin-left: 0.2rem;
             margin-top: 0.2rem;

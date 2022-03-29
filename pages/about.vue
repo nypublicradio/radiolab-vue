@@ -12,7 +12,7 @@ useMeta({
       <div class="content">
         <div class="grid">
           <div class="col-12">
-            <h1 class="page-header">About Radiolab</h1>
+            <h2>About Radiolab</h2>
             <p class="mb-3">
               Radiolab is on a curiosity bender. We ask deep questions and use
               investigative journalism to get the answers. A given episode might
