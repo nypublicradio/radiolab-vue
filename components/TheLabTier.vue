@@ -1,6 +1,5 @@
 <script setup>
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-
 const props = defineProps({
   icon: {
     type: String,
@@ -31,9 +30,13 @@ const props = defineProps({
     <h3>{{ props.name }}</h3>
     <h2 class="cost mt-2">
       <sup>$</sup>
-      {{ props.cost }}
+      <span>{{ props.cost }}</span>
     </h2>
-    <p>a month or ${{ Number(props.cost) * 12 }} annually</p>
+    <p class="blurb">
+      a month or
+      <br />
+      ${{ Number(props.cost) * 12 }} annually
+    </p>
     <v-flexible-link :to="props.joinLink">JOIN NOW</v-flexible-link>
   </div>
 </template>
@@ -41,9 +44,17 @@ const props = defineProps({
 <style lang="scss">
 .the-lab-tier {
   text-align: center;
-  .cost sup {
-    font-size: 24px;
-    margin-left: -13px;
+  .cost {
+    font-weight: var(--font-weight-400);
+    span {
+      margin-left: 0px;
+    }
+    sup {
+      font-size: 24px;
+    }
+  }
+  .blurb {
+    line-height: normal;
   }
   .flexible-link {
     display: block;

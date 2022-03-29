@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from 'vue'
+import { tiers, options } from '~/utilities/membershipsData.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import colors from '~/assets/scss/colors.module.scss'
 useMeta({
@@ -24,10 +25,10 @@ useMeta({
       <img class="the-lab-sticker mt-2 lg:mt-6 mb-4" src="/the-lab-sticker.svg" alt="The Lab logo" />
       <h4 class="text text-center">Join us in our investigation into this strange world.</h4>
       <div class="flex mt-5" style="gap:1rem;">
-        <v-flexible-link to="/become-a-member" raw class>
+        <v-flexible-link to="/become-a-member" raw>
           <Button class="p-button-lg p-button-rounded" label="Become a member" />
         </v-flexible-link>
-        <v-flexible-link to="/news" raw class>
+        <v-flexible-link to="/news" raw>
           <Button class="blue p-button-lg p-button-rounded p-button-outlined" label="Sign in" />
         </v-flexible-link>
       </div>
@@ -48,21 +49,8 @@ useMeta({
       </div>
     </section>
     <section>
-      <div class="content memberships desktop">
-        <div class="grid">
-          <div class="col-3">
-            <the-lab-tier icon="/the-lab/viper.svg" name="Vipers" cost="5" />
-          </div>
-          <div class="col-3">
-            <h2>The Lab</h2>
-          </div>
-          <div class="col-3">
-            <h2>The Lab</h2>
-          </div>
-          <div class="col-3">
-            <h2>The Lab</h2>
-          </div>
-        </div>
+      <div class="content membership my-6">
+        <the-lab-membership />
       </div>
     </section>
   </div>
@@ -104,7 +92,10 @@ useMeta({
       }
     }
   }
-  .memberships {
+  .membership {
+    &.content {
+      max-width: 1024px;
+    }
   }
 }
 </style>
