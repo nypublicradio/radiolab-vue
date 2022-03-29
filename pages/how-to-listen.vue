@@ -55,7 +55,10 @@ useMeta({
                       class="icon"
                       :src="`/play-service-icons/${service.icon}.svg`"
                     />
-                    <p>{{ service.name }}</p>
+                    <p>
+                      {{ service.name }}
+                      <span class="pi pi-arrow-up-right"></span>
+                    </p>
                   </div>
                 </v-flexible-link>
               </div>
@@ -66,7 +69,7 @@ useMeta({
             <h3>On the radio</h3>
             <p
               class="mt-2 text-padding"
-            >New episodes of Radiolab air every Saturday and 12pm EST on WNYC. Episodes repeat Monday’s at 8pm EST. Check with your local station for more air times.</p>
+            >New episodes of Radiolab air every Saturday and 12pm EST on WNYC. Episodes repeat Monday's at 8pm EST. Check with your local station for more air times.</p>
           </div>
         </div>
       </div>
@@ -94,28 +97,37 @@ useMeta({
       color: var(--white100);
     }
   }
-  .service {
-    display: flex;
-    align-items: center;
-    background-color: var(--white);
-    border: 1px solid var(--white100);
-    box-shadow: var(--shadow);
-    border-radius: 10px;
-    padding: 30px;
-    transition: border-color var(--transition-duration);
-    -webkit-transition: border-color var(--transition-duration);
-    cursor: pointer;
+  .flexible-link {
+    .service {
+      display: flex;
+      align-items: center;
+      background-color: var(--white);
+      border: 1px solid var(--white100);
+      box-shadow: var(--shadow);
+      border-radius: 10px;
+      padding: 30px;
+      transition: border-color var(--transition-duration);
+      -webkit-transition: border-color var(--transition-duration);
+      cursor: pointer;
+      .icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 0.5rem;
+      }
+      .pi {
+        display: none;
+      }
+      p {
+        font-size: var(--font-size-8);
+      }
+    }
     &:hover {
-      border: 1px solid var(--black100);
-    }
-    .icon {
-      width: 40px;
-      height: 40px;
-      margin-right: 0.5rem;
-      //box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.05);
-    }
-    p {
-      font-size: var(--font-size-8);
+      .service {
+        border: 1px solid var(--black100);
+        .pi {
+          display: inline-block;
+        }
+      }
     }
   }
 }
