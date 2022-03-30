@@ -1,14 +1,23 @@
 <script setup>
+import { ref } from 'vue'
 import { tiers, options } from '~/utilities/membershipsData.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+
+const theTiers = ref(null)
+const theOptions = ref(null)
+
+onMounted(() => {
+  theTiers.value = tiers
+  theOptions.value = options
+})
 </script>
 
 <template>
-  <div class="grid the-lab-options mb-2 align-items-center" v-for="(option, index) in options">
+  <div class="grid the-lab-options mb-2 align-items-center" v-for="(option, index) in theOptions">
     <div class="col-3">
       <div v-if="option.label" class="label">{{ option.label }}</div>
     </div>
-    <div class="col-3" v-for="(tier, index) in tiers">
+    <div class="col-3" v-for="(tier, index) in theTiers">
       <div
         :class="[{ 'box': option.tiers[index].check || (option.tiers[index].text && !option.tiers[index].image) }, { 'check': option.tiers[index].check }, { 'has-image': option.tiers[index].image }]"
       >

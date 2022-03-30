@@ -31,12 +31,12 @@ useMeta({
       </div>
     </section>
     <section class="white100bg">
-      <div class="content md:px-8">
+      <div class="content md:px-5 lg:px-8">
         <div class="grid">
-          <div class="col-12 md:col-5">
+          <div class="col-12 lg:col-5 md:col-6">
             <div class="caps-header">A New membership experience developed by Radiolab</div>
           </div>
-          <div class="col-12 md:col-5 md:col-offset-2">
+          <div class="col-12 md:col-5 lg:col-offset-2 md:col-offset-1">
             <p class="mb-3">
               Get access to our archive, exclusive swag, and opportunities to connect with
               the Radiolab team and community.
@@ -50,7 +50,7 @@ useMeta({
       </div>
     </section>
     <section>
-      <div class="content membership-holder my-6">
+      <div class="content membership-holder my-6 px-0 md:px-3">
         <the-lab-membership />
       </div>
     </section>

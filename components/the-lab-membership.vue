@@ -1,15 +1,26 @@
 <script setup>
-import { tiers } from '~/utilities/membershipsData.js'
+import { ref, onMounted } from 'vue'
+import { tiers, options } from '~/utilities/membershipsData.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+
+const theTiers = ref(null)
+const theOptions = ref(null)
+
+onMounted(() => {
+  theTiers.value = tiers
+  theOptions.value = options
+})
+
 </script>
 
 <template>
   <div class="the-lab-memberships">
-    <div class="desktop hidden md:block">
+    <div v-if="theTiers" class="desktop hidden md:block">
       <div class="grid mb-3">
         <div class="col-3"></div>
-        <div v-for="(tier, index) in tiers" class="col-3">
+        <div v-for="(tier, index) in theTiers" class="col-3">
           <the-lab-tier
+            :key="`${index}-${tier.name}`"
             :icon="tier.icon"
             :name="tier.name"
             :cost="tier.cost"
@@ -19,10 +30,36 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
       </div>
       <the-lab-options />
     </div>
-    <div class="mobile md:hidden">mobile membership experience to come</div>
-    <div class="grid mt-4">
-      <div class="col-3"></div>
-      <div class="col-9 text-center">
+    <div v-if="theTiers && theOptions" class="mobile md:hidden">
+      <Carousel :value="theTiers" :numVisible="1" :numScroll="1">
+        <!-- <template #header>
+          <div class="icons flex justify-content-around mb-3">
+            <img src="/the-lab/viper.svg" alt="viper icon" />
+            <img src="/the-lab/butterfly.svg" alt="butterfly icon" />
+            <img src="/the-lab/shrimp.svg" alt="shrimp icon" />
+          </div>
+        </template>-->
+        <template #item="slotProps">
+          <div class="content-holder">
+            <div class="mb-5">
+              <the-lab-tier
+                :icon="slotProps.data.icon"
+                :name="slotProps.data.name"
+                :cost="slotProps.data.cost"
+              />
+            </div>
+            <the-lab-options-mobile
+              :tiers="theTiers"
+              :options="theOptions"
+              :index="slotProps.data.index"
+            />
+          </div>
+        </template>
+      </Carousel>
+    </div>
+    <div class="grid mt-0 md:mt-4">
+      <div class="col col-12 md:col-3"></div>
+      <div class="col col-12 md:col-9 text-center">
         <p>On occasion we may adjust benefits based on member feedback or other factors. We'll always give you a heads-up when a change is coming.</p>
         <p class="mt-4">
           Already a member?
@@ -33,4 +70,30 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.mobile {
+  .icons {
+    max-width: 360px;
+    display: block;
+    margin: 0 auto;
+  }
+  .p-carousel .p-carousel-content .p-carousel-next,
+  .p-carousel .p-carousel-content .p-carousel-prev {
+    color: var(--text-color);
+    align-self: flex-start;
+    top: 100px;
+    z-index: 10;
+    &.p-disabled {
+      color: var(--gray-200) !important;
+    }
+  }
+  .p-carousel .p-carousel-content .p-carousel-next {
+    right: 40px;
+  }
+  .p-carousel .p-carousel-content .p-carousel-prev {
+    left: 40px;
+  }
+  .content-holder {
+  }
+}
+</style>

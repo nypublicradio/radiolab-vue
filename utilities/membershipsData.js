@@ -2,21 +2,22 @@
  * membership information
  */
 export const tiers = [
-
-
     {
+        index: 0,
         name: 'Vipers',
         icon: '/the-lab/viper.svg',
         cost: '5',
         link: null,
     },
     {
+        index: 1,
         name: 'Butterflies',
         icon: '/the-lab/butterfly.svg',
         cost: '10',
         link: null,
     },
     {
+        index: 2,
         name: 'Mantis Shrimp',
         icon: '/the-lab/shrimp.svg',
         cost: '20',

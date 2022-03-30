@@ -26,11 +26,11 @@ const props = defineProps({
 
 <template>
   <div class="the-lab-tier">
-    <img class="icon" :src="props.icon" alt="viper icon" />
+    <img v-if="props.icon" class="icon" :src="props.icon" alt="icon" />
     <h3>{{ props.name }}</h3>
     <h2 class="cost mt-2">
       <sup>$</sup>
-      <span>{{ props.cost }}</span>
+      <span class="text-6xl">{{ props.cost }}</span>
     </h2>
     <p class="blurb">
       a month or
