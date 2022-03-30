@@ -26,7 +26,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
         <p>On occasion we may adjust benefits based on member feedback or other factors. We'll always give you a heads-up when a change is coming.</p>
         <p class="mt-4">
           Already a member?
-          <v-flexible-link to="/news">Log in</v-flexible-link>
+          <v-flexible-link to="https://members.radiolab.org/request_access">Log in</v-flexible-link>
         </p>
       </div>
     </div>
