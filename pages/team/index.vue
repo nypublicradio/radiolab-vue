@@ -33,7 +33,11 @@ onBeforeMount(async () => {
     <section>
       <div class="content lg:px-8 cards">
         <div v-if="dataLoaded" class="grid">
-          <div v-for="(person, index) in people" :key="index" class="col-12 md:col-6 xl:col-4 mb-6">
+          <div
+            v-for="(person, index) in people"
+            :key="`${person.attributes.person.name}-${index}`"
+            class="col-12 md:col-6 xl:col-4 mb-6"
+          >
             <v-card
               :image="person.attributes.person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
               :alt="person.attributes.person.name"

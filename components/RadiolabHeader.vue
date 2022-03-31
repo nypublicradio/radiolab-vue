@@ -49,18 +49,28 @@ const menuItems = ref(menuItemsImport)
 }
 .invert-menu-color {
   .site-header.at-top {
-    .radiolab-logo .st0 {
-      fill: var(--white100);
-    }
-    .p-menuitem:not(.button) .p-menuitem-link {
-      &:after {
-        background: var(--white100) !important;
+    .p-menubar:not(.p-menubar-mobile-active) {
+      .p-menubar-button {
+        &:hover {
+          background: var(--black100);
+        }
+        .pi-bars {
+          color: var(--white100);
+        }
       }
-      .p-menuitem-text,
-      .p-submenu-icon {
-        color: var(--white100) !important;
+      .radiolab-logo .st0 {
+        fill: var(--white100);
+      }
+      .p-menuitem:not(.button) .p-menuitem-link {
+        &:after {
+          background: var(--white100) !important;
+        }
+        .p-menuitem-text,
         .p-submenu-icon {
           color: var(--white100) !important;
+          .p-submenu-icon {
+            color: var(--white100) !important;
+          }
         }
       }
     }

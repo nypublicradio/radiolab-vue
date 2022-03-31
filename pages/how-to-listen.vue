@@ -5,7 +5,7 @@ useMeta({
   meta: [
     {
       name: 'theme-color',
-      content: '#90d8fc',
+      content: '#000000',
     },
   ],
   bodyAttrs: {
@@ -31,11 +31,11 @@ useMeta({
               <v-flexible-link raw to="become-a-member">
                 <Button class="p-button-rounded">Become a member</Button>
               </v-flexible-link>
-              <img
+              <!-- <img
                 alt="place holder player image"
                 class="w-full mt-3 max-w-min m-auto block"
                 src="/temp-player.png"
-              />
+              />-->
             </div>
             <Divider align="center" class="my-6">
               <h3>or</h3>
@@ -45,7 +45,7 @@ useMeta({
             <div class="grid">
               <div
                 v-for="(service, index) in playServices"
-                :key="index"
+                :key="`${service.name}-${index}`"
                 class="col-12 sm:col-6 xl:col-4"
               >
                 <v-flexible-link raw :to="service.url">
