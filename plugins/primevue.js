@@ -12,6 +12,7 @@ import Dropdown from 'primevue/dropdown/dropdown.esm.js'
 import Sidebar from 'primevue/sidebar/sidebar.esm.js'
 import Paginator from 'primevue/paginator/paginator.esm.js'
 import Skeleton from 'primevue/skeleton/skeleton.esm.js'
+import Carousel from 'primevue/carousel/carousel.esm.js'
 // import Tag from "primevue/tag"
 // import Menubar from 'primevue/menubar';
 // import InputText from 'primevue/inputText';
@@ -32,6 +33,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component('Sidebar', Sidebar)
     nuxtApp.vueApp.component('Paginator', Paginator)
     nuxtApp.vueApp.component('Skeleton', Skeleton)
+    nuxtApp.vueApp.component('Carousel', Carousel)
     // nuxtApp.vueApp.component('Tag', Tag)
     // nuxtApp.vueApp.component('Menubar', Menubar)
     // nuxtApp.vueApp.component('InputText', InputText)

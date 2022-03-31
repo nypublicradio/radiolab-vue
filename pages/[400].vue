@@ -1,9 +1,10 @@
 <script setup>
+import colors from '~/assets/scss/colors.module.scss'
 useMeta({
   meta: [
     {
       name: 'theme-color',
-      content: '#90d8fc',
+      content: colors.lightblue,
     },
   ],
   bodyAttrs: {
@@ -17,7 +18,7 @@ useMeta({
     <section class="graphic-head flex justify-content-center align-content-center">
       <h2 class="text-center font-semibold">Nope.</h2>
     </section>
-    <section class="white100">
+    <section class="white100bg">
       <div class="content p-3 md:p-8">
         <div class="grid justify-content-between">
           <div class="col-12 lg:col-5">
@@ -47,9 +48,6 @@ useMeta({
 .error-page {
   .graphic-head {
     // defaults used for 404 page
-  }
-  .white100 {
-    background-color: var(--white100);
   }
   .error-image {
     position: relative;
