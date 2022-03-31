@@ -1,6 +1,4 @@
 <script setup>
-import { onMounted } from 'vue'
-import { tiers, options } from '~/utilities/membershipsData.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 
 const props = defineProps({
@@ -26,14 +24,6 @@ const labelsToHideArray = ['Merch', 'Swag']
 const hideLabels = (label) => {
   return labelsToHideArray.includes(label) ? false : true
 }
-
-onMounted(() => {
-  // const content = document.querySelector('.p-carousel-items-content')
-  // console.log('content', content)
-  // content.removeEventListener('touchend', onTouchEnd)
-  // content.removeEventListener('touchstart', onTouchStart)
-  // content.removeEventListener('touchmove', onTouchMove)
-})
 
 </script>
 

@@ -181,7 +181,7 @@ useMeta({
   }
   .membership-holder {
     &.content {
-      max-width: 1024px;
+      max-width: 1030px;
     }
   }
   .how-you-power-radiolab {

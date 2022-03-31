@@ -12,6 +12,9 @@ onMounted(() => {
   theOptions.value = options
 })
 
+/**
+ * Function connected to the emitter from the Carousel component when the content has changed, it provides the index of the page showing 
+ */
 const emitting = (e) => {
   contentIndex.value = e
 }
