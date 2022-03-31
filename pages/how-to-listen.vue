@@ -45,7 +45,7 @@ useMeta({
             <div class="grid">
               <div
                 v-for="(service, index) in playServices"
-                :key="index"
+                :key="`${service.name}-${index}`"
                 class="col-12 sm:col-6 xl:col-4"
               >
                 <v-flexible-link raw :to="service.url">

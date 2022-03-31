@@ -18,14 +18,13 @@ const props = defineProps({
   },
 })
 
-// remove Merch and Swag with hideLabels 
+
 const labelsToHideArray = ['Merch', 'Swag']
+/**
+ * Function to remove items in labelsToHideArray 
+ */
 const hideLabels = (label) => {
-  if (labelsToHideArray.includes(label)) {
-    return false
-  } else {
-    return true
-  }
+  return labelsToHideArray.includes(label) ? false : true
 }
 
 onMounted(() => {
@@ -39,31 +38,38 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    v-if="props.options"
-    class="grid the-lab-options-mobile mb-2 align-items-center"
-    v-for="(option, index) in props.options"
-  >
-    <div class="base col col-12" :key="index">
+  <div>
+    <div v-if="props.options">
       <div
-        :class="[{ 'box': option.tiers[props.index].check || (option.tiers[props.index].text && !option.tiers[props.index].image) }, { 'check': option.tiers[props.index].check }, { 'has-image': option.tiers[props.index].image }]"
+        class="grid the-lab-options-mobile mb-2 align-items-center"
+        v-for="(option) in props.options"
+        :key="`${option.label}-${props.index}`"
       >
-        <span v-if="hideLabels(option.label)" class="label">{{ option.label }}</span>
-        <img
-          v-if="option.tiers[props.index].image"
-          class="image"
-          :src="option.tiers[props.index].image"
-          alt="Merch Image"
-        />
-        <p v-if="option.tiers[props.index].text" class="text">{{ option.tiers[props.index].text }}</p>
-        <v-flexible-link
-          class="block"
-          v-if="option.tiers[props.index].buttonText"
-          :to="option.tiers[props.index].buttonLink"
-          raw
-        >
-          <Button class="blue p-button-lg" :label="option.tiers[props.index].buttonText" />
-        </v-flexible-link>
+        <div class="base col col-12">
+          <div
+            :class="[{ 'box': option.tiers[props.index].check || (option.tiers[props.index].text && !option.tiers[props.index].image) }, { 'check': option.tiers[props.index].check }, { 'has-image': option.tiers[props.index].image }]"
+          >
+            <span v-if="hideLabels(option.label)" class="label">{{ option.label }}</span>
+            <img
+              v-if="option.tiers[props.index].image"
+              class="image"
+              :src="option.tiers[props.index].image"
+              alt="Merch Image"
+            />
+            <p
+              v-if="option.tiers[props.index].text"
+              class="text"
+            >{{ option.tiers[props.index].text }}</p>
+            <v-flexible-link
+              class="block"
+              v-if="option.tiers[props.index].buttonText"
+              :to="option.tiers[props.index].buttonLink"
+              raw
+            >
+              <Button class="blue p-button-lg" :label="option.tiers[props.index].buttonText" />
+            </v-flexible-link>
+          </div>
+        </div>
       </div>
     </div>
   </div>

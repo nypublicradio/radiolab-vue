@@ -23,9 +23,8 @@ const emitting = (e) => {
     <div v-if="theTiers" class="desktop hidden md:block">
       <div class="grid mb-3">
         <div class="col-3"></div>
-        <div v-for="(tier, index) in theTiers" class="col-3">
+        <div v-for="(tier, index) in theTiers" class="col-3" :key="`${tier.label}-${index}`">
           <the-lab-tier
-            :key="`${index}-${tier.name}`"
             :icon="tier.icon"
             :name="tier.name"
             :cost="tier.cost"
@@ -106,7 +105,7 @@ const emitting = (e) => {
   .p-carousel .p-carousel-content .p-carousel-prev {
     color: var(--text-color);
     align-self: flex-start;
-    top: 100px;
+    top: 40px;
     z-index: 10;
     &.p-disabled {
       color: var(--gray-200) !important;

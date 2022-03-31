@@ -13,28 +13,34 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="grid the-lab-options mb-2 align-items-center" v-for="(option, index) in theOptions">
-    <div class="col-3">
-      <div v-if="option.label" class="label">{{ option.label }}</div>
-    </div>
-    <div class="col-3" v-for="(tier, index) in theTiers">
-      <div
-        :class="[{ 'box': option.tiers[index].check || (option.tiers[index].text && !option.tiers[index].image) }, { 'check': option.tiers[index].check }, { 'has-image': option.tiers[index].image }]"
-      >
-        <img
-          v-if="option.tiers[index].image"
-          class="image"
-          :src="option.tiers[index].image"
-          alt="Merch Image"
-        />
-        <p v-if="option.tiers[index].text" class="text">{{ option.tiers[index].text }}</p>
-        <v-flexible-link
-          v-if="option.tiers[index].buttonText"
-          :to="option.tiers[index].buttonLink"
-          raw
+  <div>
+    <div
+      class="grid the-lab-options mb-2 align-items-center"
+      v-for="(option, index) in theOptions"
+      :key="`${option.label}-${index}`"
+    >
+      <div class="col-3">
+        <div v-if="option.label" class="label">{{ option.label }}</div>
+      </div>
+      <div class="col-3" v-for="(tier, index) in theTiers" :key="`${tier.name}-${index}`">
+        <div
+          :class="[{ 'box': option.tiers[index].check || (option.tiers[index].text && !option.tiers[index].image) }, { 'check': option.tiers[index].check }, { 'has-image': option.tiers[index].image }]"
         >
-          <Button class="blue p-button-lg" :label="option.tiers[index].buttonText" />
-        </v-flexible-link>
+          <img
+            v-if="option.tiers[index].image"
+            class="image"
+            :src="option.tiers[index].image"
+            alt="Merch Image"
+          />
+          <p v-if="option.tiers[index].text" class="text">{{ option.tiers[index].text }}</p>
+          <v-flexible-link
+            v-if="option.tiers[index].buttonText"
+            :to="option.tiers[index].buttonLink"
+            raw
+          >
+            <Button class="blue p-button-lg" :label="option.tiers[index].buttonText" />
+          </v-flexible-link>
+        </div>
       </div>
     </div>
   </div>
