@@ -35,7 +35,7 @@ const carouselEmitGetCurrPageIndex = (ind) => {
           />
         </div>
       </div>
-      <the-lab-options />
+      <the-lab-options :tiers="theTiers" :options="theOptions" />
     </div>
     <div v-if="theTiers && theOptions" class="mobile md:hidden">
       <div class="icons flex justify-content-around mb-3">
@@ -66,7 +66,6 @@ const carouselEmitGetCurrPageIndex = (ind) => {
           >
             <div class="content-holder">
               <div class="mb-5">
-                <!-- :icon="slotProps.data.icon" -->
                 <the-lab-tier :name="slotProps.data.name" :cost="slotProps.data.cost" />
               </div>
               <the-lab-options-mobile

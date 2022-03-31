@@ -18,10 +18,6 @@ const props = defineProps({
     default: "https://members.radiolab.org/",
   },
 })
-
-//const emit = defineEmit(["change", "click"]);
-
-
 </script>
 
 <template>
