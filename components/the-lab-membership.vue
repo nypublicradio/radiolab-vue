@@ -5,11 +5,17 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
 
 const theTiers = ref(null)
 const theOptions = ref(null)
+const contentIndex = ref(0)
 
 onMounted(() => {
   theTiers.value = tiers
   theOptions.value = options
 })
+
+const emitting = (e) => {
+  contentIndex.value = e
+  console.log('contentIndex.value = ', contentIndex.value)
+}
 
 </script>
 
@@ -31,35 +37,45 @@ onMounted(() => {
       <the-lab-options />
     </div>
     <div v-if="theTiers && theOptions" class="mobile md:hidden">
-      <Carousel :value="theTiers" :numVisible="1" :numScroll="1">
-        <!-- <template #header>
-          <div class="icons flex justify-content-around mb-3">
-            <img src="/the-lab/viper.svg" alt="viper icon" />
-            <img src="/the-lab/butterfly.svg" alt="butterfly icon" />
-            <img src="/the-lab/shrimp.svg" alt="shrimp icon" />
-          </div>
-        </template>-->
+      <div class="icons flex justify-content-around mb-3">
+        <img :class="{ 'selected': contentIndex === 0 }" src="/the-lab/viper.svg" alt="viper icon" />
+        <img
+          :class="{ 'selected': contentIndex === 1 }"
+          src="/the-lab/butterfly.svg"
+          alt="butterfly icon"
+        />
+        <img
+          :class="{ 'selected': contentIndex === 2 }"
+          src="/the-lab/shrimp.svg"
+          alt="shrimp icon"
+        />
+      </div>
+      <Carousel :value="theTiers" :numVisible="1" :numScroll="1" @update:page="emitting">
         <template #item="slotProps">
-          <div class="content-holder">
-            <div class="mb-5">
-              <the-lab-tier
-                :icon="slotProps.data.icon"
-                :name="slotProps.data.name"
-                :cost="slotProps.data.cost"
+          <div
+            class="p-carousel-items-content"
+            @touchstart.native.stop
+            @touchmove.native.stop
+            @touchend.native.stop
+          >
+            <div class="content-holder">
+              <div class="mb-5">
+                <!-- :icon="slotProps.data.icon" -->
+                <the-lab-tier :name="slotProps.data.name" :cost="slotProps.data.cost" />
+              </div>
+              <the-lab-options-mobile
+                :tiers="theTiers"
+                :options="theOptions"
+                :index="slotProps.data.index"
               />
             </div>
-            <the-lab-options-mobile
-              :tiers="theTiers"
-              :options="theOptions"
-              :index="slotProps.data.index"
-            />
           </div>
         </template>
       </Carousel>
     </div>
     <div class="grid mt-0 md:mt-4">
       <div class="col col-12 md:col-3"></div>
-      <div class="col col-12 md:col-9 text-center">
+      <div class="col col-12 md:col-9 text-center px-3">
         <p>On occasion we may adjust benefits based on member feedback or other factors. We'll always give you a heads-up when a change is coming.</p>
         <p class="mt-4">
           Already a member?
@@ -76,6 +92,16 @@ onMounted(() => {
     max-width: 360px;
     display: block;
     margin: 0 auto;
+    img {
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+      filter: grayscale(100%);
+      opacity: 0.3;
+      &.selected {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+    }
   }
   .p-carousel .p-carousel-content .p-carousel-next,
   .p-carousel .p-carousel-content .p-carousel-prev {
