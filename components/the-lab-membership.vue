@@ -14,7 +14,6 @@ onMounted(() => {
 
 const emitting = (e) => {
   contentIndex.value = e
-  console.log('contentIndex.value = ', contentIndex.value)
 }
 
 </script>
