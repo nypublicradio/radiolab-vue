@@ -31,11 +31,11 @@ useMeta({
               <v-flexible-link raw to="become-a-member">
                 <Button class="p-button-rounded">Become a member</Button>
               </v-flexible-link>
-              <img
+              <!-- <img
                 alt="place holder player image"
                 class="w-full mt-3 max-w-min m-auto block"
                 src="/temp-player.png"
-              />
+              />-->
             </div>
             <Divider align="center" class="my-6">
               <h3>or</h3>
