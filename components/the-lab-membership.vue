@@ -15,8 +15,8 @@ onMounted(() => {
 /**
  * Function connected to the emitter from the Carousel component when the content has changed, it provides the index of the page showing 
  */
-const emitting = (e) => {
-  contentIndex.value = e
+const carouselEmitGetCurrPageIndex = (ind) => {
+  contentIndex.value = ind
 }
 
 </script>
@@ -51,7 +51,12 @@ const emitting = (e) => {
           alt="shrimp icon"
         />
       </div>
-      <Carousel :value="theTiers" :numVisible="1" :numScroll="1" @update:page="emitting">
+      <Carousel
+        :value="theTiers"
+        :numVisible="1"
+        :numScroll="1"
+        @update:page="carouselEmitGetCurrPageIndex"
+      >
         <template #item="slotProps">
           <div
             class="p-carousel-items-content"
@@ -104,23 +109,26 @@ const emitting = (e) => {
       }
     }
   }
-  .p-carousel .p-carousel-content .p-carousel-next,
-  .p-carousel .p-carousel-content .p-carousel-prev {
-    color: var(--text-color);
-    align-self: flex-start;
-    top: 40px;
-    z-index: 10;
-    &.p-disabled {
-      color: var(--gray-200) !important;
+  .p-carousel {
+    .p-carousel-content .p-carousel-next,
+    .p-carousel-content .p-carousel-prev {
+      color: var(--text-color);
+      align-self: flex-start;
+      top: 40px;
+      z-index: 10;
+      &.p-disabled {
+        color: var(--gray-200) !important;
+      }
     }
-  }
-  .p-carousel .p-carousel-content .p-carousel-next {
-    right: 40px;
-  }
-  .p-carousel .p-carousel-content .p-carousel-prev {
-    left: 40px;
-  }
-  .content-holder {
+    .p-carousel-content .p-carousel-next {
+      right: 40px;
+    }
+    .p-carousel-content .p-carousel-prev {
+      left: 40px;
+    }
+    .p-carousel-item {
+      visibility: visible !important;
+    }
   }
 }
 </style>

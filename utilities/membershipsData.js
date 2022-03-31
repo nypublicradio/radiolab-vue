@@ -28,6 +28,7 @@ export const tiers = [
 export const options = [
     {
         label: 'Exclusive Podcast Extras',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -51,6 +52,7 @@ export const options = [
     },
     {
         label: 'Entire Podscast Archive',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -74,6 +76,7 @@ export const options = [
     },
     {
         label: 'Listen Ad-Free',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -97,6 +100,7 @@ export const options = [
     },
     {
         label: 'Behind-the-Scenes Content',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -120,6 +124,7 @@ export const options = [
     },
     {
         label: 'Video Extras',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -143,6 +148,7 @@ export const options = [
     },
     {
         label: 'Original Music & Playlists',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -166,6 +172,7 @@ export const options = [
     },
     {
         label: 'Invitation-only Virtual Events',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -189,6 +196,7 @@ export const options = [
     },
     {
         label: 'Annual Trivia Night',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -212,6 +220,7 @@ export const options = [
     },
     {
         label: '4x Yearly Ask Me Anythings',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -235,6 +244,7 @@ export const options = [
     },
     {
         label: '2x Yearly Convos w/ Lulu and Latif',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -258,6 +268,7 @@ export const options = [
     },
     {
         label: 'Birthday Shout-Out',
+        showLabelInMobile: true,
         tiers: [
             {
                 tier: 'Vipers',
@@ -281,6 +292,7 @@ export const options = [
     },
     {
         label: 'Merch',
+        showLabelInMobile: false,
         tiers: [
             {
                 tier: 'Vipers',
@@ -304,6 +316,7 @@ export const options = [
     },
     {
         label: 'Swag',
+        showLabelInMobile: false,
         tiers: [
             {
                 tier: 'Vipers',

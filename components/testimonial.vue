@@ -7,11 +7,11 @@ const props = defineProps({
   },
   city: {
     type: String,
-    default: null,
+    default: '',
   },
   country: {
     type: String,
-    default: null,
+    default: '',
   },
   flagCode: {
     type: String,
@@ -19,7 +19,7 @@ const props = defineProps({
   },
   quote: {
     type: String,
-    default: null,
+    default: '',
   },
 })
 

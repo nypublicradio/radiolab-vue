@@ -3,15 +3,15 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
 const props = defineProps({
   icon: {
     type: String,
-    default: null,
+    default: '',
   },
   name: {
     type: String,
-    default: null,
+    default: '',
   },
   cost: {
     type: String,
-    default: null,
+    default: '',
   },
   joinLink: {
     type: String,
