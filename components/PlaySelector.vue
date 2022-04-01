@@ -36,6 +36,7 @@ const launchEpisode = () => {
   if (props.episode.attributes) {
     currentEpisode.value = props.episode.attributes
   } else {
+    console.log(props.episode)
     currentEpisode.value = props.episode
   }
 }
