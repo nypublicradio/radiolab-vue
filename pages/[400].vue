@@ -4,7 +4,7 @@ useMeta({
   meta: [
     {
       name: 'theme-color',
-      content: colors.lightblue,
+      content: colors.rlLightblue,
     },
   ],
   bodyAttrs: {

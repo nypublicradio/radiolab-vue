@@ -37,3 +37,5 @@ export const usePlayServicePreference = () => useState('playServicePreference', 
     return playServices[0]
   }
 })
+const currentEpisodeObj = null
+export const useCurrentEpisode = () => useState('useCurrentEpisode', () => currentEpisodeObj)

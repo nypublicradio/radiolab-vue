@@ -5,13 +5,14 @@ useMeta({
   meta: [
     {
       name: "theme-color",
-      content: colors.blue,
+      content: colors.rlBlue,
     },
   ],
   bodyAttrs: {
     class: "has-head-color invert-menu-color",
   },
 })
+
 </script>
 <template>
   <div>

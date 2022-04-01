@@ -1,13 +1,13 @@
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { useScroll } from '@vueuse/core'
+import PullToRefresh from 'pulltorefreshjs'
+
 const route = useRoute()
-
 const darkMode = ref(false)
-
 const el = ref(null)
 const { x, y, isScrolling, arrivedState, directions } = useScroll(el)
-const isPlayer = ref(false)
+
 useMeta({
   title: "RadioLab",
   meta: [
@@ -17,13 +17,25 @@ useMeta({
     },
   ],
 })
+
+onMounted(() => {
+  PullToRefresh.init({
+    mainElement: '#body',
+    triggerElement: '#body',
+    shouldPullToRefresh: () => el.value.scrollTop == 0,
+    onRefresh() {
+      window.location.reload()
+    }
+  })
+})
+
 </script>
 
 <template>
   <div
     id="body"
     class="page"
-    :class="[`${route.name}`, { 'isPlayer': isPlayer }]"
+    :class="[`${route.name}`]"
     ref="el"
     :data-style-mode="darkMode ? 'dark' : 'default'"
   >
@@ -32,6 +44,7 @@ useMeta({
       <slot />
     </main>
     <radiolab-footer />
+    <audio-player />
   </div>
 </template>
 
@@ -50,6 +63,15 @@ html {
     &.isPlayer {
       padding-bottom: var(--player-height);
     }
+  }
+}
+
+// pull to refresh styles
+.ptr--ptr {
+  background-color: var(--primary-color);
+  * {
+    font-family: var(--font-family);
+    font-size: 1rem;
   }
 }
 </style>

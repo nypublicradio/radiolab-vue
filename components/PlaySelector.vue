@@ -3,6 +3,7 @@
 TODO: Eventually the left side will have to be Clickable to initiate the play service.. and only the right arrow will be to select from the menu
 */
 import { ref, onUpdated } from "vue"
+import { useCurrentEpisode } from '~/composables/states'
 
 const props = defineProps({
   menuClass: {
@@ -17,8 +18,9 @@ const props = defineProps({
 
 const playServices = usePlayServices()
 const playServicePreference = usePlayServicePreference()
-
 const selectedPlayService = ref(playServicePreference)
+
+const currentEpisode = useCurrentEpisode()
 
 const launchService = (service) => {
   //updating local storage on update
@@ -32,9 +34,9 @@ const launchService = (service) => {
 // TODO: trigger global player to consume episode and play
 const launchEpisode = () => {
   if (props.episode.attributes) {
-    //console.log('episode', props.episode.attributes)
+    currentEpisode.value = props.episode.attributes
   } else {
-    //console.log('episode', props.episode)
+    currentEpisode.value = props.episode
   }
 }
 
