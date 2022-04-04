@@ -1,3 +1,5 @@
+import { isConstructorDeclaration } from "typescript"
+
 // formats a date in the format of ShortMonthName DD, YYYY
 export const formatDate = function (date) {
   const formattedDate = new Date(date)
@@ -28,17 +30,14 @@ export const copyToClipBoard = async (content) => {
     })
 }
 
-// toast configuration
-export const toastGlobalConfig = (type) => {
-
+export const toastGlobalConfig = (options) => {
+  options ? options : options = {}
   return {
-    timeout: 6000,
-    position: 'bottom-center',
-    hideProgressBar: true,
-    showIcon: true,
-    type: type ? type : 'default',
-    transition: 'slide',
+    timeout: options.timeout ? options.timeout : 6000,
+    position: options.position ? options.position : 'bottom-center',
+    hideProgressBar: options.hideProgressBar ? options.hideProgressBar : true,
+    showIcon: options.showIcon ? options.showIcon : true,
+    type: options.type ? options.type : 'default',
+    transition: options.transition ? options.transition : 'slide',
   }
-
 }
-

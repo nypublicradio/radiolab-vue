@@ -3,8 +3,9 @@ import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/com
 import { useCurrentEpisode } from '~/composables/states'
 const currentEpisode = useCurrentEpisode()
 
-const togglePlayFunc = () => {
+const togglePlayEmit = () => {
     console.log('toggle play')
+
 }
 
 </script>
@@ -24,7 +25,7 @@ const togglePlayFunc = () => {
             :duration-seconds="currentEpisode['estimated-duration']"
             :show-download="currentEpisode['audio-may-download'] ? true : false"
             :show-skip="false"
-            @togglePlay="togglePlayFunc"
+            @togglePlay="togglePlayEmit"
         />
     </transition>
 </template>
@@ -39,7 +40,12 @@ const togglePlayFunc = () => {
         border: 1px solid var(--white);
     }
     * {
-        color: var(--white);
+        color: var(--white) !important;
+    }
+    .flexible-link {
+        &:hover {
+            color: var(--white) !important;
+        }
     }
 }
 

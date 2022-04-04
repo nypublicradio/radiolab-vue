@@ -13,7 +13,8 @@ const props = defineProps({
 })
 
 const toastConfig = ref(toastGlobalConfig())
-const toastConfigDanger = ref(toastGlobalConfig('danger'))
+const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
+
 const visibleRight = ref(false)
 const dotsMenu = ref()
 const shareMenu = ref()
