@@ -6,8 +6,9 @@ import PullToRefresh from 'pulltorefreshjs'
 const route = useRoute()
 const darkMode = ref(false)
 const el = ref(null)
-const { x, y, isScrolling, arrivedState, directions } = useScroll(el)
-
+const { x, y, isScrolling, arrivedState, directions } = useScroll(el, {
+  offset: { top: 0, bottom: 100, right: 0, left: 0 }
+})
 useMeta({
   title: "RadioLab",
   meta: [
@@ -44,7 +45,7 @@ onMounted(() => {
       <slot />
     </main>
     <radiolab-footer />
-    <audio-player />
+    <audio-player :class="[{ 'at-bottom': arrivedState.bottom }]" />
   </div>
 </template>
 
