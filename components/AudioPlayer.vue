@@ -1,17 +1,17 @@
 <script setup>
 import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VPersistentPlayer.vue'
 import { useCurrentEpisode } from '~/composables/states'
-
+import { toastGlobalConfig } from '~/utilities/helpers'
+import { createToast } from 'mosha-vue-toastify'
 // had to install howler.js locally and add this import to stop it from breaking the build
 import { Howl, Howler } from 'howler'
 const currentEpisode = useCurrentEpisode()
 
-const props = defineProps({
-  autoPlay: {
-    type: Boolean,
-    default: false,
-  }
-})
+const toastConfig = ref(toastGlobalConfig())
+
+const onDownload = () => {
+  createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
+}
 
 </script>
 
@@ -31,6 +31,7 @@ const props = defineProps({
       :show-download="currentEpisode['audio-may-download'] ? true : false"
       :show-skip="true"
       :can-minimize="true"
+      @download="onDownload"
     />
   </transition>
 </template>
