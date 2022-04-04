@@ -9,6 +9,7 @@ const currentEpisode = useCurrentEpisode()
 
 const toastConfig = ref(toastGlobalConfig())
 
+/*function called from the emit of the persistent player when the download button is clicked to trigger the toast notification*/
 const onDownload = () => {
   createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
 }
