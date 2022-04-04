@@ -36,7 +36,7 @@ export default [
       },
       {
         label: 'Announcements',
-        to: '/announcements',
+        to: '/new-cohosts-latif-nasser-lulu-miller',
       },
       {
         label: 'Pitch Us',
