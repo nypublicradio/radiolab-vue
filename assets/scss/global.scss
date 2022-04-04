@@ -214,6 +214,10 @@ section {
   strong {
     font-weight: var(--font-weight-500);
   }
+  img {
+    max-width: 100%;
+    position: relative;
+  }
   .user-embedded-video {
     div {
       position: relative;
