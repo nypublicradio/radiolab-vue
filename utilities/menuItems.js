@@ -53,7 +53,7 @@ export default [
       },
       {
         label: 'Read the credits',
-        to: '/read-the-credits',
+        to: '/radiolab-read-credit',
       },
       {
         label: 'Swag Lab',

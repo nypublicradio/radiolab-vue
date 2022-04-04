@@ -1,6 +1,5 @@
 <script setup>
 import { onBeforeMount, onMounted, computed, ref } from 'vue'
-import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import Skeleton from 'primevue/skeleton'
 useMeta({
@@ -35,9 +34,6 @@ onBeforeMount(async () => {
     <section class="head-color yellow">
       <div class="content">
         <template v-if="dataLoaded">
-          <h1 class="mb-5">
-            {{ page.title }}
-          </h1>
           <div class="html-formatting" v-html="page.body" />
         </template>
         <skeleton v-else />
