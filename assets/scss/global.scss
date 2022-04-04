@@ -233,9 +233,9 @@ section {
     -ms-user-select: none;
     user-select: none;
     vertical-align: bottom;
-    background: #f4f2f0;
+    background: var(--white100);
     border: 2px solid transparent;
-    color: #0a0b0c;
+    color: var(--black500);
     font-size: 1rem;
     padding: 0.5rem 1rem;
   }

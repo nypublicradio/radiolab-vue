@@ -41,11 +41,9 @@ useMeta({
               </p>
               <p class="mb-3">
                 Contact Radiolab using
-                <a
-                  href="https://wnycstudios.zendesk.com/hc/en-us/requests/new?ticket_form_id=923428"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >this form.</a
+                <v-flexible-link
+                  to="https://wnycstudios.zendesk.com/hc/en-us/requests/new?ticket_form_id=923428"
+                  >this form.</v-flexible-link
                 >
               </p>
             </div>
@@ -59,14 +57,17 @@ useMeta({
             <Divider align="center" class="my-6" />
             <p class="mb-3">
               All press inquiries may be directed to
-              <a href="mailto:jhoulihan@nypublicradio.org"
-                >Jennifer Houlihan Roussel</a
+              <v-flexible-link to="mailto:jhoulihan@nypublicradio.org"
+                >Jennifer Houlihan Roussel</v-flexible-link
               >
-              at (646) 829-4497.
+              at
+              <v-flexible-link to="tel:1646829497" target="_self"
+                >(646) 829-4497</v-flexible-link
+              >.
             </p>
             <p class="mb-3">
               Please read about changes to our comments policy
-              <nuxt-link to="/comments">here</nuxt-link>.
+              <v-flexible-link to="/comments">here</v-flexible-link>.
             </p>
             <Divider align="center" class="my-6" />
             <p class="mb-3">
