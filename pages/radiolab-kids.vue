@@ -1,5 +1,4 @@
 <script setup>
-
 </script>
  
 <template>
@@ -8,8 +7,11 @@
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <h2>Radiolab for Kids</h2>
-            <p class>Kid-friendly stories curated by Radiolab. All in one bingeable spot!</p>
+            <h2 class="mb-4">Radiolab for Kids</h2>
+            <p class>
+              Kid-friendly stories curated by Radiolab. All in one bingeable
+              spot!
+            </p>
           </div>
         </div>
       </div>

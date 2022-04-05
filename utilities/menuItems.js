@@ -36,7 +36,7 @@ export default [
       },
       {
         label: 'Announcements',
-        to: '/announcements',
+        to: '/new-cohosts-latif-nasser-lulu-miller',
       },
       {
         label: 'Pitch Us',
@@ -53,7 +53,7 @@ export default [
       },
       {
         label: 'Read the credits',
-        to: '/read-the-credits',
+        to: '/radiolab-read-credit',
       },
       {
         label: 'Swag Lab',
