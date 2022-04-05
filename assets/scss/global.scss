@@ -207,12 +207,37 @@ section {
       color: var(--blue-500);
     }
   }
-  p {
+  p,
+  dl {
     margin-block-start: 1em;
     margin-block-end: 1em;
   }
   strong {
     font-weight: var(--font-weight-500);
+  }
+  img {
+    max-width: 100%;
+    position: relative;
+  }
+  .button {
+    border-radius: 2rem;
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: bottom;
+    background: var(--white100);
+    border: 2px solid transparent;
+    color: var(--black500);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
   }
   .user-embedded-video {
     div {

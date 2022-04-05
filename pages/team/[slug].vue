@@ -20,7 +20,7 @@ onBeforeMount(async () => {
 
 <template>
   <div>
-    <section>
+    <section class="mb-5">
       <div class="content pb-0">
         <div class="grid">
           <div class="col-12">
@@ -34,14 +34,22 @@ onBeforeMount(async () => {
       <div class="content mb-4 pt-0">
         <div v-if="dataLoaded">
           <v-image-with-caption
-            :image="person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+            :image="
+              person.image.template.replace(
+                '%s/%s/%s/%s',
+                '%width%/%height%/c/%quality%'
+              )
+            "
             :alt="person.name"
             :max-width="person.image.w"
             :max-height="person.image.h"
             :ratio="[8, 5]"
             class="mb-6"
           />
-          <div v-html="person.bio || person.lede" class="team-bio html-formatting" />
+          <div
+            v-html="person.bio || person.lede"
+            class="team-bio html-formatting"
+          />
         </div>
         <skeleton v-else />
       </div>
