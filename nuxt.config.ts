@@ -16,6 +16,9 @@ export default defineNuxtConfig({
     ],
   },
   buildModules: ['@vueuse/nuxt'],
+  vueuse: {
+    ssrHandlers: true,
+  },
   router: {
     // https://router.vuejs.org/api/#routeroptions
     // NEED NEWER VERSION OF NUXT3 to use the following, to solve the page position on route change

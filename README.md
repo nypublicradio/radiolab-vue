@@ -13,12 +13,18 @@ We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
 
 ## Setup
 
-This project expects node version `14.19.0`.
+This project expects 
+node version `14.19.0`
+npm version 8.6
+
+npm install npm@6.14.16 -g
 
 ```bash
 npm install
 npm i nuxt3@3.0.0-27439932.78761c2
 ```
+
+3.0.0-27434608.0c99002
 
 ^ we are using this version of NUXT3 till the release candidate!
 

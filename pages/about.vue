@@ -4,6 +4,7 @@ useMeta({
     class: 'has-head-color',
   },
 })
+
 </script>
 
 <template>
