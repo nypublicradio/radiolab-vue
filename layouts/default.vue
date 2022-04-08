@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from "vue"
-import { useScroll } from '@vueuse/core'
 import PullToRefresh from 'pulltorefreshjs'
 
 const route = useRoute()
@@ -10,7 +9,7 @@ const { x, y, isScrolling, arrivedState, directions } = useScroll(el, {
   offset: { top: 0, bottom: 100, right: 0, left: 0 }
 })
 
-useMeta({
+useHead({
   title: "RadioLab",
   meta: [
     {

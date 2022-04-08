@@ -1,5 +1,5 @@
 <script setup>
-useMeta({
+useHead({
   bodyAttrs: {
     class: 'has-head-color',
   },

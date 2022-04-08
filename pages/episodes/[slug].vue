@@ -5,7 +5,7 @@ import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/librar
 import axios from 'axios'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import EpisodeTools from '~/components/EpisodeTools.vue'
-useMeta({
+useHead({
   meta: [
     {
       name: 'theme-color',

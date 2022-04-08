@@ -4,9 +4,9 @@
 if you get this error, or any other error:
 "nuxi requires @nuxt/kit to be installed in your project. Try installing nuxt3 or @nuxt/bridge"
 
-irst run this install to fix it:
+first run this install to fix it:
 ```bash
-npm i nuxt3@3.0.0-27439932.78761c2
+npm i nuxt3@3.0.0-27490192.4253d2e
 ```
 
 We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
@@ -14,19 +14,18 @@ We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
 ## Setup
 
 This project expects 
-node version `14.19.0`
-npm version 8.6
+node version `16.14.2`
+npm version 8.6.0
 
-npm install npm@6.14.16 -g
+to install the npm version, run the following
+npm install npm@8.6.0 -g
 
 ```bash
-npm install
-npm i nuxt3@3.0.0-27439932.78761c2
+npm install --legacy-peer-deps
+npm i nuxt3@3.0.0-27490192.4253d2e
 ```
 
-3.0.0-27434608.0c99002
-
-^ we are using this version of NUXT3 till the release candidate!
+^ we are using this version of NUXT3 till the release candidate! Also, we have to add "--legacy-peer-deps" to the install command until @vueuse fixes their usevue/core issue.
 
 ## Development
 

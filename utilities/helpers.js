@@ -31,7 +31,7 @@ export const copyToClipBoard = async (content) => {
 // global function for getting and overridding toast notification configuation 
 export const toastGlobalConfig = (optionsObj) => {
   // is it null or undefined
-  optionsObj ? optionsObj : {}
+  optionsObj ??= {}
 
   return {
     timeout: 6000,
