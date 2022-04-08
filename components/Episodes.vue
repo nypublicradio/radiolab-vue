@@ -59,6 +59,21 @@ const rowCountCalc = props.paginate
 
 const axiosSuccessful = ref(true)
 
+/*
+takes the prop path and returns the desired data from the response
+*/
+const traverseObjectByString = (pathString, data) => {
+  let tempData = data
+  const pathParts = pathString.split('.')
+  pathParts.forEach(key => {
+    tempData = tempData[key]
+    if (tempData === undefined || tempData === null) {
+      throw new Error(`path prop wrong format`)
+    }
+  })
+  return tempData
+}
+
 onBeforeMount(async () => {
   await axios
     .get(
@@ -66,7 +81,9 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       //episodes.value = response.data.included
-      episodes.value = eval(`response.${props.path}`)
+
+      episodes.value = traverseObjectByString(props.path, response)
+
       //console.log('response.data.included  =', response.data.included)
       totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true

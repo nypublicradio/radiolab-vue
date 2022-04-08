@@ -1,4 +1,4 @@
-FROM node:14.19.0 as build
+FROM node:16.14.2 as build
 WORKDIR /code
 
 COPY ./.npmrc .
@@ -10,7 +10,7 @@ RUN npm install sass
 COPY . .
 RUN npm run build
 
-FROM node:14.19.0-slim as app
+FROM node:16.14.2-slim as app
 WORKDIR /app
 
 COPY --from=build /code/.output/ ./.output/

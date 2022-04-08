@@ -7,11 +7,11 @@ const props = defineProps({
     },
     header: {
         type: String,
-        default: false,
+        default: '',
     },
     buttonText: {
         type: String,
-        default: false,
+        default: '',
     },
 
 })

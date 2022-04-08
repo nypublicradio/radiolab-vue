@@ -1,7 +1,7 @@
 <script setup>
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 const playServices = usePlayServices()
-useMeta({
+useHead({
   meta: [
     {
       name: 'theme-color',
@@ -12,6 +12,7 @@ useMeta({
     class: 'has-head-color invert-menu-color',
   },
 })
+
 </script>
 
 <template>
