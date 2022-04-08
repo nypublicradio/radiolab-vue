@@ -8,24 +8,30 @@ useHead({
     },
   ],
   bodyAttrs: {
-    class: 'has-head-color'
-  }
+    class: 'has-head-color',
+  },
 })
 </script>
 
 <template>
   <div class="error-page">
-    <section class="graphic-head flex justify-content-center align-content-center">
+    <section
+      class="graphic-head flex justify-content-center align-content-center"
+    >
       <h2 class="text-center font-semibold">Nope.</h2>
     </section>
     <section class="white100bg">
       <div class="content p-3 md:p-8">
         <div class="grid justify-content-between">
           <div class="col-12 lg:col-5">
-            <p class="mb-4">Not all those who wander are lost. But you sure are!</p>
+            <p class="mb-4">
+              Not all those who wander are lost. But you sure are!
+            </p>
             <p>
-              <strong>404 Error - Not Found</strong> - this page does not exist, but you are invited to listen to our
-              <strong>All-Time Top Ten Favorite Radiolab Episodes</strong> below.
+              <strong>404 Error - Not Found</strong> - this page does not exist,
+              but you are invited to listen to our
+              <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
+              below.
             </p>
           </div>
         </div>
@@ -55,7 +61,7 @@ useHead({
     max-width: 316px;
     height: auto;
     margin-top: 0;
-    @include media(">lg") {
+    @include media('>lg') {
       margin-top: -490px;
       max-width: 616px;
     }

@@ -1,5 +1,5 @@
 <script setup>
-useHead({
+useMeta({
   meta: [
     {
       name: 'theme-color',
