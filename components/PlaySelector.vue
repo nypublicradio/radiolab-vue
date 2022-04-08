@@ -1,8 +1,7 @@
 <script setup>
-/**
-TODO: Eventually the left side will have to be Clickable to initiate the play service.. and only the right arrow will be to select from the menu
-*/
-import { ref, onUpdated } from "vue"
+import { ref } from "vue"
+import { useCurrentEpisode } from '~/composables/states'
+import { playServices, lsSelectedPlayService } from '~/utilities/constants'
 
 const props = defineProps({
   menuClass: {
@@ -15,14 +14,14 @@ const props = defineProps({
   }
 })
 
-const playServices = usePlayServices()
 const playServicePreference = usePlayServicePreference()
-
 const selectedPlayService = ref(playServicePreference)
+
+const currentEpisode = useCurrentEpisode()
 
 const launchService = (service) => {
   //updating local storage on update
-  window.localStorage.setItem("selectedPlayService", JSON.stringify(service))
+  window.localStorage.setItem(lsSelectedPlayService, JSON.stringify(service))
 
   //launch tab of service
   window.open(service.url, '_blank')
@@ -32,9 +31,9 @@ const launchService = (service) => {
 // TODO: trigger global player to consume episode and play
 const launchEpisode = () => {
   if (props.episode.attributes) {
-    //console.log('episode', props.episode.attributes)
+    currentEpisode.value = props.episode.attributes
   } else {
-    //console.log('episode', props.episode)
+    currentEpisode.value = props.episode
   }
 }
 

@@ -28,17 +28,16 @@ export const copyToClipBoard = async (content) => {
     })
 }
 
-// toast configuration
-export const toastGlobalConfig = (type) => {
+// global function for getting and overridding toast notification configuation 
+export const toastGlobalConfig = (optionsObj = {}) => {
 
   return {
     timeout: 6000,
     position: 'bottom-center',
     hideProgressBar: true,
     showIcon: true,
-    type: type ? type : 'default',
+    type: 'default',
     transition: 'slide',
+    ...optionsObj
   }
-
 }
-

@@ -1,6 +1,6 @@
 <script setup>
 import colors from '~/assets/scss/colors.module.scss'
-useMeta({
+useHead({
   meta: [
     {
       name: 'theme-color',

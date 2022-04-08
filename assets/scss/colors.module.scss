@@ -1,11 +1,12 @@
+// I had to prefix the color with "rl" because some of the base color names were protected somehow
 :export {
-    primaryColor: $primaryColor;
-    blue: map-get($colors, 'blue');
-    lightblue: map-get($colors, 'lightblue');
-    redorange: map-get($colors, 'redorange');
-    orange: map-get($colors, 'orange');
-    lightorange: map-get($colors, 'lightorange');
-    gold: map-get($colors, 'gold');
-    pink: map-get($colors, 'pink');
-    lightpink: map-get($colors, 'lightpink');
+    rlPrimaryColor: $primaryColor;
+    rlBlue: map-get($colors, 'blue');
+    rlLightblue: map-get($colors, 'lightblue');
+    rlRedorange: map-get($colors, 'redorange');
+    rlOrange: map-get($colors, 'orange');
+    rlLightorange: map-get($colors, 'lightorange');
+    rlGold: map-get($colors, 'gold');
+    rlPink: map-get($colors, 'pink');
+    rlLightpink: map-get($colors, 'lightpink');
 }

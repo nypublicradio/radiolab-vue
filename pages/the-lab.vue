@@ -1,17 +1,18 @@
 <script setup>
 import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
 import colors from "~/assets/scss/colors.module.scss"
-useMeta({
+useHead({
   meta: [
     {
       name: "theme-color",
-      content: colors.blue,
+      content: colors.rlBlue,
     },
   ],
   bodyAttrs: {
     class: "has-head-color invert-menu-color",
   },
 })
+
 </script>
 <template>
   <div>
@@ -68,13 +69,21 @@ useMeta({
           </div>
           <div class="col col-12 lg:col-6">
             <div class="how-you-power-radiolab">
-              <div class="caps-header">How you power</div>
+              <div class="caps-header text-center sm:text-left">
+                How you power
+                <span class="block sm:hidden">Radiolab</span>
+              </div>
               <img
-                class="w-full py-4 xl:p-6"
+                class="w-full py-4 xl:p-6 hidden sm:block"
                 src="/the-lab/journey-illustration.jpg"
                 alt="path to power Radiolab"
               />
-              <div class="caps-header text-right">Radiolab</div>
+              <img
+                class="w-full py-4 xl:p-6 block sm:hidden"
+                src="/the-lab/journey-illustration-mobile.jpg"
+                alt="path to power Radiolab"
+              />
+              <div class="caps-header text-right hidden sm:block">Radiolab</div>
             </div>
           </div>
         </div>
@@ -189,6 +198,9 @@ useMeta({
     border-radius: 20px;
     overflow: hidden;
     padding: 2rem;
+    @include media("<=sm") {
+      padding: 2rem 1rem;
+    }
     .caps-header {
       font-size: var(--font-size-15);
       letter-spacing: 0.5rem;
