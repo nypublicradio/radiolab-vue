@@ -59,6 +59,9 @@ const rowCountCalc = props.paginate
 
 const axiosSuccessful = ref(true)
 
+/*
+takes the prop path and returns the desired data from the response
+*/
 const traverseObjectByString = (pathString, data) => {
   let tempData = data
   const pathParts = pathString.split('.')
