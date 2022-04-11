@@ -1,4 +1,5 @@
 <script setup>
+import { ref, watchEffect } from 'vue'
 import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VPersistentPlayer.vue'
 import { useCurrentEpisode } from '~/composables/states'
 import { toastGlobalConfig } from '~/utilities/helpers'
@@ -14,12 +15,34 @@ const onDownload = () => {
   createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
 }
 
+
+let showPlayer = ref(false)
+const firstFlag = ref(false)
+// function that handles the logic for the persistent player to show and hide when the user changes the episode
+const switchEpisode = () => {
+  if (firstFlag.value) {
+    showPlayer.value = false
+    setTimeout(() => {
+      showPlayer.value = true
+    }, 1000)
+  } else {
+    showPlayer.value = true
+  }
+  firstFlag.value = true
+}
+
+watchEffect(() => {
+  if (!!currentEpisode.value) {
+    switchEpisode()
+  }
+})
+
 </script>
 
 <template>
   <transition name="player">
     <v-persistent-player
-      v-if="!!currentEpisode"
+      v-if="showPlayer"
       :auto-play="true"
       :is-playing="true"
       :title="currentEpisode.title"
