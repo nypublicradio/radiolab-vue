@@ -15,19 +15,7 @@ export default defineNuxtConfig({
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ff3904' }
     ],
   },
-  buildModules: ['@vueuse/nuxt'],
-  vueuse: {
-    ssrHandlers: true,
-  },
-  router: {
-    // https://router.vuejs.org/api/#routeroptions
-    // NEED NEWER VERSION OF NUXT3 to use the following, to solve the page position on route change
-    /* options: {
-      scrollBehavior (to, from, savedPosition) {
-        return { x: 0, y: 0 }
-      }
-    } */
-  },
+  //buildModules: [],
   css: [
     '@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
     '@nypublicradio/nypr-design-system-vue3/src/assets/styles/flags.css',

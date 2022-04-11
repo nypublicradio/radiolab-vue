@@ -21,11 +21,11 @@ to install the npm version, run the following
 npm install npm@8.6.0 -g
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 npm i nuxt3@3.0.0-27491748.3186841
 ```
 
-^ we are using this version of NUXT3 till the release candidate! Also, we have to add `--legacy-peer-deps` to the install command until @vueuse fixes their @vueuse/core issue.
+^ we are using this version of NUXT3 till the release candidate! 
 
 ## Development
 

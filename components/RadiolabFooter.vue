@@ -66,41 +66,52 @@ onMounted(() => {
 .site-footer {
   section {
     background-color: var(--blue-500);
+    padding-bottom: var(--player-height);
+
     .content {
       padding: spacing(10);
+
       @include media("<medium") {
         padding: spacing(4);
       }
+
       .bottom {
         .left {
           .icon {
             width: 16px;
             height: auto;
           }
+
           .sub {
             font-size: var(--font-size-8);
             line-height: normal;
           }
         }
+
         .right {
           .menu {
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
             height: 220px;
+
             @include media("<lg") {
               height: 280px;
             }
+
             @include media("<md") {
               height: 280px;
               margin: -1rem;
             }
+
             @include media("<sm") {
               height: 380px;
             }
+
             @include media("<xs") {
               height: 380px;
             }
+
             .menu-item {
               .flexible-link {
                 padding: spacingTRBL(2.5, 5, 2.5, 5);
@@ -109,9 +120,11 @@ onMounted(() => {
                 font-weight: var(--font-weight-400);
                 text-decoration: none;
                 font-size: var(--font-size-5);
+
                 @include media("<xs") {
                   font-size: var(--font-size-4);
                 }
+
                 &:hover {
                   text-decoration: underline;
                 }

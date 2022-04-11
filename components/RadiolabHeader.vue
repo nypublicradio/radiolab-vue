@@ -10,9 +10,7 @@ const menuItems = ref(menuItemsImport)
 <template>
   <div class="site-header">
     <section>
-      <div
-        class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4"
-      >
+      <div class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4">
         <Menubar :model="menuItems">
           <template #start>
             <nuxt-link to="/" class="logo-holder-link">
@@ -38,6 +36,7 @@ const menuItems = ref(menuItemsImport)
   .site-header {
     &.at-top {
       background-color: transparent;
+
       .p-submenu-list {
         &:after {
           border-color: transparent !important;
@@ -47,6 +46,7 @@ const menuItems = ref(menuItemsImport)
     }
   }
 }
+
 .invert-menu-color {
   .site-header.at-top {
     .p-menubar:not(.p-menubar-mobile-active) {
@@ -54,20 +54,25 @@ const menuItems = ref(menuItemsImport)
         &:hover {
           background: var(--black100);
         }
+
         .pi-bars {
           color: var(--white100);
         }
       }
+
       .radiolab-logo .st0 {
         fill: var(--white100);
       }
+
       .p-menuitem:not(.button) .p-menuitem-link {
         &:after {
           background: var(--white100) !important;
         }
+
         .p-menuitem-text,
         .p-submenu-icon {
           color: var(--white100) !important;
+
           .p-submenu-icon {
             color: var(--white100) !important;
           }
@@ -76,24 +81,29 @@ const menuItems = ref(menuItemsImport)
     }
   }
 }
+
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: var(--header-z-index);
   transition: background-color var(--transition-duration);
   -webkit-transition: background-color var(--transition-duration);
   background-color: var(--white);
+
   section {
     justify-items: stretch;
+
     .content {
       width: 100%;
       padding: spacingTRBL(0, 10, 0, 10);
+
       @include media("<lg") {
         //padding: spacingTRBL(0, 6, 0, 6);
         padding: 0;
         padding-right: 1em;
       }
+
       @include media("<md") {
         // padding: spacingTRBL(0, 1, 0, 1);
       }
@@ -105,59 +115,75 @@ const menuItems = ref(menuItemsImport)
       background: transparent;
       border: none;
       padding: 1rem 0.5rem;
+
       @include media("<xl") {
         padding: 1rem 0.5rem 1rem 0;
       }
+
       .p-menubar-button {
         color: var(--black100);
+
         .pi-bars {
           transform: scaleX(0.8);
         }
       }
-      .p-menubar-root-list > .p-menuitem-active > .p-submenu-list {
+
+      .p-menubar-root-list>.p-menuitem-active>.p-submenu-list {
         display: flex;
       }
+
       @include media(">lg") {
         justify-content: space-between;
       }
+
       .logo-holder-link {
         display: flex;
+
         .logo {
           width: 100px;
           height: auto;
         }
       }
+
       .p-menubar-button {
         order: -1;
       }
+
       .p-menuitem {
         position: unset;
+
         &.gap {
           @media (min-width: 1440px) {
             margin-left: 290px !important;
           }
+
           @include media(">lg") {
             margin-left: calc(50vw - 430px);
           }
         }
+
         //top menu
         .p-menuitem-link {
           background: transparent !important;
           position: relative;
           border-radius: 2rem;
           overflow: visible;
+
           .p-ink {
             display: none;
           }
+
           .p-submenu-icon {
             color: var(--black100);
             font-size: 0.75rem;
             margin-left: 0.2rem;
             margin-top: 0.2rem;
           }
+
           .p-menuitem-icon {
             display: none;
           }
+
           &:after {
             content: "";
             height: 1px;
@@ -173,13 +199,16 @@ const menuItems = ref(menuItemsImport)
             transition: opacity var(--transition-duration);
             -webkit-transition: opacity var(--transition-duration);
           }
+
           &:hover {
             background: transparent;
+
             &:after {
               opacity: 1;
             }
           }
         }
+
         // submenus
         .p-submenu-list {
           margin-top: 1rem;
@@ -197,6 +226,7 @@ const menuItems = ref(menuItemsImport)
             opacity var(--transition-duration);
           display: flex;
           z-index: -1;
+
           &:after {
             transition: background-color var(--transition-duration),
               border-color var(--transition-duration);
@@ -213,16 +243,19 @@ const menuItems = ref(menuItemsImport)
             border-top: 1px solid var(--primary-color);
             border-bottom: 1px solid var(--primary-color);
           }
+
           .p-menuitem-link {
             &:after {
               bottom: -0.4rem;
             }
           }
         }
+
         &.p-menuitem-active {
           .p-menuitem-link:after {
             opacity: 1;
           }
+
           .p-submenu-list {
             top: 53px;
             opacity: 1;
@@ -232,6 +265,7 @@ const menuItems = ref(menuItemsImport)
               opacity: 0;
             }
           }
+
           .p-submenu-list .p-menuitem-link {
             &:hover {
               &:after {
@@ -241,17 +275,21 @@ const menuItems = ref(menuItemsImport)
           }
         }
       }
+
       .p-menubar-end {
         margin-left: unset;
+
         .nested-menu {
           border: none;
         }
       }
     }
+
     // mobile menu
     .p-menubar.p-menubar-mobile-active {
       border: none;
       padding: 0;
+
       .p-menubar-button {
         color: var(--black100);
         z-index: 1002;
@@ -262,15 +300,18 @@ const menuItems = ref(menuItemsImport)
         background: white;
         border-radius: 0;
         height: var(--header-height);
+
         .pi-bars {
           &:before {
             content: "\e90b";
           }
         }
+
         &:focus {
           box-shadow: none;
         }
       }
+
       .p-menubar-root-list {
         align-items: flex-start;
         box-shadow: none;
@@ -282,19 +323,24 @@ const menuItems = ref(menuItemsImport)
         padding: 0;
         padding-top: spacing(8);
         padding-bottom: spacing(12);
+
         .p-menuitem {
           width: auto;
+
           .p-menuitem-link {
             margin-top: spacing(8);
             margin-bottom: 0;
             padding-bottom: 0;
             pointer-events: none;
+
             .p-submenu-icon {
               display: none;
             }
           }
+
           .p-submenu-list {
             display: block;
+
             .p-menuitem-link {
               pointer-events: auto;
               margin-top: spacing(0);
@@ -302,8 +348,10 @@ const menuItems = ref(menuItemsImport)
               font-size: var(--font-size-8);
             }
           }
+
           &.alone {
             margin-top: spacing(8);
+
             .p-menuitem-link {
               pointer-events: auto;
               margin-top: spacing(0);
@@ -311,6 +359,7 @@ const menuItems = ref(menuItemsImport)
               font-size: var(--font-size-8);
             }
           }
+
           &.button {
             .p-menuitem-link {
               margin-left: spacing(4) !important;
@@ -319,9 +368,12 @@ const menuItems = ref(menuItemsImport)
         }
       }
     }
+
     .p-menubar {
+
       // both desktop and menu styles
       .p-menuitem {
+
         // simulate regular Button
         &.button {
           .p-menuitem-link {
@@ -330,19 +382,24 @@ const menuItems = ref(menuItemsImport)
             padding: 0.75rem 1.5rem !important;
             transition: background var(--transition-duration);
             -webkit-transition: background var(--transition-duration);
+
             &:hover {
               background: var(--black100) !important;
+
               .p-menuitem-text {
                 color: var(--primary-color) !important;
               }
             }
+
             &:after {
               display: none;
             }
+
             .p-menuitem-text {
               transition: color var(--transition-duration);
               -webkit-transition: color var(--transition-duration);
             }
+
             .p-menuitem-icon {
               display: none;
             }
