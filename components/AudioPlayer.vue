@@ -41,12 +41,22 @@ watchEffect(() => {
 
 <template>
   <transition name="player">
-    <v-persistent-player v-if="showPlayer" :auto-play="true" :is-playing="true" :title="currentEpisode.title"
-      :title-link="currentEpisode.slug" :station="currentEpisode['show-title']" :description="currentEpisode.tease"
+    <v-persistent-player
+      v-if="showPlayer"
+      :auto-play="true"
+      :is-playing="true"
+      :title="currentEpisode.title"
+      :title-link="currentEpisode.slug"
+      :station="currentEpisode['show-title']"
+      :description="currentEpisode.tease"
       :image="currentEpisode['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
-      :file="currentEpisode.audio" :duration-seconds="currentEpisode['estimated-duration']"
-      :show-download="currentEpisode['audio-may-download'] ? true : false" :show-skip="true" :can-minimize="true"
-      @download="onDownload" />
+      :file="currentEpisode.audio"
+      :duration-seconds="currentEpisode['estimated-duration']"
+      :show-download="currentEpisode['audio-may-download'] ? true : false"
+      :show-skip="true"
+      :can-minimize="true"
+      @download="onDownload"
+    />
   </transition>
 </template>
 

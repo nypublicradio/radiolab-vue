@@ -10,7 +10,9 @@ const menuItems = ref(menuItemsImport)
 <template>
   <div class="site-header">
     <section>
-      <div class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4">
+      <div
+        class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4"
+      >
         <Menubar :model="menuItems">
           <template #start>
             <nuxt-link to="/" class="logo-holder-link">
@@ -128,7 +130,7 @@ const menuItems = ref(menuItemsImport)
         }
       }
 
-      .p-menubar-root-list>.p-menuitem-active>.p-submenu-list {
+      .p-menubar-root-list > .p-menuitem-active > .p-submenu-list {
         display: flex;
       }
 
@@ -370,10 +372,8 @@ const menuItems = ref(menuItemsImport)
     }
 
     .p-menubar {
-
       // both desktop and menu styles
       .p-menuitem {
-
         // simulate regular Button
         &.button {
           .p-menuitem-link {
