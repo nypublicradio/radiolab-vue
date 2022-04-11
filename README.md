@@ -6,7 +6,7 @@ if you get this error, or any other error:
 
 first run this install to fix it:
 ```bash
-npm i nuxt3@3.0.0-27490192.4253d2e
+npm i nuxt3@3.0.0-27491748.3186841
 ```
 
 We recommend to look at the [Nuxt 3 documentation](https://v3.nuxtjs.org).
@@ -22,10 +22,10 @@ npm install npm@8.6.0 -g
 
 ```bash
 npm install --legacy-peer-deps
-npm i nuxt3@3.0.0-27490192.4253d2e
+npm i nuxt3@3.0.0-27491748.3186841
 ```
 
-^ we are using this version of NUXT3 till the release candidate! Also, we have to add "--legacy-peer-deps" to the install command until @vueuse fixes their usevue/core issue.
+^ we are using this version of NUXT3 till the release candidate! Also, we have to add `--legacy-peer-deps` to the install command until @vueuse fixes their @vueuse/core issue.
 
 ## Development
 

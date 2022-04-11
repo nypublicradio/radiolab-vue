@@ -19,13 +19,13 @@
     "jest": "^27.5.1",
     "jest-axe": "^5.0.1",
     "jest-canvas-mock": "^2.3.1",
-    "nuxt3": "^3.0.0-27490192.4253d2e",
+    "nuxt3": "^3.0.0-27491748.3186841",
     "typescript": "^4.5.4",
     "vue3-jest": "^27.0.0-alpha.1"
   },
   "dependencies": {
     "@nuxt/test-utils": "^0.2.2",
-    "@nypublicradio/nypr-design-system-vue3": "^0.1.7",
+    "@nypublicradio/nypr-design-system-vue3": "^0.1.10",
     "@sentry/tracing": "^6.18.2",
     "@sentry/vue": "^6.18.2",
     "@vue/cli-plugin-unit-jest": "^5.0.3",
