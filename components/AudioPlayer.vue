@@ -32,7 +32,7 @@ const switchEpisode = () => {
 }
 
 watchEffect(() => {
-  if (!!currentEpisode.value) {
+  if (currentEpisode.value) {
     switchEpisode()
   }
 })
