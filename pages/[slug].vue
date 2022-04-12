@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeMount, onMounted, computed, ref } from 'vue'
 import axios from 'axios'
-import SkeletonGeneralContent from '~/components/skeletonGeneralContent.vue'
+import SkeletonGeneralContent from '~/components/SkeletonGeneralContent.vue'
 useMeta({
   bodyAttrs: {
     class: 'has-head-color',
