@@ -40,9 +40,9 @@ onBeforeMount(async () => {
                 <h5 class="mb-0 lg:mb-2">Latest Episode</h5>
                 <v-flexible-link
                   :to="`/episodes/${episodes[0].attributes.slug}`"
-                  class="latest-episode-title"
+                  class="latest-episode-title inline-block"
                 >
-                  <h2 class="mb-2 lg:mb-3 inline-block" v-html="episodes[0].attributes.title"></h2>
+                  <h2 class="mb-2 lg:mb-3 truncate t2lines" v-html="episodes[0].attributes.title"></h2>
                 </v-flexible-link>
                 <p
                   v-html="episodes[0].attributes.tease"

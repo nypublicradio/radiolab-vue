@@ -23,7 +23,7 @@ useHead({
       <img class="the-lab-sticker mt-2 lg:mt-6 mb-4" src="/the-lab-sticker.svg" alt="The Lab logo" />
       <h4 class="text text-center">Join us in our investigation into this strange world.</h4>
       <div class="flex mt-5" style="gap: 1rem">
-        <v-flexible-link to="/become-a-member" raw>
+        <v-flexible-link to="/the-lab" raw>
           <Button class="p-button-rounded" label="Become a member" />
         </v-flexible-link>
         <v-flexible-link to="https://members.radiolab.org/request_access" raw>

@@ -19,7 +19,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
         </h2>
       </div>
       <div :class="`col-12 right mt-4`">
-        <v-flexible-link to="/become-a-member" raw class="mt-4">
+        <v-flexible-link to="/the-lab" raw class="mt-4">
           <Button class="p-button-lg p-button-rounded" label="Become a member" />
         </v-flexible-link>
       </div>

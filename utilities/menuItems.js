@@ -11,7 +11,7 @@ export default [
       },
       {
         label: 'Radio Shows',
-        to: '/series',
+        to: '/radio-shows',
       },
       {
         label: 'Series',
@@ -57,7 +57,7 @@ export default [
       },
       {
         label: 'Swag Lab',
-        to: 'https://shop.radiolab.org',
+        url: 'https://shop.radiolab.org',
       }
     ]
   },
@@ -68,7 +68,7 @@ export default [
   },
   {
     label: 'Become a member',
-    to: '/become-a-member',
+    to: '/the-lab',
     class: 'button alone',
   },
   {

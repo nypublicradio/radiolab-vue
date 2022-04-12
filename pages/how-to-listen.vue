@@ -28,7 +28,7 @@ useHead({
               <p
                 class="mt-2 mb-3 text-padding"
               >Listen to Radiolab episodes for free on our site and become a member to access the entire archive directly in your podcast feed</p>
-              <v-flexible-link raw to="become-a-member">
+              <v-flexible-link raw to="the-lab">
                 <Button class="p-button-rounded">Become a member</Button>
               </v-flexible-link>
               <!-- <img
