@@ -82,12 +82,15 @@ const launchEpisode = () => {
   margin-left: -0.5rem;
   margin-right: -0.5rem;
   flex-grow: 1;
+
   .service-btn {
     border-radius: 2rem 0 0 2rem;
   }
+
   .listen-btn {
     padding-left: 0.5rem;
   }
+
   .p-dropdown {
     justify-content: flex-end;
     height: 40px;
@@ -96,14 +99,17 @@ const launchEpisode = () => {
     background: transparent;
     border: none;
     border-radius: 0 2rem 2rem 0;
+
     &:hover {
       background-color: var(--black100) !important;
     }
+
     .p-dropdown-label {
       border-radius: 0;
       padding: 5px;
       display: none;
     }
+
     .p-dropdown-trigger {
       color: var(--black100);
       background: var(--white);
@@ -112,37 +118,45 @@ const launchEpisode = () => {
       height: 20px;
       display: flex;
       align-self: center;
+
       .p-dropdown-trigger-icon {
         font-size: 11px;
       }
     }
   }
+
   .play-icon {
     margin-right: 6px;
     line-height: 0;
+
     img {
       width: 20px;
       height: 20px;
       vertical-align: middle;
     }
   }
+
   .service-btn {
     width: 40px;
     height: 40px;
     padding: 8px;
   }
 }
+
 .p-dropdown-panel {
   box-shadow: var(--shadow);
 }
+
 .p-dropdown-panel,
 .p-dropdown-label {
   align-self: center;
   border-radius: 0 0 20px 20px;
+
   .service-item {
     display: flex;
     width: 100%;
     align-items: center;
+
     img {
       width: 20px;
       height: 20px;
@@ -150,6 +164,7 @@ const launchEpisode = () => {
       vertical-align: middle;
       margin-top: -2px;
     }
+
     .hack-click {
       position: absolute;
       width: 100%;
