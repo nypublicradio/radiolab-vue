@@ -2,6 +2,7 @@
 
 $maxWidth: 1440px;
 $contentWidth: 1366px;
+$thinContentWidth: 768px;
 $headerHeight: 70px;
 $playerHeight: 100px;
 $toolsBreakPoint: 472px;
@@ -15,6 +16,11 @@ $toolsBreakPoint: 472px;
 
 body {
   background: #ffffff;
+}
+
+.thin-content-width {
+  max-width: $thinContentWidth !important;
+  margin: 0 auto;
 }
 
 //toast notifications

@@ -19,7 +19,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div>
+  <div class="thin-content-width">
     <section class="mb-5">
       <div class="content pb-0">
         <div class="grid">
@@ -46,10 +46,7 @@ onBeforeMount(async () => {
             :ratio="[8, 5]"
             class="mb-6"
           />
-          <div
-            v-html="person.bio || person.lede"
-            class="team-bio html-formatting"
-          />
+          <div v-html="person.bio || person.lede" class="team-bio html-formatting" />
         </div>
         <skeleton v-else />
       </div>
@@ -58,8 +55,4 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss">
-.team-slug main {
-  max-width: 768px;
-  margin: 0 auto;
-}
 </style>

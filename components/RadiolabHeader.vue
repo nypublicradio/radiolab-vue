@@ -25,7 +25,7 @@ const menuItems = ref(menuItemsImport)
         
           </template>-->
         </Menubar>
-        <v-flexible-link raw to="become-a-member">
+        <v-flexible-link raw to="the-lab">
           <Button class="flex lg:hidden p-button-rounded">Become a member</Button>
         </v-flexible-link>
       </div>
@@ -176,7 +176,7 @@ const menuItems = ref(menuItemsImport)
           }
 
           .p-submenu-icon {
-            color: var(--black100);
+            color: var(--black100) !important;
             font-size: 0.75rem;
             margin-left: 0.2rem;
             margin-top: 0.2rem;
@@ -204,6 +204,9 @@ const menuItems = ref(menuItemsImport)
 
           &:hover {
             background: transparent;
+            /* .p-submenu-icon {
+              color: var(--black100);
+            } */
 
             &:after {
               opacity: 1;

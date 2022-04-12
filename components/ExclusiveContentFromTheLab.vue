@@ -1,7 +1,6 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
-import Skeleton from 'primevue/skeleton'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 const dataLoaded = ref(false)
 const episodes = ref([])
@@ -25,7 +24,7 @@ onBeforeMount(async () => {
           <div>
             <div class="flex justify-content-between">
               <h3 class="mb-4">Exclusive content from The Lab</h3>
-              <v-flexible-link raw class="become-a-member" to="/become-a-member">
+              <v-flexible-link raw class="the-lab" to="/the-lab">
                 <Button class="p-button-rounded p-button-sm">Become a member</Button>
               </v-flexible-link>
             </div>

@@ -43,7 +43,7 @@ const props = defineProps({
       <div class="flex mt-5 align-items-center justify-content-between">
         <div>
           <div class="flex" style="gap: 1rem">
-            <v-flexible-link to="/become-a-member" raw>
+            <v-flexible-link to="/the-lab" raw>
               <Button class="p-button-rounded" label="Become a member" />
             </v-flexible-link>
             <v-flexible-link to="https://members.radiolab.org/request_access" raw>

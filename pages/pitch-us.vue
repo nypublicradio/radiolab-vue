@@ -16,13 +16,11 @@ useMeta({
 
 <template>
   <div>
-    <section
-      class="graphic-head flex justify-content-center align-content-center"
-    >
+    <section class="graphic-head flex justify-content-center align-content-center">
       <h2 class="text-center font-semibold">Pitch Us</h2>
     </section>
     <section>
-      <div class="content">
+      <div class="content thin-content-width">
         <div class="grid">
           <div class="col-12">
             <h3 class="mb-4">Have an idea for us? We'd love to hear it.</h3>
@@ -78,7 +76,7 @@ useMeta({
 .pitch-us {
   .graphic-head {
     background-color: var(--lightblue-500);
-    background-image: url('/rl-icon-on-blue2.svg');
+    background-image: url("/rl-icon-on-blue2.svg");
   }
 }
 </style>

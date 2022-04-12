@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeMount, onMounted, computed, ref } from 'vue'
 import axios from 'axios'
-import Skeleton from 'primevue/skeleton'
+import SkeletonGeneralContent from '~/components/skeletonGeneralContent.vue'
 useMeta({
   bodyAttrs: {
     class: 'has-head-color',
@@ -32,11 +32,11 @@ onBeforeMount(async () => {
 <template>
   <div>
     <section class="head-color yellow">
-      <div class="content">
+      <div class="content thin-content-width">
         <template v-if="dataLoaded">
           <div class="html-formatting" v-html="page.body" />
         </template>
-        <skeleton v-else />
+        <skeleton-general-content v-else />
       </div>
     </section>
   </div>
