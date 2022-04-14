@@ -15,6 +15,9 @@ onBeforeMount(async () => {
       person.value = response.data.data.attributes
       dataLoaded.value = true
     })
+    .catch(() => {
+      navigateTo('/400')
+    })
 })
 </script>
 

@@ -30,6 +30,9 @@ onBeforeMount(async () => {
       // console.log('episode.value = ', episode.value)
       dataLoaded.value = true
     })
+    .catch(() => {
+      navigateTo('/400')
+    })
 })
 
 const isMobile = computed(() => {
