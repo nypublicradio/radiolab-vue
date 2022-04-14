@@ -29,6 +29,13 @@ onBeforeMount(async () => {
       episode.value = response.data.data.attributes
       dataLoaded.value = true
     })
+    .catch((error) => {
+      if (error.response.status === 404) {
+        navigateTo('/400')
+      } else {
+        navigateTo('/500')
+      }
+    })
 })
 
 const isMobile = computed(() => {
