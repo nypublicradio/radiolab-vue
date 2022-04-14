@@ -15,6 +15,13 @@ useHead({
 
 <template>
   <div class="error-page">
+    <Html>
+      <Head>
+        <Title>400 Error | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="400 Error | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="400 Error | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section
       class="graphic-head flex justify-content-center align-content-center"
     >

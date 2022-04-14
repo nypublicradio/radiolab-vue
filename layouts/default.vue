@@ -1,79 +1,8 @@
 <script setup>
 import { ref, onMounted } from "vue"
-
 const route = useRoute()
 const darkMode = ref(false)
 const atTop = ref(true)
-
-useHead({
-  title: `RadioLab | ${route.meta.title}`,
-  meta: [
-    {
-      name: "description",
-      content: "Investigating a strange world.",
-    },
-    {
-      name: "keywords",
-      content: "podcasts, npr, new york, WNYC Studios, arts, culture, classical, music, news, public, radio"
-    },
-    {
-      name: "og:site_name",
-      content: `Radiolab Podcasts | WNYC Studios`
-    },
-    {
-      name: "og:title",
-      content: `RadioLab | ${route.meta.title}`
-    },
-    {
-      name: "og:url",
-      content: `https://www.radiolab.org${route.fullPath}`
-    },
-    {
-      name: "og:description",
-      content: "Investigating a strange world."
-    },
-    {
-      name: "og:type",
-      content: "website"
-    },
-    {
-      name: "og:image",
-      content: "https://media.wnyc.org/i/1200/600/l/80/2020/09/Radiolab_OG_Image_Options_3.png"
-    },
-    {
-      name: "og:image:width",
-      content: "1200"
-    },
-    {
-      name: "og:image:height",
-      content: "600"
-    },
-    {
-      name: "twitter:card",
-      content: "summary_large_image"
-    },
-    {
-      name: "twitter:site",
-      content: "@radiolab"
-    },
-    {
-      name: "twitter:title",
-      content: `RadioLab | ${route.meta.title}`
-    },
-    {
-      name: "twitter:description",
-      content: "Investigating a strange world."
-    },
-    {
-      name: "twitter:image",
-      content: "https://media.wnyc.org/i/1200/600/l/80/2020/09/Radiolab_OG_Image_Options_3.png"
-    },
-    {
-      name: "apple-itunes-app",
-      content: "app-id=152249110, affiliate-data=at=1010lSme&amp;ct=radiolab"
-    }
-  ],
-})
 
 onMounted(() => {
   document.addEventListener('scroll', (e) => {
@@ -85,6 +14,29 @@ onMounted(() => {
 
 <template>
   <div class="page" :class="[`${route.name}`]" :data-style-mode="darkMode ? 'dark' : 'default'">
+    <Html>
+      <Head>
+        <Title>Radiolab: Podcasts | WNYC Studios | Podcasts</Title>
+        <Meta name="description" content="Investigating a strange world." />
+        <Meta name="keywords" content="podcasts, npr, new york, WNYC Studios, arts, culture, classical, music, news, public, radio" />
+        <Meta name="og:site_name" content="Radiolab Podcasts | WNYC Studios" />
+        <Meta name="og:type" content="website" />
+        <Meta name="og:url" :content="`https://www.radiolab.org${route.fullPath}`" />
+        <Meta name="og:title" content="Radiolab: Podcasts | WNYC Studios | Podcasts" />
+        <Meta name="og:description" content="Investigating a strange world." />
+        <Meta name="og:image" content="https://media.wnyc.org/i/1200/600/l/80/2020/09/Radiolab_OG_Image_Options_3.png" />
+        <Meta name="og:image:width" content="1200" />
+        <Meta name="og:image:height" content="600" />
+        <Meta name="fb:app_id" content="151261804904925" />
+        <Meta name="fb:pages" content="224921207956535" data-detail="WNYC Studios" />
+        <Meta name="twitter:card" content="summary_large_image" />
+        <Meta name="twitter:site" content="@radiolab" />
+        <Meta name="twitter:title" content="Radiolab: Podcasts | WNYC Studios | Podcasts" />
+        <Meta name="twitter:description" content="Investigating a strange world." />
+        <Meta name="twitter:image" content="https://media.wnyc.org/i/1200/600/l/80/2020/09/Radiolab_OG_Image_Options_3.png" />
+        <Meta name="apple-itunes-app" content="app-id=152249110, affiliate-data=at=1010lSme&amp;ct=radiolab" />
+      </Head>
+    </Html>
     <radiolab-header :class="[{ 'at-top': atTop }]" />
     <main>
       <slot />

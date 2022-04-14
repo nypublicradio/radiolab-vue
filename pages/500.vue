@@ -14,6 +14,13 @@ useHead({
 
 <template>
   <div class="error-page">
+    <Html>
+      <Head>
+        <Title>500 Error | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="500 Error | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="500 Error | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
       <h2 class="text-center font-semibold">Nope.</h2>
     </section>
@@ -23,7 +30,7 @@ useHead({
           <div class="col-12 lg:col-5">
             <p class="mb-4">Not all those who wander are lost. But you sure are!</p>
             <p>
-              <strong>500 Error - Not Found</strong> - something has gone wrong on the web site's server, but you are invited to listen to our
+              <strong>500 Error</strong> - something has gone wrong on the web site's server, but you are invited to listen to our
               <strong>All-Time Top Ten Favorite Radiolab Episodes</strong> below.
             </p>
           </div>

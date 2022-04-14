@@ -21,6 +21,13 @@ onBeforeMount(async () => {
 
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>The Team | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="The Team | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="The Team | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section>
       <div class="content lg:px-8 pb-0">
         <div class="grid">

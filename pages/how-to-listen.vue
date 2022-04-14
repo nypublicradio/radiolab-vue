@@ -16,6 +16,13 @@ useHead({
 
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>How To Listen | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="How To Listen | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="How To Listen | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
       <h2 class="text text-center font-semibold">How To Listen</h2>
     </section>
