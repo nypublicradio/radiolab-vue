@@ -1,5 +1,7 @@
 <script setup>
-
+definePageMeta({
+  title: 'Radiolab Podcasts | WNYC Studios'
+})
 </script>
 
 <template>
