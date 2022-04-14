@@ -15,8 +15,12 @@ onBeforeMount(async () => {
       person.value = response.data.data.attributes
       dataLoaded.value = true
     })
-    .catch(() => {
-      navigateTo('/400')
+    .catch((error) => {
+      if (error.response.status === 404) {
+        navigateTo('/400')
+      } else {
+        navigateTo('/500')
+      }
     })
 })
 </script>
