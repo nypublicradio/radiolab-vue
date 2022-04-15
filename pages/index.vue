@@ -1,5 +1,8 @@
 <script setup>
+import { useRuntimeConfig } from '#app';
 
+const config = useRuntimeConfig();
+const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 
 <template>
@@ -12,7 +15,7 @@
       button-link="/episodes"
       :row-count="1"
       :startCount="1"
-      api="https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/"
+      :api="apiUrl"
       path="data.included"
     />
     <exclusive-content-from-the-lab class="mb-8" />

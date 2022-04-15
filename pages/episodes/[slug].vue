@@ -5,6 +5,8 @@ import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/librar
 import axios from 'axios'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import EpisodeTools from '~/components/EpisodeTools.vue'
+import { useRuntimeConfig } from '#app';
+
 useHead({
   meta: [
     {
@@ -16,6 +18,8 @@ useHead({
     class: 'has-head-color'
   }
 })
+
+const config = useRuntimeConfig();
 const dataLoaded = ref(false)
 const episode = ref([])
 const route = useRoute()
@@ -23,7 +27,7 @@ const route = useRoute()
 onBeforeMount(async () => {
   await axios
     .get(
-      `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
+      `${config.API_URL}/api/v3/story/${route.params.slug}/`
     )
     .then((response) => {
       episode.value = response.data.data.attributes
@@ -35,6 +39,7 @@ onBeforeMount(async () => {
 const isMobile = computed(() => {
   return window.innerWidth < breakpoint['md']
 })
+
 
 </script>
 

@@ -2,11 +2,15 @@
 import { onBeforeMount, onMounted, computed, ref } from 'vue'
 import axios from 'axios'
 import SkeletonGeneralContent from '~/components/SkeletonGeneralContent.vue'
+import { useRuntimeConfig } from '#app';
+
 useMeta({
   bodyAttrs: {
     class: 'has-head-color',
   },
 })
+
+const config = useRuntimeConfig();
 const dataLoaded = ref(false)
 const page = ref([])
 const route = useRoute()
@@ -14,7 +18,7 @@ const route = useRoute()
 onBeforeMount(async () => {
   await axios
     .get(
-      `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/${route.params.slug}/1?limit=1`
+      `${config.API_URL}/api/v3/channel/shows/radiolab/${route.params.slug}/1?limit=1`
     )
     .then((response) => {
       if (response.data.included.length < 1) {

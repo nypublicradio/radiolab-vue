@@ -41,5 +41,5 @@ Build the application for production:
 
 ```bash
 docker build -t radiolab-vue .
-docker run -p 3000:3000 -e HOST=0.0.0.0 radiolab-vue
+docker run -p 3000:3000 -e HOST=0.0.0.0 radiolab-vue -e API_URL=api.publisher.demo.nypr.digital
 ```
