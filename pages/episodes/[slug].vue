@@ -27,8 +27,14 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       episode.value = response.data.data.attributes
-      // console.log('episode.value = ', episode.value)
       dataLoaded.value = true
+    })
+    .catch((error) => {
+      if (error.response.status === 404) {
+        navigateTo('/404')
+      } else {
+        navigateTo('/500')
+      }
     })
 })
 

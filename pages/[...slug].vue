@@ -23,8 +23,12 @@ onBeforeMount(async () => {
       page.value = response.data.included[0].attributes
       dataLoaded.value = true
     })
-    .catch(() => {
-      navigateTo('/400')
+    .catch((error) => {
+      if (error.response.status === 404) {
+        navigateTo('/404')
+      } else {
+        navigateTo('/500')
+      }
     })
 })
 </script>
