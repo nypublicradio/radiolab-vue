@@ -32,7 +32,7 @@ npm i nuxt3@3.0.0-27491748.3186841
 Start the development server on `http://localhost:3000`
 
 ```bash
-npm dev
+npm run dev
 ```
 
 ## Production
