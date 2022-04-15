@@ -17,7 +17,7 @@ onBeforeMount(async () => {
     })
     .catch((error) => {
       if (error.response.status === 404) {
-        navigateTo('/400')
+        navigateTo('/404')
       } else {
         navigateTo('/500')
       }
