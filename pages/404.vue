@@ -4,7 +4,7 @@ useHead({
   meta: [
     {
       name: 'theme-color',
-      content: colors.rlLightblue,
+      content: colors.rlLightorange,
     },
   ],
   bodyAttrs: {
@@ -16,21 +16,21 @@ useHead({
 <template>
   <div class="error-page">
     <Html>
-      <Head>
-        <Title>404 Error | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="404 Error | Radiolab | WNYC Studios" />
-      </Head>
+
+    <Head>
+      <Title>404 Error | Radiolab | WNYC Studios</Title>
+      <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
+      <Meta name="twitter:title" content="404 Error | Radiolab | WNYC Studios" />
+    </Head>
+
     </Html>
-    <section
-      class="graphic-head flex justify-content-center align-content-center"
-    >
+    <section class="graphic-head lightorange flex justify-content-center align-content-center">
       <h2 class="text-center font-semibold">Nope.</h2>
     </section>
     <section class="white100bg">
-      <div class="content p-3 md:p-8">
-        <div class="grid justify-content-between">
-          <div class="col-12 lg:col-5">
+      <div class="content md:p-8 thin-content-width">
+        <div class="grid">
+          <div class="col-12 md:p-6">
             <p class="mb-4">
               Not all those who wander are lost. But you sure are!
             </p>
@@ -43,17 +43,11 @@ useHead({
           </div>
         </div>
       </div>
-      <div class="flex w-full justify-content-end">
-        <img class="error-image" alt="error image" src="/error-404.png" />
-      </div>
     </section>
     <!-- TODO: need top ten endpoint -->
-    <episodes
-      class="mt-6 mb-4"
-      :row-count="3"
+    <episodes class="mt-6 mb-4" :row-count="3"
       api="https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/"
-      path="data.included"
-    />
+      path="data.included" />
   </div>
 </template>
 
@@ -62,16 +56,9 @@ useHead({
   .graphic-head {
     // defaults used for 404 page
   }
-  .error-image {
-    position: relative;
-    width: 100%;
-    max-width: 316px;
-    height: auto;
-    margin-top: 0;
-    @include media('>lg') {
-      margin-top: -490px;
-      max-width: 616px;
-    }
+
+  .content {
+    text-align: center;
   }
 }
 </style>
