@@ -5,13 +5,11 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>Comments Policy | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="Comments Policy | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="Comments Policy | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>Comments Policy | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Comments Policy | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="Comments Policy | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
     <section>
       <div class="content">
@@ -27,8 +25,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
               close our comments section. Instead, we'd like to continue the
               conversation with you via
               <v-flexible-link to="https://twitter.com/radiolab">Twitter</v-flexible-link>,
-              <v-flexible-link to="https://www.facebook.com/Radiolab/">Facebook</v-flexible-link>
-              and, of course, through email at
+              <v-flexible-link to="https://www.facebook.com/Radiolab/">Facebook</v-flexible-link>and, of course, through email at
               <v-flexible-link to="mailto:radiolab@wnyc.org">radiolab@wnyc.org</v-flexible-link>.
             </p>
           </div>

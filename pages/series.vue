@@ -5,13 +5,11 @@
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>Series | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="Series | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="Series | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>Series | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Series | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="Series | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
     <section>
       <div class="content lg:px-8 pb-0">
@@ -22,9 +20,13 @@
         </div>
       </div>
     </section>
-    <episodes class="mb-4" :row-count="4"
+    <episodes
+      class="mb-4"
+      :row-count="4"
       api="https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/radio-shows/"
-      path="data.included" :paginate="true" />
+      path="data.included"
+      :paginate="true"
+    />
   </div>
 </template>
 

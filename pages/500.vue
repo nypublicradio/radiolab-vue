@@ -15,13 +15,11 @@ useHead({
 <template>
   <div class="error-page">
     <Html>
-
-    <Head>
-      <Title>500 Error | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="500 Error | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="500 Error | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>500 Error | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="500 Error | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="500 Error | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
     <section class="graphic-head lightorange flex justify-content-center align-content-center">
       <h2 class="text-center font-semibold">Nope.</h2>
@@ -41,9 +39,12 @@ useHead({
       </div>
     </section>
     <!-- TODO: need top ten endpoint -->
-    <episodes class="mt-6 mb-4" :row-count="3"
+    <episodes
+      class="mt-6 mb-4"
+      :row-count="3"
       api="https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/"
-      path="data.included" />
+      path="data.included"
+    />
   </div>
 </template>
 

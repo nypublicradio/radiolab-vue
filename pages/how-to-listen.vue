@@ -17,13 +17,11 @@ useHead({
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>How To Listen | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="How To Listen | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="How To Listen | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>How To Listen | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="How To Listen | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="How To Listen | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
       <h1 class="h2 text text-center font-semibold">How To Listen</h1>
@@ -34,8 +32,10 @@ useHead({
           <div class="col-12 text-center">
             <div class="mt-6">
               <h3>Play on our site</h3>
-              <p class="mt-2 mb-3 text-padding">Listen to Radiolab episodes for free on our site and become a member to
-                access the entire archive directly in your podcast feed</p>
+              <p class="mt-2 mb-3 text-padding">
+                Listen to Radiolab episodes for free on our site and become a member to
+                access the entire archive directly in your podcast feed
+              </p>
               <v-flexible-link raw to="the-lab">
                 <Button class="p-button-rounded">Become a member</Button>
               </v-flexible-link>
@@ -51,11 +51,18 @@ useHead({
             <h3 class="mb-5">Streaming platforms</h3>
 
             <div class="grid">
-              <div v-for="(service, index) in playServices" :key="`${service.name}-${index}`"
-                class="col-12 sm:col-6 xl:col-4">
+              <div
+                v-for="(service, index) in playServices"
+                :key="`${service.name}-${index}`"
+                class="col-12 sm:col-6 xl:col-4"
+              >
                 <v-flexible-link raw :to="service.url">
                   <div class="service">
-                    <img alt="service logo" class="icon" :src="`/play-service-icons/${service.icon}.svg`" />
+                    <img
+                      alt="service logo"
+                      class="icon"
+                      :src="`/play-service-icons/${service.icon}.svg`"
+                    />
                     <p>
                       {{ service.name }}
                       <span class="pi pi-arrow-up-right"></span>
@@ -68,8 +75,10 @@ useHead({
               <h3>or</h3>
             </Divider>
             <h3>On the radio</h3>
-            <p class="mt-2 text-padding">New episodes of Radiolab air every Saturday and 12pm EST on WNYC. Episodes
-              repeat Monday's at 8pm EST. Check with your local station for more air times.</p>
+            <p class="mt-2 text-padding">
+              New episodes of Radiolab air every Saturday and 12pm EST on WNYC. Episodes
+              repeat Monday's at 8pm EST. Check with your local station for more air times.
+            </p>
           </div>
         </div>
       </div>

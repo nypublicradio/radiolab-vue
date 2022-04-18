@@ -18,15 +18,16 @@ useHead({
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>The Lab | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="The Lab | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>The Lab | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="The Lab | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
-    <section class="graphic-head flex justify-content-center align-content-center" data-style-mode="blue">
+    <section
+      class="graphic-head flex justify-content-center align-content-center"
+      data-style-mode="blue"
+    >
       <img class="the-lab-sticker mt-2 lg:mt-6 mb-4" src="/the-lab-sticker.svg" alt="The Lab logo" />
       <h1 class="h4 text text-center">Join us in our investigation into this strange world.</h1>
       <div class="flex mt-5" style="gap: 1rem">
@@ -66,8 +67,13 @@ useHead({
       <div class="content">
         <div class="grid">
           <div class="col col-12 lg:col-6">
-            <testimonial name="Ruth" city="Zurich" country="Switzerland" flag-code="ch"
-              quote="Radiolab brings so much joy to my life, challenges me, takes me to places I would never go to otherwise. Please never ever stop." />
+            <testimonial
+              name="Ruth"
+              city="Zurich"
+              country="Switzerland"
+              flag-code="ch"
+              quote="Radiolab brings so much joy to my life, challenges me, takes me to places I would never go to otherwise. Please never ever stop."
+            />
           </div>
           <div class="col col-12 lg:col-6">
             <div class="how-you-power-radiolab">
@@ -75,10 +81,16 @@ useHead({
                 How you power
                 <span class="block sm:hidden">Radiolab</span>
               </div>
-              <img class="w-full py-4 xl:p-6 hidden sm:block" src="/the-lab/journey-illustration.jpg"
-                alt="path to power Radiolab" />
-              <img class="w-full py-4 xl:p-6 block sm:hidden" src="/the-lab/journey-illustration-mobile.jpg"
-                alt="path to power Radiolab" />
+              <img
+                class="w-full py-4 xl:p-6 hidden sm:block"
+                src="/the-lab/journey-illustration.jpg"
+                alt="path to power Radiolab"
+              />
+              <img
+                class="w-full py-4 xl:p-6 block sm:hidden"
+                src="/the-lab/journey-illustration-mobile.jpg"
+                alt="path to power Radiolab"
+              />
               <div class="caps-header text-right hidden sm:block">Radiolab</div>
             </div>
           </div>
@@ -134,8 +146,9 @@ useHead({
               </p>
               <p class="mt-4">
                 To learn more about
-                <v-flexible-link to="https://nypublicradio.org/support/">higher level giving opportunities
-                </v-flexible-link>, please contact the Development Office at
+                <v-flexible-link
+                  to="https://nypublicradio.org/support/"
+                >higher level giving opportunities</v-flexible-link>, please contact the Development Office at
                 <v-flexible-link to="mailto:giving@nypublicradio.org">giving@nypublicradio.org</v-flexible-link>&nbsp;or
                 <v-flexible-link to="tel:19293354108" target="_self">(929) 335-4108</v-flexible-link>
               </p>

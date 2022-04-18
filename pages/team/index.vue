@@ -22,13 +22,11 @@ onBeforeMount(async () => {
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>The Team | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="The Team | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="The Team | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>The Team | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="The Team | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="The Team | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
     <section>
       <div class="content lg:px-8 pb-0">
@@ -42,15 +40,25 @@ onBeforeMount(async () => {
     <section>
       <div class="content lg:px-8 cards">
         <div v-if="dataLoaded" class="grid">
-          <div v-for="(person, index) in people" :key="`${person.attributes.person.name}-${index}`"
-            class="col-12 md:col-6 xl:col-4 mb-6">
+          <div
+            v-for="(person, index) in people"
+            :key="`${person.attributes.person.name}-${index}`"
+            class="col-12 md:col-6 xl:col-4 mb-6"
+          >
             <v-card
               :image="person.attributes.person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
-              :alt="person.attributes.person.name" :title="person.attributes.person.name"
-              :titleLink="`/team/${person.attributes.person.slug}`" :eyebrow="person.attributes['appearance-type']"
+              :alt="person.attributes.person.name"
+              :title="person.attributes.person.name"
+              :titleLink="`/team/${person.attributes.person.slug}`"
+              :eyebrow="person.attributes['appearance-type']"
               :blurb="person.attributes.person.lede || person.attributes.person.bio"
-              :max-width="person.attributes.person.image.w" :max-height="person.attributes.person.image.h" responsive
-              :ratio="[4, 3]" bp="max" class="radiolab-card" />
+              :max-width="person.attributes.person.image.w"
+              :max-height="person.attributes.person.image.h"
+              responsive
+              :ratio="[4, 3]"
+              bp="max"
+              class="radiolab-card"
+            />
           </div>
         </div>
         <episodes-skeleton v-else :row-count="30" />
@@ -60,12 +68,12 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss">
-.team .cards>.grid {
+.team .cards > .grid {
   margin: 0 -24px;
 }
 
-.team .cards .grid>.col,
-.team .cards .grid>[class*="col"] {
+.team .cards .grid > .col,
+.team .cards .grid > [class*="col"] {
   padding: 0 24px;
 }
 

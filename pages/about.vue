@@ -18,13 +18,11 @@ useHead({
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>About Radiolab | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="About Radiolab | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="About Radiolab | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>About Radiolab | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="About Radiolab | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="About Radiolab | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
       <h1 class="h2 text text-center font-semibold">About Radiolab</h1>
@@ -49,8 +47,12 @@ useHead({
               </p>
               <p class="mb-3">
                 Contact Radiolab using
-                <v-flexible-link to="https://wnycstudios.zendesk.com/hc/en-us/requests/new?ticket_form_id=923428">this
-                  form.</v-flexible-link>
+                <v-flexible-link
+                  to="https://wnycstudios.zendesk.com/hc/en-us/requests/new?ticket_form_id=923428"
+                >
+                  this
+                  form.
+                </v-flexible-link>
               </p>
             </div>
             <Divider align="center" class="my-6" />

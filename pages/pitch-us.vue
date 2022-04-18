@@ -17,13 +17,11 @@ useMeta({
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>Pitch Us | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="Pitch Us | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="Pitch Us | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>Pitch Us | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Pitch Us | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="Pitch Us | Radiolab | WNYC Studios" />
+      </Head>
     </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
       <h1 class="h2 text-center font-semibold">Pitch Us</h1>

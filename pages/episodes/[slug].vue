@@ -57,13 +57,19 @@ const isMobile = computed(() => {
                     <Head>
                       <Title>{{ episode.title }} | Radiolab | WNYC Studios</Title>
                       <Meta name="description" :content="episode.tease" />
-                      <Meta name="og:title" :content="`${episode.title} | Radiolab | WNYC Studios`" />
+                      <Meta
+                        name="og:title"
+                        :content="`${episode.title} | Radiolab | WNYC Studios`"
+                      />
                       <Meta name="og:description" :content="episode.tease" />
                       <Meta name="og:type" content="article" />
                       <Meta name="og:image" :content="episode['image-main'].url" />
                       <Meta name="og:image:width" :content="`${episode['image-main'].w}`" />
                       <Meta name="og:image:height" :content="`${episode['image-main'].h}`" />
-                      <Meta name="twitter:title" :content="`${episode.title} | Radiolab | WNYC Studios`" />
+                      <Meta
+                        name="twitter:title"
+                        :content="`${episode.title} | Radiolab | WNYC Studios`"
+                      />
                       <Meta name="twitter:description" :content="episode.tease" />
                       <Meta name="twitter:image" :content="episode['image-main'].url" />
                     </Head>
