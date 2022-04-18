@@ -18,18 +18,17 @@ useHead({
 <template>
   <div>
     <Html>
-      <Head>
-        <Title>The Lab | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="The Lab | Radiolab | WNYC Studios" />
-      </Head>
+
+    <Head>
+      <Title>The Lab | Radiolab | WNYC Studios</Title>
+      <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />
+      <Meta name="twitter:title" content="The Lab | Radiolab | WNYC Studios" />
+    </Head>
+
     </Html>
-    <section
-      class="graphic-head flex justify-content-center align-content-center"
-      data-style-mode="blue"
-    >
+    <section class="graphic-head flex justify-content-center align-content-center" data-style-mode="blue">
       <img class="the-lab-sticker mt-2 lg:mt-6 mb-4" src="/the-lab-sticker.svg" alt="The Lab logo" />
-      <h4 class="text text-center">Join us in our investigation into this strange world.</h4>
+      <h1 class="h4 text text-center">Join us in our investigation into this strange world.</h1>
       <div class="flex mt-5" style="gap: 1rem">
         <v-flexible-link to="/the-lab" raw>
           <Button class="p-button-rounded" label="Become a member" />
@@ -67,13 +66,8 @@ useHead({
       <div class="content">
         <div class="grid">
           <div class="col col-12 lg:col-6">
-            <testimonial
-              name="Ruth"
-              city="Zurich"
-              country="Switzerland"
-              flag-code="ch"
-              quote="Radiolab brings so much joy to my life, challenges me, takes me to places I would never go to otherwise. Please never ever stop."
-            />
+            <testimonial name="Ruth" city="Zurich" country="Switzerland" flag-code="ch"
+              quote="Radiolab brings so much joy to my life, challenges me, takes me to places I would never go to otherwise. Please never ever stop." />
           </div>
           <div class="col col-12 lg:col-6">
             <div class="how-you-power-radiolab">
@@ -81,16 +75,10 @@ useHead({
                 How you power
                 <span class="block sm:hidden">Radiolab</span>
               </div>
-              <img
-                class="w-full py-4 xl:p-6 hidden sm:block"
-                src="/the-lab/journey-illustration.jpg"
-                alt="path to power Radiolab"
-              />
-              <img
-                class="w-full py-4 xl:p-6 block sm:hidden"
-                src="/the-lab/journey-illustration-mobile.jpg"
-                alt="path to power Radiolab"
-              />
+              <img class="w-full py-4 xl:p-6 hidden sm:block" src="/the-lab/journey-illustration.jpg"
+                alt="path to power Radiolab" />
+              <img class="w-full py-4 xl:p-6 block sm:hidden" src="/the-lab/journey-illustration-mobile.jpg"
+                alt="path to power Radiolab" />
               <div class="caps-header text-right hidden sm:block">Radiolab</div>
             </div>
           </div>
@@ -112,7 +100,8 @@ useHead({
               <p>How do I access my ad-free version of Radiolab?</p>
               <p>
                 You can find
-                <v-flexible-link to="https://members.radiolab.org/help">detailed instructions</v-flexible-link>&nbsp;on adding our ad-free version of Radiolab to your podcast player
+                <v-flexible-link to="https://members.radiolab.org/help">detailed instructions</v-flexible-link>&nbsp;on
+                adding our ad-free version of Radiolab to your podcast player
                 <v-flexible-link to="https://members.radiolab.org/help">here</v-flexible-link>.
               </p>
             </div>
@@ -121,7 +110,8 @@ useHead({
               <p>How do I manage my Radiolab Membership?</p>
               <p>
                 Log in to your
-                <v-flexible-link to="https://members.radiolab.org/request_access">membership portal</v-flexible-link>. From there, you can update your payment details or change your giving
+                <v-flexible-link to="https://members.radiolab.org/request_access">membership portal</v-flexible-link>.
+                From there, you can update your payment details or change your giving
                 tier. You're also free to cancel your membership at any time - though we
                 hope you don't!
               </p>
@@ -144,9 +134,8 @@ useHead({
               </p>
               <p class="mt-4">
                 To learn more about
-                <v-flexible-link
-                  to="https://nypublicradio.org/support/"
-                >higher level giving opportunities</v-flexible-link>, please contact the Development Office at
+                <v-flexible-link to="https://nypublicradio.org/support/">higher level giving opportunities
+                </v-flexible-link>, please contact the Development Office at
                 <v-flexible-link to="mailto:giving@nypublicradio.org">giving@nypublicradio.org</v-flexible-link>&nbsp;or
                 <v-flexible-link to="tel:19293354108" target="_self">(929) 335-4108</v-flexible-link>
               </p>
@@ -167,10 +156,12 @@ useHead({
     background-image: none;
     padding: $headerHeight 0;
     height: auto;
+
     .the-lab-sticker {
       width: 210px;
       height: auto;
     }
+
     .text {
       position: relative;
       color: var(--white100);
@@ -179,10 +170,12 @@ useHead({
       letter-spacing: 10px;
       width: 910px;
       padding: 0 2rem;
+
       @include media("<lg") {
         font-size: var(--font-size-13);
         width: 650px;
       }
+
       @include media("<md") {
         font-size: var(--font-size-11);
         letter-spacing: 6px;
@@ -190,37 +183,45 @@ useHead({
         width: auto;
       }
     }
+
     .p-button {
       @include media("<sm") {
         font-size: var(--font-size-6);
       }
     }
   }
+
   .membership-holder {
     &.content {
       max-width: 1030px;
     }
   }
+
   .how-you-power-radiolab {
     background-color: var(--white100);
     border-radius: 20px;
     overflow: hidden;
     padding: 2rem;
+
     @include media("<=sm") {
       padding: 2rem 1rem;
     }
+
     .caps-header {
       font-size: var(--font-size-15);
       letter-spacing: 0.5rem;
       line-height: var(--font-size-15);
+
       @include media(">lg", "<xl") {
         font-size: var(--font-size-12);
         line-height: var(--font-size-12);
       }
+
       @include media("<md") {
         font-size: var(--font-size-14);
         line-height: var(--font-size-14);
       }
+
       @include media("<sm") {
         font-size: var(--font-size-8);
         line-height: var(--font-size-8);
@@ -231,10 +232,13 @@ useHead({
 
   .faqs-holder {
     max-width: 768px;
+
     .question {
       margin-bottom: spacing(6);
+
       p {
         line-height: normal;
+
         &:first-child {
           font-weight: var(--font-weight-500);
         }
