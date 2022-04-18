@@ -4,6 +4,13 @@
 
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>Series | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Series | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="Series | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section>
       <div class="content lg:px-8 pb-0">
         <div class="grid">

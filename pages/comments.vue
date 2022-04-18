@@ -4,6 +4,13 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
 
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>Comments Policy | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Comments Policy | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="Comments Policy | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section>
       <div class="content">
         <div class="grid">

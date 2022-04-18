@@ -14,8 +14,16 @@ useHead({
 })
 
 </script>
+
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>The Lab | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="The Lab | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section
       class="graphic-head flex justify-content-center align-content-center"
       data-style-mode="blue"

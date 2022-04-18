@@ -38,6 +38,13 @@ onBeforeMount(async () => {
     <section class="head-color yellow">
       <div class="content thin-content-width">
         <template v-if="dataLoaded">
+          <Html>
+            <Head>
+              <Title>{{ page.title }} | Radiolab | WNYC Studios</Title>
+              <Meta name="og:title" :content="`${page.title} | Radiolab | WNYC Studios`" />
+              <Meta name="twitter:title" :content="`${page.title} | Radiolab | WNYC Studios`" />
+            </Head>
+          </Html>
           <div class="html-formatting" v-html="page.body" />
         </template>
         <skeleton-general-content v-else />

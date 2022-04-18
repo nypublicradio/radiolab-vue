@@ -3,6 +3,13 @@
  
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>Radiolab for Kids | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Radiolab for Kids | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="Radiolab for Kids | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section>
       <div class="content lg:px-8 pb-0">
         <div class="grid">
