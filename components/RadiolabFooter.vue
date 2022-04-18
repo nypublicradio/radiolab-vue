@@ -41,7 +41,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-12 md:col-9 right">
-            <div class="menu mb:mb-6 px-0 md:px-8" role="menubar">
+            <div class="menu mb:mb-6 px-0 sm:pl-4 md:pl-6 xl:pl-8" role="menubar">
               <div v-for="item in menuItemsFooter" role="none" class="menu-item" :key="item.to">
                 <v-flexible-link :to="item.to ? item.to : item.url">
                   <!-- <Button class="p-button-text p-button-rounded p-button-plain">{{ item.label }}</Button> -->
@@ -84,7 +84,7 @@ onMounted(() => {
 
           .sub {
             font-size: var(--font-size-8);
-            line-height: normal;
+            line-height: var(--font-size-10);
           }
         }
 
@@ -105,7 +105,7 @@ onMounted(() => {
             }
 
             @include media("<sm") {
-              height: 380px;
+              height: 390px;
             }
 
             @include media("<xs") {
@@ -119,10 +119,10 @@ onMounted(() => {
                 display: block;
                 font-weight: var(--font-weight-400);
                 text-decoration: none;
-                font-size: var(--font-size-5);
+                font-size: var(--font-size-6);
 
                 @include media("<xs") {
-                  font-size: var(--font-size-4);
+                  font-size: var(--font-size-5);
                 }
 
                 &:hover {
