@@ -16,7 +16,7 @@
         <div class="grid">
           <div class="col">
             <div class="episode-archive">
-              <h2>Episode Archive</h2>
+              <h1 class="h2">Episode Archive</h1>
             </div>
           </div>
         </div>

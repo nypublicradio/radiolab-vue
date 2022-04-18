@@ -15,7 +15,7 @@
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <h2>Radio Shows</h2>
+            <h1 class="h2">Radio Shows</h1>
           </div>
         </div>
       </div>

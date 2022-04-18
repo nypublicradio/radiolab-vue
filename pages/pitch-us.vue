@@ -24,7 +24,7 @@ useMeta({
       </Head>
     </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
-      <h2 class="text-center font-semibold">Pitch Us</h2>
+      <h1 class="h2 text-center font-semibold">Pitch Us</h1>
     </section>
     <section>
       <div class="content thin-content-width">

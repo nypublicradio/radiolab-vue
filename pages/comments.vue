@@ -15,7 +15,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
       <div class="content">
         <div class="grid">
           <div class="col-12">
-            <h2 class="mb-5">Comments Policy</h2>
+            <h1 class="h2 mb-5">Comments Policy</h1>
             <p class="mb-3">
               We love hearing from our listeners and appreciate your
               feedback--you are why we do what we do. Like many other content
@@ -24,16 +24,9 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
               listeners. So, after much careful consideration, we've decided to
               close our comments section. Instead, we'd like to continue the
               conversation with you via
-              <v-flexible-link to="https://twitter.com/radiolab"
-                >Twitter</v-flexible-link
-              >,
-              <v-flexible-link to="https://www.facebook.com/Radiolab/"
-                >Facebook</v-flexible-link
-              >
-              and, of course, through email at
-              <v-flexible-link to="mailto:radiolab@wnyc.org"
-                >radiolab@wnyc.org</v-flexible-link
-              >.
+              <v-flexible-link to="https://twitter.com/radiolab">Twitter</v-flexible-link>,
+              <v-flexible-link to="https://www.facebook.com/Radiolab/">Facebook</v-flexible-link>and, of course, through email at
+              <v-flexible-link to="mailto:radiolab@wnyc.org">radiolab@wnyc.org</v-flexible-link>.
             </p>
           </div>
         </div>
