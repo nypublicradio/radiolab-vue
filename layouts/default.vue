@@ -27,8 +27,11 @@ onMounted( () => {
     <Html>
 
     <Head>
-      <Link rel="stylesheet" href="https://htlbid.com/stage/v3/radiolab.com/htlbid.css" type="text/css" />
-      <Script src="https://htlbid.com/stage/v3/radiolab.com/htlbid.js" defer />
+      <Link v-if=" config.ENV === 'prod' " rel="stylesheet" href="https://htlbid.com/v3/radiolab.com/htlbid.css"
+        type="text/css" />
+      <Link v-else rel="stylesheet" href="https://htlbid.com/stage/v3/radiolab.com/htlbid.css" type="text/css" />
+      <Script v-if=" config.ENV === 'prod' " src="https://htlbid.com/v3/radiolab.com/htlbid.js" defer />
+      <Script v-else src="https://htlbid.com/stage/v3/radiolab.com/htlbid.js" defer />
       <Title>Radiolab: Podcasts | WNYC Studios | Podcasts</Title>
       <Meta name="description" content="Investigating a strange world." />
       <Meta name="keywords"
