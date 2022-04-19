@@ -1,4 +1,3 @@
-import { config } from '@vue/test-utils';
 import { defineNuxtConfig } from 'nuxt3'
 
 export default defineNuxtConfig({
