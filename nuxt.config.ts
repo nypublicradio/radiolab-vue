@@ -57,6 +57,6 @@ export default defineNuxtConfig({
   publicRuntimeConfig: {
     SENTRY_DSN: process.env['SENTRY_DSN'],
     ENV: process.env['ENV'],
-    API_URL: process.env['API_URL'] || "api.publisher.demo.nypr.digital"
+    API_URL: process.env['API_URL'] || "https://api.demo2.wnyc.net"
   }
 })
