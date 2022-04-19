@@ -30,37 +30,50 @@ onBeforeMount(async () => {
 
 <template>
   <div class="thin-content-width">
-    <section class="mb-5">
-      <div class="content pb-0">
-        <div class="grid">
-          <div class="col-12">
-            <h2 class="mt-4 mb-2">{{ person.name }}</h2>
-            <h3 v-if="person['job-title']">{{ person['job-title'] }}</h3>
+    <div v-if="dataLoaded">
+      <Html>
+        <Head>
+          <Title>{{ person.name }} | Radiolab | WNYC Studios</Title>
+          <Meta name="og:title" :content="`${person.name} | Radiolab | WNYC Studios`" />
+          <Meta name="og:image" :content="person.image.url" />
+          <Meta name="og:image:width" :content="`${person.image.w}`" />
+          <Meta name="og:image:height" :content="`${person.image.h}`" />
+          <Meta name="twitter:title" :content="`${person.name} | Radiolab | WNYC Studios`" />
+          <Meta name="twitter:image" :content="person.image.url" />
+        </Head>
+      </Html>
+      <section class="mb-5">
+        <div class="content pb-0">
+          <div class="grid">
+            <div class="col-12">
+              <h1 class="h2 mt-4 mb-2">{{ person.name }}</h1>
+              <h3 v-if="person['job-title']">{{ person['job-title'] }}</h3>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <div class="content mb-4 pt-0">
-        <div v-if="dataLoaded">
-          <v-image-with-caption
-            :image="
-              person.image.template.replace(
-                '%s/%s/%s/%s',
-                '%width%/%height%/c/%quality%'
-              )
-            "
-            :alt="person.name"
-            :max-width="person.image.w"
-            :max-height="person.image.h"
-            :ratio="[8, 5]"
-            class="mb-6"
-          />
-          <div v-html="person.bio || person.lede" class="team-bio html-formatting" />
+      </section>
+      <section>
+        <div class="content mb-4 pt-0">
+          <div>
+            <v-image-with-caption
+              :image="
+                person.image.template.replace(
+                  '%s/%s/%s/%s',
+                  '%width%/%height%/c/%quality%'
+                )
+              "
+              :alt="person.name"
+              :max-width="person.image.w"
+              :max-height="person.image.h"
+              :ratio="[8, 5]"
+              class="mb-6"
+            />
+            <div v-html="person.bio || person.lede" class="team-bio html-formatting" />
+          </div>
         </div>
-        <skeleton v-else />
-      </div>
-    </section>
+      </section>
+    </div>
+    <skeleton-general-content v-else />
   </div>
 </template>
 

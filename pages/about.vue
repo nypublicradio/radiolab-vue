@@ -17,8 +17,15 @@ useHead({
 
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>About Radiolab | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="About Radiolab | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="About Radiolab | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
-      <h2 class="text text-center font-semibold">About Radiolab</h2>
+      <h1 class="h2 text text-center font-semibold">About Radiolab</h1>
     </section>
     <section>
       <div class="content thin-content-width">
@@ -42,7 +49,10 @@ useHead({
                 Contact Radiolab using
                 <v-flexible-link
                   to="https://wnycstudios.zendesk.com/hc/en-us/requests/new?ticket_form_id=923428"
-                >this form.</v-flexible-link>
+                >
+                  this
+                  form.
+                </v-flexible-link>
               </p>
             </div>
             <Divider align="center" class="my-6" />
@@ -81,22 +91,27 @@ useHead({
 .how-to-listen {
   .text-padding {
     padding: 0 25% 0 25%;
+
     @include media("<lg") {
       padding: 0 15% 0 15%;
     }
+
     @include media("<md") {
       padding: 0;
     }
   }
+
   .graphic-head {
     background-color: var(--black100);
     background-image: url("/rl-icon-on-black-white-invert.svg");
     background-position: 50% 50%;
     background-size: 1000px;
+
     .text {
       color: var(--white100);
     }
   }
+
   .flexible-link {
     .service {
       display: flex;
@@ -109,21 +124,26 @@ useHead({
       transition: border-color var(--transition-duration);
       -webkit-transition: border-color var(--transition-duration);
       cursor: pointer;
+
       .icon {
         width: 40px;
         height: 40px;
         margin-right: 0.5rem;
       }
+
       .pi {
         display: none;
       }
+
       p {
         font-size: var(--font-size-8);
       }
     }
+
     &:hover {
       .service {
         border: 1px solid var(--black100);
+
         .pi {
           display: inline-block;
         }

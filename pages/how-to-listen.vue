@@ -16,8 +16,15 @@ useHead({
 
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>How To Listen | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="How To Listen | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="How To Listen | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section class="graphic-head flex justify-content-center align-content-center">
-      <h2 class="text text-center font-semibold">How To Listen</h2>
+      <h1 class="h2 text text-center font-semibold">How To Listen</h1>
     </section>
     <section>
       <div class="content">
@@ -25,9 +32,10 @@ useHead({
           <div class="col-12 text-center">
             <div class="mt-6">
               <h3>Play on our site</h3>
-              <p
-                class="mt-2 mb-3 text-padding"
-              >Listen to Radiolab episodes for free on our site and become a member to access the entire archive directly in your podcast feed</p>
+              <p class="mt-2 mb-3 text-padding">
+                Listen to Radiolab episodes for free on our site and become a member to
+                access the entire archive directly in your podcast feed
+              </p>
               <v-flexible-link raw to="the-lab">
                 <Button class="p-button-rounded">Become a member</Button>
               </v-flexible-link>
@@ -67,9 +75,10 @@ useHead({
               <h3>or</h3>
             </Divider>
             <h3>On the radio</h3>
-            <p
-              class="mt-2 text-padding"
-            >New episodes of Radiolab air every Saturday and 12pm EST on WNYC. Episodes repeat Monday's at 8pm EST. Check with your local station for more air times.</p>
+            <p class="mt-2 text-padding">
+              New episodes of Radiolab air every Saturday and 12pm EST on WNYC. Episodes
+              repeat Monday's at 8pm EST. Check with your local station for more air times.
+            </p>
           </div>
         </div>
       </div>
@@ -81,22 +90,27 @@ useHead({
 .how-to-listen {
   .text-padding {
     padding: 0 25% 0 25%;
+
     @include media("<lg") {
       padding: 0 15% 0 15%;
     }
+
     @include media("<md") {
       padding: 0;
     }
   }
+
   .graphic-head {
     background-color: var(--black100);
     background-image: url("/rl-icon-on-black-white-invert.svg");
     background-position: 50% 50%;
     background-size: 1000px;
+
     .text {
       color: var(--white100);
     }
   }
+
   .flexible-link {
     .service {
       display: flex;
@@ -109,21 +123,26 @@ useHead({
       transition: border-color var(--transition-duration);
       -webkit-transition: border-color var(--transition-duration);
       cursor: pointer;
+
       .icon {
         width: 40px;
         height: 40px;
         margin-right: 0.5rem;
       }
+
       .pi {
         display: none;
       }
+
       p {
         font-size: var(--font-size-8);
       }
     }
+
     &:hover {
       .service {
         border: 1px solid var(--black100);
+
         .pi {
           display: inline-block;
         }

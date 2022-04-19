@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, computed, ref } from 'vue'
+import { onBeforeMount, computed, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
@@ -58,6 +58,27 @@ const isMobile = computed(() => {
             <div class="grid">
               <div class="col">
                 <div v-if="dataLoaded" class="episode flex">
+                  <Html>
+                    <Head>
+                      <Title>{{ episode.title }} | Radiolab | WNYC Studios</Title>
+                      <Meta name="description" :content="episode.tease" />
+                      <Meta
+                        name="og:title"
+                        :content="`${episode.title} | Radiolab | WNYC Studios`"
+                      />
+                      <Meta name="og:description" :content="episode.tease" />
+                      <Meta name="og:type" content="article" />
+                      <Meta name="og:image" :content="episode['image-main'].url" />
+                      <Meta name="og:image:width" :content="`${episode['image-main'].w}`" />
+                      <Meta name="og:image:height" :content="`${episode['image-main'].h}`" />
+                      <Meta
+                        name="twitter:title"
+                        :content="`${episode.title} | Radiolab | WNYC Studios`"
+                      />
+                      <Meta name="twitter:description" :content="episode.tease" />
+                      <Meta name="twitter:image" :content="episode['image-main'].url" />
+                    </Head>
+                  </Html>
                   <v-image-with-caption
                     :image="episode['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
                     :alt="episode['image-main']['alt-text']"

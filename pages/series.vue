@@ -7,11 +7,18 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
 
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>Series | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Series | Radiolab | WNYC Studios" />
+        <Meta name="twitter:title" content="Series | Radiolab | WNYC Studios" />
+      </Head>
+    </Html>
     <section>
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <h2>Series</h2>
+            <h1 class="h2">Series</h1>
           </div>
         </div>
       </div>

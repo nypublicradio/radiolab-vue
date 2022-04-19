@@ -27,6 +27,9 @@ npm i nuxt3@3.0.0-27491748.3186841
 
 ^ we are using this version of NUXT3 till the release candidate! 
 
+in VS Code, use the following plugin for formatting. Be sure to install the older version 0.33.10:
+https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar
+
 ## Development
 
 Start the development server on `http://localhost:3000`
