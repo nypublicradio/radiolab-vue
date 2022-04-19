@@ -17,7 +17,6 @@ onBeforeMount( async () => {
       `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/${ route.params.slug }/1?limit=1`
     )
     .then( ( response ) => {
-      console.log( response )
       if ( response.data.included.length < 1 ) {
         throw error
       }
@@ -25,7 +24,6 @@ onBeforeMount( async () => {
       dataLoaded.value = true
     } )
     .catch( ( error ) => {
-      console.log( error )
       if ( error.response.status === 404 ) {
         navigateTo( '/404' )
       } else {
