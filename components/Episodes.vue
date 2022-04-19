@@ -130,9 +130,8 @@ async function onPage ( event ) {
               </div>
               <div class="grid">
                 <template
-                  v-for="(    episode, index    ) in     episodes.slice( props.paginate ? 0 : props.startCount, rowCountCalc )    "
-                  :key=" index ">
-                  <div v-if=" index <= 5 " class="col-12 md:col-6 xl:col-4 mb-6"
+                  v-for="(      episode, index      ) in       episodes.slice( props.paginate ? 0 : props.startCount, rowCountCalc )      ">
+                  <div :key=" index " v-if=" index <= 5 " class="col-12 md:col-6 xl:col-4 mb-6"
                     :class=" { 'xl:hidden': !props.paginate && rowCount % 2 && index === episodes.length - 1 - props.startCount } ">
                     <v-card
                       :image=" episode.attributes[ 'image-main' ].template.replace( '%s/%s/%s/%s', '%width%/%height%/c/%quality%' ) "
@@ -146,8 +145,9 @@ async function onPage ( event ) {
                       <play-selector :episode=" episode " />
                     </v-card>
                   </div>
-                  <div v-if=" index === 5 " class="htlad-radiolab_in-content_1 col-fixed mb-6" style="width:100%" />
-                  <div v-if=" index > 5 " class="col-12 md:col-6 xl:col-4 mb-6">
+                  <div :key=" index " v-if=" index === 5 " class="htlad-radiolab_in-content_1 col-fixed mb-6"
+                    style="width:100%" />
+                  <div :key=" index " v-if=" index > 5 " class="col-12 md:col-6 xl:col-4 mb-6">
                     <v-card
                       :image=" episode.attributes[ 'image-main' ].template.replace( '%s/%s/%s/%s', '%width%/%height%/c/%quality%' ) "
                       :alt=" episode.attributes[ 'image-main' ][ 'alt-text' ] " :title=" episode.attributes.title "
