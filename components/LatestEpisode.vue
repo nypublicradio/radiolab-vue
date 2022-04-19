@@ -4,12 +4,16 @@ import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
+import { useRuntimeConfig } from '#app';
+
+const config = useRuntimeConfig();
 const dataLoaded = ref(false)
 const episodes = ref([])
+
 onBeforeMount(async () => {
   await axios
     .get(
-      'https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1'
+      `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
     )
     .then((response) => {
       episodes.value = response.data.included

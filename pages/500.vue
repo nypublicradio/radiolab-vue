@@ -1,4 +1,6 @@
 <script setup>
+import { useRuntimeConfig } from '#app';
+
 useHead({
   meta: [
     {
@@ -10,6 +12,9 @@ useHead({
     class: 'has-head-color'
   }
 })
+
+config = useRuntimeConfig();
+const apiUrl = `${apiUrl}/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 
 <template>
@@ -42,7 +47,7 @@ useHead({
     <episodes
       class="mt-6 mb-4"
       :row-count="3"
-      api="https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/"
+      :api="apiUrl"
       path="data.included"
     />
   </div>
