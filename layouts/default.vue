@@ -1,5 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue"
+import { useRuntimeConfig } from '#app';
+const config = useRuntimeConfig();
 const route = useRoute()
 const darkMode = ref( false )
 const atTop = ref( true )
@@ -14,7 +16,7 @@ onMounted( () => {
   htlbid.cmd = htlbid.cmd || [];
   htlbid.cmd.push( function () {
     htlbid.layout( 'universal' ); // Leave as 'universal' or add custom layout
-    htlbid.setTargeting( "is_testing", config.ENV === 'prod' ? "no" : "yes" ); // Set to "no" for production
+    htlbid.setTargeting( "is_testing", config.HTL_IS_TESTING ); // Set to "no" for production
     htlbid.setTargeting( "is_home", route.name === 'index' ? "yes" : "no" ); // Set to "yes" on the homepage
     htlbid.setTargeting( "category", route.name ); // dynamically pass page category into this function
     htlbid.setTargeting( "post_id", route.name ); // dynamically pass unique post/page id into this function
@@ -27,11 +29,8 @@ onMounted( () => {
     <Html>
 
     <Head>
-      <Link v-if=" config.ENV === 'prod' " rel="stylesheet" href="https://htlbid.com/v3/radiolab.com/htlbid.css"
-        type="text/css" />
-      <Link v-else rel="stylesheet" href="https://htlbid.com/stage/v3/radiolab.com/htlbid.css" type="text/css" />
-      <Script v-if=" config.ENV === 'prod' " src="https://htlbid.com/v3/radiolab.com/htlbid.js" defer />
-      <Script v-else src="https://htlbid.com/stage/v3/radiolab.com/htlbid.js" defer />
+      <Link rel="stylesheet" :href=" config.HTL_CSS " type="text/css" />
+      <Script :src=" config.HTL_JS " async />
       <Title>Radiolab: Podcasts | WNYC Studios | Podcasts</Title>
       <Meta name="description" content="Investigating a strange world." />
       <Meta name="keywords"
