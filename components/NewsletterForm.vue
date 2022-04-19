@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { useRuntimeConfig } from '#app';
+
+const config = useRuntimeConfig()
 
 const submitted = ref(false)
 const submissionStatus = ref(null)
@@ -11,7 +14,7 @@ const email = ref('')
 function submitForm() {
     submitted.value = true
     axios
-        .post('https://api.prod.nypr.digital/email-proxy/subscribe',
+        .post(`${config.API_URL}/email-proxy/subscribe`,
             {
                 list: '2fe8150dd6',
                 email: email.value,

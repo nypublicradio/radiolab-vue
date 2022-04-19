@@ -3,12 +3,16 @@ import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import Skeleton from 'primevue/skeleton'
+import { useRuntimeConfig } from '#app';
+
+const config =  useRuntimeConfig();
 const dataLoaded = ref(false)
 const episodes = ref([])
+
 onBeforeMount(async () => {
   await axios
     .get(
-      'https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/radio-shows/1?limit=3'
+      `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/1?limit=3`
     )
     .then((response) => {
       episodes.value = response.data.included
