@@ -130,10 +130,10 @@ async function onPage ( event ) {
               </div>
               <div class="grid">
                 <template
-                  v-for="(  episode, index  ) in   episodes.slice( props.paginate ? 0 : props.startCount, rowCountCalc )  "
-                  :key=" index "
-                  :class=" { 'xl:hidden': !props.paginate && rowCount % 2 && index === episodes.length - 1 - props.startCount } ">
-                  <div v-if=" index <= 5 " class="col-12 md:col-6 xl:col-4 mb-6">
+                  v-for="(    episode, index    ) in     episodes.slice( props.paginate ? 0 : props.startCount, rowCountCalc )    "
+                  :key=" index ">
+                  <div v-if=" index <= 5 " class="col-12 md:col-6 xl:col-4 mb-6"
+                    :class=" { 'xl:hidden': !props.paginate && rowCount % 2 && index === episodes.length - 1 - props.startCount } ">
                     <v-card
                       :image=" episode.attributes[ 'image-main' ].template.replace( '%s/%s/%s/%s', '%width%/%height%/c/%quality%' ) "
                       :alt=" episode.attributes[ 'image-main' ][ 'alt-text' ] " :title=" episode.attributes.title "
