@@ -14,10 +14,10 @@ onMounted( () => {
   htlbid.cmd = htlbid.cmd || [];
   htlbid.cmd.push( function () {
     htlbid.layout( 'universal' ); // Leave as 'universal' or add custom layout
-    htlbid.setTargeting( "is_testing", "yes" ); // Set to "no" for production
-    htlbid.setTargeting( "is_home", "no" ); // Set to "yes" on the homepage
-    htlbid.setTargeting( "category", "INSERT_CATEGORY_HERE" ); // dynamically pass page category into this function
-    htlbid.setTargeting( "post_id", "INSERT_POSTID_HERE" ); // dynamically pass unique post/page id into this function
+    htlbid.setTargeting( "is_testing", config.ENV === 'prod' ? "no" : "yes" ); // Set to "no" for production
+    htlbid.setTargeting( "is_home", route.name === 'index' ? "yes" : "no" ); // Set to "yes" on the homepage
+    htlbid.setTargeting( "category", route.name ); // dynamically pass page category into this function
+    htlbid.setTargeting( "post_id", route.name ); // dynamically pass unique post/page id into this function
   } );
 } )
 </script>
