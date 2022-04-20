@@ -1,17 +1,24 @@
 <script setup>
-import { useRuntimeConfig } from '#app';
+import { useRuntimeConfig } from '#app'
 
-const config = useRuntimeConfig();
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab-kids/recent_stories/`
+const config = useRuntimeConfig()
+// const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab-kids/recent_stories/`
+const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab-kids/recent_stories/`
 </script>
- 
+
 <template>
   <div>
     <Html>
       <Head>
         <Title>Radiolab for Kids | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="Radiolab for Kids | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="Radiolab for Kids | Radiolab | WNYC Studios" />
+        <Meta
+          name="og:title"
+          content="Radiolab for Kids | Radiolab | WNYC Studios"
+        />
+        <Meta
+          name="twitter:title"
+          content="Radiolab for Kids | Radiolab | WNYC Studios"
+        />
       </Head>
     </Html>
     <section>
@@ -37,5 +44,4 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab-kids/recent_stor
   </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

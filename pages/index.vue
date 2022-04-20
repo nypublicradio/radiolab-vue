@@ -1,8 +1,10 @@
 <script setup>
-import { useRuntimeConfig } from '#app';
-
-const config = useRuntimeConfig();
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
+import { useRuntimeConfig } from '#app'
+const config = useRuntimeConfig()
+// const recentEpisodesApiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab/recent_stories/`
+// const popularEpisodesApiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab/recent_stories/`
+const recentEpisodesApiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
+const popularEpisodesApiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 
 <template>
@@ -15,9 +17,10 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
       button-link="/episodes"
       :row-count="1"
       :startCount="1"
-      :api="apiUrl"
+      :api="recentEpisodesApiUrl"
       path="data.included"
     />
+    <div class="htlad-radiolab_in-content_1 mb-8" />
     <exclusive-content-from-the-lab class="mb-8" />
     <section class="mb-8">
       <div class="content">
@@ -39,8 +42,9 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
       button-link="/episodes"
       :row-count="1"
       :startCount="1"
-      :api="apiUrl"
+      :api="popularEpisodesApiUrl"
       path="data.included"
     />
+    <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>
 </template>

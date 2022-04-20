@@ -43,7 +43,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-
 })
 
 const dataLoaded = ref(false)
@@ -51,11 +50,9 @@ const episodes = ref([])
 const totalCount = ref(null)
 
 const rowCountCalc = props.paginate
-  ?
-  // Bono: I was unable to suppoort the hidden odd episode with pagination. I could not figure out the correct way to do it. When paginating, startCount is always 0 and the odd episode is not added and hidden. 
-  props.rowCount * 3
-  :
-  (props.startCount + ((props.rowCount * 3) + (props.rowCount % 2 ? 1 : 0)))
+  ? // Bono: I was unable to suppoort the hidden odd episode with pagination. I could not figure out the correct way to do it. When paginating, startCount is always 0 and the odd episode is not added and hidden.
+    props.rowCount * 3
+  : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
 
 const axiosSuccessful = ref(true)
 
@@ -65,7 +62,7 @@ takes the prop path and returns the desired data from the response
 const traverseObjectByString = (pathString, data) => {
   let tempData = data
   const pathParts = pathString.split('.')
-  pathParts.forEach(key => {
+  pathParts.forEach((key) => {
     tempData = tempData[key]
     if (tempData === undefined || tempData === null) {
       throw new Error(`path prop wrong format`)
@@ -76,9 +73,7 @@ const traverseObjectByString = (pathString, data) => {
 
 onBeforeMount(async () => {
   await axios
-    .get(
-      `${props.api}${props.startPage}?limit=${rowCountCalc}`
-    )
+    .get(`${props.api}${props.startPage}?limit=${rowCountCalc}`)
     .then((response) => {
       //episodes.value = response.data.included
 
@@ -101,19 +96,18 @@ async function onPage(event) {
   //event.pageCount: Total number of pages
   dataLoaded.value = false
   await axios
-    .get(
-      `${props.api}${event.page + 1}?limit=${rowCountCalc}`
-    )
+    .get(`${props.api}${event.page + 1}?limit=${rowCountCalc}`)
     .then((response) => {
       episodes.value = response.data.included
       dataLoaded.value = true
-    }).catch(function (error) {
+    })
+    .catch(function (error) {
       // console.log(error)
       axiosSuccessful.value = false
     })
 }
 </script>
- 
+
 <template>
   <div v-if="axiosSuccessful">
     <section>
@@ -127,35 +121,89 @@ async function onPage(event) {
               >
                 <h3 v-if="props.header">{{ props.header }}</h3>
                 <v-flexible-link v-if="props.buttonText" raw to="/episodes">
-                  <Button class="p-button-rounded p-button-sm">{{ props.buttonText }}</Button>
+                  <Button class="p-button-rounded p-button-sm">{{
+                    props.buttonText
+                  }}</Button>
                 </v-flexible-link>
               </div>
               <div class="grid">
-                <div
-                  v-for="(episode, index) in episodes.slice(props.paginate ? 0 : props.startCount, rowCountCalc)"
-                  :key="index"
-                  class="col-12 md:col-6 xl:col-4 mb-6"
-                  :class="{ 'xl:hidden': !props.paginate && rowCount % 2 && index === episodes.length - 1 - props.startCount }"
+                <template
+                  v-for="(episode, index) in episodes.slice(
+                    props.paginate ? 0 : props.startCount,
+                    rowCountCalc
+                  )"
                 >
-                  <v-card
-                    :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
-                    :alt="episode.attributes['image-main']['alt-text']"
-                    :title="episode.attributes.title"
-                    :titleLink="`/episodes/${episode.attributes.slug}`"
-                    :eyebrow="formatDate(episode.attributes['publish-at'])"
-                    :blurb="episode.attributes.tease"
-                    :height="225"
-                    :max-width="episode.attributes['image-main'].w"
-                    :max-height="episode.attributes['image-main'].h"
-                    responsive
-                    :ratio="[4, 3]"
-                    bp="max"
-                    class="radiolab-card"
+                  <div
+                    :key="index"
+                    v-if="index < 6"
+                    class="col-12 md:col-6 xl:col-4 mb-6"
+                    :class="{
+                      'xl:hidden':
+                        !props.paginate &&
+                        rowCount % 2 &&
+                        index === episodes.length - 1 - props.startCount,
+                    }"
                   >
-                    <div class="divider"></div>
-                    <play-selector :episode="episode" />
-                  </v-card>
-                </div>
+                    <v-card
+                      :image="
+                        episode.attributes['image-main'].template.replace(
+                          '%s/%s/%s/%s',
+                          '%width%/%height%/c/%quality%'
+                        )
+                      "
+                      :alt="episode.attributes['image-main']['alt-text']"
+                      :title="episode.attributes.title"
+                      :titleLink="`/episodes/${episode.attributes.slug}`"
+                      :eyebrow="formatDate(episode.attributes['publish-at'])"
+                      :blurb="episode.attributes.tease"
+                      :height="225"
+                      :max-width="episode.attributes['image-main'].w"
+                      :max-height="episode.attributes['image-main'].h"
+                      responsive
+                      :ratio="[4, 3]"
+                      bp="max"
+                      class="radiolab-card"
+                    >
+                      <div class="divider"></div>
+                      <play-selector :episode="episode" />
+                    </v-card>
+                  </div>
+                  <div
+                    :key="index"
+                    v-if="index === 5"
+                    class="htlad-radiolab_in-content_1 col-fixed mb-6"
+                    style="width: 100%"
+                  />
+                  <div
+                    :key="index"
+                    v-if="index > 5"
+                    class="col-12 md:col-6 xl:col-4 mb-6"
+                  >
+                    <v-card
+                      :image="
+                        episode.attributes['image-main'].template.replace(
+                          '%s/%s/%s/%s',
+                          '%width%/%height%/c/%quality%'
+                        )
+                      "
+                      :alt="episode.attributes['image-main']['alt-text']"
+                      :title="episode.attributes.title"
+                      :titleLink="`/episodes/${episode.attributes.slug}`"
+                      :eyebrow="formatDate(episode.attributes['publish-at'])"
+                      :blurb="episode.attributes.tease"
+                      :height="225"
+                      :max-width="episode.attributes['image-main'].w"
+                      :max-height="episode.attributes['image-main'].h"
+                      responsive
+                      :ratio="[4, 3]"
+                      bp="max"
+                      class="radiolab-card"
+                    >
+                      <div class="divider"></div>
+                      <play-selector :episode="episode" />
+                    </v-card>
+                  </div>
+                </template>
               </div>
             </div>
             <episodes-skeleton
@@ -184,8 +232,9 @@ async function onPage(event) {
 .recent-episodes > .grid {
   margin: 0 -24px;
 }
+
 .recent-episodes .grid > .col,
-.recent-episodes .grid > [class*="col"] {
+.recent-episodes .grid > [class*='col'] {
   padding: 0 24px;
 }
 

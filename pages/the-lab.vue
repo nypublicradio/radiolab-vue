@@ -1,18 +1,17 @@
 <script setup>
-import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
-import colors from "~/assets/scss/colors.module.scss"
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import colors from '~/assets/scss/colors.module.scss'
 useHead({
   meta: [
     {
-      name: "theme-color",
+      name: 'theme-color',
       content: colors.rlBlue,
     },
   ],
   bodyAttrs: {
-    class: "has-head-color invert-menu-color",
+    class: 'has-head-color invert-menu-color',
   },
 })
-
 </script>
 
 <template>
@@ -21,21 +20,33 @@ useHead({
       <Head>
         <Title>The Lab | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="The Lab | Radiolab | WNYC Studios" />
+        <Meta
+          name="twitter:title"
+          content="The Lab | Radiolab | WNYC Studios"
+        />
       </Head>
     </Html>
     <section
       class="graphic-head flex justify-content-center align-content-center"
       data-style-mode="blue"
     >
-      <img class="the-lab-sticker mt-2 lg:mt-6 mb-4" src="/the-lab-sticker.svg" alt="The Lab logo" />
-      <h1 class="h4 text text-center">Join us in our investigation into this strange world.</h1>
+      <img
+        class="the-lab-sticker mt-2 lg:mt-6 mb-4"
+        src="/the-lab-sticker.svg"
+        alt="The Lab logo"
+      />
+      <h1 class="h4 text text-center">
+        Join us in our investigation into this strange world.
+      </h1>
       <div class="flex mt-5" style="gap: 1rem">
         <v-flexible-link to="/the-lab" raw>
           <Button class="p-button-rounded" label="Become a member" />
         </v-flexible-link>
         <v-flexible-link to="https://members.radiolab.org/request_access" raw>
-          <Button class="blue p-button-rounded p-button-outlined" label="Sign in" />
+          <Button
+            class="blue p-button-rounded p-button-outlined"
+            label="Sign in"
+          />
         </v-flexible-link>
       </div>
     </section>
@@ -43,16 +54,18 @@ useHead({
       <div class="content md:px-5 lg:px-8">
         <div class="grid">
           <div class="col-12 lg:col-5 md:col-6">
-            <div class="caps-header">A New membership experience developed by Radiolab</div>
+            <div class="caps-header">
+              A New membership experience developed by Radiolab
+            </div>
           </div>
           <div class="col-12 md:col-5 lg:col-offset-2 md:col-offset-1">
             <p class="mb-3">
-              Get access to our archive, exclusive swag, and opportunities to connect with
-              the Radiolab team and community.
+              Get access to our archive, exclusive swag, and opportunities to
+              connect with the Radiolab team and community.
             </p>
             <p>
-              Plus, you'll be directly powering the incredible, deeply reported episodes
-              you hear each week.
+              Plus, you'll be directly powering the incredible, deeply reported
+              episodes you hear each week.
             </p>
           </div>
         </div>
@@ -112,9 +125,13 @@ useHead({
               <p>How do I access my ad-free version of Radiolab?</p>
               <p>
                 You can find
-                <v-flexible-link to="https://members.radiolab.org/help">detailed instructions</v-flexible-link>&nbsp;on
-                adding our ad-free version of Radiolab to your podcast player
-                <v-flexible-link to="https://members.radiolab.org/help">here</v-flexible-link>.
+                <v-flexible-link to="https://members.radiolab.org/help"
+                  >detailed instructions</v-flexible-link
+                >&nbsp;on adding our ad-free version of Radiolab to your podcast
+                player
+                <v-flexible-link to="https://members.radiolab.org/help"
+                  >here</v-flexible-link
+                >.
               </p>
             </div>
 
@@ -122,39 +139,49 @@ useHead({
               <p>How do I manage my Radiolab Membership?</p>
               <p>
                 Log in to your
-                <v-flexible-link to="https://members.radiolab.org/request_access">membership portal</v-flexible-link>.
-                From there, you can update your payment details or change your giving
-                tier. You're also free to cancel your membership at any time - though we
-                hope you don't!
+                <v-flexible-link
+                  to="https://members.radiolab.org/request_access"
+                  >membership portal</v-flexible-link
+                >. From there, you can update your payment details or change
+                your giving tier. You're also free to cancel your membership at
+                any time - though we hope you don't!
               </p>
             </div>
 
             <div class="question">
               <p>Is my Radiolab membership tax-deductible?</p>
               <p>
-                Radiolab is a part of New York Public Radio, a 501c(3) non-profit
-                organization. A portion of your payment may be deductible. Please refer to
-                your emailed acknowledgment for more information on your payment, and
-                consult your tax advisor for information specific to your situation.
+                Radiolab is a part of New York Public Radio, a 501c(3)
+                non-profit organization. A portion of your payment may be
+                deductible. Please refer to your emailed acknowledgment for more
+                information on your payment, and consult your tax advisor for
+                information specific to your situation.
               </p>
             </div>
             <div class="question">
               <p>How do I support Radiolab without joining The Lab?</p>
               <p>
-                Thank you so much for your interest in Radiolab. Your support helps
-                Radiolab continue to provoke, delight, and keep audiences curious.
+                Thank you so much for your interest in Radiolab. Your support
+                helps Radiolab continue to provoke, delight, and keep audiences
+                curious.
               </p>
               <p class="mt-4">
                 To learn more about
-                <v-flexible-link
-                  to="https://nypublicradio.org/support/"
-                >higher level giving opportunities</v-flexible-link>, please contact the Development Office at
-                <v-flexible-link to="mailto:giving@nypublicradio.org">giving@nypublicradio.org</v-flexible-link>&nbsp;or
-                <v-flexible-link to="tel:19293354108" target="_self">(929) 335-4108</v-flexible-link>
+                <v-flexible-link to="https://nypublicradio.org/support/"
+                  >higher level giving opportunities</v-flexible-link
+                >, please contact the Development Office at
+                <v-flexible-link to="mailto:giving@nypublicradio.org"
+                  >giving@nypublicradio.org</v-flexible-link
+                >&nbsp;or
+                <v-flexible-link to="tel:19293354108" target="_self"
+                  >(929) 335-4108</v-flexible-link
+                >
               </p>
             </div>
 
-            <p class="mt-4">You may also make an online contribution to WNYC Studios directly.</p>
+            <p class="mt-4">
+              You may also make an online contribution to WNYC Studios directly.
+            </p>
           </div>
         </div>
       </div>
@@ -184,12 +211,12 @@ useHead({
       width: 910px;
       padding: 0 2rem;
 
-      @include media("<lg") {
+      @include media('<lg') {
         font-size: var(--font-size-13);
         width: 650px;
       }
 
-      @include media("<md") {
+      @include media('<md') {
         font-size: var(--font-size-11);
         letter-spacing: 6px;
         padding: 0 0.5rem;
@@ -198,7 +225,7 @@ useHead({
     }
 
     .p-button {
-      @include media("<sm") {
+      @include media('<sm') {
         font-size: var(--font-size-6);
       }
     }
@@ -216,7 +243,7 @@ useHead({
     overflow: hidden;
     padding: 2rem;
 
-    @include media("<=sm") {
+    @include media('<=sm') {
       padding: 2rem 1rem;
     }
 
@@ -225,17 +252,17 @@ useHead({
       letter-spacing: 0.5rem;
       line-height: var(--font-size-15);
 
-      @include media(">lg", "<xl") {
+      @include media('>lg', '<xl') {
         font-size: var(--font-size-12);
         line-height: var(--font-size-12);
       }
 
-      @include media("<md") {
+      @include media('<md') {
         font-size: var(--font-size-14);
         line-height: var(--font-size-14);
       }
 
-      @include media("<sm") {
+      @include media('<sm') {
         font-size: var(--font-size-8);
         line-height: var(--font-size-8);
         letter-spacing: 0.35rem;

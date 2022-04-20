@@ -2,9 +2,9 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-import { useRuntimeConfig } from '#app';
+import { useRuntimeConfig } from '#app'
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const people = ref([])
 const totalCount = ref(null)
@@ -12,7 +12,8 @@ const totalCount = ref(null)
 onBeforeMount(async () => {
   await axios
     .get(
-      `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
+      // `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
+      `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/the-team/1?limit=50`
     )
     .then((response) => {
       people.value = response.data.included
@@ -28,7 +29,10 @@ onBeforeMount(async () => {
       <Head>
         <Title>The Team | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="The Team | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="The Team | Radiolab | WNYC Studios" />
+        <Meta
+          name="twitter:title"
+          content="The Team | Radiolab | WNYC Studios"
+        />
       </Head>
     </Html>
     <section>
@@ -49,12 +53,19 @@ onBeforeMount(async () => {
             class="col-12 md:col-6 xl:col-4 mb-6"
           >
             <v-card
-              :image="person.attributes.person.image.template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+              :image="
+                person.attributes.person.image.template.replace(
+                  '%s/%s/%s/%s',
+                  '%width%/%height%/c/%quality%'
+                )
+              "
               :alt="person.attributes.person.name"
               :title="person.attributes.person.name"
               :titleLink="`/team/${person.attributes.person.slug}`"
               :eyebrow="person.attributes['appearance-type']"
-              :blurb="person.attributes.person.lede || person.attributes.person.bio"
+              :blurb="
+                person.attributes.person.lede || person.attributes.person.bio
+              "
               :max-width="person.attributes.person.image.w"
               :max-height="person.attributes.person.image.h"
               responsive
@@ -76,7 +87,7 @@ onBeforeMount(async () => {
 }
 
 .team .cards .grid > .col,
-.team .cards .grid > [class*="col"] {
+.team .cards .grid > [class*='col'] {
   padding: 0 24px;
 }
 

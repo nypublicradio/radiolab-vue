@@ -1,6 +1,6 @@
 <script setup>
 import colors from '~/assets/scss/colors.module.scss'
-import { useRuntimeConfig } from '#app';
+import { useRuntimeConfig } from '#app'
 
 useHead({
   meta: [
@@ -14,8 +14,9 @@ useHead({
   },
 })
 
-const config = useRuntimeConfig();
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
+const config = useRuntimeConfig()
+// const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
+const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 
 <template>
@@ -24,17 +25,24 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
       <Head>
         <Title>404 Error | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="404 Error | Radiolab | WNYC Studios" />
+        <Meta
+          name="twitter:title"
+          content="404 Error | Radiolab | WNYC Studios"
+        />
       </Head>
     </Html>
-    <section class="graphic-head lightorange flex justify-content-center align-content-center">
+    <section
+      class="graphic-head lightorange flex justify-content-center align-content-center"
+    >
       <h2 class="text-center font-semibold">Nope.</h2>
     </section>
     <section class="white100bg">
       <div class="content md:p-8 thin-content-width">
         <div class="grid">
           <div class="col-12 md:p-6">
-            <p class="mb-4">Not all those who wander are lost. But you sure are!</p>
+            <p class="mb-4">
+              Not all those who wander are lost. But you sure are!
+            </p>
             <p>
               <strong>404 Error - Not Found</strong> - this page does not exist,
               but you are invited to listen to our

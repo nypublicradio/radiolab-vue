@@ -2,16 +2,17 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import { useRuntimeConfig } from '#app';
+import { useRuntimeConfig } from '#app'
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const episodes = ref([])
 
 onBeforeMount(async () => {
   await axios
     .get(
-      `${config.API_URL}/api/v3/buckets/radiolab-radio-shows/?limit=3`
+      // `${config.API_URL}/api/v3/buckets/radiolab-radio-shows/?limit=3`
+      `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=3`
     )
     .then((response) => {
       episodes.value = response.data.data.attributes['bucket-items']
@@ -19,7 +20,7 @@ onBeforeMount(async () => {
     })
 })
 </script>
- 
+
 <template>
   <section>
     <div class="content">
@@ -29,7 +30,9 @@ onBeforeMount(async () => {
             <div class="flex justify-content-between">
               <h3 class="mb-4">Exclusive content from The Lab</h3>
               <v-flexible-link raw class="the-lab" to="/the-lab">
-                <Button class="p-button-rounded p-button-sm">Become a member</Button>
+                <Button class="p-button-rounded p-button-sm"
+                  >Become a member</Button
+                >
               </v-flexible-link>
             </div>
             <div v-if="dataLoaded" class="grid">
@@ -39,7 +42,12 @@ onBeforeMount(async () => {
                 class="col-12 xl:col-4 mb-2"
               >
                 <mini-card
-                  :image="episode.attributes['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+                  :image="
+                    episode.attributes['image-main'].template.replace(
+                      '%s/%s/%s/%s',
+                      '%width%/%height%/c/%quality%'
+                    )
+                  "
                   :alt="episode.attributes['image-main']['alt-text']"
                   :url="episode.attributes.url"
                   members-only
