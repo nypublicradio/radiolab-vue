@@ -37,12 +37,19 @@
 }
 
 .radiolab-card.v-card .card-blurb {
-    font-size: var(--font-size-5);
-    line-height: 20px;
     @include truncate();
     @include t3lines();
     @include media('>xl') {
         min-height: 60px;
+    }
+    * {
+        font-size: var(--font-size-5);
+        line-height: 20px;
+    }
+    // to fix ios safari text-overflow bug, I remove all but the first <p> or <div>
+    p:not(p:first-child),
+    div:not(div:first-child) {
+        display: none;
     }
 }
 
