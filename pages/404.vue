@@ -2,7 +2,7 @@
 import colors from '~/assets/scss/colors.module.scss'
 import { useRuntimeConfig } from '#app';
 
-useHead({
+useHead( {
   meta: [
     {
       name: 'theme-color',
@@ -12,20 +12,23 @@ useHead({
   bodyAttrs: {
     class: 'has-head-color',
   },
-})
+} )
 
 const config = useRuntimeConfig();
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
+// const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
+const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`;
 </script>
 
 <template>
   <div class="error-page">
     <Html>
-      <Head>
-        <Title>404 Error | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="404 Error | Radiolab | WNYC Studios" />
-      </Head>
+
+    <Head>
+      <Title>404 Error | Radiolab | WNYC Studios</Title>
+      <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
+      <Meta name="twitter:title" content="404 Error | Radiolab | WNYC Studios" />
+    </Head>
+
     </Html>
     <section class="graphic-head lightorange flex justify-content-center align-content-center">
       <h2 class="text-center font-semibold">Nope.</h2>
@@ -46,12 +49,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
       </div>
     </section>
     <!-- TODO: need top ten endpoint -->
-    <episodes
-      class="mt-6 mb-4"
-      :row-count="3"
-      :api="apiUrl"
-      path="data.included"
-    />
+    <episodes class="mt-6 mb-4" :row-count=" 3 " :api=" apiUrl " path="data.included" />
   </div>
 </template>
 

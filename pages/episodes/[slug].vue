@@ -7,7 +7,7 @@ import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/com
 import EpisodeTools from '~/components/EpisodeTools.vue'
 import { useRuntimeConfig } from '#app';
 
-useHead({
+useHead( {
   meta: [
     {
       name: 'theme-color',
@@ -17,17 +17,18 @@ useHead({
   bodyAttrs: {
     class: 'has-head-color'
   }
-})
+} )
 
 const config = useRuntimeConfig();
-const dataLoaded = ref(false)
-const episode = ref([])
+const dataLoaded = ref( false )
+const episode = ref( [] )
 const route = useRoute()
 
 onBeforeMount( async () => {
   await axios
     .get(
-      `${config.API_URL}/api/v3/story/${route.params.slug}/`
+      // `${config.API_URL}/api/v3/story/${route.params.slug}/`
+      `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${ route.params.slug }/`
     )
     .then( ( response ) => {
       episode.value = response.data.data.attributes
