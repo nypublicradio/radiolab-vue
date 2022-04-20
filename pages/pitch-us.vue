@@ -20,10 +20,15 @@ useMeta({
       <Head>
         <Title>Pitch Us | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="Pitch Us | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="Pitch Us | Radiolab | WNYC Studios" />
+        <Meta
+          name="twitter:title"
+          content="Pitch Us | Radiolab | WNYC Studios"
+        />
       </Head>
     </Html>
-    <section class="graphic-head flex justify-content-center align-content-center">
+    <section
+      class="graphic-head flex justify-content-center align-content-center"
+    >
       <h1 class="h2 text-center font-semibold">Pitch Us</h1>
     </section>
     <section>
@@ -83,7 +88,7 @@ useMeta({
 .pitch-us {
   .graphic-head {
     background-color: var(--lightblue-500);
-    background-image: url("/rl-icon-on-blue2.svg");
+    background-image: url('/rl-icon-on-blue2.svg');
   }
 }
 </style>

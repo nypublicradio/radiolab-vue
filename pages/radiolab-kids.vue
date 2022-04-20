@@ -1,21 +1,25 @@
 <script setup>
-import { useRuntimeConfig } from '#app';
+import { useRuntimeConfig } from '#app'
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 // const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab-kids/recent_stories/`
 const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab-kids/recent_stories/`
 </script>
- 
+
 <template>
   <div>
     <Html>
-
-    <Head>
-      <Title>Radiolab for Kids | Radiolab | WNYC Studios</Title>
-      <Meta name="og:title" content="Radiolab for Kids | Radiolab | WNYC Studios" />
-      <Meta name="twitter:title" content="Radiolab for Kids | Radiolab | WNYC Studios" />
-    </Head>
-
+      <Head>
+        <Title>Radiolab for Kids | Radiolab | WNYC Studios</Title>
+        <Meta
+          name="og:title"
+          content="Radiolab for Kids | Radiolab | WNYC Studios"
+        />
+        <Meta
+          name="twitter:title"
+          content="Radiolab for Kids | Radiolab | WNYC Studios"
+        />
+      </Head>
     </Html>
     <section>
       <div class="content lg:px-8 pb-0">
@@ -30,9 +34,14 @@ const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/a
         </div>
       </div>
     </section>
-    <episodes class="mb-4" :row-count=" 4 " :api=" apiUrl " path="data.included" :paginate=" true " />
+    <episodes
+      class="mb-4"
+      :row-count="4"
+      :api="apiUrl"
+      path="data.included"
+      :paginate="true"
+    />
   </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

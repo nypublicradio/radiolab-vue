@@ -12,7 +12,6 @@ useHead({
     class: 'has-head-color',
   },
 })
-
 </script>
 
 <template>
@@ -20,11 +19,19 @@ useHead({
     <Html>
       <Head>
         <Title>About Radiolab | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="About Radiolab | Radiolab | WNYC Studios" />
-        <Meta name="twitter:title" content="About Radiolab | Radiolab | WNYC Studios" />
+        <Meta
+          name="og:title"
+          content="About Radiolab | Radiolab | WNYC Studios"
+        />
+        <Meta
+          name="twitter:title"
+          content="About Radiolab | Radiolab | WNYC Studios"
+        />
       </Head>
     </Html>
-    <section class="graphic-head flex justify-content-center align-content-center">
+    <section
+      class="graphic-head flex justify-content-center align-content-center"
+    >
       <h1 class="h2 text text-center font-semibold">About Radiolab</h1>
     </section>
     <section>
@@ -50,20 +57,26 @@ useHead({
                 <v-flexible-link
                   to="https://wnycstudios.zendesk.com/hc/en-us/requests/new?ticket_form_id=923428"
                 >
-                  this
-                  form.
+                  this form.
                 </v-flexible-link>
               </p>
             </div>
             <Divider align="center" class="my-6" />
-            <p class="mb-3">Embed the Radiolab widget on your blog or website:</p>
+            <p class="mb-3">
+              Embed the Radiolab widget on your blog or website:
+            </p>
             <textarea class="mb-3" rows="8">
-<iframe frameborder='0' height='180' src="https://www.wnyc.org/widgets/bucket_player/#slotname=radiolab-bucket-player-episodes" mce_src="https://www.wnyc.org/widgets/bucket_player/#slotname=radiolab-bucket-player-episodes" width='300px'></iframe></textarea>
+<iframe frameborder='0' height='180' src="https://www.wnyc.org/widgets/bucket_player/#slotname=radiolab-bucket-player-episodes" mce_src="https://www.wnyc.org/widgets/bucket_player/#slotname=radiolab-bucket-player-episodes" width='300px'></iframe></textarea
+            >
             <Divider align="center" class="my-6" />
             <p class="mb-3">
               All press inquiries may be directed to
-              <v-flexible-link to="mailto:jhoulihan@nypublicradio.org">Jennifer Houlihan Roussel</v-flexible-link>at
-              <v-flexible-link to="tel:1646829497" target="_self">(646) 829-4497</v-flexible-link>.
+              <v-flexible-link to="mailto:jhoulihan@nypublicradio.org"
+                >Jennifer Houlihan Roussel</v-flexible-link
+              >at
+              <v-flexible-link to="tel:1646829497" target="_self"
+                >(646) 829-4497</v-flexible-link
+              >.
             </p>
             <p class="mb-3">
               Please read about changes to our comments policy
@@ -92,18 +105,18 @@ useHead({
   .text-padding {
     padding: 0 25% 0 25%;
 
-    @include media("<lg") {
+    @include media('<lg') {
       padding: 0 15% 0 15%;
     }
 
-    @include media("<md") {
+    @include media('<md') {
       padding: 0;
     }
   }
 
   .graphic-head {
     background-color: var(--black100);
-    background-image: url("/rl-icon-on-black-white-invert.svg");
+    background-image: url('/rl-icon-on-black-white-invert.svg');
     background-position: 50% 50%;
     background-size: 1000px;
 
