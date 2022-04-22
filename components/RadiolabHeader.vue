@@ -119,7 +119,7 @@ const menuItems = ref(menuItemsImport)
       padding: 1rem 0.5rem;
 
       @include media("<xl") {
-        padding: 1rem 0.5rem 1rem 0;
+        padding: 1rem 0.5rem 1rem 0.5rem;
       }
 
       .p-menubar-button {

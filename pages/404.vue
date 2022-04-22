@@ -25,24 +25,17 @@ const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/a
       <Head>
         <Title>404 Error | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
-        <Meta
-          name="twitter:title"
-          content="404 Error | Radiolab | WNYC Studios"
-        />
+        <Meta name="twitter:title" content="404 Error | Radiolab | WNYC Studios" />
       </Head>
     </Html>
-    <section
-      class="graphic-head lightorange flex justify-content-center align-content-center"
-    >
+    <section class="graphic-head lightorange flex justify-content-center align-content-center">
       <h2 class="text-center font-semibold">Nope.</h2>
     </section>
     <section class="white100bg">
-      <div class="content md:p-8 thin-content-width">
+      <div class="content thin-content-width">
         <div class="grid">
-          <div class="col-12 md:p-6">
-            <p class="mb-4">
-              Not all those who wander are lost. But you sure are!
-            </p>
+          <div class="col-12">
+            <p class="mb-4">Not all those who wander are lost. But you sure are!</p>
             <p>
               <strong>404 Error - Not Found</strong> - this page does not exist,
               but you are invited to listen to our
@@ -54,23 +47,21 @@ const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/a
       </div>
     </section>
     <!-- TODO: need top ten endpoint -->
-    <episodes
-      class="mt-6 mb-4"
-      :row-count="3"
-      :api="apiUrl"
-      path="data.included"
-    />
+    <episodes class="mt-6 mb-4" :row-count="3" :api="apiUrl" path="data.included" />
   </div>
 </template>
 
 <style lang="scss">
 .error-page {
-  .graphic-head {
-    // defaults used for 404 page
-  }
-
   .content {
+    padding: 7rem;
+    @include media("<md") {
+      padding: 1rem;
+    }
     text-align: center;
+    p {
+      font-size: var(--font-size-8);
+    }
   }
 }
 </style>
