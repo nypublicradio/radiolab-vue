@@ -274,10 +274,10 @@ section {
 
 /*component overrides that will eventually go in the extensions.scss file in the theme*/
 @mixin black-button() {
-  background: var(--black500);
+  background-color: var(--black500);
   color: var(--primary-color);
   &:hover {
-    background: var(--blue-500);
+    background-color: var(--blue-500);
   }
 }
 @mixin blue-button() {

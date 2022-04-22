@@ -51,7 +51,7 @@ const totalCount = ref(null)
 
 const rowCountCalc = props.paginate
   ? // Bono: I was unable to suppoort the hidden odd episode with pagination. I could not figure out the correct way to do it. When paginating, startCount is always 0 and the odd episode is not added and hidden.
-    props.rowCount * 3
+  props.rowCount * 3
   : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
 
 const axiosSuccessful = ref(true)
@@ -121,9 +121,11 @@ async function onPage(event) {
               >
                 <h3 v-if="props.header">{{ props.header }}</h3>
                 <v-flexible-link v-if="props.buttonText" raw to="/episodes">
-                  <Button class="p-button-rounded p-button-sm">{{
-                    props.buttonText
-                  }}</Button>
+                  <Button class="p-button-rounded p-button-sm">
+                    {{
+                      props.buttonText
+                    }}
+                  </Button>
                 </v-flexible-link>
               </div>
               <div class="grid">
@@ -165,7 +167,7 @@ async function onPage(event) {
                       class="radiolab-card"
                     >
                       <div class="divider"></div>
-                      <play-selector :episode="episode" />
+                      <play-selector :episode="episode.attributes" />
                     </v-card>
                   </div>
                   <div
@@ -174,11 +176,7 @@ async function onPage(event) {
                     class="htlad-radiolab_in-content_1 col-fixed mb-6"
                     style="width: 100%"
                   />
-                  <div
-                    :key="index"
-                    v-if="index > 5"
-                    class="col-12 md:col-6 xl:col-4 mb-6"
-                  >
+                  <div :key="index" v-if="index > 5" class="col-12 md:col-6 xl:col-4 mb-6">
                     <v-card
                       :image="
                         episode.attributes['image-main'].template.replace(
@@ -200,7 +198,7 @@ async function onPage(event) {
                       class="radiolab-card"
                     >
                       <div class="divider"></div>
-                      <play-selector :episode="episode" />
+                      <play-selector :episode="episode.attributes" />
                     </v-card>
                   </div>
                 </template>
@@ -234,7 +232,7 @@ async function onPage(event) {
 }
 
 .recent-episodes .grid > .col,
-.recent-episodes .grid > [class*='col'] {
+.recent-episodes .grid > [class*="col"] {
   padding: 0 24px;
 }
 
