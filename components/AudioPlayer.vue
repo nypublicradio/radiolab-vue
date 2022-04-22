@@ -23,8 +23,8 @@ const updateUseIsEpisodePlaying = (e) => {
   isEpisodePlaying.value = e
 }
 
-// function that handles the logic for the persistent player to show and hide when the user changes the episode
 let delay = 0
+// function that handles the logic for the persistent player to show and hide when the user changes the episode
 const switchEpisode = () => {
   showPlayer.value = false
   setTimeout(() => {
