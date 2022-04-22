@@ -61,7 +61,7 @@ onBeforeMount(async () => {
                   v-html="episodes[0].attributes.tease"
                   class="latest-episode-tease mb-5 truncate t3lines"
                 />
-                <play-selector :episode="episodes[0]" />
+                <play-selector :episode="episodes[0].attributes" />
               </div>
             </div>
             <latest-episode-skeleton v-else />
@@ -82,7 +82,7 @@ onBeforeMount(async () => {
 .latest-episode .latest-episode-title {
   text-decoration: none;
 
-  @include media('<lg') {
+  @include media("<lg") {
     h2 {
       font-size: var(--font-size-12);
       line-height: var(--line-height-12);
