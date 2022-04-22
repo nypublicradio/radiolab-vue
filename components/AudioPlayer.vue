@@ -1,63 +1,70 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watch, computed } from 'vue'
 import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VPersistentPlayer.vue'
-import { useCurrentEpisode } from '~/composables/states'
+import { useCurrentEpisode, useIsEpisodePlaying, useTogglePlayTrigger } from '~/composables/states'
 import { toastGlobalConfig } from '~/utilities/helpers'
 import { createToast } from 'mosha-vue-toastify'
 // had to install howler.js locally and add this import to stop it from breaking the build
 import { Howl, Howler } from 'howler'
 const currentEpisode = useCurrentEpisode()
-
+const isEpisodePlaying = useIsEpisodePlaying()
+const togglePlayTrigger = useTogglePlayTrigger()
 const toastConfig = ref(toastGlobalConfig())
+const showPlayer = ref(false)
+const playerRef = ref()
 
 /*function called from the emit of the persistent player when the download button is clicked to trigger the toast notification*/
 const onDownload = () => {
   createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
 }
 
-
-let showPlayer = ref(false)
-const firstFlag = ref(false)
-// function that handles the logic for the persistent player to show and hide when the user changes the episode
-const switchEpisode = () => {
-  if (firstFlag.value) {
-    showPlayer.value = false
-    setTimeout(() => {
-      showPlayer.value = true
-    }, 1000)
-  } else {
-    showPlayer.value = true
-  }
-  firstFlag.value = true
+/*function that updated the global useIsEpisodePlaying */
+const updateUseIsEpisodePlaying = (e) => {
+  isEpisodePlaying.value = e
 }
 
-watchEffect(() => {
-  if (currentEpisode.value) {
-    switchEpisode()
-  }
+// function that handles the logic for the persistent player to show and hide when the user changes the episode
+let delay = 0
+const switchEpisode = () => {
+  showPlayer.value = false
+  setTimeout(() => {
+    showPlayer.value = true
+    delay = 1000
+  }, delay)
+}
+
+watch(currentEpisode, () => {
+  switchEpisode()
+})
+
+watch(togglePlayTrigger, () => {
+  playerRef.value.togglePlay()
 })
 
 </script>
 
 <template>
-  <transition name="player">
-    <v-persistent-player
-      v-if="showPlayer"
-      :auto-play="true"
-      :is-playing="true"
-      :title="currentEpisode.title"
-      :title-link="currentEpisode.slug"
-      :station="currentEpisode['show-title']"
-      :description="currentEpisode.tease"
-      :image="currentEpisode['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
-      :file="currentEpisode.audio"
-      :duration-seconds="currentEpisode['estimated-duration']"
-      :show-download="currentEpisode['audio-may-download'] ? true : false"
-      :show-skip="true"
-      :can-minimize="true"
-      @download="onDownload"
-    />
-  </transition>
+  <div>
+    <transition name="player">
+      <v-persistent-player
+        ref="playerRef"
+        v-if="showPlayer"
+        :auto-play="true"
+        :title="currentEpisode.title"
+        :title-link="currentEpisode.slug"
+        :station="currentEpisode['show-title']"
+        :description="currentEpisode.tease"
+        :image="currentEpisode['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+        :file="currentEpisode.audio"
+        :duration-seconds="currentEpisode['estimated-duration']"
+        :show-download="currentEpisode['audio-may-download'] ? true : false"
+        :show-skip="true"
+        :can-minimize="true"
+        @download="onDownload"
+        @togglePlay="updateUseIsEpisodePlaying"
+      />
+    </transition>
+  </div>
 </template>
 
 <style lang="scss">
@@ -79,6 +86,10 @@ watchEffect(() => {
     &:hover {
       color: var(--white) !important;
     }
+  }
+
+  .p-slider-range {
+    background: var(--orange-400);
   }
 
   .maximize-btn-holder .maximize-btn.p-button {

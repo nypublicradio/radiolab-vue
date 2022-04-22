@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue"
-import { useCurrentEpisode } from '~/composables/states'
+import { ref, computed } from "vue"
+import { useCurrentEpisode, useIsEpisodePlaying, useTogglePlayTrigger } from '~/composables/states'
 import { playServices, lsSelectedPlayService } from '~/utilities/constants'
 
 const props = defineProps({
@@ -17,6 +17,9 @@ const props = defineProps({
 const playServicePreference = usePlayServicePreference()
 const selectedPlayService = ref(playServicePreference)
 
+const isEpisodePlaying = useIsEpisodePlaying()
+const togglePlayTrigger = useTogglePlayTrigger()
+
 const currentEpisode = useCurrentEpisode()
 
 const launchService = (service) => {
@@ -28,30 +31,60 @@ const launchService = (service) => {
 }
 
 // This is where the magic happens. 
-// TODO: trigger global player to consume episode and play
+// if this instances props.episode.slug matches the currentEpisode.value.slug, this methode now handles the play toggle and the setting of 2 global vars that control the persistent player and the display of the listen/play/pause button
 const launchEpisode = () => {
-  if (props.episode.attributes) {
-    currentEpisode.value = props.episode.attributes
+  if (currentEpisode.value && currentEpisode.value.slug === props.episode.slug) {
+    // toggle global isEpisodePlaying state
+    isEpisodePlaying.value = !isEpisodePlaying.value
+    // toggle global togglePlayTrigger state to trigger the playToggle method in the persistent player
+    togglePlayTrigger.value = !togglePlayTrigger.value
   } else {
+    // if the currentEpisode.value.slug does not match the props.episode.slug, this means the user has selected a new episode.
     currentEpisode.value = props.episode
   }
 }
+
+const checkEpisodeMatchAndPlaying = computed(() => {
+  if (currentEpisode.value) {
+    if (currentEpisode.value.slug === props.episode.slug && isEpisodePlaying.value) {
+      return true
+    }
+  }
+  return false
+})
+
+const checkEpisodeMatch = computed(() => {
+  if (currentEpisode.value) {
+    if (currentEpisode.value.slug === props.episode.slug) {
+      return true
+    }
+  }
+  return false
+})
 
 </script>
 
 <template>
   <div class="play-selector flex justify-content-between">
-    <Button class="listen-btn p-button-rounded" @click="launchEpisode">
+    <Button
+      @click="launchEpisode"
+      class="listen-btn p-button-rounded"
+      :class="[{ 'active': checkEpisodeMatch }, { 'anim': isEpisodePlaying }]"
+    >
       <span class="play-icon">
-        <img src="/play-icon.svg" alt="play icon" />
+        <img v-if="checkEpisodeMatchAndPlaying" src="/pause-icon.svg" alt="play/pause icon" />
+        <img v-else src="/play-icon.svg" alt="play/pause icon" />
       </span>
-      <span class="p-button-label">Listen</span>
+      <span
+        v-if="!checkEpisodeMatchAndPlaying"
+        class="p-button-label"
+      >{{ checkEpisodeMatch ? 'Play' : 'Listen' }}</span>
     </Button>
     <div>
       <Button
         :title="`Open ${playServicePreference.name}`"
         @click="launchService(playServicePreference)"
-        class="service-btn p-button-rounded"
+        class="service-btn p-button-rounded inline-block"
       >
         <img
           v-if="selectedPlayService"
@@ -89,6 +122,29 @@ const launchEpisode = () => {
 
   .listen-btn {
     padding-left: 0.5rem;
+    padding-right: 0.6rem;
+    &.active {
+      background-color: var(--blue-500) !important;
+      .p-button-label {
+        color: var(--white) !important;
+      }
+    }
+    &.anim {
+      &:before {
+        content: "";
+        background-image: url("/audioAnim.gif") !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 110%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        opacity: 0.3;
+      }
+    }
   }
 
   .p-dropdown {
@@ -126,14 +182,17 @@ const launchEpisode = () => {
   }
 
   .play-icon {
-    margin-right: 6px;
     line-height: 0;
-
+    z-index: 1;
     img {
       width: 20px;
       height: 20px;
       vertical-align: middle;
     }
+  }
+  .p-button-label {
+    margin-left: 6px;
+    padding-right: 0.6rem;
   }
 
   .service-btn {
