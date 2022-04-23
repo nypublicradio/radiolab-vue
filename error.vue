@@ -2,7 +2,10 @@
 import colors from '~/assets/scss/colors.module.scss'
 import { useRuntimeConfig } from '#app'
 const props = defineProps({
-  error: Object,
+  error: {
+    type: Object,
+    default: null,
+  },
 })
 useHead({
   meta: [
