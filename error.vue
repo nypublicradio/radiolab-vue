@@ -47,7 +47,13 @@ const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/a
             <p class="mb-4">
               Not all those who wander are lost. But you sure are!
             </p>
-            <p>
+            <p v-if="error < 500">
+              <strong>{{ error }} Error.</strong> This page does not exist, but
+              you are invited to listen to our
+              <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
+              below.
+            </p>
+            <p v-else>
               <strong>{{ error }} Error.</strong> Something has gone wrong on
               the web site's server, but you are invited to listen to our
               <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
