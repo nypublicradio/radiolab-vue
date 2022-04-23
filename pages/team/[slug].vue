@@ -20,11 +20,7 @@ onBeforeMount(async () => {
       dataLoaded.value = true
     })
     .catch((error) => {
-      if (error.response.status === 404) {
-        navigateTo('/404')
-      } else {
-        navigateTo('/500')
-      }
+      throwError(error.response.status)
     })
 })
 </script>

@@ -18,13 +18,13 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       if (response.data.included.length < 1) {
-        throwError()
+        throwError('404')
       }
       page.value = response.data.included[0].attributes
       dataLoaded.value = true
     })
     .catch((error) => {
-      throwError()
+      throwError(error.response.status)
     })
 })
 </script>
