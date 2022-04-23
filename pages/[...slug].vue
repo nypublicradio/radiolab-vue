@@ -18,13 +18,17 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       if (response.data.included.length < 1) {
-        throwError()
+        throwError('404 Not Found')
       }
       page.value = response.data.included[0].attributes
       dataLoaded.value = true
     })
     .catch((error) => {
-      throwError()
+      if (error.response.status === 404) {
+        throwError('404 Not Found')
+      } else {
+        throwError('500 Error')
+      }
     })
 })
 </script>

@@ -1,6 +1,9 @@
 <script setup>
+import colors from '~/assets/scss/colors.module.scss'
 import { useRuntimeConfig } from '#app'
-
+const props = defineProps({
+  error: Object,
+})
 useHead({
   meta: [
     {
@@ -13,19 +16,20 @@ useHead({
   },
 })
 
-config = useRuntimeConfig()
-const apiUrl = `${apiUrl}/api/v3/channel/shows/radiolab/recent_stories/`
+const config = useRuntimeConfig()
+// const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
+const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 
 <template>
   <div class="error-page">
     <Html>
       <Head>
-        <Title>500 Error | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="500 Error | Radiolab | WNYC Studios" />
+        <Title>404 Error | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
         <Meta
           name="twitter:title"
-          content="500 Error | Radiolab | WNYC Studios"
+          content="404 Error | Radiolab | WNYC Studios"
         />
       </Head>
     </Html>
@@ -42,8 +46,8 @@ const apiUrl = `${apiUrl}/api/v3/channel/shows/radiolab/recent_stories/`
               Not all those who wander are lost. But you sure are!
             </p>
             <p>
-              <strong>500 Error</strong> - something has gone wrong on the web
-              site's server, but you are invited to listen to our
+              <strong>{{ error }}</strong> - this page does not exist, but you
+              are invited to listen to our
               <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
               below.
             </p>
@@ -65,6 +69,10 @@ const apiUrl = `${apiUrl}/api/v3/channel/shows/radiolab/recent_stories/`
 .error-page {
   .graphic-head {
     // defaults used for 404 page
+  }
+
+  .content {
+    text-align: center;
   }
 }
 </style>
