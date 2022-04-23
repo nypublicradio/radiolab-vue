@@ -69,7 +69,7 @@ const checkEpisodeMatch = computed(() => {
     <Button
       @click="launchEpisode"
       class="listen-btn p-button-rounded"
-      :class="[{ 'active': checkEpisodeMatch }, { 'anim': isEpisodePlaying }]"
+      :class="[{ 'active': checkEpisodeMatch }, { 'anim': checkEpisodeMatchAndPlaying }]"
     >
       <span class="play-icon">
         <img v-if="checkEpisodeMatchAndPlaying" src="/pause-icon.svg" alt="play/pause icon" />
