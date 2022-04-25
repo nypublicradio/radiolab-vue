@@ -9,7 +9,8 @@
     padding: 1.25rem 1.25rem 1.25rem;
 }
 
-.radiolab-card.v-card .card-slot {
+.radiolab-card.v-card .card-slot,
+.latest-episode .latest-episode-content {
     .divider {
         position: relative;
         display: block;
@@ -39,8 +40,8 @@
 .radiolab-card.v-card .card-blurb {
     @include truncate();
     @include t3lines();
-    @include media('>xl') {
-        min-height: 60px;
+    @include media('>md') {
+        min-height: 86.5px;
     }
     * {
         font-size: var(--font-size-5);
@@ -50,6 +51,11 @@
     p:not(p:first-child),
     div:not(div:first-child) {
         display: none;
+    }
+}
+.radiolab-card.v-card.team .card-blurb {
+    @include media('>md') {
+        min-height: 60px;
     }
 }
 

@@ -58,6 +58,7 @@ onBeforeMount(async () => {
                   v-html="episodes[0].attributes.tease"
                   class="latest-episode-tease mb-5 truncate t3lines"
                 />
+                <div class="block md:hidden divider"></div>
                 <play-selector :episode="episodes[0].attributes" />
               </div>
             </div>
