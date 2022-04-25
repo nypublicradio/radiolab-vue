@@ -1,9 +1,20 @@
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import menuItemsImport from '~/utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import RadiolabLogo from '~/components/icons/RadiolabLogo.vue'
 const menuItems = ref(menuItemsImport)
+
+onMounted(() => {
+  // if the menu is mobile... and expanded, then the user resizes the window larger or equal to breakpoint.lg(992px), it will remove the p-menubar-mobile-active class
+  const pMenu = document.getElementById('p-menu')
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= breakpoint.lg && pMenu.classList.contains('p-menubar-mobile-active')) {
+      pMenu.classList.remove('p-menubar-mobile-active')
+    }
+  })
+})
 
 </script>
 
@@ -13,7 +24,7 @@ const menuItems = ref(menuItemsImport)
       <div
         class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4"
       >
-        <Menubar :model="menuItems">
+        <Menubar :model="menuItems" id="p-menu">
           <template #start>
             <nuxt-link to="/" class="logo-holder-link">
               <radiolab-logo class="logo mr-2" />
@@ -297,7 +308,7 @@ const menuItems = ref(menuItemsImport)
 
       .p-menubar-button {
         color: var(--black100);
-        z-index: 1002;
+        z-index: 1010;
         width: 100vw;
         padding-left: 2rem;
         margin-left: -1rem;
