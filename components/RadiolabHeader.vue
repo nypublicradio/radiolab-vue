@@ -8,6 +8,7 @@ const menuItems = ref(menuItemsImport)
 
 onMounted(() => {
   // if the menu is mobile... and expanded, then the user resizes the window larger or equal to breakpoint.lg(992px), it will remove the p-menubar-mobile-active class
+  // header is never unmounted to I don't need to clean up this event on unmount
   const pMenu = document.getElementById('p-menu')
   window.addEventListener('resize', () => {
     if (window.innerWidth >= breakpoint.lg && pMenu.classList.contains('p-menubar-mobile-active')) {
