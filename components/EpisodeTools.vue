@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { formatDate, copyToClipBoard, toastGlobalConfig } from '~/utilities/helpers'
+import { formatDate, copyToClipBoard, shareAPI, toastGlobalConfig } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
@@ -31,11 +31,7 @@ const dotsItems = ref([
     label: 'Embed',
     icon: 'pi pi-code',
     command: () => {
-      if (copyToClipBoard(props.episode['embed-code'])) {
-        createToast('Embed code copied to the clipboard', toastConfig.value)
-      } else {
-        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
-      }
+      copyToClipBoard(props.episode['embed-code'], 'Embed code copied to clipboard')
     }
   }
 ])
@@ -69,11 +65,11 @@ const shareItems = ref([
     label: 'Copy link',
     icon: 'pi pi-link',
     command: () => {
-      if (copyToClipBoard(props.episode['url'])) {
-        createToast('Episode link copied to the clipboard', toastConfig.value)
-      } else {
-        createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger.value)
-      }
+      shareAPI({
+        title: props.episode['title'],
+        text: props.episode['tease'],
+        url: props.episode['url']
+      }, 'Episode link copied to the clipboard')
     }
   }
 ])
