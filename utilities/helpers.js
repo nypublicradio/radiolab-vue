@@ -1,5 +1,6 @@
 import { createToast } from 'mosha-vue-toastify'
 
+/*basic function that detects if the site is running in a mobile browser*/
 function isMobileBrowser() {
   return (typeof window.orientation !== "undefined")
     || (navigator.userAgent.indexOf('IEMobile') !== -1
@@ -41,12 +42,11 @@ export const publisherImageFormatter = (url) => {
 
 // global funcrtion for copying to clipboard
 export const copyToClipBoard = async (content, msg) => {
-  createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger)
   await navigator.clipboard.writeText(content)
     .then(() => {
       createToast(msg ? msg : 'Copied to the clipboard', toastConfig)
     })
-    .catch((err) => {
+    .catch(() => {
       //(err)
       createToast({ title: 'Copy to clipboard failed', description: 'Try again another time' }, toastConfigDanger)
     })
@@ -58,10 +58,10 @@ export const shareAPI = async (content, msg) => {
 
   if (navigator.share && isMobileBrowser()) {
     await navigator.share(content)
-      .then(() => {
+      // .then(() => {
 
-      })
-      .catch((error) => {
+      // })
+      .catch(() => {
         copyToClipBoard(content.url, msg)
       })
   } else {
