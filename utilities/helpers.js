@@ -34,8 +34,6 @@ export const formatDate = function (date) {
 
 // format the url of a publisher image so it works with our design system components
 export const publisherImageFormatter = (url) => {
-  // console.log('url = ', url)
-  // console.log('url = ', url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%"))
   return url.replace("%s/%s/%s/%s", "%width%/%height%/c/%quality%")
 
 }
@@ -53,17 +51,10 @@ export const copyToClipBoard = async (content, msg) => {
 }
 
 // global funcrtion for shareApi and copyToClipboard fallback
-// fyi, This feature is available only in secure contexts (HTTPS), etc... testing local will have no result on mobile, using browserstack works for andriod only... Best to just test it on the DEMO link.
+// fyi, This feature is available only in secure contexts (HTTPS), etc... testing local will have no result on mobile, using browserstack works for andriod-chrome only... Best to just test it on the DEMO link.
 export const shareAPI = async (content, msg) => {
-
-  if (navigator.share && isMobileBrowser()) {
+  if (navigator.canShare && isMobileBrowser()) {
     await navigator.share(content)
-      // .then(() => {
-
-      // })
-      .catch(() => {
-        copyToClipBoard(content.url, msg)
-      })
   } else {
     copyToClipBoard(content.url, msg)
   }
