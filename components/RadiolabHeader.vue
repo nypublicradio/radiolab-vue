@@ -1,28 +1,34 @@
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted } from 'vue'
 import menuItemsImport from '~/utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import RadiolabLogo from '~/components/icons/RadiolabLogo.vue'
 const menuItems = ref(menuItemsImport)
+const isMenuVisible = ref(false)
 
 onMounted(() => {
   // if the menu is mobile... and expanded, then the user resizes the window larger or equal to breakpoint.lg(992px), it will remove the p-menubar-mobile-active class
   // header is never unmounted to I don't need to clean up this event on unmount
   const pMenu = document.getElementById('p-menu')
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= breakpoint.lg && pMenu.classList.contains('p-menubar-mobile-active')) {
+    if (
+      window.innerWidth >= breakpoint.lg &&
+      pMenu.classList.contains('p-menubar-mobile-active')
+    ) {
       pMenu.classList.remove('p-menubar-mobile-active')
     }
   })
-})
 
+  isMenuVisible.value = true
+})
 </script>
 
 <template>
   <div class="site-header">
     <section>
       <div
+        v-if="isMenuVisible"
         class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4"
       >
         <Menubar :model="menuItems" id="p-menu">
@@ -38,9 +44,12 @@ onMounted(() => {
           </template>-->
         </Menubar>
         <v-flexible-link raw to="the-lab">
-          <Button class="flex lg:hidden p-button-rounded">Become a member</Button>
+          <Button class="flex lg:hidden p-button-rounded"
+            >Become a member</Button
+          >
         </v-flexible-link>
       </div>
+      <header-menu-skeleton v-else />
     </section>
   </div>
 </template>
@@ -112,13 +121,13 @@ onMounted(() => {
       width: 100%;
       padding: spacingTRBL(0, 10, 0, 10);
 
-      @include media("<lg") {
+      @include media('<lg') {
         //padding: spacingTRBL(0, 6, 0, 6);
         padding: 0;
         padding-right: 1em;
       }
 
-      @include media("<md") {
+      @include media('<md') {
         // padding: spacingTRBL(0, 1, 0, 1);
       }
     }
@@ -130,7 +139,7 @@ onMounted(() => {
       border: none;
       padding: 1rem 0.5rem;
 
-      @include media("<xl") {
+      @include media('<xl') {
         padding: 1rem 0.5rem 1rem 0.5rem;
       }
 
@@ -146,7 +155,7 @@ onMounted(() => {
         display: flex;
       }
 
-      @include media(">lg") {
+      @include media('>lg') {
         justify-content: space-between;
       }
 
@@ -171,7 +180,7 @@ onMounted(() => {
             margin-left: 290px !important;
           }
 
-          @include media(">lg") {
+          @include media('>lg') {
             margin-left: calc(50vw - 430px);
           }
         }
@@ -199,7 +208,7 @@ onMounted(() => {
           }
 
           &:after {
-            content: "";
+            content: '';
             height: 1px;
             background: var(--black100);
             position: absolute;
@@ -250,7 +259,7 @@ onMounted(() => {
             -webkit-transition: background-color var(--transition-duration),
               border-color var(--transition-duration);
             background-color: var(--white);
-            content: "";
+            content: '';
             left: -100vw;
             top: 1px;
             position: absolute;
@@ -320,7 +329,7 @@ onMounted(() => {
 
         .pi-bars {
           &:before {
-            content: "\e90b";
+            content: '\e90b';
           }
         }
 
