@@ -19,7 +19,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="recent-episodes-skeleton">
+  <div class="team-skeleton">
     <div
       v-if="props.header || !!props.buttonText"
       class="col flex justify-content-between align-items-end mb-3"
@@ -42,19 +42,19 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-$detailsHeight: 250px;
-$cardHeight: 500px;
-.recent-episodes-skeleton > .grid {
+$detailsHeight: 172px;
+$cardHeight: 428px;
+.team-skeleton > .grid {
   margin: 0 -24px;
 }
-.recent-episodes-skeleton .grid > .col,
-.recent-episodes-skeleton .grid > [class*="col"] {
+.team-skeleton .grid > .col,
+.team-skeleton .grid > [class*="col"] {
   padding: 0 24px;
 }
-.recent-episodes-skeleton .grid .p-skeleton {
+.team-skeleton .grid .p-skeleton {
   border-radius: 20px;
 }
-.recent-episodes-skeleton .card {
+.team-skeleton .card {
   @include media("<md") {
     height: calc($detailsHeight + 67.2vw) !important;
   }

@@ -71,11 +71,11 @@ onBeforeMount(async () => {
               responsive
               :ratio="[4, 3]"
               bp="max"
-              class="radiolab-card"
+              class="radiolab-card team"
             />
           </div>
         </div>
-        <episodes-skeleton v-else :row-count="30" />
+        <team-skeleton v-else :row-count="30" />
       </div>
     </section>
   </div>
