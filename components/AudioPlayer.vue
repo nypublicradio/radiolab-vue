@@ -1,7 +1,11 @@
 <script setup>
 import { ref, watch, computed } from 'vue'
 import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VPersistentPlayer.vue'
-import { useCurrentEpisode, useIsEpisodePlaying, useTogglePlayTrigger } from '~/composables/states'
+import {
+  useCurrentEpisode,
+  useIsEpisodePlaying,
+  useTogglePlayTrigger,
+} from '~/composables/states'
 import { toastGlobalConfig } from '~/utilities/helpers'
 import { createToast } from 'mosha-vue-toastify'
 // had to install howler.js locally and add this import to stop it from breaking the build
@@ -15,7 +19,13 @@ const playerRef = ref()
 
 /*function called from the emit of the persistent player when the download button is clicked to trigger the toast notification*/
 const onDownload = () => {
-  createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
+  createToast(
+    {
+      title: 'Downloading episode audio file',
+      description: "Check your system's downloads folder",
+    },
+    toastConfig.value
+  )
 }
 
 /*function that updated the global useIsEpisodePlaying */
@@ -40,7 +50,6 @@ watch(currentEpisode, () => {
 watch(togglePlayTrigger, () => {
   playerRef.value.togglePlay()
 })
-
 </script>
 
 <template>
@@ -51,10 +60,15 @@ watch(togglePlayTrigger, () => {
         v-if="showPlayer"
         :auto-play="true"
         :title="currentEpisode.title"
-        :title-link="currentEpisode.slug"
+        :title-link="`/episodes/${currentEpisode.slug}`"
         :station="currentEpisode['show-title']"
         :description="currentEpisode.tease"
-        :image="currentEpisode['image-main'].template.replace('%s/%s/%s/%s', '%width%/%height%/c/%quality%')"
+        :image="
+          currentEpisode['image-main'].template.replace(
+            '%s/%s/%s/%s',
+            '%width%/%height%/c/%quality%'
+          )
+        "
         :file="currentEpisode.audio"
         :duration-seconds="currentEpisode['estimated-duration']"
         :show-download="currentEpisode['audio-may-download'] ? true : false"
