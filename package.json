@@ -5,13 +5,14 @@
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "preview": "nuxi preview",
-    "test": "jest"
+    "test:unit": "vue-cli-service test:unit"
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@jest/globals": "^27.5.1",
+    "@vue/cli-service": "^5.0.4",
     "@vue/compiler-sfc": "^3.2.31",
     "@vue/test-utils": "^2.0.0-rc.18",
     "@vue/vue3-jest": "^27.0.0-alpha.4",

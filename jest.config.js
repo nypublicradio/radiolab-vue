@@ -21,8 +21,7 @@ module.exports = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    'components/*.vue',
-    'pages/*.vue',
+    'components/*.vue'
   ],
 
   // The directory where Jest should output its coverage files
@@ -104,7 +103,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: '@nuxt/test-utils',
+  preset: '@vue/cli-plugin-unit-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -161,6 +160,7 @@ module.exports = {
   //   "**/__tests__/**/*.[jt]s?(x)",
   //   "**/?(*.)+(spec|test).[tj]s?(x)"
   // ],
+  testMatch: ['<rootDir>/tests/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -189,12 +189,10 @@ module.exports = {
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "\\\\node_modules\\\\",
-  //   "\\.pnp\\.[^\\\\]+$"
-  // ],
-  transformIgnorePatterns: ['/node_modules/@nypublicradio(?!nypr-design-system-vue3)'],
-
+  transformIgnorePatterns: [
+    "\\\\node_modules\\\\"
+  ],
+  // transformIgnorePatterns: ['node_modules/(?!@nypublicradio/nypr-design-system-vue3)'],
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
 
@@ -206,4 +204,4 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-};
+}

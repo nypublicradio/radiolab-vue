@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted } from 'vue'
-import menuItemsImport from '~/utilities/menuItems'
+import { ref, onMounted } from 'vue'
+import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import BecomeMember from './BecomeMember.vue'
 import Newsletter from './Newsletter.vue'
@@ -8,7 +8,6 @@ const menuItems = ref(menuItemsImport)
 const menuItemsFooter = ref([])
 
 onMounted(() => {
-
   for (const [i, v] of menuItems.value.entries()) {
     if (v.items) {
       for (const [i, item] of v.items.entries()) {
@@ -34,17 +33,26 @@ onMounted(() => {
           </div>
         </div>
         <div class="grid mt-8 bottom">
-          <div class="col-12 md:col-3 flex flex-column justify-content-between left">
+          <div
+            class="col-12 md:col-3 flex flex-column justify-content-between left"
+          >
             <div class="mb-4 xl:pr-8">
-              <img alt="small white Radiolab logo icon" src="/rl-icon-solid-white.svg" class="icon" />
+              <img
+                alt="small white Radiolab logo icon"
+                src="/rl-icon-solid-white.svg"
+                class="icon"
+              />
               <p class="sub">Test the outer edges of what you think you know</p>
             </div>
           </div>
           <div class="col-12 md:col-9 right">
-            <div class="menu mb:mb-6 px-0 sm:pl-4 md:pl-6 xl:pl-8" role="menubar">
-              <div v-for="item in menuItemsFooter" role="none" class="menu-item" :key="item.to">
+            <div class="menu mb:mb-6 px-0 sm:pl-4 md:pl-6 xl:pl-8">
+              <div
+                v-for="item in menuItemsFooter"
+                class="menu-item"
+                :key="item.to"
+              >
                 <v-flexible-link :to="item.to ? item.to : item.url">
-                  <!-- <Button class="p-button-text p-button-rounded p-button-plain">{{ item.label }}</Button> -->
                   {{ item.label }}
                 </v-flexible-link>
               </div>
@@ -71,7 +79,7 @@ onMounted(() => {
     .content {
       padding: spacing(10);
 
-      @include media("<medium") {
+      @include media('<medium') {
         padding: spacing(4);
       }
 
@@ -95,20 +103,20 @@ onMounted(() => {
             flex-direction: column;
             height: 220px;
 
-            @include media("<lg") {
+            @include media('<lg') {
               height: 280px;
             }
 
-            @include media("<md") {
+            @include media('<md') {
               height: 280px;
               margin: -1rem;
             }
 
-            @include media("<sm") {
+            @include media('<sm') {
               height: 390px;
             }
 
-            @include media("<xs") {
+            @include media('<xs') {
               height: 380px;
             }
 
@@ -121,7 +129,7 @@ onMounted(() => {
                 text-decoration: none;
                 font-size: var(--font-size-6);
 
-                @include media("<xs") {
+                @include media('<xs') {
                   font-size: var(--font-size-5);
                 }
 
