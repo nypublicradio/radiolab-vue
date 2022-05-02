@@ -21,7 +21,7 @@ useHead({
 
 const config = useRuntimeConfig()
 // const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
-const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
+const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-404/`
 </script>
 <template>
   <div class="error-page">
@@ -44,7 +44,7 @@ const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/a
       <h2 class="text-center font-semibold">Nope.</h2>
     </section>
     <section class="white100bg">
-      <div class="content thin-content-width">
+      <div class="error-page-content thin-content-width">
         <div class="grid">
           <div class="col-12">
             <p class="mb-4">
@@ -66,19 +66,19 @@ const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/a
         </div>
       </div>
     </section>
-    <!-- TODO: need top ten endpoint -->
     <episodes
       class="mt-6 mb-4"
       :row-count="3"
       :api="apiUrl"
-      path="data.included"
+      path="data.data.attributes.bucket-items"
+      bucket
     />
   </div>
 </template>
 
 <style lang="scss">
 .error-page {
-  .content {
+  .error-page-content {
     padding: 7rem;
     @include media('<md') {
       padding: 1rem;
