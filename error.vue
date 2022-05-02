@@ -71,7 +71,6 @@ const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/a
       :row-count="3"
       :api="apiUrl"
       path="data.data.attributes.bucket-items"
-      :paginate="false"
       bucket
     />
   </div>
