@@ -1,9 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import menuItemsImport from '~/utilities/menuItems'
+import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
-import RadiolabLogo from '~/components/icons/RadiolabLogo.vue'
 const menuItems = ref(menuItemsImport)
 const isMenuVisible = ref(false)
 
