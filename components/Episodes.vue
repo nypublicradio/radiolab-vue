@@ -43,6 +43,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  bucket: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const dataLoaded = ref(false)
@@ -51,7 +55,7 @@ const totalCount = ref(null)
 
 const rowCountCalc = props.paginate
   ? // Bono: I was unable to suppoort the hidden odd episode with pagination. I could not figure out the correct way to do it. When paginating, startCount is always 0 and the odd episode is not added and hidden.
-  props.rowCount * 3
+    props.rowCount * 3
   : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
 
 const axiosSuccessful = ref(true)
@@ -73,18 +77,19 @@ const traverseObjectByString = (pathString, data) => {
 
 onBeforeMount(async () => {
   await axios
-    .get(`${props.api}${props.startPage}?limit=${rowCountCalc}`)
+    .get(
+      !props.bucket
+        ? `${props.api}${props.startPage}?limit=${rowCountCalc}`
+        : props.api
+    )
     .then((response) => {
-      //episodes.value = response.data.included
-
       episodes.value = traverseObjectByString(props.path, response)
-
-      //console.log('response.data.included  =', response.data.included)
-      totalCount.value = response.data.data.attributes['total-count']
+      if (!props.bucket) {
+        totalCount.value = response.data.data.attributes['total-count']
+      }
       dataLoaded.value = true
     })
-    .catch(function (error) {
-      // console.log(error)
+    .catch(function () {
       axiosSuccessful.value = false
     })
 })
@@ -98,11 +103,14 @@ async function onPage(event) {
   await axios
     .get(`${props.api}${event.page + 1}?limit=${rowCountCalc}`)
     .then((response) => {
-      episodes.value = response.data.included
+      if (!bucket) {
+        episodes.value = response.data.included
+      } else {
+        episodes.value = response.data.data.attributes['bucket-items']
+      }
       dataLoaded.value = true
     })
-    .catch(function (error) {
-      // console.log(error)
+    .catch(function () {
       axiosSuccessful.value = false
     })
 }
@@ -122,9 +130,7 @@ async function onPage(event) {
                 <h3 v-if="props.header">{{ props.header }}</h3>
                 <v-flexible-link v-if="props.buttonText" raw to="/episodes">
                   <Button class="p-button-rounded p-button-sm">
-                    {{
-                      props.buttonText
-                    }}
+                    {{ props.buttonText }}
                   </Button>
                 </v-flexible-link>
               </div>
@@ -176,7 +182,11 @@ async function onPage(event) {
                     class="htlad-radiolab_in-content_1 col-fixed mb-6"
                     style="width: 100%"
                   />
-                  <div :key="index" v-if="index > 5" class="col-12 md:col-6 xl:col-4 mb-6">
+                  <div
+                    :key="index"
+                    v-if="index > 5"
+                    class="col-12 md:col-6 xl:col-4 mb-6"
+                  >
                     <v-card
                       :image="
                         episode.attributes['image-main'].template.replace(
@@ -232,7 +242,7 @@ async function onPage(event) {
 }
 
 .recent-episodes .grid > .col,
-.recent-episodes .grid > [class*="col"] {
+.recent-episodes .grid > [class*='col'] {
   padding: 0 24px;
 }
 
