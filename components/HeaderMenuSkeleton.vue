@@ -1,6 +1,5 @@
 <script setup>
 import Skeleton from 'primevue/skeleton'
-import RadiolabLogo from '~/components/icons/RadiolabLogo.vue'
 </script>
 
 <template>
@@ -8,7 +7,7 @@ import RadiolabLogo from '~/components/icons/RadiolabLogo.vue'
     <div
       class="hidden lg:flex header-menu-skeleton align-items-center w-full justify-content-between"
     >
-      <radiolab-logo class="logo mr-2" />
+      <icons-radiolab-logo class="logo mr-2" />
       <div class="inline-flex align-items-center" style="gap: 35px">
         <skeleton width="80px" />
         <skeleton width="60px" />
@@ -25,7 +24,7 @@ import RadiolabLogo from '~/components/icons/RadiolabLogo.vue'
     >
       <div class="flex align-items-center">
         <skeleton class="hamburger" width="15px" height="15px" />
-        <radiolab-logo class="logo" />
+        <icons-radiolab-logo class="logo" />
       </div>
       <div class="inline-flex align-items-center" style="gap: 12px">
         <skeleton width="170px" height="40px" />

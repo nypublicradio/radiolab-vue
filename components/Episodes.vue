@@ -103,7 +103,7 @@ async function onPage(event) {
   await axios
     .get(`${props.api}${event.page + 1}?limit=${rowCountCalc}`)
     .then((response) => {
-      if (!bucket) {
+      if (!props.bucket) {
         episodes.value = response.data.included
       } else {
         episodes.value = response.data.data.attributes['bucket-items']

@@ -57,8 +57,8 @@ const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/a
               below.
             </p>
             <p v-else>
-              <strong>{{ error }} Error.</strong> Something has gone wrong on
-              the web site's server, but you are invited to listen to our
+              <strong>500 Error.</strong> Something has gone wrong on the web
+              site's server, but you are invited to listen to our
               <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
               below.
             </p>
