@@ -13,9 +13,9 @@ onMounted(() => {
   window.addEventListener('resize', () => {
     if (
       window.innerWidth >= breakpoint.lg &&
-      pMenu.classList.contains('p-menubar-mobile-active')
+      pMenu?.classList?.contains('p-menubar-mobile-active')
     ) {
-      pMenu.classList.remove('p-menubar-mobile-active')
+      pMenu?.classList?.remove('p-menubar-mobile-active')
     }
   })
 
