@@ -27,8 +27,8 @@ const route = useRoute()
 onBeforeMount(async () => {
   await axios
     .get(
-      // `${config.API_URL}/api/v3/story/${route.params.slug}/`
-      `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
+      `${config.API_URL}/api/v3/story/${route.params.slug}/`
+      // `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
     )
     .then((response) => {
       episode.value = response.data.data.attributes

@@ -12,8 +12,8 @@ const totalCount = ref(null)
 onBeforeMount(async () => {
   await axios
     .get(
-      // `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
-      `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/the-team/1?limit=50`
+      `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
+      // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/the-team/1?limit=50`
     )
     .then((response) => {
       people.value = response.data.included

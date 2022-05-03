@@ -38,6 +38,12 @@ Start the development server on `http://localhost:3000`
 npm run dev
 ```
 
+To avoid a CORS error, open a new Chrome window from the terminal with web security disabled:
+
+```bash
+open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security
+```
+
 ## Production
 
 Build the application for production:

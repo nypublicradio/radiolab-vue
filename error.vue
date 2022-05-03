@@ -20,8 +20,8 @@ useHead({
 })
 
 const config = useRuntimeConfig()
-// const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
-const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-404/`
+const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
+// const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-404/`
 </script>
 <template>
   <div class="error-page">
