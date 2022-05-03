@@ -33,7 +33,7 @@ onMounted(() => {
         <Menubar :model="menuItems" id="p-menu">
           <template #start>
             <nuxt-link to="/" class="logo-holder-link">
-              <radiolab-logo class="logo mr-2" />
+              <icons-radiolab-logo class="logo mr-2" />
             </nuxt-link>
           </template>
           <!--  <template #end>
