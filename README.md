@@ -40,9 +40,23 @@ npm run dev
 
 To avoid a CORS error, open a new Chrome window from the terminal with web security disabled:
 
+Mac OS
 ```bash
 open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security
 ```
+
+Windows cmd prompt
+```bash
+cd c:\Program Files\Google\Chrome\Application
+chrome.exe --disable-web-security --user-data-dir=c:\my-chrome-data\data --new-window http://localhost:3000/
+```
+You can create a .bat file as well:
+```bash
+cd "C:\Program Files\Google\Chrome\Application\"
+start chrome.exe --disable-web-security --user-data-dir=c:\my-chrome-data\data --new-window http://localhost:3000/
+
+```
+
 
 ## Production
 
