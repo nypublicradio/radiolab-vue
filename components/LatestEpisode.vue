@@ -13,8 +13,8 @@ const episodes = ref([])
 onBeforeMount(async () => {
   await axios
     .get(
-      // `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
-      `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
+      `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
+      // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
     )
     .then((response) => {
       episodes.value = response.data.included
@@ -52,7 +52,10 @@ onBeforeMount(async () => {
                   :to="`/episodes/${episodes[0].attributes.slug}`"
                   class="latest-episode-title inline-block"
                 >
-                  <h2 class="mb-2 lg:mb-3 truncate t2lines" v-html="episodes[0].attributes.title"></h2>
+                  <h2
+                    class="mb-2 lg:mb-3 truncate t2lines"
+                    v-html="episodes[0].attributes.title"
+                  ></h2>
                 </v-flexible-link>
                 <p
                   v-html="episodes[0].attributes.tease"
@@ -80,7 +83,7 @@ onBeforeMount(async () => {
 .latest-episode .latest-episode-title {
   text-decoration: none;
 
-  @include media("<lg") {
+  @include media('<lg') {
     h2 {
       font-size: var(--font-size-12);
       line-height: var(--line-height-12);

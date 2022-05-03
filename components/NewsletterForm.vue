@@ -14,8 +14,8 @@ const email = ref('')
 function submitForm() {
   submitted.value = true
   axios
-    // .post(`${config.API_URL}/email-proxy/subscribe`,
-    .post(`https://api.prod.nypr.digital/email-proxy/subscribe`, {
+    // .post(`https://api.prod.nypr.digital/email-proxy/subscribe`,
+    .post(`${config.API_URL}/email-proxy/subscribe`, {
       list: '2fe8150dd6',
       email: email.value,
       headers: {

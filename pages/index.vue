@@ -1,10 +1,10 @@
 <script setup>
 import { useRuntimeConfig } from '#app'
 const config = useRuntimeConfig()
-// const recentEpisodesApiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab/recent_stories/`
-// const popularEpisodesApiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab/recent_stories/`
-const recentEpisodesApiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
-const popularEpisodesApiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
+const recentEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
+const popularEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
+// const recentEpisodesApiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
+// const popularEpisodesApiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 
 <template>
