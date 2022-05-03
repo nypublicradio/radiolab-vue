@@ -60,6 +60,6 @@ export default defineNuxtConfig({
     HTL_CSS: process.env['HTL_CSS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.css',
     HTL_JS: process.env['HTL_JS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.js',
     HTL_IS_TESTING: process.env['HTL_IS_TESTING'] || 'yes',
-    API_URL: process.env['API_URL'] || "https://api.demo2.wnyc.net"
+    API_URL: process.env['API_URL'] || "https://api.wnyc.org"
   }
 })

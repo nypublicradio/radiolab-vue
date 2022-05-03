@@ -11,8 +11,9 @@ const episodes = ref([])
 onBeforeMount(async () => {
   await axios
     .get(
-      // `${config.API_URL}/api/v3/buckets/radiolab-radio-shows/?limit=3`
-      `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=3`
+      // TO DO: need a new bucket for this
+      `${config.API_URL}/api/v3/buckets/radiolab-radio-shows/?limit=3`
+      // `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-radio-shows/?limit=3`
     )
     .then((response) => {
       episodes.value = response.data.data.attributes['bucket-items']
