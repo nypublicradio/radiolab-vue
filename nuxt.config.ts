@@ -22,12 +22,12 @@ export default defineNuxtConfig({
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
     'mosha-vue-toastify/dist/style.css',
-    /* '~/assets/scss/global.scss', */
   ],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
+          // besure to mirror theses imports in the vitest.config.ts
           additionalData: `@import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss"; @import "~/assets/scss/global.scss";`,
         },
       },
