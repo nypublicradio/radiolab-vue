@@ -37,6 +37,7 @@ const dotsItems = ref([
         },
         toastConfig.value
       )
+      gaEvent('Click Tracking', 'Episode Tools', 'Download')
     },
   },
   {
@@ -47,6 +48,7 @@ const dotsItems = ref([
         props.episode['embed-code'],
         'Embed code copied to clipboard'
       )
+      gaEvent('Click Tracking', 'Episode Tools', 'Embed')
     },
   },
 ])
@@ -58,6 +60,7 @@ const shareItems = ref([
     command: () => {
       var twitterShare = document.getElementsByClassName('twitterShareRef')
       twitterShare[0].click()
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Twitter')
     },
   },
   {
@@ -66,6 +69,7 @@ const shareItems = ref([
     command: () => {
       var facebookShare = document.getElementsByClassName('facebookShareRef')
       facebookShare[0].click()
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Facebook')
     },
   },
   {
@@ -74,6 +78,7 @@ const shareItems = ref([
     command: () => {
       var emailShare = document.getElementsByClassName('emailShareRef')
       emailShare[0].click()
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Email')
     },
   },
   {
@@ -88,6 +93,7 @@ const shareItems = ref([
         },
         'Episode link copied to the clipboard'
       )
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Copy link')
     },
   },
 ])
