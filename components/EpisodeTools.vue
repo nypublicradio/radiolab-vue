@@ -100,6 +100,7 @@ const toggleDots = (event) => {
 // toggle function for dot menu
 const toggleShare = (event) => {
   shareMenu.value.toggle(event)
+  gaEvent('Click Tracking', 'Episode Tools', 'Share Menu')
 }
 
 // toggle function for dot menu
