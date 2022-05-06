@@ -74,7 +74,7 @@ onMounted(() => {
           name="twitter:description"
           content="Investigating a strange world."
         />
-        <Meta name="twitter:image" content="/images/default-og-image.png" />
+        <Meta name="twitter:image" content="/default-og-image.png" />
         <Meta
           name="apple-itunes-app"
           content="app-id=152249110, affiliate-data=at=1010lSme&amp;ct=radiolab"
