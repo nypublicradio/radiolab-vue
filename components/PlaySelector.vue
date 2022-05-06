@@ -1,6 +1,11 @@
 <script setup>
-import { ref, computed } from "vue"
-import { useCurrentEpisode, useIsEpisodePlaying, useTogglePlayTrigger } from '~/composables/states'
+import gaEvent from '../utilities/ga.js'
+import { ref, computed } from 'vue'
+import {
+  useCurrentEpisode,
+  useIsEpisodePlaying,
+  useTogglePlayTrigger,
+} from '~/composables/states'
 import { playServices, lsSelectedPlayService } from '~/utilities/constants'
 
 const props = defineProps({
@@ -11,7 +16,7 @@ const props = defineProps({
   episode: {
     default: {},
     type: Object,
-  }
+  },
 })
 
 const playServicePreference = usePlayServicePreference()
@@ -28,12 +33,22 @@ const launchService = (service) => {
 
   //launch tab of service
   window.open(service.url, '_blank')
+
+  gaEvent(
+    'Click Tracking',
+    `Launch Audio Service: ${service.name}`,
+    props.episode.title
+  )
 }
 
-// This is where the magic happens. 
-// if this instances props.episode.slug matches the currentEpisode.value.slug, this methode now handles the play toggle and the setting of 2 global vars that control the persistent player and the display of the listen/play/pause button
+// This is where the magic happens.
+// if this instances props.episode.slug matches the currentEpisode.value.slug, this method now handles the play toggle and the setting of 2 global vars that control the persistent player and the display of the listen/play/pause button
 const launchEpisode = () => {
-  if (currentEpisode.value && currentEpisode.value.slug === props.episode.slug) {
+  gaEvent('Click Tracking', 'Launch Audio Player', props.episode.title)
+  if (
+    currentEpisode.value &&
+    currentEpisode.value.slug === props.episode.slug
+  ) {
     // toggle global isEpisodePlaying state
     isEpisodePlaying.value = !isEpisodePlaying.value
     // toggle global togglePlayTrigger state to trigger the playToggle method in the persistent player
@@ -46,7 +61,10 @@ const launchEpisode = () => {
 
 const checkEpisodeMatchAndPlaying = computed(() => {
   if (currentEpisode.value) {
-    if (currentEpisode.value.slug === props.episode.slug && isEpisodePlaying.value) {
+    if (
+      currentEpisode.value.slug === props.episode.slug &&
+      isEpisodePlaying.value
+    ) {
       return true
     }
   }
@@ -61,7 +79,6 @@ const checkEpisodeMatch = computed(() => {
   }
   return false
 })
-
 </script>
 
 <template>
@@ -69,16 +86,22 @@ const checkEpisodeMatch = computed(() => {
     <Button
       @click="launchEpisode"
       class="listen-btn p-button-rounded"
-      :class="[{ 'active': checkEpisodeMatch }, { 'anim': checkEpisodeMatchAndPlaying }]"
+      :class="[
+        { active: checkEpisodeMatch },
+        { anim: checkEpisodeMatchAndPlaying },
+      ]"
     >
       <span class="play-icon">
-        <img v-if="checkEpisodeMatchAndPlaying" src="/pause-icon.svg" alt="play/pause icon" />
+        <img
+          v-if="checkEpisodeMatchAndPlaying"
+          src="/pause-icon.svg"
+          alt="play/pause icon"
+        />
         <img v-else src="/play-icon.svg" alt="play/pause icon" />
       </span>
-      <span
-        v-if="!checkEpisodeMatchAndPlaying"
-        class="p-button-label"
-      >{{ checkEpisodeMatch ? 'Play' : 'Listen' }}</span>
+      <span v-if="!checkEpisodeMatchAndPlaying" class="p-button-label">{{
+        checkEpisodeMatch ? 'Play' : 'Listen'
+      }}</span>
     </Button>
     <div>
       <Button
@@ -100,9 +123,15 @@ const checkEpisodeMatch = computed(() => {
       >
         <template #option="slotProps">
           <div class="service-item">
-            <img alt="icon" :src="'/play-service-icons/' + slotProps.option.icon + '.svg'" />
+            <img
+              alt="icon"
+              :src="'/play-service-icons/' + slotProps.option.icon + '.svg'"
+            />
             <div>{{ slotProps.option.name }}</div>
-            <div class="hack-click" @click="launchService(slotProps.option)"></div>
+            <div
+              class="hack-click"
+              @click="launchService(slotProps.option)"
+            ></div>
           </div>
         </template>
       </Dropdown>
@@ -131,8 +160,8 @@ const checkEpisodeMatch = computed(() => {
     }
     &.anim {
       &:before {
-        content: "";
-        background-image: url("/audioAnim.gif") !important;
+        content: '';
+        background-image: url('/audioAnim.gif') !important;
         background-position: center;
         background-repeat: no-repeat;
         background-size: 110%;

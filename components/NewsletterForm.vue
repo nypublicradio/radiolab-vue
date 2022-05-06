@@ -1,4 +1,5 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRuntimeConfig } from '#app'
@@ -8,6 +9,13 @@ const config = useRuntimeConfig()
 const submitted = ref(false)
 const submissionStatus = ref(null)
 const email = ref('')
+
+const props = defineProps({
+  location: {
+    type: String,
+    default: null,
+  },
+})
 
 // submit the newsletter form and add email address to the Radiolab Newsletter list
 // list IDs are listed here https://github.com/nypublicradio/marketing-cloud-proxy/blob/main/marketing_cloud_proxy/mailchimp.py
@@ -25,10 +33,16 @@ function submitForm() {
     })
     .then(() => {
       submissionStatus.value = 'success'
+      gaEvent(
+        'Click Tracking',
+        `Newsletter Signup: ${props.location}`,
+        'Success'
+      )
     })
     .catch(() => {
       submissionStatus.value = 'error'
       submitted.value = false
+      gaEvent('Click Tracking', `Newsletter Signup: ${props.location}`, 'Error')
     })
 }
 </script>

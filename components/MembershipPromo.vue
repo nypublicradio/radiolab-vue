@@ -1,6 +1,6 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-
 </script>
 
 <template>
@@ -14,7 +14,18 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
     <h5>Video Extras</h5>
     <h5>Original Music & Playlists</h5>
     <v-flexible-link raw to="/the-lab">
-      <Button class="p-button-rounded black mt-4">Become a member</Button>
+      <Button
+        class="p-button-rounded black mt-4"
+        @click="
+          gaEvent(
+            'Click Tracking',
+            'Episode Membership Promo',
+            'Become a member'
+          )
+        "
+      >
+        Become a member
+      </Button>
     </v-flexible-link>
   </div>
 </template>

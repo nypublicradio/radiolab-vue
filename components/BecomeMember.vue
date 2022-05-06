@@ -1,4 +1,5 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 </script>
 
@@ -29,6 +30,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
             class="p-button-lg p-button-rounded"
             label="Become a member"
             aria-label="Become a member"
+            @click="gaEvent('Click Tracking', 'Footer', 'Become a member')"
           />
         </v-flexible-link>
       </div>
