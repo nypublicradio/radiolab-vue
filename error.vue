@@ -27,7 +27,7 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
   <div class="error-page">
     <Html>
       <Head>
-        <Title>{{ error }} Error | Radiolab | WNYC Studios</Title>
+        <Title>Error | Radiolab | WNYC Studios</Title>
         <Meta
           name="og:title"
           :content="`${error} Error | Radiolab | WNYC Studios`"
