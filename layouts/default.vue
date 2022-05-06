@@ -1,6 +1,8 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import { ref, onMounted } from 'vue'
 import { useRuntimeConfig } from '#app'
+import { isElementXPercentInViewport } from '../utilities/helpers.js'
 const config = useRuntimeConfig()
 const route = useRoute()
 const darkMode = ref(false)
@@ -10,6 +12,17 @@ onMounted(() => {
   document.addEventListener('scroll', (e) => {
     atTop.value = window.scrollY > 0 ? false : true
     //atBottom.value = ((window.scrollY + (window.innerHeight + 115) >= document.body.scrollHeight)) ? true : false
+
+    // entering viewport ga tracking
+    const trackedGaElements = document.querySelectorAll('[ga-enter-viewport]')
+    trackedGaElements.forEach((element) => {
+      if(isElementXPercentInViewport(element, 33)) {
+        //console.log(`entered viewport on : ${route.name}`, element.attributes['ga-info'].value)
+        element.removeAttribute('ga-enter-viewport')
+        gaEvent('Scroll Viewport Tracking', route.name, element.attributes['ga-info'].value)
+      }
+    })
+
   })
   // Ads
   window.htlbid = window.htlbid || {}
