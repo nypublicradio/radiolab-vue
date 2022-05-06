@@ -1,5 +1,6 @@
 <script setup>
-import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
+import gaEvent from '../utilities/ga.js'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 const props = defineProps({
   name: {
     type: String,
@@ -22,7 +23,6 @@ const props = defineProps({
     default: '',
   },
 })
-
 </script>
 
 <template>
@@ -44,14 +44,34 @@ const props = defineProps({
         <div>
           <div class="flex" style="gap: 1rem">
             <v-flexible-link to="/the-lab" raw>
-              <Button class="p-button-rounded" label="Become a member" />
+              <Button
+                class="p-button-rounded"
+                label="Become a member"
+                @click="
+                  gaEvent(
+                    'Click Tracking',
+                    'The Lab Testimonial',
+                    'Become a member'
+                  )
+                "
+              />
             </v-flexible-link>
-            <v-flexible-link to="https://members.radiolab.org/request_access" raw>
-              <Button class="blue p-button-rounded p-button-outlined" label="Sign in" />
+            <v-flexible-link
+              to="https://members.radiolab.org/request_access"
+              raw
+            >
+              <Button
+                class="blue p-button-rounded p-button-outlined"
+                label="Sign in"
+              />
             </v-flexible-link>
           </div>
         </div>
-        <img class="rl-icon hidden sm:block" src="/rl-icon-stripes.svg" alt="radiolab icon" />
+        <img
+          class="rl-icon hidden sm:block"
+          src="/rl-icon-stripes.svg"
+          alt="radiolab icon"
+        />
       </div>
     </div>
   </div>
@@ -74,12 +94,12 @@ const props = defineProps({
       text-indent: -1rem;
       font-size: var(--font-size-13);
       line-height: var(--font-size-15);
-      @include media("<xl") {
+      @include media('<xl') {
         text-indent: -0.5rem;
         font-size: var(--font-size-12);
         line-height: var(--font-size-14);
       }
-      @include media("<md") {
+      @include media('<md') {
         text-indent: -0.5rem;
         font-size: var(--font-size-8);
         line-height: var(--font-size-10);
