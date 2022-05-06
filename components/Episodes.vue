@@ -1,4 +1,5 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import { onBeforeMount, ref } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
@@ -109,6 +110,7 @@ async function onPage(event) {
         episodes.value = response.data.data.attributes['bucket-items']
       }
       dataLoaded.value = true
+      gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
     })
     .catch(function () {
       axiosSuccessful.value = false

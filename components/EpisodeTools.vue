@@ -1,6 +1,12 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import { ref } from 'vue'
-import { formatDate, copyToClipBoard, shareAPI, toastGlobalConfig } from '~/utilities/helpers'
+import {
+  formatDate,
+  copyToClipBoard,
+  shareAPI,
+  toastGlobalConfig,
+} from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
@@ -9,7 +15,7 @@ const props = defineProps({
   episode: {
     type: Object,
     default: null,
-  }
+  },
 })
 
 const toastConfig = ref(toastGlobalConfig())
@@ -24,16 +30,25 @@ const dotsItems = ref([
     icon: 'pi pi-download',
     command: () => {
       window.open(props.episode['audio'], '_top')
-      createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
-    }
+      createToast(
+        {
+          title: 'Downloading episode audio file',
+          description: "Check your system's downloads folder",
+        },
+        toastConfig.value
+      )
+    },
   },
   {
     label: 'Embed',
     icon: 'pi pi-code',
     command: () => {
-      copyToClipBoard(props.episode['embed-code'], 'Embed code copied to clipboard')
-    }
-  }
+      copyToClipBoard(
+        props.episode['embed-code'],
+        'Embed code copied to clipboard'
+      )
+    },
+  },
 ])
 
 const shareItems = ref([
@@ -43,7 +58,7 @@ const shareItems = ref([
     command: () => {
       var twitterShare = document.getElementsByClassName('twitterShareRef')
       twitterShare[0].click()
-    }
+    },
   },
   {
     label: 'Facebook',
@@ -51,7 +66,7 @@ const shareItems = ref([
     command: () => {
       var facebookShare = document.getElementsByClassName('facebookShareRef')
       facebookShare[0].click()
-    }
+    },
   },
   {
     label: 'Email',
@@ -59,41 +74,53 @@ const shareItems = ref([
     command: () => {
       var emailShare = document.getElementsByClassName('emailShareRef')
       emailShare[0].click()
-    }
+    },
   },
   {
     label: 'Copy link',
     icon: 'pi pi-link',
     command: () => {
-      shareAPI({
-        title: props.episode['title'],
-        text: props.episode['tease'],
-        url: props.episode['url']
-      }, 'Episode link copied to the clipboard')
-    }
-  }
+      shareAPI(
+        {
+          title: props.episode['title'],
+          text: props.episode['tease'],
+          url: props.episode['url'],
+        },
+        'Episode link copied to the clipboard'
+      )
+    },
+  },
 ])
 
 // toggle function for dot menu
 const toggleDots = (event) => {
   dotsMenu.value.toggle(event)
+  gaEvent('Click Tracking', 'Episode Tools', 'Dots Menu')
 }
 // toggle function for dot menu
 const toggleShare = (event) => {
   shareMenu.value.toggle(event)
 }
 
+// toggle function for dot menu
+const toggleTranscript = () => {
+  visibleRight.value = true
+  gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
+}
 </script>
 
 <template>
   <div>
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
-      <play-selector :episode="props.episode" menu-class="episode-tools-play-selector" />
+      <play-selector
+        :episode="props.episode"
+        menu-class="episode-tools-play-selector"
+      />
       <Button
         v-if="!!props.episode['transcript']"
         class="p-button-sm p-button-rounded"
         label="Transcript"
-        @click="visibleRight = true"
+        @click="toggleTranscript"
       ></Button>
       <Button
         icon="pi pi-share-alt"
@@ -126,8 +153,18 @@ const toggleShare = (event) => {
           class="transcript-body mt-2 html-formatting"
         ></div>
       </Sidebar>
-      <Menu ref="dotsMenu" :model="dotsItems" :popup="true" class="episode-tools-menu" />
-      <Menu ref="shareMenu" :model="shareItems" :popup="true" class="episode-tools-menu" />
+      <Menu
+        ref="dotsMenu"
+        :model="dotsItems"
+        :popup="true"
+        class="episode-tools-menu"
+      />
+      <Menu
+        ref="shareMenu"
+        :model="shareItems"
+        :popup="true"
+        class="episode-tools-menu"
+      />
       <div class="hidden">
         <ShareNetwork
           class="facebookShareRef"
@@ -137,7 +174,8 @@ const toggleShare = (event) => {
           :description="props.episode['tease']"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="props.episode['tags'].join()"
-        >Share on Facebook</ShareNetwork>
+          >Share on Facebook</ShareNetwork
+        >
         <ShareNetwork
           class="twitterShareRef"
           network="twitter"
@@ -147,7 +185,8 @@ const toggleShare = (event) => {
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="props.episode['tags'].join()"
           twitter-user="Radiolab"
-        >Share on Twitter</ShareNetwork>
+          >Share on Twitter</ShareNetwork
+        >
         <ShareNetwork
           class="emailShareRef"
           network="email"
@@ -156,7 +195,8 @@ const toggleShare = (event) => {
           :description="props.episode['tease']"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="props.episode['tags'].join()"
-        >Share on Email</ShareNetwork>
+          >Share on Email</ShareNetwork
+        >
       </div>
     </div>
   </div>
@@ -173,7 +213,7 @@ const toggleShare = (event) => {
     gap: 6px;
     margin-left: 0;
     flex-grow: 0;
-    @include media("<#{$toolsBreakPoint}") {
+    @include media('<#{$toolsBreakPoint}') {
       width: 100%;
       .p-button {
         flex-grow: 1;
@@ -233,12 +273,12 @@ const toggleShare = (event) => {
   .p-sidebar-header .p-sidebar-close {
     color: var(--black100);
   }
-  @include media(">md") {
+  @include media('>md') {
     &.p-sidebar-lg {
       width: 768px !important;
     }
   }
-  @include media("<md") {
+  @include media('<md') {
     &.p-sidebar-lg {
       width: 100% !important;
     }
@@ -250,7 +290,7 @@ const toggleShare = (event) => {
       font-size: var(--font-size-12);
       line-height: var(--font-size-13);
       font-weight: 400;
-      @include media("<md") {
+      @include media('<md') {
         font-size: var(--font-size-8);
         line-height: var(--font-size-9);
       }
