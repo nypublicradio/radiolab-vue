@@ -86,9 +86,7 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
-      if (!props.bucket) {
-        totalCount.value = response.data.data.attributes['total-count']
-      }
+      totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
     })
     .catch(function () {
@@ -105,11 +103,7 @@ async function onPage(event) {
   await axios
     .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
     .then((response) => {
-      if (!props.bucket) {
-        episodes.value = traverseObjectByString(props.path, response)
-      } else {
-        episodes.value = response.data.data.attributes['bucket-items']
-      }
+      episodes.value = traverseObjectByString(props.path, response)
       dataLoaded.value = true
       gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
     })
