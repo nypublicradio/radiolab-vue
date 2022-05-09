@@ -8,6 +8,7 @@ const menuItems = ref(menuItemsImport)
 const menuItemsFooter = ref([])
 const ignoredMenuItems = ref([])
 
+// check if any of the items label mataches a string in the ignoredMenuItems array
 const checkifIgnorded = (item) => {
   if (!ignoredMenuItems.value.includes(item.label)) {
     return true
@@ -108,10 +109,6 @@ onMounted(() => {
         .right {
           .menu {
             column-count: 4;
-            // display: flex;
-            // flex-wrap: wrap;
-            // flex-direction: column;
-            // height: 220px;
             @include media('<xl') {
               column-count: 3;
             }
