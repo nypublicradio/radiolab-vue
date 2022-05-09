@@ -49,8 +49,8 @@ function submitForm() {
 
 <template>
   <div class="newsletter-form">
-    <span v-if="submissionStatus !== 'success'" class="grid">
-      <div class="col-12 lg:col-8">
+    <span v-if="submissionStatus !== 'success'" class="flex flex-column lg:flex-row" style="gap:1rem;">
+      <div class="flex-grow-1">
         <InputText
           :disabled="submitted"
           class="w-full p-inputtext-lg"
@@ -70,7 +70,7 @@ function submitForm() {
         >
       </div>
       <div
-        class="col-12 lg:col-4 flex justify-content-end lg:justify-content-start"
+        class="flex justify-content-end lg:justify-content-start"
       >
         <Button
           :disabled="submitted"

@@ -22,17 +22,19 @@
   justify-content: space-between;
 }
 .subscribe-to-the-newsletter h2 {
-  font-size: var(--font-size-16);
-  line-height: var(--font-size-16);
   @include media('>lg') {
     max-width: 325px;
   }
 }
 .subscribe-to-the-newsletter p {
-  font-size: var(--font-size-6);
   line-height: var(--font-size-8);
   @include media('>lg') {
     max-width: 375px;
+  }
+}
+.subscribe-to-the-newsletter.alone{
+  h2,p{
+    max-width: 100%;
   }
 }
 .subscribe-to-the-newsletter .p-inputtext {
