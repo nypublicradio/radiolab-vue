@@ -1,6 +1,6 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref, computed } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
@@ -54,10 +54,11 @@ const dataLoaded = ref(false)
 const episodes = ref([])
 const totalCount = ref(null)
 
-const rowCountCalc = props.paginate
-  ? // Bono: I was unable to suppoort the hidden odd episode with pagination. I could not figure out the correct way to do it. When paginating, startCount is always 0 and the odd episode is not added and hidden.
-    props.rowCount * 3
-  : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
+const cardCountCalc = computed(() => {
+  return props.paginate
+    ? props.rowCount * 3 // (3 cards per row)
+    : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
+})
 
 const axiosSuccessful = ref(true)
 
@@ -80,7 +81,7 @@ onBeforeMount(async () => {
   await axios
     .get(
       !props.bucket
-        ? `${props.api}${props.startPage}?limit=${rowCountCalc}`
+        ? `${props.api}${props.startPage}?limit=${cardCountCalc.value}`
         : props.api
     )
     .then((response) => {
@@ -102,10 +103,10 @@ async function onPage(event) {
   //event.pageCount: Total number of pages
   dataLoaded.value = false
   await axios
-    .get(`${props.api}${event.page + 1}?limit=${rowCountCalc}`)
+    .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
     .then((response) => {
       if (!props.bucket) {
-        episodes.value = response.data.included
+        episodes.value = traverseObjectByString(props.path, response)
       } else {
         episodes.value = response.data.data.attributes['bucket-items']
       }
@@ -138,10 +139,9 @@ async function onPage(event) {
               </div>
               <div class="grid">
                 <template
-                  v-for="(episode, index) in episodes.slice(
-                    props.paginate ? 0 : props.startCount,
-                    rowCountCalc
-                  )"
+                  v-for="(episode, index) in props.paginate
+                    ? episodes
+                    : episodes.slice(props.startCount, cardCountCalc)"
                 >
                   <div
                     :key="index"
@@ -218,16 +218,17 @@ async function onPage(event) {
             </div>
             <episodes-skeleton
               v-else
-              :row-count="rowCountCalc"
+              :row-count="cardCountCalc"
               :header="props.header"
               :button-text="props.buttonText"
+              :paginate="props.paginate"
             />
             <paginator
               :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
               v-show="props.paginate"
               :pageLinkSize="3"
               :first="0"
-              :rows="episodes.length"
+              :rows="cardCountCalc"
               :total-records="totalCount"
               @page="onPage($event)"
             />

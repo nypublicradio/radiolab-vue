@@ -12,6 +12,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  paginate: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
@@ -26,7 +30,7 @@ const props = defineProps({
     </div>
     <div class="grid">
       <div
-        v-for="index in props.rowCount"
+        v-for="index in props.rowCount - (paginate ? 0 : 1)"
         :key="index"
         class="col-12 md:col-6 xl:col-4 mb-6"
         :class="{
