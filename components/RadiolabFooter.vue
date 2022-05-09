@@ -6,15 +6,24 @@ import BecomeMember from './BecomeMember.vue'
 import Newsletter from './Newsletter.vue'
 const menuItems = ref(menuItemsImport)
 const menuItemsFooter = ref([])
+const ignoredMenuItems = ref([])
+
+const checkifIgnorded = (item) => {
+  if (!ignoredMenuItems.value.includes(item.label)) {
+    return true
+  } else {
+    return false
+  }
+}
 
 onMounted(() => {
   for (const [i, v] of menuItems.value.entries()) {
     if (v.items) {
       for (const [i, item] of v.items.entries()) {
-        menuItemsFooter.value.push(item)
+        checkifIgnorded(item) ? menuItemsFooter.value.push(item) : null
       }
     } else {
-      menuItemsFooter.value.push(v)
+      checkifIgnorded(v) ? menuItemsFooter.value.push(v) : null
     }
   }
 })
@@ -46,7 +55,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-12 md:col-9 right">
-            <div class="menu mb:mb-6 px-0 sm:pl-4 md:pl-6 xl:pl-8">
+            <div class="menu mb:mb-6 px-0 md:pl-2 xl:pl-8 mt-0 md:mt-3">
               <div
                 v-for="item in menuItemsFooter"
                 class="menu-item"
@@ -98,29 +107,26 @@ onMounted(() => {
 
         .right {
           .menu {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            height: 220px;
-
-            @include media('<lg') {
-              height: 280px;
+            column-count: 4;
+            // display: flex;
+            // flex-wrap: wrap;
+            // flex-direction: column;
+            // height: 220px;
+            @include media('<xl') {
+              column-count: 3;
             }
 
             @include media('<md') {
-              height: 280px;
               margin: -1rem;
             }
 
             @include media('<sm') {
-              height: 390px;
-            }
-
-            @include media('<xs') {
-              height: 380px;
+              column-count: 2;
             }
 
             .menu-item {
+              display: inline-block;
+              width: 100%;
               .flexible-link {
                 padding: spacingTRBL(2.5, 5, 2.5, 5);
                 position: relative;

@@ -89,6 +89,13 @@ export default [
         }
       },
       {
+        label: 'Newsletter',
+        to: '/newsletter',
+        command: () => {
+          gaEvent('Click Tracking', 'Navigation', 'For Listeners: Newsletter')
+        }
+      },
+      {
         label: 'Swag Lab',
         url: 'https://shop.radiolab.org',
         command: () => {
