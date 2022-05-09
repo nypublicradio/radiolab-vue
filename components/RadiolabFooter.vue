@@ -10,21 +10,17 @@ const ignoredMenuItems = ref([])
 
 // check if any of the items label mataches a string in the ignoredMenuItems array
 const checkifIgnorded = (item) => {
-  if (!ignoredMenuItems.value.includes(item.label)) {
-    return true
-  } else {
-    return false
-  }
+  return !ignoredMenuItems.value.includes(item.label) ? true : false
 }
 
 onMounted(() => {
   for (const [i, v] of menuItems.value.entries()) {
     if (v.items) {
       for (const [i, item] of v.items.entries()) {
-        checkifIgnorded(item) ? menuItemsFooter.value.push(item) : null
+        if (checkifIgnorded(item)) menuItemsFooter.value.push(item)
       }
     } else {
-      checkifIgnorded(v) ? menuItemsFooter.value.push(v) : null
+      if (checkifIgnorded(v)) menuItemsFooter.value.push(v)
     }
   }
 })
