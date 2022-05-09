@@ -1,5 +1,4 @@
 <script setup>
-
 const props = defineProps({
   rowCount: {
     type: Number,
@@ -13,9 +12,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
-
 })
-
 </script>
 
 <template>
@@ -29,10 +26,12 @@ const props = defineProps({
     </div>
     <div class="grid">
       <div
-        v-for="index in props.rowCount - 1"
+        v-for="index in props.rowCount"
         :key="index"
         class="col-12 md:col-6 xl:col-4 mb-6"
-        :class="{ 'xl:hidden': rowCount % 2 && index === props.rowCount - 1 }"
+        :class="{
+          'xl:hidden': props.rowCount % 2 && index === props.rowCount - 1,
+        }"
       >
         <skeleton class="card" width="100%" />
         <!-- height="527px" -->
@@ -48,26 +47,26 @@ $cardHeight: 500px;
   margin: 0 -24px;
 }
 .recent-episodes-skeleton .grid > .col,
-.recent-episodes-skeleton .grid > [class*="col"] {
+.recent-episodes-skeleton .grid > [class*='col'] {
   padding: 0 24px;
 }
 .recent-episodes-skeleton .grid .p-skeleton {
   border-radius: 20px;
 }
 .recent-episodes-skeleton .card {
-  @include media("<md") {
+  @include media('<md') {
     height: calc($detailsHeight + 67.2vw) !important;
   }
-  @include media("<sm") {
+  @include media('<sm') {
     height: calc($detailsHeight + 65.5vw) !important;
   }
-  @include media(">md") {
+  @include media('>md') {
     height: calc($detailsHeight + 33.85vw) !important;
   }
-  @include media(">lg") {
+  @include media('>lg') {
     height: calc($detailsHeight + 30.55vw) !important;
   }
-  @include media(">xl") {
+  @include media('>xl') {
     height: $cardHeight !important;
   }
 }
