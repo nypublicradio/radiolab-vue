@@ -49,7 +49,11 @@ function submitForm() {
 
 <template>
   <div class="newsletter-form">
-    <span v-if="submissionStatus !== 'success'" class="flex flex-column lg:flex-row" style="gap:1rem;">
+    <span
+      v-if="submissionStatus !== 'success'"
+      class="flex flex-column lg:flex-row"
+      style="gap: 1rem"
+    >
       <div class="flex-grow-1">
         <InputText
           :disabled="submitted"
@@ -59,6 +63,8 @@ function submitForm() {
           placeholder="Email address"
           aria-describedby="email-address-field"
           v-model="email"
+          autocomplete="email"
+          name="email"
           @keypress.enter="submitForm"
         />
         <small
@@ -69,9 +75,7 @@ function submitForm() {
           again!</small
         >
       </div>
-      <div
-        class="flex justify-content-end lg:justify-content-start"
-      >
+      <div class="flex justify-content-end lg:justify-content-start">
         <Button
           :disabled="submitted"
           @click="submitForm"
