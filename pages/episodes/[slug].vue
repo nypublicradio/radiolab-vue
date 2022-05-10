@@ -35,7 +35,7 @@ onBeforeMount(async () => {
       dataLoaded.value = true
     })
     .catch((error) => {
-      throwError(error.response.status)
+      route.push('/404')
     })
 })
 
