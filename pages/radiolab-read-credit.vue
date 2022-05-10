@@ -9,7 +9,7 @@ useMeta({
 })
 const dataLoaded = ref(false)
 const page = ref([])
-const route = useRoute()
+const router = useRouter()
 const config = useRuntimeConfig()
 
 onBeforeMount(async () => {
@@ -19,8 +19,8 @@ onBeforeMount(async () => {
       page.value = response.data.included[0].attributes
       dataLoaded.value = true
     })
-    .catch((error) => {
-      throwError(error.response.status)
+    .catch(() => {
+      router.push('/404')
     })
 })
 </script>

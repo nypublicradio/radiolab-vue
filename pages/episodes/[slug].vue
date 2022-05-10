@@ -23,6 +23,7 @@ const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const episode = ref([])
 const route = useRoute()
+const router = useRouter()
 
 onBeforeMount(async () => {
   await axios
@@ -34,8 +35,8 @@ onBeforeMount(async () => {
       episode.value = response.data.data.attributes
       dataLoaded.value = true
     })
-    .catch((error) => {
-      route.push('/404')
+    .catch(() => {
+      router.push('/404')
     })
 })
 
