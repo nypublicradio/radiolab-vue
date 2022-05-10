@@ -16,13 +16,16 @@ onMounted(() => {
     // entering viewport ga tracking
     const trackedGaElements = document.querySelectorAll('[ga-enter-viewport]')
     trackedGaElements.forEach((element) => {
-      if(isElementXPercentInViewport(element, 33)) {
+      if (isElementXPercentInViewport(element, 33)) {
         //console.log(`entered viewport on : ${route.name}`, element.attributes['ga-info'].value)
         element.removeAttribute('ga-enter-viewport')
-        gaEvent('Scroll Viewport Tracking', route.name, element.attributes['ga-info'].value)
+        gaEvent(
+          'Scroll Viewport Tracking',
+          route.name,
+          element.attributes['ga-info'].value
+        )
       }
     })
-
   })
   // Ads
   window.htlbid = window.htlbid || {}
