@@ -9,6 +9,7 @@ const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const person = ref([])
 const route = useRoute()
+const router = useRouter()
 onBeforeMount(async () => {
   await axios
     .get(
@@ -20,7 +21,7 @@ onBeforeMount(async () => {
       dataLoaded.value = true
     })
     .catch((error) => {
-      throwError(error.response.status)
+      router.push('/404')
     })
 })
 </script>
