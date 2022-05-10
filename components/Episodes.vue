@@ -1,11 +1,14 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
-import { onBeforeMount, ref, computed } from 'vue'
+import { onBeforeMount, ref, computed, watch } from 'vue'
 import { formatDate } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
+
+const router = useRouter()
+const route = useRoute()
 
 const props = defineProps({
   header: {
@@ -53,14 +56,17 @@ const props = defineProps({
 const dataLoaded = ref(false)
 const episodes = ref([])
 const totalCount = ref(null)
+const startPageNumber = ref(props.startPage)
+const axiosSuccessful = ref(true)
 
+/*
+func to determin how many cards to show
+*/
 const cardCountCalc = computed(() => {
   return props.paginate
     ? props.rowCount * 3 // (3 cards per row)
     : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
 })
-
-const axiosSuccessful = ref(true)
 
 /*
 takes the prop path and returns the desired data from the response
@@ -78,10 +84,15 @@ const traverseObjectByString = (pathString, data) => {
 }
 
 onBeforeMount(async () => {
+  // if the url query page has a value, set the startPageNumber to that value
+  if (route.query.page) {
+    startPageNumber.value = route.query.page
+  }
+
   await axios
     .get(
       !props.bucket
-        ? `${props.api}${props.startPage}?limit=${cardCountCalc.value}`
+        ? `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
         : props.api
     )
     .then((response) => {
@@ -92,6 +103,13 @@ onBeforeMount(async () => {
     .catch(function () {
       axiosSuccessful.value = false
     })
+})
+
+// a watcher to update the route page query when startPageNumber changes
+watch(startPageNumber, (page, prev) => {
+  router.push({
+    query: { page: page },
+  })
 })
 
 async function onPage(event) {
@@ -105,6 +123,8 @@ async function onPage(event) {
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
       dataLoaded.value = true
+      // set startPageNumber var for page url param
+      startPageNumber.value = event.page + 1
       gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
     })
     .catch(function () {
@@ -220,10 +240,10 @@ async function onPage(event) {
             <paginator
               :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
               v-show="props.paginate"
-              :pageLinkSize="3"
-              :first="0"
-              :rows="cardCountCalc"
               :total-records="totalCount"
+              :rows="cardCountCalc"
+              :first="startPageNumber * cardCountCalc - 1"
+              :pageLinkSize="3"
               @page="onPage($event)"
             />
           </div>
