@@ -2,7 +2,6 @@
 import gaEvent from '../utilities/ga.js'
 import { ref } from 'vue'
 import {
-  formatDate,
   copyToClipBoard,
   shareAPI,
   toastGlobalConfig,
@@ -10,6 +9,7 @@ import {
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
+// import { emit } from 'process'
 
 const props = defineProps({
   episode: {
@@ -18,10 +18,13 @@ const props = defineProps({
   },
 })
 
-const toastConfig = ref(toastGlobalConfig())
-const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
+const emit = defineEmits([
+  'toggleTranscript',
+])
 
-const visibleRight = ref(false)
+const toastConfig = ref(toastGlobalConfig())
+//const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
+
 const dotsMenu = ref()
 const shareMenu = ref()
 const dotsItems = ref([
@@ -109,11 +112,12 @@ const toggleShare = (event) => {
   gaEvent('Click Tracking', 'Episode Tools', 'Share Menu')
 }
 
-// toggle function for dot menu
+// toggle function for toggle transcript emit
 const toggleTranscript = () => {
-  visibleRight.value = true
+  emit('toggleTranscript')
   gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
 }
+
 </script>
 
 <template>
@@ -141,25 +145,6 @@ const toggleTranscript = () => {
         @click="toggleDots"
         aria-controls="overlay_menu"
       />
-      <Sidebar
-        v-model:visible="visibleRight"
-        class="transcript p-sidebar-lg"
-        :baseZIndex="1000"
-        position="right"
-      >
-        <h5 class="mt-4">Transcript</h5>
-        <Divider />
-        <div class="my-5">
-          <p class="date">{{ formatDate(props.episode['publish-at']) }}</p>
-          <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
-        </div>
-        <Divider />
-        <div
-          v-if="!!props.episode['transcript']"
-          v-html="props.episode['transcript']"
-          class="transcript-body mt-2 html-formatting"
-        ></div>
-      </Sidebar>
       <Menu
         ref="dotsMenu"
         :model="dotsItems"
@@ -273,38 +258,6 @@ const toggleTranscript = () => {
         color: var(--black100);
       }
     }
-  }
-}
-.transcript {
-  background-color: var(--primary-color);
-  .p-sidebar-header .p-sidebar-close {
-    color: var(--black100);
-  }
-  @include media('>md') {
-    &.p-sidebar-lg {
-      width: 768px !important;
-    }
-  }
-  @include media('<md') {
-    &.p-sidebar-lg {
-      width: 100% !important;
-    }
-  }
-  .p-sidebar-content {
-    margin-top: -64px;
-    padding-right: spacing(8);
-    .title {
-      font-size: var(--font-size-12);
-      line-height: var(--font-size-13);
-      font-weight: 400;
-      @include media('<md') {
-        font-size: var(--font-size-8);
-        line-height: var(--font-size-9);
-      }
-    }
-  }
-  .p-sidebar-header {
-    z-index: 1;
   }
 }
 </style>
