@@ -61,6 +61,7 @@ const copyTranscriptLink = () => {
   gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
 }
 
+// function to toggle transcript sidebar panel
 const onToggleTranscript = () => {
   showTranscriptSidePanel.value = true
 }
