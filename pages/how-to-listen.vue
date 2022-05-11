@@ -1,4 +1,5 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import { playServices } from '~/utilities/constants'
 useHead({
@@ -46,7 +47,18 @@ useHead({
                 feed
               </p>
               <v-flexible-link raw to="the-lab">
-                <Button class="p-button-rounded">Become a member</Button>
+                <Button
+                  class="p-button-rounded"
+                  @click="
+                    gaEvent(
+                      'Click Tracking',
+                      'How To Listen CTA',
+                      'Become a member'
+                    )
+                  "
+                >
+                  Become a member
+                </Button>
               </v-flexible-link>
               <!-- <img
                 alt="place holder player image"

@@ -1,4 +1,5 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import { ref, onMounted } from 'vue'
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
@@ -43,9 +44,14 @@ onMounted(() => {
           </template>-->
         </Menubar>
         <v-flexible-link raw to="the-lab">
-          <Button class="flex lg:hidden p-button-rounded"
-            >Become a member</Button
+          <Button
+            class="flex lg:hidden p-button-rounded"
+            @click="
+              gaEvent('Click Tracking', 'Header (mobile)', 'Become a member')
+            "
           >
+            Become a member
+          </Button>
         </v-flexible-link>
       </div>
       <header-menu-skeleton v-else />

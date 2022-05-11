@@ -1,12 +1,6 @@
 <script setup>
 import colors from '~/assets/scss/colors.module.scss'
 import { useRuntimeConfig } from '#app'
-const props = defineProps({
-  error: {
-    type: Object,
-    default: null,
-  },
-})
 useHead({
   meta: [
     {
@@ -18,7 +12,6 @@ useHead({
     class: 'has-head-color',
   },
 })
-
 const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
 // const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-404/`
@@ -27,14 +20,11 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
   <div class="error-page">
     <Html>
       <Head>
-        <Title>Error | Radiolab | WNYC Studios</Title>
-        <Meta
-          name="og:title"
-          :content="`${error} Error | Radiolab | WNYC Studios`"
-        />
+        <Title>404 Error | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="404 Error | Radiolab | WNYC Studios" />
         <Meta
           name="twitter:title"
-          :content="`${error} Error | Radiolab | WNYC Studios`"
+          content="404 Error | Radiolab | WNYC Studios"
         />
       </Head>
     </Html>
@@ -50,15 +40,9 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
             <p class="mb-4">
               Not all those who wander are lost. But you sure are!
             </p>
-            <p v-if="error < 500">
-              <strong>{{ error }} Error.</strong> This page does not exist, but
-              you are invited to listen to our
-              <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
-              below.
-            </p>
-            <p v-else>
-              <strong>500 Error.</strong> Something has gone wrong on the web
-              site's server, but you are invited to listen to our
+            <p>
+              <strong>404 Error.</strong> This page does not exist, but you are
+              invited to listen to our
               <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
               below.
             </p>

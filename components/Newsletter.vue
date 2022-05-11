@@ -5,7 +5,7 @@
         <h2>Sign up for the newsletter</h2>
       </div>
       <div :class="`col-12 right w-100 mt-4`">
-        <newsletter-form />
+        <newsletter-form location="footer" />
       </div>
     </div>
   </div>
