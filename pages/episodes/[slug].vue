@@ -1,12 +1,10 @@
 <script setup>
 import gaEvent from '~/utilities/ga.js'
-import { onBeforeMount, computed, ref, watch } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
-import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
-import axios from 'axios'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
-import EpisodeTools from '~/components/EpisodeTools.vue'
 import { useRuntimeConfig } from '#app'
+import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
+import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 
 useHead({
   meta: [
@@ -28,24 +26,23 @@ const showTranscriptSidePanel = ref(false)
 const route = useRoute()
 const router = useRouter()
 
-onBeforeMount(async () => {
-  await axios
-    .get(
-      `${config.API_URL}/api/v3/story/${route.params.slug}/`
-      // `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
-    )
-    .then((response) => {
-      episode.value = response.data.data.attributes
-      dataLoaded.value = true
-    })
-    .catch(() => {
-      router.push('/404')
-    })
-})
+const {
+  data: page,
+  pending,
+  error,
+} = await useAsyncData('page', () =>
+  $fetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
+)
+
+// if (error) {
+//   router.push('/404')
+// }
+
+episode.value = page.value.data.attributes
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
-  if(route.query.transcript) onToggleTranscript()
+  if (route.query.transcript) onToggleTranscript()
 })
 
 const isMobile = computed(() => {
@@ -55,7 +52,9 @@ const isMobile = computed(() => {
 // copy transcript link to clipboard
 const copyTranscriptLink = () => {
   copyToClipBoard(
-    `${window.location.href}${route.query.transcript ? '': '?transcript=true'}`,
+    `${window.location.href}${
+      route.query.transcript ? '' : '?transcript=true'
+    }`,
     'Transcript link copied to clipboard'
   )
   gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
@@ -75,7 +74,7 @@ const onToggleTranscript = () => {
           <div class="col-12 xl:col-8">
             <div class="grid">
               <div class="col">
-                <div v-if="dataLoaded" class="episode flex">
+                <div v-if="!pending" class="episode flex">
                   <Html>
                     <Head>
                       <Title
@@ -143,7 +142,7 @@ const onToggleTranscript = () => {
                 </div>
                 <episode-head-skeleton v-else />
                 <episode-tools
-                  v-if="dataLoaded"
+                  v-if="!pending"
                   class="mt-3 block md:hidden"
                   :episode="episode"
                   @toggleTranscript="onToggleTranscript"
@@ -152,7 +151,7 @@ const onToggleTranscript = () => {
               </div>
             </div>
             <p
-              v-if="dataLoaded"
+              v-if="!pending"
               class="mt-5 html-formatting"
               v-html="episode.body"
             />
@@ -166,7 +165,7 @@ const onToggleTranscript = () => {
       </div>
     </section>
     <Sidebar
-      v-if="dataLoaded"
+      v-if="!pending"
       v-model:visible="showTranscriptSidePanel"
       class="transcript-panel p-sidebar-lg"
       :baseZIndex="1000"

@@ -18,9 +18,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits([
-  'toggleTranscript',
-])
+const emit = defineEmits(['toggleTranscript'])
 
 const toastConfig = ref(toastGlobalConfig())
 //const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
@@ -117,7 +115,6 @@ const toggleTranscript = () => {
   emit('toggleTranscript')
   gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
 }
-
 </script>
 
 <template>
