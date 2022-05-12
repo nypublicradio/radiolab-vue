@@ -1,5 +1,19 @@
 <script setup>
 import { useRuntimeConfig } from '#app'
+import TitleWithSearch from '~/components/TitleWithSearch.vue'
+import { ref } from 'vue'
+
+const searchTerm = ref('')
+const isSearching = ref(false)
+const onSearch = (event) => {
+  console.log('search for = ', event)
+  searchTerm.value = event
+  isSearching.value = true
+
+  setTimeout(() => {
+    isSearching.value = false
+  }, 3000)
+}
 
 const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
@@ -25,9 +39,12 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <div class="episode-archive">
-              <h1 class="h2">Episode Archive</h1>
-            </div>
+            <title-with-search
+              title="Episode Archive"
+              placeholder="Search by topic, guest, host"
+              :isSearching="isSearching"
+              @search="onSearch"
+            />
           </div>
         </div>
       </div>

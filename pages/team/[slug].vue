@@ -50,7 +50,7 @@ onBeforeMount(async () => {
         <div class="content pb-0">
           <div class="grid">
             <div class="col-12">
-              <h1 class="h2 mt-4 mb-2">{{ person.name }}</h1>
+              <h1 class="h2 mt-4 mb-2 font-normal">{{ person.name }}</h1>
               <h3 v-if="person['job-title']">{{ person['job-title'] }}</h3>
             </div>
           </div>

@@ -39,7 +39,7 @@ onBeforeMount(async () => {
       <div class="content lg:px-8 pb-0">
         <div class="grid">
           <div class="col-12">
-            <h1 class="h2">The Team</h1>
+            <h1 class="h2 font-normal">The Team</h1>
           </div>
         </div>
       </div>
