@@ -68,6 +68,7 @@ const onToggleTranscript = () => {
 
 <template>
   <div>
+    {{ episode }}
     <section class="head-color yellow">
       <div class="content p-3 md:p-5 lg:p-6">
         <div class="grid">
