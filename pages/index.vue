@@ -26,7 +26,10 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/r
       <div class="content">
         <div class="grid">
           <div class="col-12 md:col-6">
-            <subscribe-to-the-newsletter ga-enter-viewport ga-info="homepage newsletter enters viewport"/>
+            <subscribe-to-the-newsletter
+              ga-enter-viewport
+              ga-info="homepage newsletter enters viewport"
+            />
           </div>
           <div class="col-12 md:col-6">
             <listeners-cta />
@@ -45,6 +48,6 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/r
       :api="popularEpisodesApiUrl"
       path="data.included"
     />
-    <div class="htlad-radiolab_in-content_2 mb-8"/>
+    <div class="htlad-radiolab_leaderboard_2 mb-8" />
   </div>
 </template>

@@ -198,7 +198,7 @@ const onToggleTranscript = () => {
       v-html="episode['transcript']"
       style="visibility: hidden; height: 0; overflow: hidden"
     ></div>
-    <div class="htlad-radiolab_in-content_1 mb-8" />
+    <div class="htlad-radiolab_leaderboard_2 mb-8" />
   </div>
 </template>
 
