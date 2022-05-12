@@ -9,16 +9,15 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/r
 
 <template>
   <div>
-
     <section class="mb-8">
       <div class="content thin-content-width">
         <div class="grid">
           <div class="col-12">
-            <subscribe-to-the-newsletter class="alone"/>
+            <subscribe-to-the-newsletter class="alone" />
           </div>
         </div>
       </div>
     </section>
-    <div class="htlad-radiolab_in-content_1 mb-8" />
+    <div class="htlad-radiolab_leaderboard_2 mb-8" />
   </div>
 </template>
