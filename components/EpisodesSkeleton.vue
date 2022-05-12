@@ -46,7 +46,7 @@ const props = defineProps({
 
 <style lang="scss">
 $detailsHeight: 250px;
-$cardHeight: 500px;
+$cardHeight: 555px;
 .recent-episodes-skeleton > .grid {
   margin: 0 -24px;
 }

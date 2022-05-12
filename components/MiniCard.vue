@@ -98,7 +98,7 @@ const props = defineProps({
 }
 .mini-card .mini-card-tease {
   font-size: var(--font-size-5);
-  line-height: 20px;
+  line-height: var(--font-size-8);
   @include truncate();
   @include t3lines();
 }
