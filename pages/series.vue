@@ -56,26 +56,34 @@ onBeforeMount(async () => {
 
 <style lang="scss">
 .series .projects-landing-page__project {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: 20px;
-  grid-template-areas:
-    'logo title'
-    'logo description';
-  margin-bottom: 46px;
+  @include media('>md') {
+    display: grid;
+    margin-bottom: 46px;
+    grid-column-gap: 20px;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'logo title'
+      'logo description';
+  }
 }
 .projects-landing-page__image {
-  width: 244px;
-  height: 244px;
   grid-area: logo;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  @include media('>md') {
+    width: 244px;
+    height: 244px;
+    margin-bottom: 0;
+  }
 }
 .projects-landing-page__project a {
+  grid-area: title;
   font-family: var(--font-family-header);
   font-size: var(--font-size-10);
   font-weight: var(--font-weight-500);
   line-height: 28px;
-  grid-area: title;
   align-self: end;
   text-decoration: none;
   color: var(--text-color);
@@ -87,5 +95,9 @@ onBeforeMount(async () => {
 }
 .projects-landing-page__project p {
   grid-area: description;
+  margin-bottom: 40px !important;
+  @include media('>md') {
+    margin-bottom: 0 !important;
+  }
 }
 </style>
