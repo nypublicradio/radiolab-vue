@@ -72,6 +72,7 @@ export const isElementXPercentInViewport = function (el, percentVisible) {
   )
 }
 
+// checks if window is available because of ssr, then returns the mobile or desktop size requests based on the widow width and the breakpoint
 export const bpSizes = (bp, m, d) => {
   if (typeof window === 'undefined') return d
   return window.innerWidth < breakpoint[bp] ? m : d
