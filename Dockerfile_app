@@ -4,13 +4,14 @@ WORKDIR /code
 COPY ./.npmrc .
 COPY ./package.json .
 COPY ./package-lock.json .
+
 RUN npm ci
 RUN npm install sass
 
 COPY . .
 RUN npm run build
 
-FROM node:16.14.2-slim as app
+FROM node:16.14.2 as app
 WORKDIR /app
 
 COPY --from=build /code/.output/ ./.output/
@@ -21,5 +22,5 @@ COPY --from=build /code/package.json .
 ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-EXPOSE 3000
+EXPOSE 80
 CMD ["npm", "start"]
