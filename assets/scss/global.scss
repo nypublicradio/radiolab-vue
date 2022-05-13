@@ -207,6 +207,9 @@ section {
 }
 
 .html-formatting {
+  h1 {
+    font-size: var(--font-size-16);
+  }
   a {
     &:hover,
     &:active {

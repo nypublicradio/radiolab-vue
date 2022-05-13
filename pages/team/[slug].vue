@@ -1,6 +1,5 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import axios from 'axios'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import VSimpleResponsiveImage from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage.vue'
 import Skeleton from 'primevue/skeleton'

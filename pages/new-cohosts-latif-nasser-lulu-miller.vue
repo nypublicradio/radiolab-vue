@@ -1,37 +1,33 @@
 <script setup>
 import { useRuntimeConfig } from '#app'
 import { onBeforeMount, ref } from 'vue'
-import axios from 'axios'
+
 useMeta({
   bodyAttrs: {
     class: 'has-head-color',
   },
 })
-const dataLoaded = ref(false)
+
 const page = ref([])
 const router = useRouter()
 const config = useRuntimeConfig()
 
-onBeforeMount(async () => {
-  await axios
-    .get(
-      `${config.API_URL}/api/v3/channel/shows/radiolab/new-cohosts-latif-nasser-lulu-miller`
-    )
-    .then((response) => {
-      page.value = response.data.included[0].attributes
-      dataLoaded.value = true
-    })
-    .catch(() => {
-      router.push('/404')
-    })
-})
+const {
+  data: apiData,
+  pending,
+  error,
+  refresh,
+} = await useFetch(
+  `${config.API_URL}/api/v3/channel/shows/radiolab/new-cohosts-latif-nasser-lulu-miller`
+)
+page.value = apiData.value.included[0].attributes
 </script>
 
 <template>
   <div>
     <section class="head-color yellow">
       <div class="content thin-content-width">
-        <template v-if="dataLoaded">
+        <template v-if="!pending">
           <Html>
             <Head>
               <Title>{{ page.title }} | Radiolab | WNYC Studios</Title>
