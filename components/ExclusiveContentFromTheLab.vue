@@ -26,7 +26,11 @@ episodes.value = apiData.value.data.attributes['bucket-items']
           <div>
             <div class="flex justify-content-between">
               <h3 class="mb-4">Exclusive content from The Lab</h3>
-              <v-flexible-link raw class="the-lab" to="/the-lab">
+              <v-flexible-link
+                raw
+                class="the-lab"
+                to="https://members.radiolab.org/"
+              >
                 <Button class="p-button-rounded p-button-sm"
                   >Become a member</Button
                 >
@@ -34,23 +38,25 @@ episodes.value = apiData.value.data.attributes['bucket-items']
             </div>
             <div v-if="!pending" class="grid">
               <div
-                v-for="(episode, index) in episodes.slice(0, 3)"
+                v-for="(episode, index) in episodes"
                 :key="index"
                 class="col-12 xl:col-4 mb-2"
               >
                 <mini-card
                   :image="
-                    episode.attributes['image-main'].template.replace(
+                    episode.attributes.image.template.replace(
                       '%s/%s/%s/%s',
                       '%width%/%height%/c/%quality%'
                     )
                   "
-                  :alt="episode.attributes['image-main']['alt-text']"
+                  :alt="episode.attributes.title"
                   :url="episode.attributes.url"
                   members-only
-                  subtitle="subtitle goes here"
-                  :tease="episode.attributes.tease"
+                  subtitle="exclusive"
                   :title="episode.attributes.title"
+                  :tease="
+                    episode.attributes.tease ? episode.attributes.tease : null
+                  "
                 />
               </div>
             </div>
