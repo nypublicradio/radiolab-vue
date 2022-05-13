@@ -1,4 +1,5 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRuntimeConfig } from '#app'
@@ -9,13 +10,20 @@ const submitted = ref(false)
 const submissionStatus = ref(null)
 const email = ref('')
 
+const props = defineProps({
+  location: {
+    type: String,
+    default: null,
+  },
+})
+
 // submit the newsletter form and add email address to the Radiolab Newsletter list
 // list IDs are listed here https://github.com/nypublicradio/marketing-cloud-proxy/blob/main/marketing_cloud_proxy/mailchimp.py
 function submitForm() {
   submitted.value = true
   axios
-    // .post(`${config.API_URL}/email-proxy/subscribe`,
-    .post(`https://api.prod.nypr.digital/email-proxy/subscribe`, {
+    // .post(`https://api.prod.nypr.digital/email-proxy/subscribe`,
+    .post(`${config.API_URL}/email-proxy/subscribe`, {
       list: '2fe8150dd6',
       email: email.value,
       headers: {
@@ -25,18 +33,28 @@ function submitForm() {
     })
     .then(() => {
       submissionStatus.value = 'success'
+      gaEvent(
+        'Click Tracking',
+        `Newsletter Signup: ${props.location}`,
+        'Success'
+      )
     })
     .catch(() => {
       submissionStatus.value = 'error'
       submitted.value = false
+      gaEvent('Click Tracking', `Newsletter Signup: ${props.location}`, 'Error')
     })
 }
 </script>
 
 <template>
   <div class="newsletter-form">
-    <span v-if="submissionStatus !== 'success'" class="grid">
-      <div class="col-12 lg:col-8">
+    <span
+      v-if="submissionStatus !== 'success'"
+      class="flex flex-column lg:flex-row"
+      style="gap: 1rem"
+    >
+      <div class="flex-grow-1">
         <InputText
           :disabled="submitted"
           class="w-full p-inputtext-lg"
@@ -45,6 +63,8 @@ function submitForm() {
           placeholder="Email address"
           aria-describedby="email-address-field"
           v-model="email"
+          autocomplete="email"
+          name="email"
           @keypress.enter="submitForm"
         />
         <small
@@ -55,9 +75,7 @@ function submitForm() {
           again!</small
         >
       </div>
-      <div
-        class="col-12 lg:col-4 flex justify-content-end lg:justify-content-start"
-      >
+      <div class="flex justify-content-end lg:justify-content-start">
         <Button
           :disabled="submitted"
           @click="submitForm"

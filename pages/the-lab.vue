@@ -1,4 +1,5 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import colors from '~/assets/scss/colors.module.scss'
 useHead({
@@ -40,7 +41,13 @@ useHead({
       </h1>
       <div class="flex mt-5" style="gap: 1rem">
         <v-flexible-link to="/the-lab" raw>
-          <Button class="p-button-rounded" label="Become a member" />
+          <Button
+            class="p-button-rounded"
+            label="Become a member"
+            @click="
+              gaEvent('Click Tracking', 'The Lab Hero CTA', 'Become a member')
+            "
+          />
         </v-flexible-link>
         <v-flexible-link to="https://members.radiolab.org/request_access" raw>
           <Button

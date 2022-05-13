@@ -30,10 +30,7 @@ const router = useRouter()
 
 onBeforeMount(async () => {
   await axios
-    .get(
-      `${config.API_URL}/api/v3/story/${route.params.slug}/`
-      // `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
-    )
+    .get(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
     .then((response) => {
       episode.value = response.data.data.attributes
       dataLoaded.value = true
@@ -45,7 +42,7 @@ onBeforeMount(async () => {
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
-  if(route.query.transcript) onToggleTranscript()
+  if (route.query.transcript) onToggleTranscript()
 })
 
 const isMobile = computed(() => {
@@ -55,7 +52,9 @@ const isMobile = computed(() => {
 // copy transcript link to clipboard
 const copyTranscriptLink = () => {
   copyToClipBoard(
-    `${window.location.href}${route.query.transcript ? '': '?transcript=true'}`,
+    `${window.location.href}${
+      route.query.transcript ? '' : '?transcript=true'
+    }`,
     'Transcript link copied to clipboard'
   )
   gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
@@ -89,18 +88,6 @@ const onToggleTranscript = () => {
                       <Meta name="og:description" :content="episode.tease" />
                       <Meta name="og:type" content="article" />
                       <Meta
-                        name="og:image"
-                        :content="episode['image-main'].url"
-                      />
-                      <Meta
-                        name="og:image:width"
-                        :content="`${episode['image-main'].w}`"
-                      />
-                      <Meta
-                        name="og:image:height"
-                        :content="`${episode['image-main'].h}`"
-                      />
-                      <Meta
                         name="twitter:title"
                         :content="`${episode.title} | Radiolab | WNYC Studios`"
                       />
@@ -114,21 +101,6 @@ const onToggleTranscript = () => {
                       />
                     </Head>
                   </Html>
-                  <v-image-with-caption
-                    :image="
-                      episode['image-main'].template.replace(
-                        '%s/%s/%s/%s',
-                        '%width%/%height%/c/%quality%'
-                      )
-                    "
-                    :alt="episode['image-main']['alt-text']"
-                    :width="isMobile ? 90 : 200"
-                    :height="isMobile ? 90 : 200"
-                    :max-width="episode['image-main'].w"
-                    :max-height="episode['image-main'].h"
-                    :ratio="[1, 1]"
-                    class="episode-image"
-                  />
                   <div class="episode-content">
                     <p class="date mb-1">
                       {{ formatDate(episode['publish-at']) }}

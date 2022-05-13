@@ -13,8 +13,8 @@ const episodes = ref([])
 onBeforeMount(async () => {
   await axios
     .get(
-      // `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
-      `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
+      `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
+      // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
     )
     .then((response) => {
       episodes.value = response.data.included
@@ -46,20 +46,27 @@ onBeforeMount(async () => {
                   class="latest-episode-image"
                 />
               </div>
-              <div class="latest-episode-content col-12 md:col-5 p-4 lg:p-7">
-                <h5 class="mb-0 lg:mb-2">Latest Episode</h5>
-                <v-flexible-link
-                  :to="`/episodes/${episodes[0].attributes.slug}`"
-                  class="latest-episode-title inline-block"
-                >
-                  <h2 class="mb-2 lg:mb-3 truncate t2lines" v-html="episodes[0].attributes.title"></h2>
-                </v-flexible-link>
-                <p
-                  v-html="episodes[0].attributes.tease"
-                  class="latest-episode-tease mb-5 truncate t3lines"
-                />
-                <div class="block md:hidden divider"></div>
-                <play-selector :episode="episodes[0].attributes" />
+              <div
+                class="latest-episode-content flex flex-column justify-content-center col-12 md:col-5 p-4 lg:p-7"
+              >
+                <div>
+                  <h5 class="mb-0 lg:mb-2">Latest Episode</h5>
+                  <v-flexible-link
+                    :to="`/episodes/${episodes[0].attributes.slug}`"
+                    class="latest-episode-title inline-block"
+                  >
+                    <h2
+                      class="mb-2 lg:mb-3 truncate t2lines"
+                      v-html="episodes[0].attributes.title"
+                    ></h2>
+                  </v-flexible-link>
+                  <p
+                    v-html="episodes[0].attributes.tease"
+                    class="latest-episode-tease mb-5 truncate t3lines"
+                  />
+                  <div class="block md:hidden divider"></div>
+                  <play-selector :episode="episodes[0].attributes" />
+                </div>
               </div>
             </div>
             <latest-episode-skeleton v-else />
@@ -80,7 +87,7 @@ onBeforeMount(async () => {
 .latest-episode .latest-episode-title {
   text-decoration: none;
 
-  @include media("<lg") {
+  @include media('<lg') {
     h2 {
       font-size: var(--font-size-12);
       line-height: var(--line-height-12);

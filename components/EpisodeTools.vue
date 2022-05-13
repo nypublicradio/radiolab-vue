@@ -1,21 +1,30 @@
 <script setup>
+import gaEvent from '../utilities/ga.js'
 import { ref } from 'vue'
-import { formatDate, copyToClipBoard, shareAPI, toastGlobalConfig } from '~/utilities/helpers'
+import {
+  copyToClipBoard,
+  shareAPI,
+  toastGlobalConfig,
+} from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
+// import { emit } from 'process'
 
 const props = defineProps({
   episode: {
     type: Object,
     default: null,
-  }
+  },
 })
 
-const toastConfig = ref(toastGlobalConfig())
-const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
+const emit = defineEmits([
+  'toggleTranscript',
+])
 
-const visibleRight = ref(false)
+const toastConfig = ref(toastGlobalConfig())
+//const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
+
 const dotsMenu = ref()
 const shareMenu = ref()
 const dotsItems = ref([
@@ -24,16 +33,27 @@ const dotsItems = ref([
     icon: 'pi pi-download',
     command: () => {
       window.open(props.episode['audio'], '_top')
-      createToast({ title: 'Downloading episode audio file', description: 'Check your system\'s downloads folder' }, toastConfig.value)
-    }
+      createToast(
+        {
+          title: 'Downloading episode audio file',
+          description: "Check your system's downloads folder",
+        },
+        toastConfig.value
+      )
+      gaEvent('Click Tracking', 'Episode Tools', 'Download')
+    },
   },
   {
     label: 'Embed',
     icon: 'pi pi-code',
     command: () => {
-      copyToClipBoard(props.episode['embed-code'], 'Embed code copied to clipboard')
-    }
-  }
+      copyToClipBoard(
+        props.episode['embed-code'],
+        'Embed code copied to clipboard'
+      )
+      gaEvent('Click Tracking', 'Episode Tools', 'Embed')
+    },
+  },
 ])
 
 const shareItems = ref([
@@ -43,7 +63,8 @@ const shareItems = ref([
     command: () => {
       var twitterShare = document.getElementsByClassName('twitterShareRef')
       twitterShare[0].click()
-    }
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Twitter')
+    },
   },
   {
     label: 'Facebook',
@@ -51,7 +72,8 @@ const shareItems = ref([
     command: () => {
       var facebookShare = document.getElementsByClassName('facebookShareRef')
       facebookShare[0].click()
-    }
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Facebook')
+    },
   },
   {
     label: 'Email',
@@ -59,28 +81,41 @@ const shareItems = ref([
     command: () => {
       var emailShare = document.getElementsByClassName('emailShareRef')
       emailShare[0].click()
-    }
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Email')
+    },
   },
   {
     label: 'Copy link',
     icon: 'pi pi-link',
     command: () => {
-      shareAPI({
-        title: props.episode['title'],
-        text: props.episode['tease'],
-        url: props.episode['url']
-      }, 'Episode link copied to the clipboard')
-    }
-  }
+      shareAPI(
+        {
+          title: props.episode['title'],
+          text: props.episode['tease'],
+          url: props.episode['url'],
+        },
+        'Episode link copied to the clipboard'
+      )
+      gaEvent('Click Tracking', 'Episode Share Tools', 'Copy link')
+    },
+  },
 ])
 
 // toggle function for dot menu
 const toggleDots = (event) => {
   dotsMenu.value.toggle(event)
+  gaEvent('Click Tracking', 'Episode Tools', 'Dots Menu')
 }
 // toggle function for dot menu
 const toggleShare = (event) => {
   shareMenu.value.toggle(event)
+  gaEvent('Click Tracking', 'Episode Tools', 'Share Menu')
+}
+
+// toggle function for toggle transcript emit
+const toggleTranscript = () => {
+  emit('toggleTranscript')
+  gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
 }
 
 </script>
@@ -88,12 +123,15 @@ const toggleShare = (event) => {
 <template>
   <div>
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
-      <play-selector :episode="props.episode" menu-class="episode-tools-play-selector" />
+      <play-selector
+        :episode="props.episode"
+        menu-class="episode-tools-play-selector"
+      />
       <Button
         v-if="!!props.episode['transcript']"
         class="p-button-sm p-button-rounded"
         label="Transcript"
-        @click="visibleRight = true"
+        @click="toggleTranscript"
       ></Button>
       <Button
         icon="pi pi-share-alt"
@@ -107,27 +145,18 @@ const toggleShare = (event) => {
         @click="toggleDots"
         aria-controls="overlay_menu"
       />
-      <Sidebar
-        v-model:visible="visibleRight"
-        class="transcript p-sidebar-lg"
-        :baseZIndex="1000"
-        position="right"
-      >
-        <h5 class="mt-4">Transcript</h5>
-        <Divider />
-        <div class="my-5">
-          <p class="date">{{ formatDate(props.episode['publish-at']) }}</p>
-          <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
-        </div>
-        <Divider />
-        <div
-          v-if="!!props.episode['transcript']"
-          v-html="props.episode['transcript']"
-          class="transcript-body mt-2 html-formatting"
-        ></div>
-      </Sidebar>
-      <Menu ref="dotsMenu" :model="dotsItems" :popup="true" class="episode-tools-menu" />
-      <Menu ref="shareMenu" :model="shareItems" :popup="true" class="episode-tools-menu" />
+      <Menu
+        ref="dotsMenu"
+        :model="dotsItems"
+        :popup="true"
+        class="episode-tools-menu"
+      />
+      <Menu
+        ref="shareMenu"
+        :model="shareItems"
+        :popup="true"
+        class="episode-tools-menu"
+      />
       <div class="hidden">
         <ShareNetwork
           class="facebookShareRef"
@@ -137,7 +166,8 @@ const toggleShare = (event) => {
           :description="props.episode['tease']"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="props.episode['tags'].join()"
-        >Share on Facebook</ShareNetwork>
+          >Share on Facebook</ShareNetwork
+        >
         <ShareNetwork
           class="twitterShareRef"
           network="twitter"
@@ -147,7 +177,8 @@ const toggleShare = (event) => {
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="props.episode['tags'].join()"
           twitter-user="Radiolab"
-        >Share on Twitter</ShareNetwork>
+          >Share on Twitter</ShareNetwork
+        >
         <ShareNetwork
           class="emailShareRef"
           network="email"
@@ -156,7 +187,8 @@ const toggleShare = (event) => {
           :description="props.episode['tease']"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="props.episode['tags'].join()"
-        >Share on Email</ShareNetwork>
+          >Share on Email</ShareNetwork
+        >
       </div>
     </div>
   </div>
@@ -173,7 +205,7 @@ const toggleShare = (event) => {
     gap: 6px;
     margin-left: 0;
     flex-grow: 0;
-    @include media("<#{$toolsBreakPoint}") {
+    @include media('<#{$toolsBreakPoint}') {
       width: 100%;
       .p-button {
         flex-grow: 1;
@@ -226,38 +258,6 @@ const toggleShare = (event) => {
         color: var(--black100);
       }
     }
-  }
-}
-.transcript {
-  background-color: var(--primary-color);
-  .p-sidebar-header .p-sidebar-close {
-    color: var(--black100);
-  }
-  @include media(">md") {
-    &.p-sidebar-lg {
-      width: 768px !important;
-    }
-  }
-  @include media("<md") {
-    &.p-sidebar-lg {
-      width: 100% !important;
-    }
-  }
-  .p-sidebar-content {
-    margin-top: -64px;
-    padding-right: spacing(8);
-    .title {
-      font-size: var(--font-size-12);
-      line-height: var(--font-size-13);
-      font-weight: 400;
-      @include media("<md") {
-        font-size: var(--font-size-8);
-        line-height: var(--font-size-9);
-      }
-    }
-  }
-  .p-sidebar-header {
-    z-index: 1;
   }
 }
 </style>

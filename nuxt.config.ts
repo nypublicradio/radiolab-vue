@@ -22,12 +22,12 @@ export default defineNuxtConfig({
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
     'mosha-vue-toastify/dist/style.css',
-    /* '~/assets/scss/global.scss', */
   ],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
+          // besure to mirror theses imports in the vitest.config.ts
           additionalData: `@import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss"; @import "~/assets/scss/global.scss";`,
         },
       },
@@ -60,6 +60,6 @@ export default defineNuxtConfig({
     HTL_CSS: process.env['HTL_CSS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.css',
     HTL_JS: process.env['HTL_JS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.js',
     HTL_IS_TESTING: process.env['HTL_IS_TESTING'] || 'yes',
-    API_URL: process.env['API_URL'] || "https://api.demo2.wnyc.net"
+    API_URL: process.env['API_URL'] || "https://api.wnyc.org"
   }
 })

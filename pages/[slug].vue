@@ -10,6 +10,7 @@ useMeta({
 const dataLoaded = ref(false)
 const page = ref([])
 const route = useRoute()
+const router = useRouter()
 
 onBeforeMount(async () => {
   await axios
@@ -18,13 +19,13 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       if (response.data.included.length < 1) {
-        throwError('404')
+        router.push('/404')
       }
       page.value = response.data.included[0].attributes
       dataLoaded.value = true
     })
     .catch((error) => {
-      throwError(error.response.status)
+      router.push('/404')
     })
 })
 </script>

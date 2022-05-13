@@ -9,18 +9,19 @@ const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const person = ref([])
 const route = useRoute()
+const router = useRouter()
 onBeforeMount(async () => {
   await axios
     .get(
-      // `${config.API_URL}/api/v3/person/${route.params.slug}/`
-      `https://private-anon-d1d00d4480-nyprpublisher.apiary-proxy.com/api/v3/person/${route.params.slug}/`
+      `${config.API_URL}/api/v3/person/${route.params.slug}/`
+      // `https://private-anon-d1d00d4480-nyprpublisher.apiary-proxy.com/api/v3/person/${route.params.slug}/`
     )
     .then((response) => {
       person.value = response.data.data.attributes
       dataLoaded.value = true
     })
     .catch((error) => {
-      throwError(error.response.status)
+      router.push('/404')
     })
 })
 </script>
