@@ -1,7 +1,7 @@
 <script setup>
 import gaEvent from '~/utilities/ga.js'
 import { onBeforeMount, computed, ref, watch } from 'vue'
-import { formatDate, copyToClipBoard } from '~/utilities/helpers'
+import { formatDate, copyToClipBoard, bpSizes } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
@@ -45,17 +45,15 @@ onBeforeMount(async () => {
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
-  if(route.query.transcript) onToggleTranscript()
-})
-
-const isMobile = computed(() => {
-  return window.innerWidth < breakpoint['md']
+  if (route.query.transcript) onToggleTranscript()
 })
 
 // copy transcript link to clipboard
 const copyTranscriptLink = () => {
   copyToClipBoard(
-    `${window.location.href}${route.query.transcript ? '': '?transcript=true'}`,
+    `${window.location.href}${
+      route.query.transcript ? '' : '?transcript=true'
+    }`,
     'Transcript link copied to clipboard'
   )
   gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
@@ -114,26 +112,30 @@ const onToggleTranscript = () => {
                       />
                     </Head>
                   </Html>
-                  <v-image-with-caption
-                    :image="
-                      episode['image-main'].template.replace(
-                        '%s/%s/%s/%s',
-                        '%width%/%height%/c/%quality%'
-                      )
-                    "
-                    :alt="episode['image-main']['alt-text']"
-                    :width="isMobile ? 90 : 200"
-                    :height="isMobile ? 90 : 200"
-                    :max-width="episode['image-main'].w"
-                    :max-height="episode['image-main'].h"
-                    :ratio="[1, 1]"
-                    class="episode-image"
-                  />
+                  <client-only>
+                    <v-image-with-caption
+                      :image="
+                        episode['image-main'].template.replace(
+                          '%s/%s/%s/%s',
+                          '%width%/%height%/c/%quality%'
+                        )
+                      "
+                      :alt="episode['image-main']['alt-text']"
+                      :width="bpSizes('md', 90, 200)"
+                      :height="bpSizes('md', 90, 200)"
+                      :max-width="episode['image-main'].w"
+                      :max-height="episode['image-main'].h"
+                      class="episode-image"
+                    />
+                  </client-only>
                   <div class="episode-content">
                     <p class="date mb-1">
                       {{ formatDate(episode['publish-at']) }}
                     </p>
-                    <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
+                    <div
+                      class="h2 title mb-0 md:mb-4"
+                      v-html="episode.title"
+                    ></div>
                     <episode-tools
                       class="hidden md:block"
                       :episode="episode"
@@ -151,11 +153,11 @@ const onToggleTranscript = () => {
                 <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
               </div>
             </div>
-            <p
+            <div
               v-if="dataLoaded"
               class="mt-5 html-formatting"
               v-html="episode.body"
-            />
+            ></div>
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 xl:col-3 xl:col-offset-1">
@@ -185,7 +187,7 @@ const onToggleTranscript = () => {
       <Divider />
       <div class="my-5">
         <p class="date">{{ formatDate(episode['publish-at']) }}</p>
-        <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
+        <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
       </div>
       <Divider />
       <div

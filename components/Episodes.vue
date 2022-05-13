@@ -1,7 +1,7 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
 import { onBeforeMount, ref, computed, watch } from 'vue'
-import { formatDate } from '~/utilities/helpers'
+import { formatDate, bpSizes } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
@@ -168,29 +168,31 @@ async function onPage(event) {
                         index === episodes.length - 1 - props.startCount,
                     }"
                   >
-                    <v-card
-                      :image="
-                        episode.attributes['image-main'].template.replace(
-                          '%s/%s/%s/%s',
-                          '%width%/%height%/c/%quality%'
-                        )
-                      "
-                      :alt="episode.attributes['image-main']['alt-text']"
-                      :title="episode.attributes.title"
-                      :titleLink="`/episodes/${episode.attributes.slug}`"
-                      :eyebrow="formatDate(episode.attributes['publish-at'])"
-                      :blurb="episode.attributes.tease"
-                      :height="225"
-                      :max-width="episode.attributes['image-main'].w"
-                      :max-height="episode.attributes['image-main'].h"
-                      responsive
-                      :ratio="[4, 3]"
-                      bp="max"
-                      class="radiolab-card"
-                    >
-                      <div class="divider"></div>
-                      <play-selector :episode="episode.attributes" />
-                    </v-card>
+                    <client-only>
+                      <v-card
+                        :image="
+                          episode.attributes['image-main'].template.replace(
+                            '%s/%s/%s/%s',
+                            '%width%/%height%/c/%quality%'
+                          )
+                        "
+                        :width="bpSizes('md', null, 370)"
+                        :height="bpSizes('md', null, 225)"
+                        :alt="episode.attributes['image-main']['alt-text']"
+                        :title="episode.attributes.title"
+                        :titleLink="`/episodes/${episode.attributes.slug}`"
+                        :eyebrow="formatDate(episode.attributes['publish-at'])"
+                        :blurb="episode.attributes.tease"
+                        :max-width="episode.attributes['image-main'].w"
+                        :max-height="episode.attributes['image-main'].h"
+                        responsive
+                        bp="max"
+                        class="radiolab-card"
+                      >
+                        <div class="divider"></div>
+                        <play-selector :episode="episode.attributes" />
+                      </v-card>
+                    </client-only>
                   </div>
                   <div
                     :key="index"
@@ -203,29 +205,31 @@ async function onPage(event) {
                     v-if="index > 5"
                     class="col-12 md:col-6 xl:col-4 mb-6"
                   >
-                    <v-card
-                      :image="
-                        episode.attributes['image-main'].template.replace(
-                          '%s/%s/%s/%s',
-                          '%width%/%height%/c/%quality%'
-                        )
-                      "
-                      :alt="episode.attributes['image-main']['alt-text']"
-                      :title="episode.attributes.title"
-                      :titleLink="`/episodes/${episode.attributes.slug}`"
-                      :eyebrow="formatDate(episode.attributes['publish-at'])"
-                      :blurb="episode.attributes.tease"
-                      :height="225"
-                      :max-width="episode.attributes['image-main'].w"
-                      :max-height="episode.attributes['image-main'].h"
-                      responsive
-                      :ratio="[4, 3]"
-                      bp="max"
-                      class="radiolab-card"
-                    >
-                      <div class="divider"></div>
-                      <play-selector :episode="episode.attributes" />
-                    </v-card>
+                    <client-only>
+                      <v-card
+                        :image="
+                          episode.attributes['image-main'].template.replace(
+                            '%s/%s/%s/%s',
+                            '%width%/%height%/c/%quality%'
+                          )
+                        "
+                        :width="bpSizes('md', null, 370)"
+                        :height="bpSizes('md', null, 225)"
+                        :alt="episode.attributes['image-main']['alt-text']"
+                        :title="episode.attributes.title"
+                        :titleLink="`/episodes/${episode.attributes.slug}`"
+                        :eyebrow="formatDate(episode.attributes['publish-at'])"
+                        :blurb="episode.attributes.tease"
+                        :max-width="episode.attributes['image-main'].w"
+                        :max-height="episode.attributes['image-main'].h"
+                        responsive
+                        bp="max"
+                        class="radiolab-card"
+                      >
+                        <div class="divider"></div>
+                        <play-selector :episode="episode.attributes" />
+                      </v-card>
+                    </client-only>
                   </div>
                 </template>
               </div>

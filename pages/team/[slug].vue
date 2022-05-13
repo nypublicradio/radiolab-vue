@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
+import { bpSizes } from '~/utilities/helpers'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import Skeleton from 'primevue/skeleton'
 import { useRuntimeConfig } from '#app'
@@ -59,19 +60,22 @@ onBeforeMount(async () => {
       <section>
         <div class="content mb-4 pt-0">
           <div>
-            <v-image-with-caption
-              :image="
-                person.image.template.replace(
-                  '%s/%s/%s/%s',
-                  '%width%/%height%/c/%quality%'
-                )
-              "
-              :alt="person.name"
-              :max-width="person.image.w"
-              :max-height="person.image.h"
-              :ratio="[8, 5]"
-              class="mb-6"
-            />
+            <client-only>
+              <v-image-with-caption
+                :image="
+                  person.image.template.replace(
+                    '%s/%s/%s/%s',
+                    '%width%/%height%/c/%quality%'
+                  )
+                "
+                :width="bpSizes('md', null, 736)"
+                :height="bpSizes('md', null, 460)"
+                :alt="person.name"
+                :max-width="person.image.w"
+                :max-height="person.image.h"
+                class="mb-6"
+              />
+            </client-only>
             <div
               v-html="person.bio || person.lede"
               class="team-bio html-formatting"

@@ -1,5 +1,5 @@
 import { createToast } from 'mosha-vue-toastify'
-
+import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 /*basic function that detects if the site is running in a mobile browser*/
 function isMobileBrowser() {
   return (typeof window.orientation !== "undefined")
@@ -61,13 +61,19 @@ export const shareAPI = async (content, msg) => {
 }
 
 // helper function that determins if an element is in the viewport by a certain percentage
-export const isElementXPercentInViewport = function(el, percentVisible) {
+export const isElementXPercentInViewport = function (el, percentVisible) {
   const
     rect = el.getBoundingClientRect(),
-    windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+    windowHeight = (window.innerHeight || document.documentElement.clientHeight)
 
   return !(
     Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / Number(-rect.height)) * 100)) < percentVisible ||
     Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percentVisible
   )
-};
+}
+
+// checks window width up against the breakpoints and returns the requested mobile or desktop size
+export const bpSizes = (bp, m, d) => {
+  if (typeof window === 'undefined') return d
+  return window.innerWidth < breakpoint[bp] ? m : d
+}
