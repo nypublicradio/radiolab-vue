@@ -1,6 +1,5 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import { useRuntimeConfig } from '#app'
 
@@ -8,14 +7,15 @@ const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const episodes = ref([])
 
-onBeforeMount(async () => {
-  await axios
-    .get(`${config.API_URL}/api/v3/buckets/radiolab-exclusive-content/`)
-    .then((response) => {
-      episodes.value = response.data.data.attributes['bucket-items']
-      dataLoaded.value = true
-    })
-})
+const {
+  data: apiData,
+  pending,
+  error,
+  refresh,
+} = await useFetch(
+  `${config.API_URL}/api/v3/buckets/radiolab-radio-shows/?limit=3`
+)
+episodes.value = apiData.value.data.attributes['bucket-items']
 </script>
 
 <template>
@@ -36,7 +36,7 @@ onBeforeMount(async () => {
                 >
               </v-flexible-link>
             </div>
-            <div v-if="dataLoaded" class="grid">
+            <div v-if="!pending" class="grid">
               <div
                 v-for="(episode, index) in episodes"
                 :key="index"

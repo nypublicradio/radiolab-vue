@@ -1,26 +1,23 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { useRuntimeConfig } from '#app'
+import { bpSizes } from '~/utilities/helpers'
 
 const config = useRuntimeConfig()
-const dataLoaded = ref(false)
 const episodes = ref([])
 
-onBeforeMount(async () => {
-  await axios
-    .get(
-      `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
-      // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
-    )
-    .then((response) => {
-      episodes.value = response.data.included
-      dataLoaded.value = true
-    })
-})
+const {
+  data: apiData,
+  pending,
+  error,
+  refresh,
+} = await useFetch(
+  `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
+)
+episodes.value = apiData.value.included
 </script>
 
 <template>
@@ -29,22 +26,25 @@ onBeforeMount(async () => {
       <div class="content px-3 pt-2">
         <div class="grid">
           <div class="col">
-            <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">
+            <div v-if="!pending" class="latest-episode grid grid-nogutter">
               <div class="col-12 md:col-7 p-0">
-                <v-image-with-caption
-                  :image="
-                    episodes[0].attributes['image-main'].template.replace(
-                      '%s/%s/%s/%s',
-                      '%width%/%height%/c/%quality%'
-                    )
-                  "
-                  :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
-                  :alt="episodes[0].attributes['image-main']['alt-text']"
-                  :max-width="episodes[0].attributes['image-main'].w"
-                  :max-height="episodes[0].attributes['image-main'].h"
-                  :ratio="[8, 6]"
-                  class="latest-episode-image"
-                />
+                <client-only>
+                  <v-image-with-caption
+                    :image="
+                      episodes[0].attributes['image-main'].template.replace(
+                        '%s/%s/%s/%s',
+                        '%width%/%height%/c/%quality%'
+                      )
+                    "
+                    :width="bpSizes('md', null, 778)"
+                    :height="bpSizes('md', null, 584)"
+                    :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
+                    :alt="episodes[0].attributes['image-main']['alt-text']"
+                    :max-width="episodes[0].attributes['image-main'].w"
+                    :max-height="episodes[0].attributes['image-main'].h"
+                    class="latest-episode-image"
+                  />
+                </client-only>
               </div>
               <div
                 class="latest-episode-content flex flex-column justify-content-center col-12 md:col-5 p-4 lg:p-7"
@@ -65,7 +65,9 @@ onBeforeMount(async () => {
                     class="latest-episode-tease mb-5 truncate t3lines"
                   />
                   <div class="block md:hidden divider"></div>
-                  <play-selector :episode="episodes[0].attributes" />
+                  <client-only>
+                    <play-selector :episode="episodes[0].attributes" />
+                  </client-only>
                 </div>
               </div>
             </div>
