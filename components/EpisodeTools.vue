@@ -10,6 +10,7 @@ import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
 // import { emit } from 'process'
+const route = useRoute()
 
 const props = defineProps({
   episode: {
@@ -18,9 +19,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits([
-  'toggleTranscript',
-])
+const emit = defineEmits(['toggleTranscript'])
 
 const toastConfig = ref(toastGlobalConfig())
 //const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
@@ -92,7 +91,8 @@ const shareItems = ref([
         {
           title: props.episode['title'],
           text: props.episode['tease'],
-          url: props.episode['url'],
+          //url: props.episode['url'],
+          url: window.location.href,
         },
         'Episode link copied to the clipboard'
       )
@@ -117,16 +117,17 @@ const toggleTranscript = () => {
   emit('toggleTranscript')
   gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
 }
-
 </script>
 
 <template>
   <div>
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
-      <play-selector
-        :episode="props.episode"
-        menu-class="episode-tools-play-selector"
-      />
+      <client-only>
+        <play-selector
+          :episode="props.episode"
+          menu-class="episode-tools-play-selector"
+        />
+      </client-only>
       <Button
         v-if="!!props.episode['transcript']"
         class="p-button-sm p-button-rounded"
@@ -145,51 +146,53 @@ const toggleTranscript = () => {
         @click="toggleDots"
         aria-controls="overlay_menu"
       />
-      <Menu
-        ref="dotsMenu"
-        :model="dotsItems"
-        :popup="true"
-        class="episode-tools-menu"
-      />
-      <Menu
-        ref="shareMenu"
-        :model="shareItems"
-        :popup="true"
-        class="episode-tools-menu"
-      />
-      <div class="hidden">
-        <ShareNetwork
-          class="facebookShareRef"
-          network="facebook"
-          :url="props.episode['url']"
-          :title="props.episode['title']"
-          :description="props.episode['tease']"
-          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="props.episode['tags'].join()"
-          >Share on Facebook</ShareNetwork
-        >
-        <ShareNetwork
-          class="twitterShareRef"
-          network="twitter"
-          :url="props.episode['url']"
-          :title="props.episode['title']"
-          :description="props.episode['tease']"
-          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="props.episode['tags'].join()"
-          twitter-user="Radiolab"
-          >Share on Twitter</ShareNetwork
-        >
-        <ShareNetwork
-          class="emailShareRef"
-          network="email"
-          :url="props.episode['url']"
-          :title="props.episode['title']"
-          :description="props.episode['tease']"
-          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="props.episode['tags'].join()"
-          >Share on Email</ShareNetwork
-        >
-      </div>
+      <client-only>
+        <Menu
+          ref="dotsMenu"
+          :model="dotsItems"
+          :popup="true"
+          class="episode-tools-menu"
+        />
+        <Menu
+          ref="shareMenu"
+          :model="shareItems"
+          :popup="true"
+          class="episode-tools-menu"
+        />
+        <div class="hidden">
+          <ShareNetwork
+            class="facebookShareRef"
+            network="facebook"
+            :url="props.episode['url']"
+            :title="props.episode['title']"
+            :description="props.episode['tease']"
+            :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+            :hashtags="props.episode['tags'].join()"
+            >Share on Facebook</ShareNetwork
+          >
+          <ShareNetwork
+            class="twitterShareRef"
+            network="twitter"
+            :url="props.episode['url']"
+            :title="props.episode['title']"
+            :description="props.episode['tease']"
+            :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+            :hashtags="props.episode['tags'].join()"
+            twitter-user="Radiolab"
+            >Share on Twitter</ShareNetwork
+          >
+          <ShareNetwork
+            class="emailShareRef"
+            network="email"
+            :url="props.episode['url']"
+            :title="props.episode['title']"
+            :description="props.episode['tease']"
+            :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+            :hashtags="props.episode['tags'].join()"
+            >Share on Email</ShareNetwork
+          >
+        </div>
+      </client-only>
     </div>
   </div>
 </template>

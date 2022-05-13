@@ -1,34 +1,29 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import axios from 'axios'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import VSimpleResponsiveImage from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage.vue'
 import Skeleton from 'primevue/skeleton'
+import { bpSizes } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const dataLoaded = ref(false)
 const person = ref([])
 const route = useRoute()
 const router = useRouter()
-onBeforeMount(async () => {
-  await axios
-    .get(
-      `${config.API_URL}/api/v3/person/${route.params.slug}/`
-      // `https://private-anon-d1d00d4480-nyprpublisher.apiary-proxy.com/api/v3/person/${route.params.slug}/`
-    )
-    .then((response) => {
-      person.value = response.data.data.attributes
-      dataLoaded.value = true
-    })
-    .catch((error) => {
-      router.push('/404')
-    })
-})
+
+const {
+  data: apiData,
+  pending,
+  error,
+  refresh,
+} = await useFetch(`${config.API_URL}/api/v3/person/${route.params.slug}/`)
+//console.log('apiData.value = ', apiData.value.data.attributes)
+person.value = apiData.value.data.attributes
 </script>
 
 <template>
   <div class="thin-content-width">
-    <div v-if="dataLoaded">
+    <div v-if="!pending">
       <Html>
         <Head>
           <Title>{{ person.name }} | Radiolab | WNYC Studios</Title>
@@ -59,19 +54,22 @@ onBeforeMount(async () => {
       <section>
         <div class="content mb-4 pt-0">
           <div>
-            <v-image-with-caption
-              :image="
-                person.image.template.replace(
-                  '%s/%s/%s/%s',
-                  '%width%/%height%/c/%quality%'
-                )
-              "
-              :alt="person.name"
-              :max-width="person.image.w"
-              :max-height="person.image.h"
-              :ratio="[8, 5]"
-              class="mb-6"
-            />
+            <client-only>
+              <v-image-with-caption
+                :image="
+                  person.image.template.replace(
+                    '%s/%s/%s/%s',
+                    '%width%/%height%/c/%quality%'
+                  )
+                "
+                :width="bpSizes('md', null, 736)"
+                :height="bpSizes('md', null, 460)"
+                :alt="person.name"
+                :max-width="person.image.w"
+                :max-height="person.image.h"
+                class="mb-6"
+              />
+            </client-only>
             <div
               v-html="person.bio || person.lede"
               class="team-bio html-formatting"

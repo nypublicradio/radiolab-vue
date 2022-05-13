@@ -1,25 +1,21 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import Skeleton from 'primevue/skeleton'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const dataLoaded = ref(false)
 const episodes = ref([])
 
-onBeforeMount(async () => {
-  await axios
-    .get(
-      `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/1?limit=3`
-      // `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/radio-shows/1?limit=3`
-    )
-    .then((response) => {
-      episodes.value = response.data.included
-      dataLoaded.value = true
-    })
-})
+const {
+  data: apiData,
+  pending,
+  error,
+  refresh,
+} = await useFetch(
+  `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/1?limit=3`
+)
+episodes.value = apiData.value.included
 </script>
 
 <template>
@@ -34,7 +30,7 @@ onBeforeMount(async () => {
                 <Button class="p-button-rounded p-button-sm">All Series</Button>
               </v-flexible-link>
             </div>
-            <div v-if="dataLoaded" class="grid">
+            <div v-if="!pending" class="grid">
               <div
                 v-for="(episode, index) in episodes.slice(0, 3)"
                 :key="index"
