@@ -32,6 +32,8 @@ workflows:
             - build
       - test_nginx:
           <<: *filter_all
+          requires:
+            - build
       - deploy_js:
           name: Deploy App (demo)
           context: "AWS Deploy"
@@ -39,6 +41,7 @@ workflows:
           tag: demo
           requires:
             - test_js
+            - test_nginx
       - deploy_js:
           name: Deploy App (prod)
           context: "AWS Deploy"
@@ -46,12 +49,14 @@ workflows:
           <<: *filter_prod
           requires:
             - test_js
-       - deploy_nginx:
+            - test_nginx
+      - deploy_nginx:
           name: Deploy Nginx (demo)
           context: "AWS Deploy"
           <<: *filter_demo
           tag: demo
           requires:
+            - test_js
             - test_nginx
       - deploy_nginx:
           name: Deploy Nginx (prod)
@@ -59,6 +64,7 @@ workflows:
           env: prod
           <<: *filter_prod
           requires:
+            - test_js
             - test_nginx
 
 jobs: 
