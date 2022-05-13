@@ -110,20 +110,22 @@ const onToggleTranscript = () => {
                       />
                     </Head>
                   </Html>
-                  <v-simple-responsive-image
-                    :src="
-                      episode['image-main'].template.replace(
-                        '%s/%s/%s/%s',
-                        '%width%/%height%/c/%quality%'
-                      )
-                    "
-                    :alt="episode['image-main']['alt-text']"
-                    :width="bpSizes('md', 90, 200)"
-                    :height="bpSizes('md', 90, 200)"
-                    :max-width="episode['image-main'].w"
-                    :max-height="episode['image-main'].h"
-                    class="episode-image"
-                  />
+                  <client-only>
+                    <v-simple-responsive-image
+                      :src="
+                        episode['image-main'].template.replace(
+                          '%s/%s/%s/%s',
+                          '%width%/%height%/c/%quality%'
+                        )
+                      "
+                      :alt="episode['image-main']['alt-text']"
+                      :width="bpSizes('md', 90, 200)"
+                      :height="bpSizes('md', 90, 200)"
+                      :max-width="episode['image-main'].w"
+                      :max-height="episode['image-main'].h"
+                      class="episode-image"
+                    />
+                  </client-only>
                   <div class="episode-content">
                     <p class="date mb-1">
                       {{ formatDate(episode['publish-at']) }}

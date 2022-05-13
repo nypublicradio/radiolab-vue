@@ -2,6 +2,7 @@
 import { onBeforeMount, ref } from 'vue'
 //import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
+import { bpSizes } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
@@ -18,7 +19,6 @@ const {
   `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
 )
 people.value = apiData.value.included
-console.log('apiData.value = ', apiData.value.included)
 totalCount.value = apiData.value.data.attributes['total-count']
 
 // onBeforeMount(async () => {
@@ -79,12 +79,11 @@ totalCount.value = apiData.value.data.attributes['total-count']
                 :blurb="
                   person.attributes.person.lede || person.attributes.person.bio
                 "
-                :width="370"
-                :height="277"
+                :width="bpSizes('md', null, 370)"
+                :height="bpSizes('md', null, 277)"
                 :max-width="person.attributes.person.image.w"
                 :max-height="person.attributes.person.image.h"
                 responsive
-                :ratio="[4, 3]"
                 bp="max"
                 class="radiolab-card team"
               />
