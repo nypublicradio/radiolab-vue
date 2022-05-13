@@ -1,5 +1,6 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
+import { bpSizes } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import { useRuntimeConfig } from '#app'
@@ -52,27 +53,30 @@ onBeforeMount(async () => {
             :key="`${person.attributes.person.name}-${index}`"
             class="col-12 md:col-6 xl:col-4 mb-6"
           >
-            <v-card
-              :image="
-                person.attributes.person.image.template.replace(
-                  '%s/%s/%s/%s',
-                  '%width%/%height%/c/%quality%'
-                )
-              "
-              :alt="person.attributes.person.name"
-              :title="person.attributes.person.name"
-              :titleLink="`/team/${person.attributes.person.slug}`"
-              :eyebrow="person.attributes['appearance-type']"
-              :blurb="
-                person.attributes.person.lede || person.attributes.person.bio
-              "
-              :max-width="person.attributes.person.image.w"
-              :max-height="person.attributes.person.image.h"
-              responsive
-              :ratio="[4, 3]"
-              bp="max"
-              class="radiolab-card team"
-            />
+            <client-only>
+              <v-card
+                :image="
+                  person.attributes.person.image.template.replace(
+                    '%s/%s/%s/%s',
+                    '%width%/%height%/c/%quality%'
+                  )
+                "
+                :width="bpSizes('md', null, 370)"
+                :height="bpSizes('md', null, 278)"
+                :alt="person.attributes.person.name"
+                :title="person.attributes.person.name"
+                :titleLink="`/team/${person.attributes.person.slug}`"
+                :eyebrow="person.attributes['appearance-type']"
+                :blurb="
+                  person.attributes.person.lede || person.attributes.person.bio
+                "
+                :max-width="person.attributes.person.image.w"
+                :max-height="person.attributes.person.image.h"
+                responsive
+                bp="max"
+                class="radiolab-card team"
+              />
+            </client-only>
           </div>
         </div>
         <team-skeleton v-else :row-count="30" />

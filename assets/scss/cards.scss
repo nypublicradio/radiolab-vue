@@ -11,6 +11,9 @@
     width: 100%;
     padding: 1.25rem 1.25rem 1.25rem;
 }
+.radiolab-card.v-card .card-details .card-eyebrow {
+    line-height: var(--font-size-11);
+}
 
 .radiolab-card.v-card .card-slot,
 .latest-episode .latest-episode-content {
@@ -31,7 +34,7 @@
     line-height: 30px;
 }
 
-.radiolab-card.v-card .card-title-link h2 {
+.radiolab-card.v-card .card-title-link .h2 {
     font-size: var(--font-size-10);
     font-weight: var(--font-weight-500);
     line-height: 28px;
@@ -41,6 +44,11 @@
 }
 
 .radiolab-card.v-card .card-blurb {
+    font-family: var(--font-family);
+    font-size: var(--font-size-6);
+    line-height: var(--font-size-11);
+    font-weight: var(--font-weight-400);
+    color: var(--text-color);
     @include truncate();
     @include t3lines();
     @include media('>md') {

@@ -27,7 +27,16 @@ onBeforeMount(async () => {
 
 <template>
   <div>
-    <section class="head-color yellow">
+    <section>
+      <div class="content lg:px-8 pb-0">
+        <div class="grid">
+          <div class="col">
+            <h1 class="h2">Series</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="">
       <div class="content thin-content-width">
         <template v-if="dataLoaded">
           <Html>

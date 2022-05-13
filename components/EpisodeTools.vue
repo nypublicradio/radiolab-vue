@@ -18,9 +18,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits([
-  'toggleTranscript',
-])
+const emit = defineEmits(['toggleTranscript'])
 
 const toastConfig = ref(toastGlobalConfig())
 //const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
@@ -117,16 +115,17 @@ const toggleTranscript = () => {
   emit('toggleTranscript')
   gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
 }
-
 </script>
 
 <template>
   <div>
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
-      <play-selector
-        :episode="props.episode"
-        menu-class="episode-tools-play-selector"
-      />
+      <client-only>
+        <play-selector
+          :episode="props.episode"
+          menu-class="episode-tools-play-selector"
+        />
+      </client-only>
       <Button
         v-if="!!props.episode['transcript']"
         class="p-button-sm p-button-rounded"
