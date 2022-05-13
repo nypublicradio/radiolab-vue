@@ -26,24 +26,40 @@ workflows:
     jobs:
       - build:
           <<: *filter_all
-      - test:
+      - test_js:
           <<: *filter_all
           requires:
             - build
+      - test_nginx:
+          <<: *filter_all
       - deploy_js:
           name: Deploy App (demo)
           context: "AWS Deploy"
           <<: *filter_demo
           tag: demo
           requires:
-            - test
+            - test_js
       - deploy_js:
           name: Deploy App (prod)
           context: "AWS Deploy"
           env: prod
           <<: *filter_prod
           requires:
-            - test
+            - test_js
+       - deploy_nginx:
+          name: Deploy Nginx (demo)
+          context: "AWS Deploy"
+          <<: *filter_demo
+          tag: demo
+          requires:
+            - test_nginx
+      - deploy_nginx:
+          name: Deploy Nginx (prod)
+          context: "AWS Deploy"
+          env: prod
+          <<: *filter_prod
+          requires:
+            - test_nginx
 
 jobs: 
   # Note (allie): This is its own job because I don't 
@@ -60,7 +76,7 @@ jobs:
             npm ci
             npm run build
 
-  test:
+  test_js:
     executor: default
     steps:
       - checkout
@@ -69,7 +85,22 @@ jobs:
           name: Run unit tests
           command: |
             npm ci
-            npm run test      
+            npm run test     
+
+  test_nginx:
+    docker:
+      - image: nginx
+    steps:
+      - checkout
+      - setup_npmrc
+      - run:
+          command: |
+            apt-get update && \
+            apt-get install -y nginx-extras
+            mkdir -p /app/nginx 
+            cp ./nginx/default.conf /etc/nginx/
+            cp ./nginx/radiolab.conf /app/nginx
+            nginx -t
 
   deploy_js:
     docker: 
