@@ -34,12 +34,12 @@ const router = useRouter()
 // )
 
 const {
-  data: page,
+  data: apiData,
   pending,
   error,
   refresh,
 } = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
-episode.value = page.value.data.attributes
+episode.value = apiData.value.data.attributes
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
