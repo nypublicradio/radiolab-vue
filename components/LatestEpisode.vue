@@ -59,15 +59,15 @@ onBeforeMount(async () => {
                     :to="`/episodes/${episodes[0].attributes.slug}`"
                     class="latest-episode-title inline-block"
                   >
-                    <h2
-                      class="mb-2 lg:mb-3 truncate t2lines"
+                    <div
+                      class="mb-2 lg:mb-3 h2 truncate t2lines"
                       v-html="episodes[0].attributes.title"
-                    ></h2>
+                    ></div>
                   </v-flexible-link>
-                  <p
+                  <div
                     v-html="episodes[0].attributes.tease"
-                    class="latest-episode-tease mb-5 truncate t3lines"
-                  />
+                    class="latest-episode-tease mb-5 type-body truncate t3lines"
+                  ></div>
                   <div class="block md:hidden divider"></div>
                   <client-only>
                     <play-selector :episode="episodes[0].attributes" />

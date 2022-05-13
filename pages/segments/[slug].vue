@@ -105,7 +105,10 @@ const onToggleTranscript = () => {
                     <p class="date mb-1">
                       {{ formatDate(episode['publish-at']) }}
                     </p>
-                    <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
+                    <div
+                      class="h2 title mb-0 md:mb-4"
+                      v-html="episode.title"
+                    ></div>
                     <episode-tools
                       class="hidden md:block"
                       :episode="episode"
@@ -123,11 +126,11 @@ const onToggleTranscript = () => {
                 <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
               </div>
             </div>
-            <p
+            <div
               v-if="dataLoaded"
               class="mt-5 html-formatting"
               v-html="episode.body"
-            />
+            ></div>
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 xl:col-3 xl:col-offset-1">
@@ -157,7 +160,7 @@ const onToggleTranscript = () => {
       <Divider />
       <div class="my-5">
         <p class="date">{{ formatDate(episode['publish-at']) }}</p>
-        <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
+        <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
       </div>
       <Divider />
       <div
