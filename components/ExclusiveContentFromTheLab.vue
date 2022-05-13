@@ -54,6 +54,9 @@ onBeforeMount(async () => {
                   members-only
                   subtitle="exclusive"
                   :title="episode.attributes.title"
+                  :tease="
+                    episode.attributes.tease ? episode.attributes.tease : null
+                  "
                 />
               </div>
             </div>
