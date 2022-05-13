@@ -2,7 +2,7 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import { bpSizes } from '~/utilities/helpers'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import Skeleton from 'primevue/skeleton'
 import { useRuntimeConfig } from '#app'
 
@@ -61,18 +61,19 @@ onBeforeMount(async () => {
         <div class="content mb-4 pt-0">
           <div>
             <client-only>
-              <v-image-with-caption
+              <v-card
                 :image="
                   person.image.template.replace(
                     '%s/%s/%s/%s',
                     '%width%/%height%/c/%quality%'
                   )
                 "
-                :width="bpSizes('md', null, 736)"
-                :height="bpSizes('md', null, 460)"
                 :alt="person.name"
                 :max-width="person.image.w"
                 :max-height="person.image.h"
+                responsive
+                :ratio="[3, 2]"
+                bp="max"
                 class="mb-6"
               />
             </client-only>

@@ -121,8 +121,7 @@ const onToggleTranscript = () => {
                         )
                       "
                       :alt="episode['image-main']['alt-text']"
-                      :width="bpSizes('md', 90, 200)"
-                      :height="bpSizes('md', 90, 200)"
+                      :ratio="[1, 1]"
                       :max-width="episode['image-main'].w"
                       :max-height="episode['image-main'].h"
                       class="episode-image"

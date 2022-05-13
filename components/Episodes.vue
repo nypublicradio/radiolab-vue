@@ -58,14 +58,17 @@ const episodes = ref([])
 const totalCount = ref(null)
 const startPageNumber = ref(props.startPage)
 const axiosSuccessful = ref(true)
+const cardsPerRow = 3
+const totalCards = 3
 
 /*
 func to determin how many cards to show
 */
 const cardCountCalc = computed(() => {
   return props.paginate
-    ? props.rowCount * 3 // (3 cards per row)
-    : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
+    ? props.rowCount * cardsPerRow // (3 cards per row)
+    : props.startCount +
+        (props.rowCount * cardsPerRow + (props.rowCount % 2 ? 1 : 0))
 })
 
 /*
@@ -151,6 +154,7 @@ async function onPage(event) {
                   </Button>
                 </v-flexible-link>
               </div>
+
               <div class="grid">
                 <template
                   v-for="(episode, index) in props.paginate
@@ -159,13 +163,16 @@ async function onPage(event) {
                 >
                   <div
                     :key="index"
-                    v-if="index < 6"
+                    v-if="
+                      index < episodes.length / 2 ||
+                      index > episodes.length / 2 - 1
+                    "
                     class="col-12 md:col-6 xl:col-4 mb-6"
                     :class="{
                       'xl:hidden':
                         !props.paginate &&
                         rowCount % 2 &&
-                        index === episodes.length - 1 - props.startCount,
+                        index === cardsPerRow * rowCount - props.startCount,
                     }"
                   >
                     <client-only>
@@ -176,8 +183,6 @@ async function onPage(event) {
                             '%width%/%height%/c/%quality%'
                           )
                         "
-                        :width="bpSizes('md', null, 370)"
-                        :height="bpSizes('md', null, 225)"
                         :alt="episode.attributes['image-main']['alt-text']"
                         :title="episode.attributes.title"
                         :titleLink="`/episodes/${episode.attributes.slug}`"
@@ -186,6 +191,7 @@ async function onPage(event) {
                         :max-width="episode.attributes['image-main'].w"
                         :max-height="episode.attributes['image-main'].h"
                         responsive
+                        :ratio="[3, 2]"
                         bp="max"
                         class="radiolab-card"
                       >
@@ -196,41 +202,10 @@ async function onPage(event) {
                   </div>
                   <div
                     :key="index"
-                    v-if="index === 5"
+                    v-if="index === episodes.length / 2 - 1"
                     class="htlad-radiolab_in-content_1 col-fixed mb-6"
                     style="width: 100%"
                   />
-                  <div
-                    :key="index"
-                    v-if="index > 5"
-                    class="col-12 md:col-6 xl:col-4 mb-6"
-                  >
-                    <client-only>
-                      <v-card
-                        :image="
-                          episode.attributes['image-main'].template.replace(
-                            '%s/%s/%s/%s',
-                            '%width%/%height%/c/%quality%'
-                          )
-                        "
-                        :width="bpSizes('md', null, 370)"
-                        :height="bpSizes('md', null, 225)"
-                        :alt="episode.attributes['image-main']['alt-text']"
-                        :title="episode.attributes.title"
-                        :titleLink="`/episodes/${episode.attributes.slug}`"
-                        :eyebrow="formatDate(episode.attributes['publish-at'])"
-                        :blurb="episode.attributes.tease"
-                        :max-width="episode.attributes['image-main'].w"
-                        :max-height="episode.attributes['image-main'].h"
-                        responsive
-                        bp="max"
-                        class="radiolab-card"
-                      >
-                        <div class="divider"></div>
-                        <play-selector :episode="episode.attributes" />
-                      </v-card>
-                    </client-only>
-                  </div>
                 </template>
               </div>
             </div>
