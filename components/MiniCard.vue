@@ -42,6 +42,7 @@ const props = defineProps({
       :imageUrl="url"
       :width="80"
       :height="80"
+      :ratio="[1, 1]"
       class="mini-card-image"
     />
     <div class="mini-card-content">

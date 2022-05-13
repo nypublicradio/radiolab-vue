@@ -61,8 +61,6 @@ onBeforeMount(async () => {
                     '%width%/%height%/c/%quality%'
                   )
                 "
-                :width="bpSizes('md', null, 370)"
-                :height="bpSizes('md', null, 278)"
                 :alt="person.attributes.person.name"
                 :title="person.attributes.person.name"
                 :titleLink="`/team/${person.attributes.person.slug}`"
@@ -72,6 +70,7 @@ onBeforeMount(async () => {
                 "
                 :max-width="person.attributes.person.image.w"
                 :max-height="person.attributes.person.image.h"
+                :ratio="[3, 2]"
                 responsive
                 bp="max"
                 class="radiolab-card team"
