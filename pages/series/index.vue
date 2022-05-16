@@ -83,7 +83,8 @@ onBeforeMount(async () => {
     margin-bottom: 0;
   }
 }
-.projects-landing-page__project a {
+.projects-landing-page__project a,
+.projects-landing-page__project a:visited {
   grid-area: title;
   font-family: var(--font-family-header);
   font-size: var(--font-size-10);
@@ -91,7 +92,7 @@ onBeforeMount(async () => {
   line-height: 28px;
   align-self: end;
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color) !important;
   transition: all var(--transition-duration);
   &:hover {
     color: var(--link-button-hover-color) !important;

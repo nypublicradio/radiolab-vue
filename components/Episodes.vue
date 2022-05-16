@@ -157,7 +157,7 @@ async function onPage(event) {
 
               <div class="grid">
                 <template
-                  v-for="(episode, index) in props.paginate
+                  v-for="(episode, index) in props.paginate || props.bucket
                     ? episodes
                     : episodes.slice(props.startCount, cardCountCalc)"
                 >
@@ -171,6 +171,7 @@ async function onPage(event) {
                     :class="{
                       'xl:hidden':
                         !props.paginate &&
+                        !props.bucket &&
                         rowCount % 2 &&
                         index === cardsPerRow * rowCount - props.startCount,
                     }"
