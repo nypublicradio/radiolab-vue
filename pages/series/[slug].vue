@@ -3,18 +3,6 @@ import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import { useRuntimeConfig } from '#app'
 
-useHead({
-  meta: [
-    {
-      name: 'theme-color',
-      content: '#f4be2e',
-    },
-  ],
-  bodyAttrs: {
-    class: 'has-head-color',
-  },
-})
-
 const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const episode = ref([])
