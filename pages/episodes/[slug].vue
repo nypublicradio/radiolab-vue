@@ -1,47 +1,27 @@
 <script setup>
 import gaEvent from '~/utilities/ga.js'
-import { onBeforeMount, computed, ref, watch } from 'vue'
-import { formatDate, copyToClipBoard, bpSizes } from '~/utilities/helpers'
-import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
-import axios from 'axios'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
-import EpisodeTools from '~/components/EpisodeTools.vue'
+import { onMounted, computed, ref } from 'vue'
+import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
-
-useHead({
-  meta: [
-    {
-      name: 'theme-color',
-      content: '#f4be2e',
-    },
-  ],
-  bodyAttrs: {
-    class: 'has-head-color',
-  },
-})
+import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
+import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 
 const config = useRuntimeConfig()
-const dataLoaded = ref(false)
 const episode = ref([])
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
 const router = useRouter()
 
-onBeforeMount(async () => {
-  await axios
-    .get(
-      `${config.API_URL}/api/v3/story/${route.params.slug}/`
-      // `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
-    )
-    .then((response) => {
-      episode.value = response.data.data.attributes
-      dataLoaded.value = true
-    })
-    .catch(() => {
-      router.push('/404')
-    })
-})
+const {
+  data: page,
+  pending,
+  error,
+} = await useAsyncData('page', () =>
+  $fetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
+)
+
+episode.value = page.value.data.attributes
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
@@ -63,6 +43,29 @@ const copyTranscriptLink = () => {
 const onToggleTranscript = () => {
   showTranscriptSidePanel.value = true
 }
+
+useHead({
+  title: episode.value?.title,
+  meta: [
+    {
+      name: 'theme-color',
+      content: '#f4be2e',
+    },
+    { name: 'og:type', content: 'article' },
+    { name: 'og:title', content: episode.value?.title },
+    { name: 'description', content: episode.value?.tease },
+    { name: 'og:description', content: episode.value?.tease },
+    { name: 'og:image', content: episode.value?.['image-main'].url },
+    { name: 'og:image:width', content: episode.value?.['image-main'].w },
+    { name: 'og:image:height', content: episode.value?.['image-main'].h },
+    { name: 'twitter:title', content: episode.value?.title },
+    { name: 'twitter:description', content: episode?.value.tease },
+    { name: 'twitter:image', content: episode.value?.['image-main'].url },
+  ],
+  bodyAttrs: {
+    class: 'has-head-color',
+  },
+})
 </script>
 
 <template>
@@ -73,45 +76,7 @@ const onToggleTranscript = () => {
           <div class="col-12 xl:col-8">
             <div class="grid">
               <div class="col">
-                <div v-if="dataLoaded" class="episode flex">
-                  <Html>
-                    <Head>
-                      <Title
-                        >{{ episode.title }} | Radiolab | WNYC Studios</Title
-                      >
-                      <Meta name="description" :content="episode.tease" />
-                      <Meta
-                        name="og:title"
-                        :content="`${episode.title} | Radiolab | WNYC Studios`"
-                      />
-                      <Meta name="og:description" :content="episode.tease" />
-                      <Meta name="og:type" content="article" />
-                      <Meta
-                        name="og:image"
-                        :content="episode['image-main'].url"
-                      />
-                      <Meta
-                        name="og:image:width"
-                        :content="`${episode['image-main'].w}`"
-                      />
-                      <Meta
-                        name="og:image:height"
-                        :content="`${episode['image-main'].h}`"
-                      />
-                      <Meta
-                        name="twitter:title"
-                        :content="`${episode.title} | Radiolab | WNYC Studios`"
-                      />
-                      <Meta
-                        name="twitter:description"
-                        :content="episode.tease"
-                      />
-                      <Meta
-                        name="twitter:image"
-                        :content="episode['image-main'].url"
-                      />
-                    </Head>
-                  </Html>
+                <div v-if="!pending" class="episode flex">
                   <client-only>
                     <v-image-with-caption
                       :image="
@@ -144,7 +109,7 @@ const onToggleTranscript = () => {
                 </div>
                 <episode-head-skeleton v-else />
                 <episode-tools
-                  v-if="dataLoaded"
+                  v-if="!pending"
                   class="mt-3 block md:hidden"
                   :episode="episode"
                   @toggleTranscript="onToggleTranscript"
@@ -153,7 +118,7 @@ const onToggleTranscript = () => {
               </div>
             </div>
             <div
-              v-if="dataLoaded"
+              v-if="!pending"
               class="mt-5 html-formatting"
               v-html="episode.body"
             ></div>
@@ -167,7 +132,7 @@ const onToggleTranscript = () => {
       </div>
     </section>
     <Sidebar
-      v-if="dataLoaded"
+      v-if="!pending"
       v-model:visible="showTranscriptSidePanel"
       class="transcript-panel p-sidebar-lg"
       :baseZIndex="1000"
