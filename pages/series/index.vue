@@ -91,7 +91,7 @@ onBeforeMount(async () => {
   line-height: 28px;
   align-self: end;
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color) !important;
   transition: all var(--transition-duration);
   &:hover {
     color: var(--link-button-hover-color) !important;
