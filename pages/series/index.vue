@@ -2,11 +2,7 @@
 import { useRuntimeConfig } from '#app'
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
-useMeta({
-  bodyAttrs: {
-    class: 'has-head-color',
-  },
-})
+
 const dataLoaded = ref(false)
 const page = ref([])
 const router = useRouter()
