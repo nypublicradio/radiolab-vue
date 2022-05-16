@@ -22,7 +22,7 @@ onBeforeMount(async () => {
       dataLoaded.value = true
     })
     .catch((error) => {
-      router.push('/404')
+      throwError(error)
     })
 })
 </script>
@@ -68,11 +68,15 @@ onBeforeMount(async () => {
                     '%width%/%height%/c/%quality%'
                   )
                 "
+                :width="800"
+                :height="533"
                 :alt="person.name"
                 :max-width="person.image.w"
                 :max-height="person.image.h"
                 responsive
                 :ratio="[3, 2]"
+                :sizes="[1]"
+                flat-quality
                 bp="max"
                 class="mb-6"
               />

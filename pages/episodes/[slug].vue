@@ -85,8 +85,12 @@ useHead({
                           '%width%/%height%/c/%quality%'
                         )
                       "
+                      :width="320"
+                      :height="240"
                       :alt="episode['image-main']['alt-text']"
                       :ratio="[1, 1]"
+                      :sizes="[2]"
+                      flat-quality
                       :max-width="episode['image-main'].w"
                       :max-height="episode['image-main'].h"
                       class="episode-image"
