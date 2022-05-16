@@ -33,6 +33,12 @@ onBeforeMount(async () => {
             <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">
               <div class="col-12 md:col-7 p-0">
                 <client-only>
+                  <!-- :image="
+                      episodes[0].attributes['image-main'].template.replace(
+                        '%s/%s/%s/%s',
+                        '%width%/%height%/c/%quality%'
+                      )
+                    " -->
                   <v-image-with-caption
                     :image="
                       episodes[0].attributes['image-main'].template.replace(
@@ -40,12 +46,15 @@ onBeforeMount(async () => {
                         '%width%/%height%/c/%quality%'
                       )
                     "
+                    :width="640"
+                    :height="480"
                     :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
                     :alt="episodes[0].attributes['image-main']['alt-text']"
                     :max-width="episodes[0].attributes['image-main'].w"
                     :max-height="episodes[0].attributes['image-main'].h"
                     class="latest-episode-image"
                     :ratio="[8, 5]"
+                    :sizes="[1]"
                   />
                 </client-only>
               </div>
