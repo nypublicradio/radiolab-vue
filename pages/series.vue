@@ -28,16 +28,12 @@ onBeforeMount(async () => {
 <template>
   <div>
     <section>
-      <div class="content lg:px-8 pb-0">
+      <div class="content lg:px-8">
         <div class="grid">
           <div class="col">
             <h1 class="h2">Series</h1>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="">
-      <div class="content thin-content-width">
         <template v-if="dataLoaded">
           <Html>
             <Head>
@@ -87,7 +83,8 @@ onBeforeMount(async () => {
     margin-bottom: 0;
   }
 }
-.projects-landing-page__project a {
+.projects-landing-page__project a,
+.projects-landing-page__project a:visited {
   grid-area: title;
   font-family: var(--font-family-header);
   font-size: var(--font-size-10);
@@ -95,7 +92,7 @@ onBeforeMount(async () => {
   line-height: 28px;
   align-self: end;
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color) !important;
   transition: all var(--transition-duration);
   &:hover {
     color: var(--link-button-hover-color) !important;
