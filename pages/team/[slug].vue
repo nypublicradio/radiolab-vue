@@ -75,7 +75,7 @@ onBeforeMount(async () => {
                 :max-height="person.image.h"
                 responsive
                 :ratio="[3, 2]"
-                :sizes="[2]"
+                :sizes="[1]"
                 flat-quality
                 bp="max"
                 class="mb-6"
