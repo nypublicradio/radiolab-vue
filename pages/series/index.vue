@@ -83,7 +83,8 @@ onBeforeMount(async () => {
     margin-bottom: 0;
   }
 }
-.projects-landing-page__project a {
+.projects-landing-page__project a,
+.projects-landing-page__project a:visited {
   grid-area: title;
   font-family: var(--font-family-header);
   font-size: var(--font-size-10);
