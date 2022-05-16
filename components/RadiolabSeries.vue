@@ -50,7 +50,7 @@ onBeforeMount(async () => {
                   :alt="episode.attributes['image-main']['alt-text']"
                   :url="episode.attributes.url"
                   members-only
-                  subtitle="subtitle goes here"
+                  subtitle="exclusive"
                   :tease="episode.attributes.tease"
                   :title="episode.attributes.title"
                 />
