@@ -22,7 +22,7 @@ onBeforeMount(async () => {
       dataLoaded.value = true
     })
     .catch((error) => {
-      router.push('/404')
+      throwError(error)
     })
 })
 </script>

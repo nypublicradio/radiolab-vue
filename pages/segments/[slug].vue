@@ -35,8 +35,8 @@ onBeforeMount(async () => {
       episode.value = response.data.data.attributes
       dataLoaded.value = true
     })
-    .catch(() => {
-      router.push('/404')
+    .catch((error) => {
+      throwError(error)
     })
 })
 
