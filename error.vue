@@ -38,41 +38,40 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
         />
       </Head>
     </Html>
-    <section
-      class="graphic-head lightorange flex justify-content-center align-content-center"
-    >
-      <h2 class="text-center font-semibold">Nope.</h2>
-    </section>
-    <section class="white100bg">
-      <div class="error-page-content thin-content-width">
-        <div class="grid">
-          <div class="col-12">
-            <p class="mb-4">
-              Not all those who wander are lost. But you sure are!
-            </p>
-            <p v-if="error < 500">
-              <strong>{{ error }} Error.</strong> This page does not exist, but
-              you are invited to listen to our
-              <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
-              below.
-            </p>
-            <p v-else>
-              <strong>500 Error.</strong> Something has gone wrong on the web
-              site's server, but you are invited to listen to our
-              <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
-              below.
-            </p>
+    <radiolab-header :class="[{ 'at-top': atTop }]" />
+    <main>
+      <section
+        class="graphic-head lightorange flex justify-content-center align-content-center"
+      >
+        <h2 class="text-center font-semibold">Nope.</h2>
+      </section>
+      <section class="white100bg">
+        <div class="error-page-content thin-content-width">
+          <div class="grid">
+            <div class="col-12">
+              <p class="mb-4">
+                Not all those who wander are lost. But you sure are!
+              </p>
+              <p>
+                <strong>404 Error.</strong> This page does not exist, but you
+                are invited to listen to our
+                <strong>All-Time Top Ten Favorite Radiolab Episodes</strong>
+                below.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <episodes
-      class="mt-6 mb-4"
-      :row-count="3"
-      :api="apiUrl"
-      path="data.data.attributes.bucket-items"
-      bucket
-    />
+      </section>
+      <episodes
+        class="mt-6 mb-4"
+        :row-count="3"
+        :api="apiUrl"
+        path="data.data.attributes.bucket-items"
+        bucket
+      />
+    </main>
+    <radiolab-footer />
+    <audio-player />
   </div>
 </template>
 
