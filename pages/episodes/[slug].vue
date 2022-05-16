@@ -17,9 +17,7 @@ const {
   data: page,
   pending,
   error,
-} = await useAsyncData('page', () =>
-  $fetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
-)
+} = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
 
 episode.value = page.value.data.attributes
 
@@ -97,28 +95,32 @@ useHead({
                     />
                   </client-only>
                   <div class="episode-content">
-                    <p class="date mb-1">
+                    <p v-if="episode['publish-at']" class="date mb-1">
                       {{ formatDate(episode['publish-at']) }}
                     </p>
                     <div
                       class="h2 title mb-0 md:mb-4"
                       v-html="episode.title"
                     ></div>
-                    <episode-tools
-                      class="hidden md:block"
-                      :episode="episode"
-                      @toggleTranscript="onToggleTranscript"
-                    />
+                    <client-only>
+                      <episode-tools
+                        class="hidden md:block"
+                        :episode="episode"
+                        @toggleTranscript="onToggleTranscript"
+                      />
+                    </client-only>
                   </div>
                 </div>
                 <episode-head-skeleton v-else />
-                <episode-tools
-                  v-if="!pending"
-                  class="mt-3 block md:hidden"
-                  :episode="episode"
-                  @toggleTranscript="onToggleTranscript"
-                />
-                <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
+                <client-only>
+                  <episode-tools
+                    v-if="!pending"
+                    class="mt-3 block md:hidden"
+                    :episode="episode"
+                    @toggleTranscript="onToggleTranscript"
+                  />
+                  <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
+                </client-only>
               </div>
             </div>
             <div
@@ -154,7 +156,9 @@ useHead({
       </div>
       <Divider />
       <div class="my-5">
-        <p class="date">{{ formatDate(episode['publish-at']) }}</p>
+        <p class="date" v-if="episode['publish-at']">
+          {{ formatDate(episode['publish-at']) }}
+        </p>
         <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
       </div>
       <Divider />
