@@ -183,6 +183,8 @@ async function onPage(event) {
                             '%width%/%height%/c/%quality%'
                           )
                         "
+                        :width="320"
+                        :height="240"
                         :alt="episode.attributes['image-main']['alt-text']"
                         :title="episode.attributes.title"
                         :titleLink="`/episodes/${episode.attributes.slug}`"
@@ -192,6 +194,8 @@ async function onPage(event) {
                         :max-height="episode.attributes['image-main'].h"
                         responsive
                         :ratio="[3, 2]"
+                        :sizes="[2]"
+                        flat-quality
                         bp="max"
                         class="radiolab-card"
                       >
