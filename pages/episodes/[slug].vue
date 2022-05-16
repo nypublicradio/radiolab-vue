@@ -137,37 +137,39 @@ useHead({
         </div>
       </div>
     </section>
-    <Sidebar
-      v-if="!pending"
-      v-model:visible="showTranscriptSidePanel"
-      class="transcript-panel p-sidebar-lg"
-      :baseZIndex="1000"
-      position="right"
-    >
-      <div class="flex align-items-center mt-3">
-        <h5>Transcript</h5>
-        <Button
-          icon="pi pi-link"
-          class="p-button-sm p-button-rounded ml-1"
-          @click="copyTranscriptLink"
-          aria-label="copy transcript link"
-          title="Copy transcript link"
-        />
-      </div>
-      <Divider />
-      <div class="my-5">
-        <p class="date" v-if="episode['publish-at']">
-          {{ formatDate(episode['publish-at']) }}
-        </p>
-        <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
-      </div>
-      <Divider />
-      <div
-        v-if="!!episode['transcript']"
-        v-html="episode['transcript']"
-        class="transcript-body mt-2 html-formatting"
-      ></div>
-    </Sidebar>
+    <client-only>
+      <Sidebar
+        v-if="!pending"
+        v-model:visible="showTranscriptSidePanel"
+        class="transcript-panel p-sidebar-lg"
+        :baseZIndex="1000"
+        position="right"
+      >
+        <div class="flex align-items-center mt-3">
+          <h5>Transcript</h5>
+          <Button
+            icon="pi pi-link"
+            class="p-button-sm p-button-rounded ml-1"
+            @click="copyTranscriptLink"
+            aria-label="copy transcript link"
+            title="Copy transcript link"
+          />
+        </div>
+        <Divider />
+        <div class="my-5">
+          <p class="date" v-if="episode['publish-at']">
+            {{ formatDate(episode['publish-at']) }}
+          </p>
+          <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
+        </div>
+        <Divider />
+        <div
+          v-if="!!episode['transcript']"
+          v-html="episode['transcript']"
+          class="transcript-body mt-2 html-formatting"
+        ></div>
+      </Sidebar>
+    </client-only>
     <div
       v-html="episode['transcript']"
       style="visibility: hidden; height: 0; overflow: hidden"
