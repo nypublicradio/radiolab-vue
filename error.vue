@@ -21,7 +21,6 @@ useHead({
 
 const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
-// const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/buckets/radiolab-404/`
 </script>
 <template>
   <div class="error-page">
@@ -64,7 +63,7 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
       </section>
       <episodes
         class="mt-6 mb-4"
-        :row-count="3"
+        :row-count="4"
         :api="apiUrl"
         path="data.data.attributes.bucket-items"
         bucket
