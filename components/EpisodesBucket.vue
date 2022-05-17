@@ -15,6 +15,18 @@ const router = useRouter()
 const route = useRoute()
 
 const props = defineProps({
+  header: {
+    type: String,
+    default: null,
+  },
+  buttonText: {
+    type: String,
+    default: null,
+  },
+  buttonLink: {
+    type: String,
+    default: null,
+  },
   api: {
     type: String,
     default: null,
@@ -23,13 +35,16 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  limit: {
+    type: Number,
+    default: null,
+  },
 })
 
 const dataLoaded = ref(false)
 const episodes = ref([])
 const axiosSuccessful = ref(true)
 const cardsPerRow = 3
-const totalCards = 3
 
 onBeforeMount(async () => {
   await axios
@@ -51,14 +66,22 @@ onBeforeMount(async () => {
         <div class="grid">
           <div class="col">
             <div v-if="dataLoaded" class="recent-episodes-bucket">
+              <div
+                v-if="props.header || props.buttonText"
+                class="col flex justify-content-between align-items-center mb-3"
+              >
+                <h3 v-if="props.header">{{ props.header }}</h3>
+                <v-flexible-link v-if="props.buttonText" raw :to="buttonLink">
+                  <Button class="p-button-rounded p-button-sm">
+                    {{ props.buttonText }}
+                  </Button>
+                </v-flexible-link>
+              </div>
               <div class="grid">
                 <template v-for="(episode, index) in episodes">
                   <div
                     :key="index"
-                    v-if="
-                      index < episodes.length / 2 ||
-                      index > episodes.length / 2 - 1
-                    "
+                    v-if="limit ? index < limit : true"
                     class="col-12 md:col-6 xl:col-4 mb-6"
                   >
                     <client-only>
@@ -90,16 +113,13 @@ onBeforeMount(async () => {
                       </v-card>
                     </client-only>
                   </div>
-                  <div
-                    :key="index"
-                    v-if="index === episodes.length / 2 - 1"
-                    class="htlad-radiolab_in-content_1 col-fixed mb-6"
-                    style="width: 100%"
-                  />
                 </template>
               </div>
             </div>
-            <episodes-bucket-skeleton v-else :row-count="1" />
+            <episodes-bucket-skeleton
+              v-else
+              :count="limit ? limit : undefined"
+            />
           </div>
         </div>
       </div>

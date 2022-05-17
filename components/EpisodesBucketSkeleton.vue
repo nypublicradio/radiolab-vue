@@ -1,16 +1,15 @@
 <script setup>
 const props = defineProps({
-  rowCount: {
+  count: {
     type: Number,
-    default: 1,
+    default: 3,
   },
 })
-const cardsPerRow = 3
-const count = ref(props.rowCount * cardsPerRow + (props.rowCount % 2 ? 1 : 0))
+
+const cardCount = ref(props.count + (props.count % 2 ? 1 : 0))
 
 const hideOnXl = (index) => {
-  console.log('props.rowCount % 2 = ', props.rowCount % 2)
-  return index % cardsPerRow && index === count.value
+  return index % 3 && index === cardCount.value
 }
 </script>
 
@@ -18,7 +17,7 @@ const hideOnXl = (index) => {
   <div class="recent-episodes-bucket-skeleton">
     <div class="grid">
       <div
-        v-for="index in count"
+        v-for="index in cardCount"
         :key="index"
         class="col-12 md:col-6 xl:col-4 mb-6"
         :class="{
@@ -26,7 +25,6 @@ const hideOnXl = (index) => {
         }"
       >
         <skeleton class="card" width="100%" />
-        <!-- height="527px" -->
       </div>
     </div>
   </div>

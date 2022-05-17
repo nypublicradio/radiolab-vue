@@ -54,6 +54,7 @@ onBeforeMount(async () => {
           />
         </template>
         <skeleton-general-content v-else />
+        <div class="htlad-radiolab_leaderboard_2 mb-8" />
       </div>
     </section>
   </div>
