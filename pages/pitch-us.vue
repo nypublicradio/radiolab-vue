@@ -16,7 +16,7 @@ useMeta({
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Pitch Us | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="Pitch Us | Radiolab | WNYC Studios" />

@@ -4,7 +4,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Comments Policy | Radiolab | WNYC Studios</Title>
         <Meta

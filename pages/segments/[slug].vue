@@ -75,7 +75,7 @@ const onToggleTranscript = () => {
             <div class="grid">
               <div class="col">
                 <div v-if="dataLoaded" class="episode flex">
-                  <Html>
+                  <Html lang="en">
                     <Head>
                       <Title
                         >{{ episode.title }} | Radiolab | WNYC Studios</Title

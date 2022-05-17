@@ -17,7 +17,7 @@ useHead({
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>The Lab | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />

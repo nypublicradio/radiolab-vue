@@ -30,7 +30,7 @@ onBeforeMount(async () => {
 <template>
   <div class="thin-content-width">
     <div v-if="dataLoaded">
-      <Html>
+      <Html lang="en">
         <Head>
           <Title>{{ person.name }} | Radiolab | WNYC Studios</Title>
           <Meta

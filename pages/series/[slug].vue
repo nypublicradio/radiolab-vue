@@ -28,7 +28,7 @@ onBeforeMount(async () => {
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Series | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="Series | Radiolab | WNYC Studios" />

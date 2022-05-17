@@ -1,6 +1,6 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRuntimeConfig } from '#app'
 import { isElementXPercentInViewport } from '../utilities/helpers.js'
 const config = useRuntimeConfig()
@@ -8,32 +8,30 @@ const route = useRoute()
 const darkMode = ref(false)
 const atTop = ref(true)
 
+/*
+scroll event func that is used for the menu knowing when it is at the very top and for viewport GA tracking
+*/
+const onScroll = (e) => {
+  atTop.value = window.scrollY > 0 ? false : true
+  //atBottom.value = ((window.scrollY + (window.innerHeight + 115) >= document.body.scrollHeight)) ? true : false
+
+  // entering viewport ga tracking
+  const trackedGaElements = document.querySelectorAll('[ga-enter-viewport]')
+  trackedGaElements.forEach((element) => {
+    if (isElementXPercentInViewport(element, 33)) {
+      element.removeAttribute('ga-enter-viewport')
+      gaEvent(
+        'Scroll Viewport Tracking',
+        route.name,
+        element.attributes['ga-info'].value
+      )
+    }
+  })
+}
+
 onMounted(() => {
-  document.addEventListener('scroll', (e) => {
-    atTop.value = window.scrollY > 0 ? false : true
-    //atBottom.value = ((window.scrollY + (window.innerHeight + 115) >= document.body.scrollHeight)) ? true : false
+  window.addEventListener('scroll', onScroll)
 
-    // entering viewport ga tracking
-    const trackedGaElements = document.querySelectorAll('[ga-enter-viewport]')
-    trackedGaElements.forEach((element) => {
-      if (isElementXPercentInViewport(element, 33)) {
-        // console.log(
-        //   `entered viewport on : ${route.name}`,
-        //   element.attributes['ga-info'].value
-        // )
-        element.removeAttribute('ga-enter-viewport')
-        gaEvent(
-          'Scroll Viewport Tracking',
-          route.name,
-          element.attributes['ga-info'].value
-        )
-      }
-    })
-  })
-
-  onBeforeUnmount(() => {
-    document.removeEventListener('scroll', (e) => {})
-  })
   // Ads
   window.htlbid = window.htlbid || {}
   htlbid.cmd = htlbid.cmd || []
@@ -45,6 +43,10 @@ onMounted(() => {
     htlbid.setTargeting('post_id', route.name) // dynamically pass unique post/page id into this function
   })
 })
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <template>
@@ -53,7 +55,7 @@ onMounted(() => {
     :class="[`${route.name}`]"
     :data-style-mode="darkMode ? 'dark' : 'default'"
   >
-    <Html>
+    <Html lang="en">
       <Head>
         <Link rel="stylesheet" :href="config.HTL_CSS" type="text/css" />
         <Script :src="config.HTL_JS" async />

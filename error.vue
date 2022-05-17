@@ -24,7 +24,7 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
 </script>
 <template>
   <div class="error-page">
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Error | Radiolab | WNYC Studios</Title>
         <Meta
