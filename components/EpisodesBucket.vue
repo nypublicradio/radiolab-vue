@@ -50,7 +50,7 @@ onBeforeMount(async () => {
       <div class="content lg:px-8">
         <div class="grid">
           <div class="col">
-            <div v-if="dataLoaded" class="recent-episodes">
+            <div v-if="dataLoaded" class="recent-episodes-bucket">
               <div class="grid">
                 <template v-for="(episode, index) in episodes">
                   <div
@@ -60,11 +60,6 @@ onBeforeMount(async () => {
                       index > episodes.length / 2 - 1
                     "
                     class="col-12 md:col-6 xl:col-4 mb-6"
-                    :class="{
-                      'xl:hidden':
-                        rowCount % 2 &&
-                        index === cardsPerRow * rowCount - props.startCount,
-                    }"
                   >
                     <client-only>
                       <v-card
@@ -104,7 +99,7 @@ onBeforeMount(async () => {
                 </template>
               </div>
             </div>
-            <episodes-skeleton :row-count="8" />
+            <episodes-bucket-skeleton v-else :row-count="1" />
           </div>
         </div>
       </div>
@@ -113,16 +108,16 @@ onBeforeMount(async () => {
 </template>
 
 <style lang="scss">
-.recent-episodes > .grid {
+.recent-episodes-bucket > .grid {
   margin: 0 -24px;
 }
 
-.recent-episodes .grid > .col,
-.recent-episodes .grid > [class*='col'] {
+.recent-episodes-bucket .grid > .col,
+.recent-episodes-bucket .grid > [class*='col'] {
   padding: 0 24px;
 }
 
-.recent-episodes .p-paginator {
+.recent-episodes-bucket .p-paginator {
   margin: auto;
 }
 </style>

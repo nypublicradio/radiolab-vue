@@ -51,10 +51,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  bucket: {
-    type: Boolean,
-    default: false,
-  },
 })
 
 const dataLoaded = ref(false)
@@ -82,11 +78,7 @@ onBeforeMount(async () => {
   }
 
   await axios
-    .get(
-      !props.bucket
-        ? `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
-        : props.api
-    )
+    .get(`${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`)
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
       totalCount.value = response.data.data.attributes['total-count']
