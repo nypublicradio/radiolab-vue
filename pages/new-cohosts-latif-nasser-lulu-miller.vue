@@ -32,7 +32,7 @@ onBeforeMount(async () => {
     <section class="head-color yellow">
       <div class="content thin-content-width">
         <template v-if="dataLoaded">
-          <Html>
+          <Html lang="en">
             <Head>
               <Title>{{ page.title }} | Radiolab | WNYC Studios</Title>
               <Meta

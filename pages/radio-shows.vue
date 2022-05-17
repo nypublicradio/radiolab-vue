@@ -8,7 +8,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Radio Shows | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="Radio Shows | Radiolab | WNYC Studios" />
