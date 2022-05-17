@@ -1,18 +1,10 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { onBeforeMount, ref, computed, watch } from 'vue'
-import {
-  formatDate,
-  bpSizes,
-  traverseObjectByString,
-} from '~/utilities/helpers'
+import { formatDate, traverseObjectByString } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
-
-const router = useRouter()
-const route = useRoute()
 
 const props = defineProps({
   header: {
@@ -44,7 +36,6 @@ const props = defineProps({
 const dataLoaded = ref(false)
 const episodes = ref([])
 const axiosSuccessful = ref(true)
-const cardsPerRow = 3
 
 onBeforeMount(async () => {
   await axios
@@ -57,6 +48,12 @@ onBeforeMount(async () => {
       axiosSuccessful.value = false
     })
 })
+
+const cardCount = ref(props.limit + (props.limit % 2 ? 1 : 0))
+
+const hideOnXl = (index) => {
+  return cardCount.value % 3 && index + 1 === cardCount.value
+}
 </script>
 
 <template>
@@ -81,8 +78,11 @@ onBeforeMount(async () => {
                 <template v-for="(episode, index) in episodes">
                   <div
                     :key="index"
-                    v-if="limit ? index < limit : true"
+                    v-if="limit ? index < cardCount : true"
                     class="col-12 md:col-6 xl:col-4 mb-6"
+                    :class="{
+                      'xl:hidden': hideOnXl(index),
+                    }"
                   >
                     <client-only>
                       <v-card
