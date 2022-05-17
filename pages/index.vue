@@ -38,15 +38,14 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
       </div>
     </section>
     <radiolab-series class="mb-8" />
-    <episodes
+    <episodes-bucket
       class="mb-8"
       header="Popular Episodes"
       button-text="All Episodes"
       button-link="/episodes"
-      :row-count="1"
+      :limit="3"
       :api="popularEpisodesApiUrl"
       path="data.data.attributes.bucket-items"
-      bucket
     />
     <div class="htlad-radiolab_leaderboard_2 mb-8" />
   </div>

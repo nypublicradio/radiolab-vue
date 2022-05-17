@@ -1,18 +1,10 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { onBeforeMount, ref, computed, watch } from 'vue'
-import {
-  formatDate,
-  bpSizes,
-  traverseObjectByString,
-} from '~/utilities/helpers'
+import { formatDate, traverseObjectByString } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
-
-const router = useRouter()
-const route = useRoute()
 
 const props = defineProps({
   header: {
@@ -35,53 +27,25 @@ const props = defineProps({
     type: String,
     default: null,
   },
-  rowCount: {
+  limit: {
     type: Number,
-    default: 1,
+    default: null,
   },
-  startCount: {
+  cardsPerRow: {
     type: Number,
-    default: 0,
-  },
-  startPage: {
-    type: Number,
-    default: 1,
-  },
-  paginate: {
-    type: Boolean,
-    default: false,
+    default: 3,
   },
 })
 
 const dataLoaded = ref(false)
 const episodes = ref([])
-const totalCount = ref(null)
-const startPageNumber = ref(props.startPage)
 const axiosSuccessful = ref(true)
-const cardsPerRow = 3
-const totalCards = 3
-
-/*
-func to determin how many cards to show
-*/
-const cardCountCalc = computed(() => {
-  return props.paginate
-    ? props.rowCount * cardsPerRow // (3 cards per row)
-    : props.startCount +
-        (props.rowCount * cardsPerRow + (props.rowCount % 2 ? 1 : 0))
-})
 
 onBeforeMount(async () => {
-  // if the url query page has a value, set the startPageNumber to that value
-  if (route.query.page) {
-    startPageNumber.value = route.query.page
-  }
-
   await axios
-    .get(`${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`)
+    .get(props.api)
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
-      totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
     })
     .catch(function () {
@@ -89,31 +53,15 @@ onBeforeMount(async () => {
     })
 })
 
-// a watcher to update the route page query when startPageNumber changes
-watch(startPageNumber, (page, prev) => {
-  router.push({
-    query: { page: page },
-  })
-})
+const cardCount = ref(props.limit + (props.limit % 2 ? 1 : 0))
 
-async function onPage(event) {
-  //event.page: New page number
-  //event.first: Index of first record
-  //event.rows: Number of rows to display in new page
-  //event.pageCount: Total number of pages
-  dataLoaded.value = false
-  await axios
-    .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
-    .then((response) => {
-      episodes.value = traverseObjectByString(props.path, response)
-      dataLoaded.value = true
-      // set startPageNumber var for page url param
-      startPageNumber.value = event.page + 1
-      gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
-    })
-    .catch(function () {
-      axiosSuccessful.value = false
-    })
+/*
+when only specifying a limit, this will determine to hide the last card so when in tabblet view, we don't have a blank spot
+*/
+const hideOnXl = (index) => {
+  return props.limit
+    ? cardCount.value % props.cardsPerRow && index + 1 === cardCount.value
+    : false
 }
 </script>
 
@@ -123,7 +71,7 @@ async function onPage(event) {
       <div class="content lg:px-8">
         <div class="grid">
           <div class="col">
-            <div v-if="dataLoaded" class="recent-episodes">
+            <div v-if="dataLoaded" class="recent-episodes-bucket">
               <div
                 v-if="props.header || props.buttonText"
                 class="col flex justify-content-between align-items-center mb-3"
@@ -135,25 +83,14 @@ async function onPage(event) {
                   </Button>
                 </v-flexible-link>
               </div>
-
               <div class="grid">
-                <template
-                  v-for="(episode, index) in props.paginate
-                    ? episodes
-                    : episodes.slice(props.startCount, cardCountCalc)"
-                >
+                <template v-for="(episode, index) in episodes">
                   <div
                     :key="index"
-                    v-if="
-                      index < episodes.length / 2 ||
-                      index > episodes.length / 2 - 1
-                    "
+                    v-if="limit ? index < cardCount : true"
                     class="col-12 md:col-6 xl:col-4 mb-6"
                     :class="{
-                      'xl:hidden':
-                        !props.paginate &&
-                        rowCount % 2 &&
-                        index === cardsPerRow * rowCount - props.startCount,
+                      'xl:hidden': hideOnXl(index),
                     }"
                   >
                     <client-only>
@@ -185,30 +122,12 @@ async function onPage(event) {
                       </v-card>
                     </client-only>
                   </div>
-                  <div
-                    :key="index"
-                    v-if="index === episodes.length / 2 - 1"
-                    class="htlad-radiolab_in-content_1 col-fixed mb-6"
-                    style="width: 100%"
-                  />
                 </template>
               </div>
             </div>
-            <episodes-skeleton
+            <episodes-bucket-skeleton
               v-else
-              :row-count="cardCountCalc"
-              :header="props.header"
-              :button-text="props.buttonText"
-              :paginate="props.paginate"
-            />
-            <paginator
-              :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
-              v-show="props.paginate"
-              :total-records="totalCount"
-              :rows="cardCountCalc"
-              :first="startPageNumber * cardCountCalc - 1"
-              :pageLinkSize="3"
-              @page="onPage($event)"
+              :count="limit ? limit : undefined"
             />
           </div>
         </div>
@@ -218,16 +137,16 @@ async function onPage(event) {
 </template>
 
 <style lang="scss">
-.recent-episodes > .grid {
+.recent-episodes-bucket > .grid {
   margin: 0 -24px;
 }
 
-.recent-episodes .grid > .col,
-.recent-episodes .grid > [class*='col'] {
+.recent-episodes-bucket .grid > .col,
+.recent-episodes-bucket .grid > [class*='col'] {
   padding: 0 24px;
 }
 
-.recent-episodes .p-paginator {
+.recent-episodes-bucket .p-paginator {
   margin: auto;
 }
 </style>
