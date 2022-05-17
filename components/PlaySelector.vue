@@ -1,6 +1,6 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import {
   useCurrentEpisode,
   useIsEpisodePlaying,
