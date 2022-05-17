@@ -31,6 +31,10 @@ const props = defineProps({
     type: Number,
     default: null,
   },
+  cardsPerRow: {
+    type: Number,
+    default: 3,
+  },
 })
 
 const dataLoaded = ref(false)
@@ -51,9 +55,12 @@ onBeforeMount(async () => {
 
 const cardCount = ref(props.limit + (props.limit % 2 ? 1 : 0))
 
+/*
+when only specifying a limit, this will determine to hide the last card so when in tabblet view, we don't have a blank spot
+*/
 const hideOnXl = (index) => {
   return props.limit
-    ? cardCount.value % 3 && index + 1 === cardCount.value
+    ? cardCount.value % props.cardsPerRow && index + 1 === cardCount.value
     : false
 }
 </script>

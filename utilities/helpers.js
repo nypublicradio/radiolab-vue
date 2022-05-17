@@ -87,7 +87,8 @@ export const traverseObjectByString = (pathString, data) => {
   const pathParts = pathString.split('.')
   pathParts.forEach((key) => {
     tempData = tempData[key]
-    if (tempData === undefined || tempData === null) {
+    console.log('tempData = ', tempData)
+    if (typeof tempData === undefined || tempData === null) {
       throw new Error(`path prop wrong format`)
     }
   })
