@@ -15,18 +15,6 @@ const router = useRouter()
 const route = useRoute()
 
 const props = defineProps({
-  header: {
-    type: String,
-    default: null,
-  },
-  buttonText: {
-    type: String,
-    default: null,
-  },
-  buttonLink: {
-    type: String,
-    default: null,
-  },
   api: {
     type: String,
     default: null,
@@ -35,94 +23,25 @@ const props = defineProps({
     type: String,
     default: null,
   },
-  rowCount: {
-    type: Number,
-    default: 1,
-  },
-  startCount: {
-    type: Number,
-    default: 0,
-  },
-  startPage: {
-    type: Number,
-    default: 1,
-  },
-  paginate: {
-    type: Boolean,
-    default: false,
-  },
-  bucket: {
-    type: Boolean,
-    default: false,
-  },
 })
 
 const dataLoaded = ref(false)
 const episodes = ref([])
-const totalCount = ref(null)
-const startPageNumber = ref(props.startPage)
 const axiosSuccessful = ref(true)
 const cardsPerRow = 3
 const totalCards = 3
 
-/*
-func to determin how many cards to show
-*/
-const cardCountCalc = computed(() => {
-  return props.paginate
-    ? props.rowCount * cardsPerRow // (3 cards per row)
-    : props.startCount +
-        (props.rowCount * cardsPerRow + (props.rowCount % 2 ? 1 : 0))
-})
-
 onBeforeMount(async () => {
-  // if the url query page has a value, set the startPageNumber to that value
-  if (route.query.page) {
-    startPageNumber.value = route.query.page
-  }
-
   await axios
-    .get(
-      !props.bucket
-        ? `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
-        : props.api
-    )
+    .get(props.api)
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
-      totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
     })
     .catch(function () {
       axiosSuccessful.value = false
     })
 })
-
-// a watcher to update the route page query when startPageNumber changes
-watch(startPageNumber, (page, prev) => {
-  router.push({
-    query: { page: page },
-  })
-})
-
-async function onPage(event) {
-  //event.page: New page number
-  //event.first: Index of first record
-  //event.rows: Number of rows to display in new page
-  //event.pageCount: Total number of pages
-  dataLoaded.value = false
-  await axios
-    .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
-    .then((response) => {
-      episodes.value = traverseObjectByString(props.path, response)
-      dataLoaded.value = true
-      // set startPageNumber var for page url param
-      startPageNumber.value = event.page + 1
-      gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
-    })
-    .catch(function () {
-      axiosSuccessful.value = false
-    })
-}
 </script>
 
 <template>
@@ -132,24 +51,8 @@ async function onPage(event) {
         <div class="grid">
           <div class="col">
             <div v-if="dataLoaded" class="recent-episodes">
-              <div
-                v-if="props.header || props.buttonText"
-                class="col flex justify-content-between align-items-center mb-3"
-              >
-                <h3 v-if="props.header">{{ props.header }}</h3>
-                <v-flexible-link v-if="props.buttonText" raw :to="buttonLink">
-                  <Button class="p-button-rounded p-button-sm">
-                    {{ props.buttonText }}
-                  </Button>
-                </v-flexible-link>
-              </div>
-
               <div class="grid">
-                <template
-                  v-for="(episode, index) in props.paginate
-                    ? episodes
-                    : episodes.slice(props.startCount, cardCountCalc)"
-                >
+                <template v-for="(episode, index) in episodes">
                   <div
                     :key="index"
                     v-if="
@@ -159,7 +62,6 @@ async function onPage(event) {
                     class="col-12 md:col-6 xl:col-4 mb-6"
                     :class="{
                       'xl:hidden':
-                        !props.paginate &&
                         rowCount % 2 &&
                         index === cardsPerRow * rowCount - props.startCount,
                     }"
@@ -202,22 +104,7 @@ async function onPage(event) {
                 </template>
               </div>
             </div>
-            <episodes-skeleton
-              v-else
-              :row-count="cardCountCalc"
-              :header="props.header"
-              :button-text="props.buttonText"
-              :paginate="props.paginate"
-            />
-            <paginator
-              :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
-              v-show="props.paginate"
-              :total-records="totalCount"
-              :rows="cardCountCalc"
-              :first="startPageNumber * cardCountCalc - 1"
-              :pageLinkSize="3"
-              @page="onPage($event)"
-            />
+            <episodes-skeleton :row-count="8" />
           </div>
         </div>
       </div>

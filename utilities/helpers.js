@@ -77,3 +77,19 @@ export const bpSizes = (bp, m, d) => {
   if (typeof window === 'undefined') return d
   return window.innerWidth < breakpoint[bp] ? m : d
 }
+
+
+/*
+takes the prop path and returns the desired data from the response
+*/
+export const traverseObjectByString = (pathString, data) => {
+  let tempData = data
+  const pathParts = pathString.split('.')
+  pathParts.forEach((key) => {
+    tempData = tempData[key]
+    if (tempData === undefined || tempData === null) {
+      throw new Error(`path prop wrong format`)
+    }
+  })
+  return tempData
+}

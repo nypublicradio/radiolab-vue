@@ -70,7 +70,7 @@ onBeforeMount(async () => {
         <skeleton-general-content v-else />
       </div>
     </section>
-    <episodes class="mb-4" :api="apiUrl" path="data.included" bucket />
+    <episodes-bucket class="mb-4" :api="apiUrl" path="data.included" bucket />
   </div>
 </template>
 
