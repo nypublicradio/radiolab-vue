@@ -8,6 +8,9 @@ const route = useRoute()
 const darkMode = ref(false)
 const atTop = ref(true)
 
+/*
+scroll event func that is used for the menu knowing when it is at the very top and for viewport GA tracking
+*/
 const onScroll = (e) => {
   atTop.value = window.scrollY > 0 ? false : true
   //atBottom.value = ((window.scrollY + (window.innerHeight + 115) >= document.body.scrollHeight)) ? true : false
@@ -16,10 +19,6 @@ const onScroll = (e) => {
   const trackedGaElements = document.querySelectorAll('[ga-enter-viewport]')
   trackedGaElements.forEach((element) => {
     if (isElementXPercentInViewport(element, 33)) {
-      // console.log(
-      //   `entered viewport on : ${route.name}`,
-      //   element.attributes['ga-info'].value
-      // )
       element.removeAttribute('ga-enter-viewport')
       gaEvent(
         'Scroll Viewport Tracking',
