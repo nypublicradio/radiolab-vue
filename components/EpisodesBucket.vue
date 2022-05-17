@@ -52,7 +52,9 @@ onBeforeMount(async () => {
 const cardCount = ref(props.limit + (props.limit % 2 ? 1 : 0))
 
 const hideOnXl = (index) => {
-  return cardCount.value % 3 && index + 1 === cardCount.value
+  return props.limit
+    ? cardCount.value % 3 && index + 1 === cardCount.value
+    : false
 }
 </script>
 
