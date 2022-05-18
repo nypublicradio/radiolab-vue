@@ -26,7 +26,7 @@ RUN apt-get update \
 RUN pip install supervisor
 
 COPY scripts/entrypoint.sh ./scripts/entrypoint.sh
-COPY nginx/*.conf /etc/nginx
+COPY nginx/*.conf /etc/nginx/
 
 COPY --from=build /code/.output/ ./.output/
 COPY --from=build /code/.nuxt/ ./.nuxt/
