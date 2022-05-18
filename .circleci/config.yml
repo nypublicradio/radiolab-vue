@@ -124,7 +124,7 @@ jobs:
               --fargate \
               --cpu=512 \
               --memory-reservation=1024 \
-              --ecr-repository=radiolab-vue \
+              --ecr-repository=radiolab-vue-<<parameters.env>> \
               --ecs-cluster=radiolab-vue \
               --ports=80 \
               --execution-role=$ROLE \
