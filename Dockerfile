@@ -11,7 +11,7 @@ RUN npm install sass
 COPY . .
 RUN npm run build
 
-FROM node:16.14.2 as app
+FROM node:16.14.2-slim as app
 WORKDIR /app
 
 RUN apt-get update \
