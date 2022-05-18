@@ -35,7 +35,7 @@ workflows:
           requires:
             - build
       - deploy:
-          name: Deploy App (demo)
+          name: Deploy (demo)
           context: "AWS Deploy"
           <<: *filter_demo
           tag: demo
@@ -43,7 +43,7 @@ workflows:
             - test_js
             - test_nginx
       - deploy:
-          name: Deploy App (prod)
+          name: Deploy (prod)
           context: "AWS Deploy"
           env: prod
           <<: *filter_prod
@@ -121,10 +121,9 @@ jobs:
             pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git
             
             nyprsetuptools DockerDeploy \
-              --dockerfile=Dockerfile_app \
               --fargate \
-              --cpu=256 \
-              --memory-reservation=512 \
+              --cpu=512 \
+              --memory-reservation=1024 \
               --ecr-repository=radiolab-vue \
               --ecs-cluster=radiolab-vue \
               --ports=80 \
