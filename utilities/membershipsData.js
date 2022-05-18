@@ -346,7 +346,7 @@ export const options = [
                 check: false,
                 text: null,
                 image: null,
-                buttonText: '',
+                buttonText: 'Join Now',
                 buttonLink: 'https://members.radiolab.org/join-vipers',
             },
             {
