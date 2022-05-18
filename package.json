@@ -15,7 +15,6 @@
     "@vue/cli-service": "^5.0.4",
     "@vue/compiler-sfc": "^3.2.31",
     "jest-axe": "^5.0.1",
-    "nuxt": "^3.0.0-rc.3",
     "typescript": "^4.5.4"
   },
   "dependencies": {
@@ -27,6 +26,7 @@
     "@vue/test-utils": "^2.0.0-rc.21",
     "howler": "^2.2.3",
     "mosha-vue-toastify": "^1.0.23",
+    "nuxt": "npm:nuxt3@3.0.0-rc.3-27545866.cd37a21",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.1",
     "sass": "^1.49.9",

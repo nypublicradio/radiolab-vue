@@ -61,16 +61,16 @@ export const shareAPI = async (content, msg) => {
 }
 
 // helper function that determins if an element is in the viewport by a certain percentage
-export const isElementXPercentInViewport = function (el, percentVisible) {
-  const
-    rect = el.getBoundingClientRect(),
-    windowHeight = (window.innerHeight || document.documentElement.clientHeight)
+// export const isElementXPercentInViewport = function (el, percentVisible) {
+//   const
+//     rect = el.getBoundingClientRect(),
+//     windowHeight = (window.innerHeight || document.documentElement.clientHeight)
 
-  return !(
-    Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / Number(-rect.height)) * 100)) < percentVisible ||
-    Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percentVisible
-  )
-}
+//   return !(
+//     Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / Number(-rect.height)) * 100)) < percentVisible ||
+//     Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percentVisible
+//   )
+// }
 
 // checks window width up against the breakpoints and returns the requested mobile or desktop size
 export const bpSizes = (bp, m, d) => {
