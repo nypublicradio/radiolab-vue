@@ -27,13 +27,6 @@ workflows:
       - build:
           <<: *filter_all
       - test_js:
-<<<<<<< HEAD
-=======
-          <<: *filter_all
-          requires:
-            - build
-      - test_nginx:
->>>>>>> a1f818c35432d6de71785c4a8a33ddacc4c24ce7
           <<: *filter_all
           requires:
             - build
@@ -49,11 +42,7 @@ workflows:
           requires:
             - test_js
             - test_nginx
-<<<<<<< HEAD
       - deploy:
-=======
-      - deploy_js:
->>>>>>> a1f818c35432d6de71785c4a8a33ddacc4c24ce7
           name: Deploy App (prod)
           context: "AWS Deploy"
           env: prod
@@ -61,27 +50,7 @@ workflows:
           requires:
             - test_js
             - test_nginx
-<<<<<<< HEAD
-            
-=======
-      - deploy_nginx:
-          name: Deploy Nginx (demo)
-          context: "AWS Deploy"
-          <<: *filter_demo
-          tag: demo
-          requires:
-            - test_js
-            - test_nginx
-      - deploy_nginx:
-          name: Deploy Nginx (prod)
-          context: "AWS Deploy"
-          env: prod
-          <<: *filter_prod
-          requires:
-            - test_js
-            - test_nginx
 
->>>>>>> a1f818c35432d6de71785c4a8a33ddacc4c24ce7
 jobs: 
   # Note (allie): This is its own job because I don't 
   # want to run the tests in an environment that has the
@@ -119,23 +88,7 @@ jobs:
             apt-get update && \
             apt-get install -y nginx-extras
             mkdir -p /app/nginx 
-            cp ./nginx/default.conf /etc/nginx/
-            cp ./nginx/radiolab.conf /app/nginx
-            nginx -t
-
-  test_nginx:
-    docker:
-      - image: nginx
-    steps:
-      - checkout
-      - setup_npmrc
-      - run:
-          command: |
-            apt-get update && \
-            apt-get install -y nginx-extras
-            mkdir -p /app/nginx 
-            cp ./nginx/default.conf /etc/nginx/
-            cp ./nginx/radiolab.conf /app/nginx
+            cp ./nginx/*.conf /etc/nginx/
             nginx -t
 
   deploy:
