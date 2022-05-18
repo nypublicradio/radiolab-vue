@@ -13,12 +13,11 @@ onMounted(() => {
 })
 
 /**
- * Function connected to the emitter from the Carousel component when the content has changed, it provides the index of the page showing 
+ * Function connected to the emitter from the Carousel component when the content has changed, it provides the index of the page showing
  */
 const carouselEmitGetCurrPageIndex = (ind) => {
   contentIndex.value = ind
 }
-
 </script>
 
 <template>
@@ -26,8 +25,13 @@ const carouselEmitGetCurrPageIndex = (ind) => {
     <div v-if="theTiers" class="desktop hidden md:block">
       <div class="grid mb-3">
         <div class="col-3"></div>
-        <div v-for="(tier, index) in theTiers" class="col-3" :key="`${tier.label}-${index}`">
+        <div
+          v-for="(tier, index) in theTiers"
+          class="col-3"
+          :key="`${tier.label}-${index}`"
+        >
           <the-lab-tier
+            :join-link="tier.link"
             :icon="tier.icon"
             :name="tier.name"
             :cost="tier.cost"
@@ -39,14 +43,18 @@ const carouselEmitGetCurrPageIndex = (ind) => {
     </div>
     <div v-if="theTiers && theOptions" class="mobile md:hidden">
       <div class="icons flex justify-content-around mb-3">
-        <img :class="{ 'selected': contentIndex === 0 }" src="/the-lab/viper.svg" alt="viper icon" />
         <img
-          :class="{ 'selected': contentIndex === 1 }"
+          :class="{ selected: contentIndex === 0 }"
+          src="/the-lab/viper.svg"
+          alt="viper icon"
+        />
+        <img
+          :class="{ selected: contentIndex === 1 }"
           src="/the-lab/butterfly.svg"
           alt="butterfly icon"
         />
         <img
-          :class="{ 'selected': contentIndex === 2 }"
+          :class="{ selected: contentIndex === 2 }"
           src="/the-lab/shrimp.svg"
           alt="shrimp icon"
         />
@@ -66,7 +74,11 @@ const carouselEmitGetCurrPageIndex = (ind) => {
           >
             <div class="content-holder">
               <div class="mb-5">
-                <the-lab-tier :name="slotProps.data.name" :cost="slotProps.data.cost" />
+                <the-lab-tier
+                  :join-link="slotProps.data.link"
+                  :name="slotProps.data.name"
+                  :cost="slotProps.data.cost"
+                />
               </div>
               <the-lab-options-mobile
                 :tiers="theTiers"
@@ -81,10 +93,15 @@ const carouselEmitGetCurrPageIndex = (ind) => {
     <div class="grid mt-0 md:mt-4">
       <div class="col col-12 md:col-3"></div>
       <div class="col col-12 md:col-9 text-center px-3">
-        <p>On occasion we may adjust benefits based on member feedback or other factors. We'll always give you a heads-up when a change is coming.</p>
+        <p>
+          On occasion we may adjust benefits based on member feedback or other
+          factors. We'll always give you a heads-up when a change is coming.
+        </p>
         <p class="mt-4">
           Already a member?
-          <v-flexible-link to="https://members.radiolab.org/request_access">Log in</v-flexible-link>
+          <v-flexible-link to="https://members.radiolab.org/request_access"
+            >Log in</v-flexible-link
+          >
         </p>
       </div>
     </div>

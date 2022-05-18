@@ -15,7 +15,7 @@ const props = defineProps({
   },
   joinLink: {
     type: String,
-    default: "https://members.radiolab.org/",
+    default: 'https://members.radiolab.org',
   },
 })
 </script>

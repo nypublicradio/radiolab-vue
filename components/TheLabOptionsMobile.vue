@@ -15,35 +15,50 @@ const props = defineProps({
     default: [],
   },
 })
-
 </script>
 
 <template>
   <div>
     <div
       class="grid the-lab-options-mobile mb-2 align-items-center"
-      v-for="(option) in props.options"
+      v-for="option in props.options"
       :key="`${option.label}-${props.index}`"
     >
       <div class="base col col-12">
         <div
-          :class="[{ 'box': option.tiers[props.index].check || (option.tiers[props.index].text && !option.tiers[props.index].image) }, { 'check': option.tiers[props.index].check }, { 'has-image': option.tiers[props.index].image }]"
+          :class="[
+            {
+              box:
+                option.tiers[props.index].check ||
+                (option.tiers[props.index].text &&
+                  !option.tiers[props.index].image),
+            },
+            { check: option.tiers[props.index].check },
+            { 'has-image': option.tiers[props.index].image },
+          ]"
         >
-          <span v-if="option.showLabelInMobile" class="label">{{ option.label }}</span>
+          <span v-if="option.showLabelInMobile" class="label">{{
+            option.label
+          }}</span>
           <img
             v-if="option.tiers[props.index].image"
             class="image"
             :src="option.tiers[props.index].image"
             alt="Merch Image"
           />
-          <p v-if="option.tiers[props.index].text" class="text">{{ option.tiers[props.index].text }}</p>
+          <p v-if="option.tiers[props.index].text" class="text">
+            {{ option.tiers[props.index].text }}
+          </p>
           <v-flexible-link
             class="block"
             v-if="option.tiers[props.index].buttonText"
             :to="option.tiers[props.index].buttonLink"
             raw
           >
-            <Button class="blue p-button-lg" :label="option.tiers[props.index].buttonText" />
+            <Button
+              class="blue p-button-lg"
+              :label="option.tiers[props.index].buttonText"
+            />
           </v-flexible-link>
         </div>
       </div>
@@ -72,14 +87,14 @@ const props = defineProps({
       &.check {
         &:before {
           margin-right: 0.5rem;
-          content: "\e909";
+          content: '\e909';
           text-align: center;
           font-weight: bold;
           speak: none;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
           display: inline-block;
-          font-family: "primeicons";
+          font-family: 'primeicons';
           font-style: normal;
           font-variant: normal;
           font-weight: 400;
