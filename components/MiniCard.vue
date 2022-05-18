@@ -40,8 +40,10 @@ const props = defineProps({
       :image="image"
       :alt="alt"
       :imageUrl="url"
-      :width="80"
-      :height="80"
+      :width="320"
+      :height="240"
+      :ratio="[1, 1]"
+      :sizes="[1]"
       class="mini-card-image"
     />
     <div class="mini-card-content">
@@ -50,9 +52,9 @@ const props = defineProps({
         {{ props.subtitle }}
       </p>
       <v-flexible-link :to="url">
-        <h3 v-html="props.title" class="mini-card-title" />
+        <div v-html="props.title" class="h3 mini-card-title"></div>
       </v-flexible-link>
-      <p v-html="props.tease" class="mini-card-tease" />
+      <div v-html="props.tease" class="type-body mini-card-tease"></div>
     </div>
   </div>
 </template>

@@ -18,9 +18,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits([
-  'toggleTranscript',
-])
+const emit = defineEmits(['toggleTranscript'])
 
 const toastConfig = ref(toastGlobalConfig())
 //const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
@@ -117,39 +115,31 @@ const toggleTranscript = () => {
   emit('toggleTranscript')
   gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
 }
-
 </script>
 
 <template>
   <div>
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
-      <play-selector
-        :episode="props.episode"
-        menu-class="episode-tools-play-selector"
-      />
+      <client-only>
+        <play-selector
+          :episode="props.episode"
+          menu-class="episode-tools-play-selector"
+        />
+      </client-only>
       <Button
         v-if="!!props.episode['transcript']"
         class="p-button-sm p-button-rounded"
         label="Transcript"
         @click="toggleTranscript"
+        aria-label="Transcript"
       ></Button>
       <Button
         icon="pi pi-share-alt"
         class="p-button-rounded p-button-sm wh40"
         @click="toggleShare"
         aria-haspopup="true"
-      />
-      <Button
-        icon="pi pi-ellipsis-v"
-        class="p-button-rounded wh40"
-        @click="toggleDots"
         aria-controls="overlay_menu"
-      />
-      <Menu
-        ref="dotsMenu"
-        :model="dotsItems"
-        :popup="true"
-        class="episode-tools-menu"
+        aria-label="share"
       />
       <Menu
         ref="shareMenu"
@@ -157,6 +147,21 @@ const toggleTranscript = () => {
         :popup="true"
         class="episode-tools-menu"
       />
+      <Button
+        icon="pi pi-ellipsis-v"
+        class="p-button-rounded wh40"
+        @click="toggleDots"
+        aria-haspopup="true"
+        aria-controls="overlay_menu"
+        aria-label="options"
+      />
+      <Menu
+        ref="dotsMenu"
+        :model="dotsItems"
+        :popup="true"
+        class="episode-tools-menu"
+      />
+
       <div class="hidden">
         <ShareNetwork
           class="facebookShareRef"

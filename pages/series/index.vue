@@ -2,11 +2,7 @@
 import { useRuntimeConfig } from '#app'
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
-useMeta({
-  bodyAttrs: {
-    class: 'has-head-color',
-  },
-})
+
 const dataLoaded = ref(false)
 const page = ref([])
 const router = useRouter()
@@ -19,18 +15,27 @@ onBeforeMount(async () => {
       page.value = response.data.data.attributes
       dataLoaded.value = true
     })
-    .catch(() => {
-      router.push('/404')
+    .catch((error) => {
+      throwError(error)
     })
 })
 </script>
 
 <template>
   <div>
-    <section class="head-color yellow">
+    <section>
+      <div class="content lg:px-8 pb-0">
+        <div class="grid">
+          <div class="col">
+            <h1 class="h2">Series</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="">
       <div class="content thin-content-width">
         <template v-if="dataLoaded">
-          <Html>
+          <Html lang="en">
             <Head>
               <Title>Series | Radiolab | WNYC Studios</Title>
               <Meta
@@ -49,6 +54,7 @@ onBeforeMount(async () => {
           />
         </template>
         <skeleton-general-content v-else />
+        <div class="htlad-radiolab_leaderboard_2 mb-8" />
       </div>
     </section>
   </div>
@@ -78,7 +84,8 @@ onBeforeMount(async () => {
     margin-bottom: 0;
   }
 }
-.projects-landing-page__project a {
+.projects-landing-page__project a,
+.projects-landing-page__project a:visited {
   grid-area: title;
   font-family: var(--font-family-header);
   font-size: var(--font-size-10);
@@ -86,7 +93,7 @@ onBeforeMount(async () => {
   line-height: 28px;
   align-self: end;
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color) !important;
   transition: all var(--transition-duration);
   &:hover {
     color: var(--link-button-hover-color) !important;

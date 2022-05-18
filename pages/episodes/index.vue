@@ -8,7 +8,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Episode Archive | Radiolab | WNYC Studios</Title>
         <Meta

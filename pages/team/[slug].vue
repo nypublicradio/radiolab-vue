@@ -1,7 +1,8 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import { bpSizes } from '~/utilities/helpers'
+import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import Skeleton from 'primevue/skeleton'
 import { useRuntimeConfig } from '#app'
 
@@ -21,7 +22,7 @@ onBeforeMount(async () => {
       dataLoaded.value = true
     })
     .catch((error) => {
-      router.push('/404')
+      throwError(error)
     })
 })
 </script>
@@ -29,7 +30,7 @@ onBeforeMount(async () => {
 <template>
   <div class="thin-content-width">
     <div v-if="dataLoaded">
-      <Html>
+      <Html lang="en">
         <Head>
           <Title>{{ person.name }} | Radiolab | WNYC Studios</Title>
           <Meta
@@ -59,19 +60,27 @@ onBeforeMount(async () => {
       <section>
         <div class="content mb-4 pt-0">
           <div>
-            <v-image-with-caption
-              :image="
-                person.image.template.replace(
-                  '%s/%s/%s/%s',
-                  '%width%/%height%/c/%quality%'
-                )
-              "
-              :alt="person.name"
-              :max-width="person.image.w"
-              :max-height="person.image.h"
-              :ratio="[8, 5]"
-              class="mb-6"
-            />
+            <client-only>
+              <v-card
+                :image="
+                  person.image.template.replace(
+                    '%s/%s/%s/%s',
+                    '%width%/%height%/c/%quality%'
+                  )
+                "
+                :width="800"
+                :height="533"
+                :alt="person.name"
+                :max-width="person.image.w"
+                :max-height="person.image.h"
+                responsive
+                :ratio="[3, 2]"
+                :sizes="[1]"
+                flat-quality
+                bp="max"
+                class="mb-6"
+              />
+            </client-only>
             <div
               v-html="person.bio || person.lede"
               class="team-bio html-formatting"

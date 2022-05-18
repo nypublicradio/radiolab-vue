@@ -3,9 +3,7 @@
     <div>
       <h2 class="mb-4">Subscribe to the newsletter</h2>
       <p class="mb-6">
-        Lorem ipsum dolor sit amet, consect adipiscing elit. Suspendis ultricies
-        semper metus. Lorem ipsum dolor sit amet, consect adipiscing elit.
-        Suspendis ultricies semper metus, id porta velit.
+        Stay in the know. Subscribe to Radiolab's weekly newsletter.
       </p>
     </div>
     <newsletter-form location="home page" />
@@ -32,8 +30,9 @@
     max-width: 375px;
   }
 }
-.subscribe-to-the-newsletter.alone{
-  h2,p{
+.subscribe-to-the-newsletter.alone {
+  h2,
+  p {
     max-width: 100%;
   }
 }

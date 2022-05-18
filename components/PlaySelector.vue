@@ -5,6 +5,7 @@ import {
   useCurrentEpisode,
   useIsEpisodePlaying,
   useTogglePlayTrigger,
+  usePlayServicePreference,
 } from '~/composables/states'
 import { playServices, lsSelectedPlayService } from '~/utilities/constants'
 
@@ -90,6 +91,7 @@ const checkEpisodeMatch = computed(() => {
         { active: checkEpisodeMatch },
         { anim: checkEpisodeMatchAndPlaying },
       ]"
+      :aria-label="checkEpisodeMatch ? 'Play' : 'Listen'"
     >
       <span class="play-icon">
         <img
@@ -108,6 +110,7 @@ const checkEpisodeMatch = computed(() => {
         :title="`Open ${playServicePreference.name}`"
         @click="launchService(playServicePreference)"
         class="service-btn p-button-rounded inline-block"
+        :aria-label="`Listen to this episode on ${playServicePreference.name}`"
       >
         <img
           v-if="selectedPlayService"
@@ -119,7 +122,10 @@ const checkEpisodeMatch = computed(() => {
         title="Choose platform"
         v-model="selectedPlayService"
         :options="playServices"
-        :panelClass="menuClass"
+        :panel-class="menuClass"
+        option-label="name"
+        aria-label="Select a service to play this episode"
+        aria-labelled-by="Select a service to play this episode"
       >
         <template #option="slotProps">
           <div class="service-item">

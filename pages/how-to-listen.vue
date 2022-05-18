@@ -17,7 +17,7 @@ useHead({
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>How To Listen | Radiolab | WNYC Studios</Title>
         <Meta

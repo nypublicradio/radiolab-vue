@@ -248,6 +248,10 @@ section {
     font-size: 1rem;
     padding: 0.5rem 1rem;
   }
+  iframe {
+    width: 100%;
+    max-width: 560px;
+  }
   .user-embedded-video {
     div {
       position: relative;
