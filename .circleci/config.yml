@@ -34,7 +34,7 @@ workflows:
           <<: *filter_all
           requires:
             - build
-      - deploy_js:
+      - deploy:
           name: Deploy App (demo)
           context: "AWS Deploy"
           <<: *filter_demo
@@ -42,7 +42,7 @@ workflows:
           requires:
             - test_js
             - test_nginx
-      - deploy_js:
+      - deploy:
           name: Deploy App (prod)
           context: "AWS Deploy"
           env: prod
@@ -50,23 +50,7 @@ workflows:
           requires:
             - test_js
             - test_nginx
-      - deploy_nginx:
-          name: Deploy Nginx (demo)
-          context: "AWS Deploy"
-          <<: *filter_demo
-          tag: demo
-          requires:
-            - test_js
-            - test_nginx
-      - deploy_nginx:
-          name: Deploy Nginx (prod)
-          context: "AWS Deploy"
-          env: prod
-          <<: *filter_prod
-          requires:
-            - test_js
-            - test_nginx
-
+            
 jobs: 
   # Note (allie): This is its own job because I don't 
   # want to run the tests in an environment that has the
@@ -108,7 +92,7 @@ jobs:
             cp ./nginx/radiolab.conf /app/nginx
             nginx -t
 
-  deploy_js:
+  deploy:
     docker: 
       - image: circleci/python:3.6
     parameters:
@@ -144,50 +128,7 @@ jobs:
               --memory-reservation=512 \
               --ecr-repository=radiolab-vue \
               --ecs-cluster=radiolab-vue \
-              --ports=3000 \
-              --execution-role=$ROLE \
-              --task-role=$ROLE \
-              --environment=$ENV \
-              --tag=$TAG \
-              --wait=300
-
-  deploy_nginx:
-    docker: 
-      - image: circleci/python:3.6
-    parameters:
-      env:
-        type: enum
-        default: "demo"
-        enum: ["demo", "prod"]
-      tag:
-        type: string
-        default: ""
-    steps:
-      - checkout
-      - setup_npmrc
-      - setup_remote_docker:
-          version: 19.03.13            
-      - run:
-          name: Deploy
-          environment:
-            ENV: <<parameters.env>>
-            TAG: <<parameters.tag>>
-            ROLE: radiolab-vue-<<parameters.env>>
-          command: |
-            TAG=${TAG:-$CIRCLE_TAG}
-
-            python3 -m venv ~/.venv
-            source ~/.venv/bin/activate
-            pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git
-            
-            nyprsetuptools DockerDeploy \
-              --dockerfile=Dockerfile_nginx \
-              --fargate \
-              --cpu=256 \
-              --memory-reservation=512 \
-              --ecr-repository=radiolab-vue-nginx \
-              --ecs-cluster=radiolab-vue-nginx \
-              --ports=3000 \
+              --ports=80 \
               --execution-role=$ROLE \
               --task-role=$ROLE \
               --environment=$ENV \
