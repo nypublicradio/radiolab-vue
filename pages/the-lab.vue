@@ -40,7 +40,7 @@ useHead({
         Join us in our investigation into this strange world.
       </h1>
       <div class="flex mt-5" style="gap: 1rem">
-        <v-flexible-link to="/the-lab" raw>
+        <v-flexible-link to="https://members.radiolab.org" raw>
           <Button
             class="p-button-rounded"
             label="Become a member"
