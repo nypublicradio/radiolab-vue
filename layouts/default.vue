@@ -6,7 +6,6 @@ import {
   isElementXPercentInViewport,
   getArrElementsWithAttr,
 } from '../utilities/helpers.js'
-import { consoleSandbox } from '@sentry/utils'
 const config = useRuntimeConfig()
 const route = useRoute()
 const router = useRouter()
