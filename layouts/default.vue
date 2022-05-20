@@ -1,35 +1,54 @@
 <script setup>
-//import gaEvent from '../utilities/ga.js'
+import gaEvent from '../utilities/ga.js'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRuntimeConfig } from '#app'
-//import { isElementXPercentInViewport } from '../utilities/helpers.js'
+import {
+  isElementXPercentInViewport,
+  getArrElementsWithAttr,
+} from '../utilities/helpers.js'
+import { consoleSandbox } from '@sentry/utils'
 const config = useRuntimeConfig()
 const route = useRoute()
+const router = useRouter()
 const darkMode = ref(false)
 const atTop = ref(true)
-
+let trackedGaElementsArray = []
 /*
 scroll event func that is used for the menu knowing when it is at the very top and for viewport GA tracking
 */
 const onScroll = (e) => {
   atTop.value = window.scrollY > 0 ? false : true
-  //atBottom.value = ((window.scrollY + (window.innerHeight + 115) >= document.body.scrollHeight)) ? true : false
 
-  // entering viewport ga tracking
-  // const trackedGaElements = document.querySelectorAll('[ga-enter-viewport]')
-  // trackedGaElements.forEach((element) => {
-  //   if (isElementXPercentInViewport(element, 33)) {
-  //     element.removeAttribute('ga-enter-viewport')
-  //     gaEvent(
-  //       'Scroll Viewport Tracking',
-  //       route.name,
-  //       element.attributes['ga-info'].value
-  //     )
-  //   }
-  // })
+  //viewport ga tracking
+  if (trackedGaElementsArray.length > 0) {
+    trackedGaElementsArray.forEach((element, index) => {
+      if (isElementXPercentInViewport(element, 33)) {
+        trackedGaElementsArray.splice(index, 1)
+        gaEvent(
+          'Scroll Viewport Tracking',
+          route.name,
+          element.attributes['ga-info'].value
+        )
+      }
+    })
+  }
 }
+router.afterEach((to, from) => {
+  // if page route changes only, ignore query params
+  if (to.path !== from.path) {
+    // after a short delay, to allow the dom to update, populate the array of elements that have the GA info attribute for the scroll tracking
+    setTimeout(() => {
+      trackedGaElementsArray = getArrElementsWithAttr('ga-enter-viewport')
+      console.log('trackedGaElementsArray = ', trackedGaElementsArray)
+    }, 250)
+  }
+})
 
 onMounted(() => {
+  // populate the array of elements that have the GA info attribute for the scroll tracking
+  trackedGaElementsArray = getArrElementsWithAttr('ga-enter-viewport')
+
+  // add scroll event listener
   window.addEventListener('scroll', onScroll)
 
   // Ads

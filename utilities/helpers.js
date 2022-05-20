@@ -60,17 +60,29 @@ export const shareAPI = async (content, msg) => {
   }
 }
 
-// helper function that determins if an element is in the viewport by a certain percentage
-// export const isElementXPercentInViewport = function (el, percentVisible) {
-//   const
-//     rect = el.getBoundingClientRect(),
-//     windowHeight = (window.innerHeight || document.documentElement.clientHeight)
+// finds all the elements with attribute passed in the attr argument and returns a array of elements
+export const getArrElementsWithAttr = (attr) => {
+  // find all scroll tracked items
+  const el = document.querySelectorAll(`[${attr}]`)
+  let arr = []
+  // populate array with tracked items
+  el.forEach((element) => {
+    arr.push(element)
+  })
+  return arr
+}
 
-//   return !(
-//     Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / Number(-rect.height)) * 100)) < percentVisible ||
-//     Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percentVisible
-//   )
-// }
+// helper function that determins if an element is in the viewport by a certain percentage
+export const isElementXPercentInViewport = function (el, percentVisible) {
+  const
+    rect = el.getBoundingClientRect(),
+    windowHeight = (window.innerHeight || document.documentElement.clientHeight)
+
+  return !(
+    Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / Number(-rect.height)) * 100)) < percentVisible ||
+    Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percentVisible
+  )
+}
 
 // checks window width up against the breakpoints and returns the requested mobile or desktop size
 export const bpSizes = (bp, m, d) => {
