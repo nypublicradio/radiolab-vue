@@ -74,7 +74,7 @@ onBeforeMount(async () => {
                   </v-flexible-link>
                   <div
                     v-html="episodes[0].attributes.tease"
-                    class="latest-episode-tease mb-5 type-body truncate t3lines"
+                    class="latest-episode-tease mb-5 html-formatting type-body truncate t3lines"
                   ></div>
                   <div class="block md:hidden divider"></div>
                   <client-only>

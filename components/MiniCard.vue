@@ -54,7 +54,10 @@ const props = defineProps({
       <v-flexible-link :to="url">
         <div v-html="props.title" class="h3 mini-card-title"></div>
       </v-flexible-link>
-      <div v-html="props.tease" class="type-body mini-card-tease"></div>
+      <div
+        v-html="props.tease"
+        class="html-formatting type-body mini-card-tease"
+      ></div>
     </div>
   </div>
 </template>

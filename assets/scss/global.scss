@@ -1,5 +1,3 @@
-@import 'cards';
-
 $maxWidth: 1440px;
 $contentWidth: 1366px;
 $thinContentWidth: 768px;
@@ -206,8 +204,16 @@ section {
   }
 }
 
-.html-formatting {
+@mixin html-formatting() {
+  h1 {
+    font-size: var(--font-size-16);
+    line-height: var(--font-size-16);
+    font-weight: var(--font-weight-500);
+    letter-spacing: -1px;
+    color: var(--text-color);
+  }
   a {
+    color: var(--blue-500);
     &:hover,
     &:active {
       color: var(--blue-300);
@@ -267,6 +273,9 @@ section {
       }
     }
   }
+}
+.html-formatting {
+  @include html-formatting();
 }
 
 .p-inputtext {
@@ -355,3 +364,5 @@ section {
 .white100bg {
   background-color: var(--white100);
 }
+
+@import 'cards';
