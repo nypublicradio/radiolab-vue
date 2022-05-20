@@ -184,6 +184,13 @@ section {
       z-index: 1;
       background: var(--white);
       border-radius: 1rem 1rem 0 0;
+      padding: 3rem;
+      @include media('<lg') {
+        padding: 2.5rem;
+      }
+      @include media('<md') {
+        padding: 1.5rem;
+      }
     }
   }
   &.graphic-head {
@@ -211,6 +218,10 @@ section {
     font-weight: var(--font-weight-500);
     letter-spacing: -1px;
     color: var(--text-color);
+    @include media('<md') {
+      font-size: var(--font-size-12);
+      line-height: var(--font-size-12);
+    }
   }
   a {
     color: var(--blue-500);
