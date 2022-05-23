@@ -53,7 +53,7 @@ onBeforeMount(async () => {
                     :max-width="episodes[0].attributes['image-main'].w"
                     :max-height="episodes[0].attributes['image-main'].h"
                     class="latest-episode-image"
-                    :ratio="[8, 5]"
+                    :ratio="[8, 6.2]"
                     :sizes="[1]"
                   />
                 </client-only>
@@ -102,7 +102,7 @@ onBeforeMount(async () => {
   text-decoration: none;
 
   @include media('<lg') {
-    h2 {
+    .h2 {
       font-size: var(--font-size-12);
       line-height: var(--line-height-12);
     }
