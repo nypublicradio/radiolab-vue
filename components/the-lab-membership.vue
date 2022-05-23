@@ -92,7 +92,7 @@ const carouselEmitGetCurrPageIndex = (ind) => {
     </div>
     <div class="grid mt-0 md:mt-4">
       <div class="col col-12 md:col-3"></div>
-      <div class="col col-12 md:col-9 text-center px-3">
+      <div class="col col-12 md:col-9 text-center px-4 md:px-1">
         <p>
           On occasion we may adjust benefits based on member feedback or other
           factors. We'll always give you a heads-up when a change is coming.
@@ -101,6 +101,20 @@ const carouselEmitGetCurrPageIndex = (ind) => {
           Already a member?
           <v-flexible-link to="https://members.radiolab.org/request_access"
             >Log in</v-flexible-link
+          >
+        </p>
+        <p class="mt-4">
+          If you're interested in making a gift of $500 or more, please contact
+          Eh-den Perlove via email at
+          <v-flexible-link to="mailto:giving@nypublicradio.org"
+            >giving@nypublicradio.org</v-flexible-link
+          >
+          or by phone at
+          <v-flexible-link to="tel:6468294130">646.829.4130</v-flexible-link>.
+          Or, you can always make a donation online
+          <v-flexible-link
+            to="https://pledge.wnyc.org/support/studios?utm_medium=redirect&utm_source=wnyc&utm_campaign=studios&ref=button-studios-nav"
+            >here</v-flexible-link
           >
         </p>
       </div>
