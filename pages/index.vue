@@ -37,7 +37,6 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
         </div>
       </div>
     </section>
-    <radiolab-series class="mb-8" />
     <episodes-bucket
       class="mb-8"
       header="Popular Episodes"
