@@ -79,8 +79,7 @@ func to determin how many cards to show
 const cardCountCalc = computed(() => {
   return props.paginate
     ? props.rowCount * cardsPerRow // (3 cards per row)
-    : props.startCount +
-        (props.rowCount * cardsPerRow + (props.rowCount % 2 === 1 ? 1 : 0))
+    : props.startCount + props.rowCount * cardsPerRow
 })
 
 onBeforeMount(async () => {
