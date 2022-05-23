@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  rowCount: {
+  cardCount: {
     type: Number,
     default: 4,
   },
@@ -30,11 +30,11 @@ const props = defineProps({
     </div>
     <div class="grid">
       <div
-        v-for="index in props.rowCount - (paginate ? 0 : 1)"
+        v-for="index in props.cardCount - (paginate ? 0 : 1)"
         :key="index"
         class="col-12 md:col-6 xl:col-4 mb-6"
         :class="{
-          'xl:hidden': props.rowCount % 2 && index === props.rowCount - 1,
+          'xl:hidden': props.cardCount % 2 && index === props.cardCount - 1,
         }"
       >
         <skeleton class="card" width="100%" />

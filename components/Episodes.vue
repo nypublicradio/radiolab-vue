@@ -59,7 +59,6 @@ const totalCount = ref(null)
 const startPageNumber = ref(props.startPage)
 const axiosSuccessful = ref(true)
 const cardsPerRow = 3
-const totalCards = 3
 
 /*
 func to determin how many cards to show
@@ -68,7 +67,7 @@ const cardCountCalc = computed(() => {
   return props.paginate
     ? props.rowCount * cardsPerRow // (3 cards per row)
     : props.startCount +
-        (props.rowCount * cardsPerRow + (props.rowCount % 2 ? 1 : 0))
+        (props.rowCount * cardsPerRow + (props.rowCount % 2 === 1 ? 1 : 0))
 })
 
 onBeforeMount(async () => {
@@ -115,6 +114,17 @@ async function onPage(event) {
       axiosSuccessful.value = false
     })
 }
+
+/*
+when only specifying a limit, this will determine to hide the last card so when in tabblet view, we don't have a blank spot
+*/
+const hideOnXl = (index) => {
+  return (
+    !props.paginate &&
+    props.rowCount % 2 === 1 &&
+    index + 1 === cardsPerRow * props.rowCount + 1
+  )
+}
 </script>
 
 <template>
@@ -149,12 +159,7 @@ async function onPage(event) {
                       index > episodes.length / 2 - 1
                     "
                     class="col-12 md:col-6 xl:col-4 mb-6"
-                    :class="{
-                      'xl:hidden':
-                        !props.paginate &&
-                        rowCount % 2 &&
-                        index === cardsPerRow * rowCount - props.startCount,
-                    }"
+                    :class="{ 'xl:hidden': hideOnXl(index) }"
                   >
                     <client-only>
                       <v-card
@@ -187,7 +192,9 @@ async function onPage(event) {
                   </div>
                   <div
                     :key="index"
-                    v-if="index === episodes.length / 2 - 1"
+                    v-if="
+                      props.rowCount > 1 && index === episodes.length / 2 - 1
+                    "
                     class="htlad-radiolab_in-content_1 col-fixed mb-6"
                     style="width: 100%"
                   />
@@ -195,8 +202,7 @@ async function onPage(event) {
               </div>
             </div>
             <episodes-skeleton
-              v-else
-              :row-count="cardCountCalc"
+              :card-count="cardCountCalc"
               :header="props.header"
               :button-text="props.buttonText"
               :paginate="props.paginate"
