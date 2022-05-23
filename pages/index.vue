@@ -12,11 +12,29 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
     <latest-episode class="mb-4" />
     <episodes
       class="mb-4"
-      header="Recent Episodes"
+      header="Recent Episodes 1"
       button-text="All Episodes"
       button-link="/episodes"
       :row-count="1"
       :startCount="1"
+      :api="recentEpisodesApiUrl"
+      path="data.included"
+    />
+    <episodes
+      class="mb-4"
+      header="Recent Episodes 2"
+      button-text="All Episodes"
+      button-link="/episodes"
+      :row-count="2"
+      :api="recentEpisodesApiUrl"
+      path="data.included"
+    />
+    <episodes
+      class="mb-4"
+      header="Recent Episodes 3"
+      button-text="All Episodes"
+      button-link="/episodes"
+      :row-count="3"
       :api="recentEpisodesApiUrl"
       path="data.included"
     />

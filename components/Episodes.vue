@@ -39,6 +39,10 @@ const props = defineProps({
     type: Number,
     default: 1,
   },
+  rowsPerAd: {
+    type: Number,
+    default: 1,
+  },
   startCount: {
     type: Number,
     default: 0,
@@ -59,6 +63,15 @@ const totalCount = ref(null)
 const startPageNumber = ref(props.startPage)
 const axiosSuccessful = ref(true)
 const cardsPerRow = 3
+
+const rowsPerAdArr = []
+for (let i = 1; i < props.rowCount; i++) {
+  rowsPerAdArr.push(i * props.rowsPerAd * cardsPerRow)
+}
+
+const insertAD = (index) => {
+  return rowsPerAdArr.includes(index)
+}
 
 /*
 func to determin how many cards to show
@@ -114,17 +127,6 @@ async function onPage(event) {
       axiosSuccessful.value = false
     })
 }
-
-/*
-when only specifying a limit, this will determine to hide the last card so when in tabblet view, we don't have a blank spot
-*/
-const hideOnXl = (index) => {
-  return (
-    !props.paginate &&
-    props.rowCount % 2 === 1 &&
-    index + 1 === cardsPerRow * props.rowCount + 1
-  )
-}
 </script>
 
 <template>
@@ -146,21 +148,13 @@ const hideOnXl = (index) => {
                 </v-flexible-link>
               </div>
 
-              <div class="grid">
+              <div class="grid justify-content-center">
                 <template
                   v-for="(episode, index) in props.paginate
                     ? episodes
                     : episodes.slice(props.startCount, cardCountCalc)"
                 >
-                  <div
-                    :key="index"
-                    v-if="
-                      index < episodes.length / 2 ||
-                      index > episodes.length / 2 - 1
-                    "
-                    class="col-12 md:col-6 xl:col-4 mb-6"
-                    :class="{ 'xl:hidden': hideOnXl(index) }"
-                  >
+                  <div class="col-12 md:col-6 xl:col-4 mb-6">
                     <client-only>
                       <v-card
                         :image="
@@ -192,9 +186,7 @@ const hideOnXl = (index) => {
                   </div>
                   <div
                     :key="index"
-                    v-if="
-                      props.rowCount > 1 && index === episodes.length / 2 - 1
-                    "
+                    v-if="props.rowCount > 1 && insertAD(index + 1)"
                     class="htlad-radiolab_in-content_1 col-fixed mb-6"
                     style="width: 100%"
                   />
@@ -202,6 +194,7 @@ const hideOnXl = (index) => {
               </div>
             </div>
             <episodes-skeleton
+              v-else
               :card-count="cardCountCalc"
               :header="props.header"
               :button-text="props.buttonText"
