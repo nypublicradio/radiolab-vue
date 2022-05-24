@@ -1,9 +1,8 @@
 <script setup>
 import gaEvent from '~/utilities/ga.js'
-import { onMounted, computed, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
-import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 
 const config = useRuntimeConfig()
@@ -11,7 +10,6 @@ const episode = ref([])
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
-const router = useRouter()
 
 const {
   data: page,

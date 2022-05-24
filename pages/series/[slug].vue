@@ -19,7 +19,6 @@ onBeforeMount(async () => {
     .then((response) => {
       episode.value = response.data.data.attributes
       logo.value = response.data.data.attributes['logo-image']
-      //console.log('response', response)
       dataLoaded.value = true
     })
     .catch((error) => throwError(error))

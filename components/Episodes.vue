@@ -1,11 +1,7 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
 import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
-import {
-  formatDate,
-  bpSizes,
-  traverseObjectByString,
-} from '~/utilities/helpers'
+import { formatDate, traverseObjectByString } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
