@@ -138,7 +138,6 @@ onBeforeMount(async () => {
       episodes.value = traverseObjectByString(props.path, response)
       totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
-      console.log('episodes', episodes.value)
     })
     .catch(function () {
       axiosSuccessful.value = false
