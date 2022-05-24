@@ -193,7 +193,11 @@ async function onPage(event) {
 
               <div class="grid justify-content-center">
                 <template v-for="(episode, index) in getEpisodes">
-                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
+                  <div
+                    v-if="episode"
+                    :key="`card${index}`"
+                    class="col-12 sm:col-6 lg:col-4 mb-6"
+                  >
                     <client-only>
                       <v-card
                         :image="
