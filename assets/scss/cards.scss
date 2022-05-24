@@ -54,6 +54,7 @@
     @include media('>md') {
         min-height: 86.5px;
     }
+    @include html-formatting();
     * {
         font-size: var(--font-size-5);
         line-height: 20px;

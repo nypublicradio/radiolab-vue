@@ -69,7 +69,7 @@ const onToggleTranscript = () => {
 <template>
   <div>
     <section class="head-color yellow">
-      <div class="content p-3 md:p-5 lg:p-6">
+      <div class="content">
         <div class="grid">
           <div class="col-12 xl:col-8">
             <div class="grid">

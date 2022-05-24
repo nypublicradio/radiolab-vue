@@ -98,6 +98,7 @@ export default [
       {
         label: 'Swag Lab',
         url: 'https://shop.radiolab.org',
+        target: '_blank',
         command: () => {
           gaEvent('Click Tracking', 'Navigation', 'For Listeners: Swag Lab')
         }

@@ -68,13 +68,13 @@ onBeforeMount(async () => {
                     class="latest-episode-title inline-block"
                   >
                     <div
-                      class="mb-2 lg:mb-3 h2 truncate t2lines"
+                      class="pb-1 mb-2 lg:mb-3 h2 truncate t2lines"
                       v-html="episodes[0].attributes.title"
                     ></div>
                   </v-flexible-link>
                   <div
                     v-html="episodes[0].attributes.tease"
-                    class="latest-episode-tease mb-5 type-body truncate t3lines"
+                    class="latest-episode-tease mb-5 html-formatting type-body truncate t3lines"
                   ></div>
                   <div class="block md:hidden divider"></div>
                   <client-only>
