@@ -38,7 +38,6 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
       </div>
     </section>
     <episodes
-      class="mb-8"
       header="Popular Episodes"
       button-text="All Episodes"
       button-link="/episodes"
