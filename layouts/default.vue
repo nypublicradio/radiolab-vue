@@ -57,6 +57,7 @@ onUnmounted(() => {
   >
     <Html lang="en">
       <Head>
+        <Link rel="canonical" :href="`https://radiolab.org${route.path}`" />
         <Link rel="stylesheet" :href="config.HTL_CSS" type="text/css" />
         <Script :src="config.HTL_JS" async />
         <Title>Radiolab: Podcasts | WNYC Studios | Podcasts</Title>

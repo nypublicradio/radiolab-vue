@@ -53,7 +53,7 @@ onBeforeMount(async () => {
                     :max-width="episodes[0].attributes['image-main'].w"
                     :max-height="episodes[0].attributes['image-main'].h"
                     class="latest-episode-image"
-                    :ratio="[8, 5]"
+                    :ratio="[8, 6.2]"
                     :sizes="[1]"
                   />
                 </client-only>
@@ -68,13 +68,13 @@ onBeforeMount(async () => {
                     class="latest-episode-title inline-block"
                   >
                     <div
-                      class="mb-2 lg:mb-3 h2 truncate t2lines"
+                      class="pb-1 mb-2 lg:mb-3 h2 truncate t2lines"
                       v-html="episodes[0].attributes.title"
                     ></div>
                   </v-flexible-link>
                   <div
                     v-html="episodes[0].attributes.tease"
-                    class="latest-episode-tease mb-5 type-body truncate t3lines"
+                    class="latest-episode-tease mb-5 html-formatting type-body truncate t3lines"
                   ></div>
                   <div class="block md:hidden divider"></div>
                   <client-only>
@@ -102,7 +102,7 @@ onBeforeMount(async () => {
   text-decoration: none;
 
   @include media('<lg') {
-    h2 {
+    .h2 {
       font-size: var(--font-size-12);
       line-height: var(--line-height-12);
     }

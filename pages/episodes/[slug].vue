@@ -53,12 +53,12 @@ useHead({
     { name: 'og:title', content: episode.value?.title },
     { name: 'description', content: episode.value?.tease },
     { name: 'og:description', content: episode.value?.tease },
-    { name: 'og:image', content: episode.value?.['image-main'].url },
-    { name: 'og:image:width', content: episode.value?.['image-main'].w },
-    { name: 'og:image:height', content: episode.value?.['image-main'].h },
+    { name: 'og:image', content: episode.value?.['image-main']?.url },
+    { name: 'og:image:width', content: episode.value?.['image-main']?.w },
+    { name: 'og:image:height', content: episode.value?.['image-main']?.h },
     { name: 'twitter:title', content: episode.value?.title },
     { name: 'twitter:description', content: episode?.value.tease },
-    { name: 'twitter:image', content: episode.value?.['image-main'].url },
+    { name: 'twitter:image', content: episode.value?.['image-main']?.url },
   ],
   bodyAttrs: {
     class: 'has-head-color',
@@ -69,7 +69,7 @@ useHead({
 <template>
   <div>
     <section class="head-color yellow">
-      <div class="content p-3 md:p-5 lg:p-6">
+      <div class="content">
         <div class="grid">
           <div class="col-12 xl:col-8">
             <div class="grid">
@@ -77,6 +77,7 @@ useHead({
                 <div v-if="!pending" class="episode flex">
                   <client-only>
                     <v-image-with-caption
+                      v-if="episode['image-main']"
                       :image="
                         episode['image-main'].template.replace(
                           '%s/%s/%s/%s',
