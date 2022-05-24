@@ -68,7 +68,7 @@ onBeforeMount(async () => {
                     class="latest-episode-title inline-block"
                   >
                     <div
-                      class="mb-2 lg:mb-3 h2 truncate t2lines"
+                      class="pb-1 mb-2 lg:mb-3 h2 truncate t2lines"
                       v-html="episodes[0].attributes.title"
                     ></div>
                   </v-flexible-link>
