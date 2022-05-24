@@ -1,8 +1,8 @@
 <script setup>
 const props = defineProps({
-  rowCount: {
+  cardCount: {
     type: Number,
-    default: 4,
+    default: null,
   },
   header: {
     type: String,
@@ -11,10 +11,6 @@ const props = defineProps({
   buttonText: {
     type: String,
     default: '',
-  },
-  paginate: {
-    type: Boolean,
-    default: false,
   },
 })
 </script>
@@ -28,24 +24,20 @@ const props = defineProps({
       <skeleton v-if="!!props.header" width="150px" height="32px" />
       <skeleton v-if="!!props.buttonText" width="105px" height="25px" />
     </div>
-    <div class="grid">
+    <div class="grid justify-content-center">
       <div
-        v-for="index in props.rowCount - (paginate ? 0 : 1)"
+        v-for="index in props.cardCount"
         :key="index"
-        class="col-12 md:col-6 xl:col-4 mb-6"
-        :class="{
-          'xl:hidden': props.rowCount % 2 && index === props.rowCount - 1,
-        }"
+        class="col-12 sm:col-6 lg:col-4 mb-6"
       >
         <skeleton class="card" width="100%" />
-        <!-- height="527px" -->
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-$detailsHeight: 250px;
+$detailsHeight: 277px;
 $cardHeight: 524px;
 .recent-episodes-skeleton > .grid {
   margin: 0 -24px;
@@ -59,16 +51,16 @@ $cardHeight: 524px;
 }
 .recent-episodes-skeleton .card {
   @include media('<md') {
-    height: calc($detailsHeight + 67.2vw) !important;
+    height: calc($detailsHeight + 31vw) !important;
   }
   @include media('<sm') {
-    height: calc($detailsHeight + 65.5vw) !important;
+    height: calc($detailsHeight + 60vw) !important;
   }
-  @include media('>md') {
-    height: calc($detailsHeight + 33.85vw) !important;
+  @include media('>=md') {
+    height: calc($detailsHeight + 30vw) !important;
   }
-  @include media('>lg') {
-    height: calc($detailsHeight + 30.55vw) !important;
+  @include media('>=lg') {
+    height: calc($detailsHeight + 22vw) !important;
   }
   @include media('>xl') {
     height: $cardHeight !important;

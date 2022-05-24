@@ -35,6 +35,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
     <episodes
       class="mb-4"
       :row-count="4"
+      :rowsPerAd="2"
       :api="apiUrl"
       path="data.included"
       :paginate="true"

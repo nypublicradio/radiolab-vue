@@ -61,10 +61,13 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
           </div>
         </div>
       </section>
-      <episodes-bucket
+      <episodes
         class="mt-6 mb-4"
+        :row-count="100"
+        :rowsPerAd="2"
         :api="apiUrl"
         path="data.data.attributes.bucket-items"
+        bucket
       />
     </main>
     <radiolab-footer />
