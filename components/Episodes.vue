@@ -1,11 +1,12 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
-import { onBeforeMount, ref, computed, watch } from 'vue'
+import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
 import {
   formatDate,
   bpSizes,
   traverseObjectByString,
 } from '~/utilities/helpers'
+import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
@@ -55,6 +56,18 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  showLastAd: {
+    type: Boolean,
+    default: false,
+  },
+  bucket: {
+    type: Boolean,
+    default: false,
+  },
+  bucketLimit: {
+    type: Number,
+    default: null,
+  },
 })
 
 const dataLoaded = ref(false)
@@ -62,13 +75,28 @@ const episodes = ref([])
 const totalCount = ref(null)
 const startPageNumber = ref(props.startPage)
 const axiosSuccessful = ref(true)
-const cardsPerRow = 3
+const cardsPerRow = ref(3) // based on grid col-4 on (>= lg breakpoint)
 
 const rowsPerAdArr = []
-for (let i = 1; i < props.rowCount; i++) {
-  rowsPerAdArr.push(i * props.rowsPerAd * cardsPerRow)
-}
 
+onMounted(() => {
+  let currentCardsPerRow = cardsPerRow.value
+  // when less than breakpoint.lg, we are showing 2 cards per row, update currentCardsPerRow var
+  if (window.innerWidth <= breakpoint.lg) {
+    currentCardsPerRow = 2
+  }
+  // get the total number of ads that will show in the current layout
+  const numOfAds =
+    cardCountCalc.value / props.rowsPerAd / currentCardsPerRow +
+    (props.showLastAd ? 1 : 0)
+  // loop through the number of ads and push number where the add will populate to the rowsPerAdArr
+  for (let i = 1; i < numOfAds; i++) {
+    const adPoint = i * props.rowsPerAd * currentCardsPerRow
+    rowsPerAdArr.push(adPoint)
+  }
+})
+
+// checks if the index is where we should populate an ad
 const insertAD = (index) => {
   return rowsPerAdArr.includes(index)
 }
@@ -77,9 +105,20 @@ const insertAD = (index) => {
 func to determin how many cards to show
 */
 const cardCountCalc = computed(() => {
-  return props.paginate
-    ? props.rowCount * cardsPerRow // (3 cards per row)
-    : props.startCount + props.rowCount * cardsPerRow
+  return props.startCount
+    ? props.startCount + props.rowCount * cardsPerRow.value
+    : props.rowCount * cardsPerRow.value // (3 cards per )
+})
+
+// handle the episodes array based on startCount and buckeltlimit props
+const getEpisodes = computed(() => {
+  // if using startCount, we need to offset the episodes array
+  return props.startCount
+    ? episodes.value.slice(props.startCount, cardCountCalc.value)
+    : // if limiting the bucket, we need to limit the episodes array
+    props.bucketLimit
+    ? episodes.value.slice(0, props.bucketLimit)
+    : episodes.value
 })
 
 onBeforeMount(async () => {
@@ -89,11 +128,17 @@ onBeforeMount(async () => {
   }
 
   await axios
-    .get(`${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`)
+    .get(
+      props.bucket
+        ? props.api
+        : `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
+    )
+
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
       totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
+      console.log('episodes', episodes.value)
     })
     .catch(function () {
       axiosSuccessful.value = false
@@ -131,7 +176,7 @@ async function onPage(event) {
 <template>
   <div v-if="axiosSuccessful">
     <section>
-      <div class="content lg:px-8">
+      <div class="content xl:px-8">
         <div class="grid">
           <div class="col">
             <div v-if="dataLoaded" class="recent-episodes">
@@ -148,12 +193,8 @@ async function onPage(event) {
               </div>
 
               <div class="grid justify-content-center">
-                <template
-                  v-for="(episode, index) in props.paginate
-                    ? episodes
-                    : episodes.slice(props.startCount, cardCountCalc)"
-                >
-                  <div class="col-12 md:col-6 xl:col-4 mb-6">
+                <template v-for="(episode, index) in getEpisodes">
+                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
                     <client-only>
                       <v-card
                         :image="
@@ -194,7 +235,7 @@ async function onPage(event) {
             </div>
             <episodes-skeleton
               v-else
-              :card-count="cardCountCalc"
+              :card-count="cardCountCalc - startCount"
               :header="props.header"
               :button-text="props.buttonText"
               :paginate="props.paginate"

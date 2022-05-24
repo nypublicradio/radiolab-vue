@@ -70,7 +70,14 @@ onBeforeMount(async () => {
         <skeleton-general-content v-else />
       </div>
     </section>
-    <episodes-bucket class="mb-4" :api="apiUrl" path="data.included" />
+    <episodes
+      class="mb-4"
+      :row-count="100"
+      :rowsPerAd="2"
+      :api="apiUrl"
+      path="data.included"
+      bucket
+    />
     <div class="htlad-radiolab_leaderboard_2 mb-8" />
   </div>
 </template>
