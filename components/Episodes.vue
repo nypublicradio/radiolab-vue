@@ -1,11 +1,7 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
 import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
-import {
-  formatDate,
-  bpSizes,
-  traverseObjectByString,
-} from '~/utilities/helpers'
+import { formatDate, traverseObjectByString } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
@@ -192,12 +188,11 @@ async function onPage(event) {
               </div>
 
               <div class="grid justify-content-center">
-                <template v-for="(episode, index) in getEpisodes">
-                  <div
-                    v-if="episode"
-                    :key="`card${index}`"
-                    class="col-12 sm:col-6 lg:col-4 mb-6"
-                  >
+                <template
+                  v-for="(episode, index) in getEpisodes"
+                  :key="`card${index}`"
+                >
+                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
                     <client-only>
                       <v-card
                         :image="
@@ -228,7 +223,6 @@ async function onPage(event) {
                     </client-only>
                   </div>
                   <div
-                    :key="index"
                     v-if="props.rowCount > 1 && insertAD(index + 1)"
                     class="htlad-radiolab_in-content_1 col-fixed mb-6"
                     style="width: 100%"

@@ -2,21 +2,21 @@
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
+const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular-episodes/`
 </script>
 
 <template>
   <div>
     <Html lang="en">
       <Head>
-        <Title>Episode Archive | Radiolab | WNYC Studios</Title>
+        <Title>Popular Episodes | Radiolab | WNYC Studios</Title>
         <Meta
           name="og:title"
-          content="Episode Archive | Radiolab | WNYC Studios"
+          content="Popular Episodes | Radiolab | WNYC Studios"
         />
         <Meta
           name="twitter:title"
-          content="Episode Archive | Radiolab | WNYC Studios"
+          content="Popular Episodes | Radiolab | WNYC Studios"
         />
       </Head>
     </Html>
@@ -25,7 +25,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
         <div class="grid">
           <div class="col">
             <div class="episode-archive">
-              <h1 class="h2">Episode Archive</h1>
+              <h1 class="h2">Popular Episodes</h1>
             </div>
           </div>
         </div>
@@ -33,11 +33,11 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
     </section>
     <episodes
       class="mb-4"
-      :row-count="4"
+      :row-count="100"
       :rowsPerAd="2"
-      :api="apiUrl"
-      path="data.included"
-      :paginate="true"
+      :api="popularEpisodesApiUrl"
+      path="data.data.attributes.bucket-items"
+      bucket
     />
     <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>

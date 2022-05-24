@@ -4,7 +4,6 @@ import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
-import { bpSizes } from '~/utilities/helpers.js'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
@@ -15,7 +14,6 @@ onBeforeMount(async () => {
   await axios
     .get(
       `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
-      // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
     )
     .then((response) => {
       episodes.value = response.data.included
@@ -33,12 +31,6 @@ onBeforeMount(async () => {
             <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">
               <div class="col-12 md:col-7 p-0">
                 <client-only>
-                  <!-- :image="
-                      episodes[0].attributes['image-main'].template.replace(
-                        '%s/%s/%s/%s',
-                        '%width%/%height%/c/%quality%'
-                      )
-                    " -->
                   <v-image-with-caption
                     :image="
                       episodes[0].attributes['image-main'].template.replace(
