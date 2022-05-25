@@ -51,7 +51,7 @@ export const options = [
         ]
     },
     {
-        label: 'Entire Podscast Archive',
+        label: 'Entire Podcast Archive',
         showLabelInMobile: true,
         tiers: [
             {
