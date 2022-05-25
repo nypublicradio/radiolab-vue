@@ -4,9 +4,12 @@ import { onMounted, ref } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 
 const config = useRuntimeConfig()
 const episode = ref([])
+const imageCredits = ref(null)
+const imageCreditsLink = ref(null)
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
@@ -18,6 +21,8 @@ const {
 } = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
 
 episode.value = page.value.data.attributes
+imageCredits.value = episode.value['image-main']['credits-name']
+imageCreditsLink.value = episode.value['image-main']['credits-url']
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
@@ -108,6 +113,18 @@ useHead({
                         @toggleTranscript="onToggleTranscript"
                       />
                     </client-only>
+                    <div
+                      v-if="imageCredits"
+                      class="mt-2 md:mt-3 footer type-body"
+                    >
+                      Image credits:
+                      <v-flexible-link
+                        class="inline"
+                        :class="{ raw: !imageCreditsLink }"
+                        :to="imageCreditsLink"
+                        >{{ imageCredits }}
+                      </v-flexible-link>
+                    </div>
                   </div>
                 </div>
                 <episode-head-skeleton v-else />
@@ -198,6 +215,8 @@ useHead({
         width: 90px;
         height: 90px;
         border-radius: 20px;
+        min-width: 90px;
+        min-height: 90px;
       }
     }
 

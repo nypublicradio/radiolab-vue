@@ -178,6 +178,7 @@ const checkEpisodeMatch = computed(() => {
         bottom: 0;
         margin: auto;
         opacity: 0.3;
+        max-width: 30px;
       }
     }
   }
