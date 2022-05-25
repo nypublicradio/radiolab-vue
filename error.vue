@@ -23,7 +23,9 @@ useHead({
 duplicated scroll tracking from the default.vue layout because this error page can not use the default layout
 */
 const atTop = ref(true)
-
+/*
+scroll event func that is used for the menu knowing when it is at the very top and for viewport GA tracking
+*/
 const onScroll = (e) => {
   atTop.value = window.scrollY > 0 ? false : true
 }
