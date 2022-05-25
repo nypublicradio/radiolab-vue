@@ -19,6 +19,26 @@ useHead({
   },
 })
 
+/*
+duplicated scroll tracking from the default.vue layout because this error page can not use the default layout
+*/
+const atTop = ref(true)
+
+const onScroll = (e) => {
+  atTop.value = window.scrollY > 0 ? false : true
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
+/*
+duplicated scroll tracking from the default.vue layout because this error page can not use the default layout
+*/
+
 const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
 </script>
