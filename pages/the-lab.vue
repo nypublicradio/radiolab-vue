@@ -187,7 +187,11 @@ useHead({
             </div>
 
             <p class="mt-4">
-              You may also make an online contribution to WNYC Studios directly.
+              You may also make an online contribution to
+              <v-flexible-link to="https://pledge.wnyc.org/support/studios">
+                WNYC Studios
+              </v-flexible-link>
+              directly.
             </p>
           </div>
         </div>
