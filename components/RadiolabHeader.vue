@@ -1,26 +1,35 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 const menuItems = ref(menuItemsImport)
 const isMenuVisible = ref(false)
+let pMenu = null
+let hamburger = null
+
+// if the menu is mobile... and expanded, then the user resizes the window larger or equal to breakpoint.lg(992px), it will click the hamburger button to collapse the menu
+const onResize = (e) => {
+  if (!pMenu) {
+    pMenu = document.getElementById('p-menu')
+    hamburger = pMenu.getElementsByClassName('p-menubar-button')[0]
+  }
+  if (
+    window.innerWidth >= breakpoint.lg &&
+    pMenu?.classList?.contains('p-menubar-mobile-active')
+  ) {
+    hamburger.click()
+  }
+}
 
 onMounted(() => {
-  // if the menu is mobile... and expanded, then the user resizes the window larger or equal to breakpoint.lg(992px), it will remove the p-menubar-mobile-active class
-  // header is never unmounted to I don't need to clean up this event on unmount
-  const pMenu = document.getElementById('p-menu')
-  window.addEventListener('resize', () => {
-    if (
-      window.innerWidth >= breakpoint.lg &&
-      pMenu?.classList?.contains('p-menubar-mobile-active')
-    ) {
-      pMenu?.classList?.remove('p-menubar-mobile-active')
-    }
-  })
+  window.addEventListener('resize', onResize)
 
   isMenuVisible.value = true
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', onResize)
 })
 </script>
 

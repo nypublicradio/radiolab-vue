@@ -26,7 +26,11 @@ workflows:
     jobs:
       - build:
           <<: *filter_all
-      - test:
+      - test_js:
+          <<: *filter_all
+          requires:
+            - build
+      - test_nginx:
           <<: *filter_all
           requires:
             - build
@@ -36,14 +40,16 @@ workflows:
           <<: *filter_demo
           tag: demo
           requires:
-            - test
+            - test_js
+            - test_nginx
       - deploy:
           name: Deploy (prod)
           context: "AWS Deploy"
           env: prod
           <<: *filter_prod
           requires:
-            - test
+            - test_js
+            - test_nginx
 
 jobs: 
   # Note (allie): This is its own job because I don't 
@@ -60,7 +66,7 @@ jobs:
             npm ci
             npm run build
 
-  test:
+  test_js:
     executor: default
     steps:
       - checkout
@@ -69,7 +75,21 @@ jobs:
           name: Run unit tests
           command: |
             npm ci
-            npm run test      
+            npm run test     
+
+  test_nginx:
+    docker:
+      - image: nginx
+    steps:
+      - checkout
+      - setup_npmrc
+      - run:
+          command: |
+            apt-get update && \
+            apt-get install -y nginx-extras
+            mkdir -p /app/nginx 
+            cp ./nginx/*.conf /etc/nginx/
+            nginx -t
 
   deploy:
     docker: 
@@ -102,11 +122,11 @@ jobs:
             
             nyprsetuptools DockerDeploy \
               --fargate \
-              --cpu=256 \
-              --memory-reservation=512 \
+              --cpu=512 \
+              --memory-reservation=1024 \
               --ecr-repository=radiolab-vue \
               --ecs-cluster=radiolab-vue \
-              --ports=3000 \
+              --ports=80 \
               --execution-role=$ROLE \
               --task-role=$ROLE \
               --environment=$ENV \

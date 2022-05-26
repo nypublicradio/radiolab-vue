@@ -7,21 +7,21 @@ export const tiers = [
         name: 'Vipers',
         icon: '/the-lab/viper.svg',
         cost: '5',
-        link: null,
+        link: 'https://members.radiolab.org/join-vipers',
     },
     {
         index: 1,
         name: 'Butterflies',
         icon: '/the-lab/butterfly.svg',
         cost: '10',
-        link: null,
+        link: 'https://members.radiolab.org/join-butterflies',
     },
     {
         index: 2,
         name: 'Mantis Shrimp',
         icon: '/the-lab/shrimp.svg',
         cost: '20',
-        link: null,
+        link: 'https://members.radiolab.org/join-mantis-shrimp',
     }
 
 ]
@@ -51,7 +51,7 @@ export const options = [
         ]
     },
     {
-        label: 'Entire Podscast Archive',
+        label: 'Entire Podcast Archive',
         showLabelInMobile: true,
         tiers: [
             {
@@ -347,7 +347,7 @@ export const options = [
                 text: null,
                 image: null,
                 buttonText: 'Join Now',
-                buttonLink: 'https://members.radiolab.org/',
+                buttonLink: 'https://members.radiolab.org/join-vipers',
             },
             {
                 tier: 'Butterflies',
@@ -355,7 +355,7 @@ export const options = [
                 text: null,
                 image: null,
                 buttonText: 'Join Now',
-                buttonLink: 'https://members.radiolab.org/',
+                buttonLink: 'https://members.radiolab.org/join-butterflies',
 
             },
             {
@@ -364,7 +364,7 @@ export const options = [
                 text: null,
                 image: null,
                 buttonText: 'Join Now',
-                buttonLink: 'https://members.radiolab.org/',
+                buttonLink: 'https://members.radiolab.org/join-mantis-shrimp',
 
             },
         ]

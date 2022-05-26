@@ -98,6 +98,7 @@ export default [
       {
         label: 'Swag Lab',
         url: 'https://shop.radiolab.org',
+        target: '_blank',
         command: () => {
           gaEvent('Click Tracking', 'Navigation', 'For Listeners: Swag Lab')
         }
@@ -123,7 +124,7 @@ export default [
   {
     label: 'FAQs',
     visible: false,
-    to: 'https://wnycstudios.zendesk.com/hc/en-us/categories/115002261607-FAQ-s',
+    to: 'https://nypublicradio.force.com/wnyc/s/programming-help-and-feedback',
     command: () => {
       gaEvent('Click Tracking', 'Navigation', 'FAQs')
     }

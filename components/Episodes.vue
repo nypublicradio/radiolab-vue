@@ -1,7 +1,8 @@
 <script setup>
 import gaEvent from '../utilities/ga.js'
-import { onBeforeMount, ref, computed, watch } from 'vue'
-import { formatDate } from '~/utilities/helpers'
+import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
+import { formatDate, traverseObjectByString } from '~/utilities/helpers'
+import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
@@ -35,6 +36,10 @@ const props = defineProps({
     type: Number,
     default: 1,
   },
+  rowsPerAd: {
+    type: Number,
+    default: 1,
+  },
   startCount: {
     type: Number,
     default: 0,
@@ -47,9 +52,17 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  showLastAd: {
+    type: Boolean,
+    default: false,
+  },
   bucket: {
     type: Boolean,
     default: false,
+  },
+  bucketLimit: {
+    type: Number,
+    default: null,
   },
 })
 
@@ -58,30 +71,51 @@ const episodes = ref([])
 const totalCount = ref(null)
 const startPageNumber = ref(props.startPage)
 const axiosSuccessful = ref(true)
+const cardsPerRow = ref(3) // based on grid col-4 on (>= lg breakpoint)
+
+const rowsPerAdArr = []
+
+onMounted(() => {
+  let currentCardsPerRow = cardsPerRow.value
+  // when less than breakpoint.lg, we are showing 2 cards per row, update currentCardsPerRow var
+  if (window.innerWidth <= breakpoint.lg) {
+    currentCardsPerRow = 2
+  }
+  // get the total number of ads that will show in the current layout
+  const numOfAds =
+    cardCountCalc.value / props.rowsPerAd / currentCardsPerRow +
+    (props.showLastAd ? 1 : 0)
+  // loop through the number of ads and push number where the add will populate to the rowsPerAdArr
+  for (let i = 1; i < numOfAds; i++) {
+    const adPoint = i * props.rowsPerAd * currentCardsPerRow
+    rowsPerAdArr.push(adPoint)
+  }
+})
+
+// checks if the index is where we should populate an ad
+const insertAD = (index) => {
+  return rowsPerAdArr.includes(index)
+}
 
 /*
 func to determin how many cards to show
 */
 const cardCountCalc = computed(() => {
-  return props.paginate
-    ? props.rowCount * 3 // (3 cards per row)
-    : props.startCount + (props.rowCount * 3 + (props.rowCount % 2 ? 1 : 0))
+  return props.startCount
+    ? props.startCount + props.rowCount * cardsPerRow.value
+    : props.rowCount * cardsPerRow.value // (3 cards per )
 })
 
-/*
-takes the prop path and returns the desired data from the response
-*/
-const traverseObjectByString = (pathString, data) => {
-  let tempData = data
-  const pathParts = pathString.split('.')
-  pathParts.forEach((key) => {
-    tempData = tempData[key]
-    if (tempData === undefined || tempData === null) {
-      throw new Error(`path prop wrong format`)
-    }
-  })
-  return tempData
-}
+// handle the episodes array based on startCount and buckeltlimit props
+const getEpisodes = computed(() => {
+  // if using startCount, we need to offset the episodes array
+  return props.startCount
+    ? episodes.value.slice(props.startCount, cardCountCalc.value)
+    : // if limiting the bucket, we need to limit the episodes array
+    props.bucketLimit
+    ? episodes.value.slice(0, props.bucketLimit)
+    : episodes.value
+})
 
 onBeforeMount(async () => {
   // if the url query page has a value, set the startPageNumber to that value
@@ -91,10 +125,11 @@ onBeforeMount(async () => {
 
   await axios
     .get(
-      !props.bucket
-        ? `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
-        : props.api
+      props.bucket
+        ? props.api
+        : `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
     )
+
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
       totalCount.value = response.data.data.attributes['total-count']
@@ -136,7 +171,7 @@ async function onPage(event) {
 <template>
   <div v-if="axiosSuccessful">
     <section>
-      <div class="content lg:px-8">
+      <div class="content xl:px-8">
         <div class="grid">
           <div class="col">
             <div v-if="dataLoaded" class="recent-episodes">
@@ -145,94 +180,59 @@ async function onPage(event) {
                 class="col flex justify-content-between align-items-center mb-3"
               >
                 <h3 v-if="props.header">{{ props.header }}</h3>
-                <v-flexible-link v-if="props.buttonText" raw to="/episodes">
+                <v-flexible-link v-if="props.buttonText" raw :to="buttonLink">
                   <Button class="p-button-rounded p-button-sm">
                     {{ props.buttonText }}
                   </Button>
                 </v-flexible-link>
               </div>
-              <div class="grid">
+
+              <div class="grid justify-content-center">
                 <template
-                  v-for="(episode, index) in props.paginate
-                    ? episodes
-                    : episodes.slice(props.startCount, cardCountCalc)"
+                  v-for="(episode, index) in getEpisodes"
+                  :key="`card${index}`"
                 >
-                  <div
-                    :key="index"
-                    v-if="index < 6"
-                    class="col-12 md:col-6 xl:col-4 mb-6"
-                    :class="{
-                      'xl:hidden':
-                        !props.paginate &&
-                        rowCount % 2 &&
-                        index === episodes.length - 1 - props.startCount,
-                    }"
-                  >
-                    <v-card
-                      :image="
-                        episode.attributes['image-main'].template.replace(
-                          '%s/%s/%s/%s',
-                          '%width%/%height%/c/%quality%'
-                        )
-                      "
-                      :alt="episode.attributes['image-main']['alt-text']"
-                      :title="episode.attributes.title"
-                      :titleLink="`/episodes/${episode.attributes.slug}`"
-                      :eyebrow="formatDate(episode.attributes['publish-at'])"
-                      :blurb="episode.attributes.tease"
-                      :height="225"
-                      :max-width="episode.attributes['image-main'].w"
-                      :max-height="episode.attributes['image-main'].h"
-                      responsive
-                      :ratio="[4, 3]"
-                      bp="max"
-                      class="radiolab-card"
-                    >
-                      <div class="divider"></div>
-                      <play-selector :episode="episode.attributes" />
-                    </v-card>
+                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
+                    <client-only>
+                      <v-card
+                        :image="
+                          episode.attributes['image-main'].template.replace(
+                            '%s/%s/%s/%s',
+                            '%width%/%height%/c/%quality%'
+                          )
+                        "
+                        :width="320"
+                        :height="240"
+                        :alt="episode.attributes['image-main']['alt-text']"
+                        :title="episode.attributes.title"
+                        :titleLink="`/episodes/${episode.attributes.slug}`"
+                        :eyebrow="formatDate(episode.attributes['publish-at'])"
+                        :blurb="episode.attributes.tease"
+                        :max-width="episode.attributes['image-main'].w"
+                        :max-height="episode.attributes['image-main'].h"
+                        responsive
+                        :ratio="[3, 2]"
+                        :sizes="[2]"
+                        flat-quality
+                        bp="max"
+                        class="radiolab-card"
+                      >
+                        <div class="divider"></div>
+                        <play-selector :episode="episode.attributes" />
+                      </v-card>
+                    </client-only>
                   </div>
                   <div
-                    :key="index"
-                    v-if="index === 5"
+                    v-if="props.rowCount > 1 && insertAD(index + 1)"
                     class="htlad-radiolab_in-content_1 col-fixed mb-6"
                     style="width: 100%"
                   />
-                  <div
-                    :key="index"
-                    v-if="index > 5"
-                    class="col-12 md:col-6 xl:col-4 mb-6"
-                  >
-                    <v-card
-                      :image="
-                        episode.attributes['image-main'].template.replace(
-                          '%s/%s/%s/%s',
-                          '%width%/%height%/c/%quality%'
-                        )
-                      "
-                      :alt="episode.attributes['image-main']['alt-text']"
-                      :title="episode.attributes.title"
-                      :titleLink="`/episodes/${episode.attributes.slug}`"
-                      :eyebrow="formatDate(episode.attributes['publish-at'])"
-                      :blurb="episode.attributes.tease"
-                      :height="225"
-                      :max-width="episode.attributes['image-main'].w"
-                      :max-height="episode.attributes['image-main'].h"
-                      responsive
-                      :ratio="[4, 3]"
-                      bp="max"
-                      class="radiolab-card"
-                    >
-                      <div class="divider"></div>
-                      <play-selector :episode="episode.attributes" />
-                    </v-card>
-                  </div>
                 </template>
               </div>
             </div>
             <episodes-skeleton
               v-else
-              :row-count="cardCountCalc"
+              :card-count="cardCountCalc - startCount"
               :header="props.header"
               :button-text="props.buttonText"
               :paginate="props.paginate"

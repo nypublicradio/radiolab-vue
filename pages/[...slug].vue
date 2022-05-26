@@ -18,14 +18,11 @@ onBeforeMount(async () => {
       `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/${route.params.slug}/1?limit=1`
     )
     .then((response) => {
-      if (response.data.included.length < 1) {
-        router.push('/404')
-      }
       page.value = response.data.included[0].attributes
       dataLoaded.value = true
     })
-    .catch(() => {
-      router.push('/404')
+    .catch((error) => {
+      throwError(error)
     })
 })
 </script>
@@ -35,7 +32,7 @@ onBeforeMount(async () => {
     <section class="head-color yellow">
       <div class="content thin-content-width">
         <template v-if="dataLoaded">
-          <Html>
+          <Html lang="en">
             <Head>
               <Title>{{ page.title }} | Radiolab | WNYC Studios</Title>
               <Meta

@@ -14,7 +14,6 @@ onBeforeMount(async () => {
   await axios
     .get(
       `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
-      // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
     )
     .then((response) => {
       episodes.value = response.data.included
@@ -31,20 +30,25 @@ onBeforeMount(async () => {
           <div class="col">
             <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">
               <div class="col-12 md:col-7 p-0">
-                <v-image-with-caption
-                  :image="
-                    episodes[0].attributes['image-main'].template.replace(
-                      '%s/%s/%s/%s',
-                      '%width%/%height%/c/%quality%'
-                    )
-                  "
-                  :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
-                  :alt="episodes[0].attributes['image-main']['alt-text']"
-                  :max-width="episodes[0].attributes['image-main'].w"
-                  :max-height="episodes[0].attributes['image-main'].h"
-                  :ratio="[8, 6]"
-                  class="latest-episode-image"
-                />
+                <client-only>
+                  <v-image-with-caption
+                    :image="
+                      episodes[0].attributes['image-main'].template.replace(
+                        '%s/%s/%s/%s',
+                        '%width%/%height%/c/%quality%'
+                      )
+                    "
+                    :width="640"
+                    :height="480"
+                    :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
+                    :alt="episodes[0].attributes['image-main']['alt-text']"
+                    :max-width="episodes[0].attributes['image-main'].w"
+                    :max-height="episodes[0].attributes['image-main'].h"
+                    class="latest-episode-image"
+                    :ratio="[8, 6.2]"
+                    :sizes="[1]"
+                  />
+                </client-only>
               </div>
               <div
                 class="latest-episode-content flex flex-column justify-content-center col-12 md:col-5 p-4 lg:p-7"
@@ -55,17 +59,19 @@ onBeforeMount(async () => {
                     :to="`/episodes/${episodes[0].attributes.slug}`"
                     class="latest-episode-title inline-block"
                   >
-                    <h2
-                      class="mb-2 lg:mb-3 truncate t2lines"
+                    <div
+                      class="pb-1 mb-2 lg:mb-3 h2 truncate t2lines"
                       v-html="episodes[0].attributes.title"
-                    ></h2>
+                    ></div>
                   </v-flexible-link>
-                  <p
+                  <div
                     v-html="episodes[0].attributes.tease"
-                    class="latest-episode-tease mb-5 truncate t3lines"
-                  />
+                    class="latest-episode-tease mb-5 html-formatting type-body truncate t3lines"
+                  ></div>
                   <div class="block md:hidden divider"></div>
-                  <play-selector :episode="episodes[0].attributes" />
+                  <client-only>
+                    <play-selector :episode="episodes[0].attributes" />
+                  </client-only>
                 </div>
               </div>
             </div>
@@ -88,7 +94,7 @@ onBeforeMount(async () => {
   text-decoration: none;
 
   @include media('<lg') {
-    h2 {
+    .h2 {
       font-size: var(--font-size-12);
       line-height: var(--line-height-12);
     }

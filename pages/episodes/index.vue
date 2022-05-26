@@ -17,12 +17,11 @@ const onSearch = (event) => {
 
 const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
-// const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Episode Archive | Radiolab | WNYC Studios</Title>
         <Meta
@@ -52,6 +51,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
     <episodes
       class="mb-4"
       :row-count="4"
+      :rowsPerAd="2"
       :api="apiUrl"
       path="data.included"
       :paginate="true"

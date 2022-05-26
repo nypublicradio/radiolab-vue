@@ -17,7 +17,7 @@ useHead({
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>The Lab | Radiolab | WNYC Studios</Title>
         <Meta name="og:title" content="The Lab | Radiolab | WNYC Studios" />
@@ -40,7 +40,7 @@ useHead({
         Join us in our investigation into this strange world.
       </h1>
       <div class="flex mt-5" style="gap: 1rem">
-        <v-flexible-link to="/the-lab" raw>
+        <v-flexible-link to="https://members.radiolab.org" raw>
           <Button
             class="p-button-rounded"
             label="Become a member"
@@ -187,7 +187,14 @@ useHead({
             </div>
 
             <p class="mt-4">
-              You may also make an online contribution to WNYC Studios directly.
+              You may also make an online contribution to
+              <v-flexible-link
+                to="https://pledge.wnyc.org/support/studios"
+                target="_blank"
+              >
+                WNYC Studios
+              </v-flexible-link>
+              directly.
             </p>
           </div>
         </div>

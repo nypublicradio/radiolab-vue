@@ -8,7 +8,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab-kids/recent_stor
 
 <template>
   <div>
-    <Html>
+    <Html lang="en">
       <Head>
         <Title>Radiolab for Kids | Radiolab | WNYC Studios</Title>
         <Meta

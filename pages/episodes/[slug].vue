@@ -1,61 +1,40 @@
 <script setup>
 import gaEvent from '~/utilities/ga.js'
-import { onBeforeMount, computed, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
-import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
-import axios from 'axios'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
-import EpisodeTools from '~/components/EpisodeTools.vue'
 import { useRuntimeConfig } from '#app'
-
-useHead({
-  meta: [
-    {
-      name: 'theme-color',
-      content: '#f4be2e',
-    },
-  ],
-  bodyAttrs: {
-    class: 'has-head-color',
-  },
-})
+import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 
 const config = useRuntimeConfig()
-const dataLoaded = ref(false)
 const episode = ref([])
+const imageCredits = ref(null)
+const imageCreditsLink = ref(null)
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
-const router = useRouter()
 
-onBeforeMount(async () => {
-  await axios
-    .get(
-      `${config.API_URL}/api/v3/story/${route.params.slug}/`
-      // `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/story/${route.params.slug}/`
-    )
-    .then((response) => {
-      episode.value = response.data.data.attributes
-      dataLoaded.value = true
-    })
-    .catch(() => {
-      router.push('/404')
-    })
-})
+const {
+  data: page,
+  pending,
+  error,
+} = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
+
+episode.value = page.value.data.attributes
+imageCredits.value = episode.value['image-main']['credits-name']
+imageCreditsLink.value = episode.value['image-main']['credits-url']
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
-  if(route.query.transcript) onToggleTranscript()
-})
-
-const isMobile = computed(() => {
-  return window.innerWidth < breakpoint['md']
+  if (route.query.transcript) onToggleTranscript()
 })
 
 // copy transcript link to clipboard
 const copyTranscriptLink = () => {
   copyToClipBoard(
-    `${window.location.href}${route.query.transcript ? '': '?transcript=true'}`,
+    `${window.location.href}${
+      route.query.transcript ? '' : '?transcript=true'
+    }`,
     'Transcript link copied to clipboard'
   )
   gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
@@ -65,97 +44,106 @@ const copyTranscriptLink = () => {
 const onToggleTranscript = () => {
   showTranscriptSidePanel.value = true
 }
+
+useHead({
+  title: episode.value?.title,
+  meta: [
+    {
+      name: 'theme-color',
+      content: '#f4be2e',
+    },
+    { name: 'og:type', content: 'article' },
+    { name: 'og:title', content: episode.value?.title },
+    { name: 'description', content: episode.value?.tease },
+    { name: 'og:description', content: episode.value?.tease },
+    { name: 'og:image', content: episode.value?.['image-main']?.url },
+    { name: 'og:image:width', content: episode.value?.['image-main']?.w },
+    { name: 'og:image:height', content: episode.value?.['image-main']?.h },
+    { name: 'twitter:title', content: episode.value?.title },
+    { name: 'twitter:description', content: episode?.value.tease },
+    { name: 'twitter:image', content: episode.value?.['image-main']?.url },
+  ],
+  bodyAttrs: {
+    class: 'has-head-color',
+  },
+})
 </script>
 
 <template>
   <div>
     <section class="head-color yellow">
-      <div class="content p-3 md:p-5 lg:p-6">
+      <div class="content">
         <div class="grid">
           <div class="col-12 xl:col-8">
             <div class="grid">
               <div class="col">
-                <div v-if="dataLoaded" class="episode flex">
-                  <Html>
-                    <Head>
-                      <Title
-                        >{{ episode.title }} | Radiolab | WNYC Studios</Title
-                      >
-                      <Meta name="description" :content="episode.tease" />
-                      <Meta
-                        name="og:title"
-                        :content="`${episode.title} | Radiolab | WNYC Studios`"
-                      />
-                      <Meta name="og:description" :content="episode.tease" />
-                      <Meta name="og:type" content="article" />
-                      <Meta
-                        name="og:image"
-                        :content="episode['image-main'].url"
-                      />
-                      <Meta
-                        name="og:image:width"
-                        :content="`${episode['image-main'].w}`"
-                      />
-                      <Meta
-                        name="og:image:height"
-                        :content="`${episode['image-main'].h}`"
-                      />
-                      <Meta
-                        name="twitter:title"
-                        :content="`${episode.title} | Radiolab | WNYC Studios`"
-                      />
-                      <Meta
-                        name="twitter:description"
-                        :content="episode.tease"
-                      />
-                      <Meta
-                        name="twitter:image"
-                        :content="episode['image-main'].url"
-                      />
-                    </Head>
-                  </Html>
-                  <v-image-with-caption
-                    :image="
-                      episode['image-main'].template.replace(
-                        '%s/%s/%s/%s',
-                        '%width%/%height%/c/%quality%'
-                      )
-                    "
-                    :alt="episode['image-main']['alt-text']"
-                    :width="isMobile ? 90 : 200"
-                    :height="isMobile ? 90 : 200"
-                    :max-width="episode['image-main'].w"
-                    :max-height="episode['image-main'].h"
-                    :ratio="[1, 1]"
-                    class="episode-image"
-                  />
+                <div v-if="!pending" class="episode flex">
+                  <client-only>
+                    <v-image-with-caption
+                      v-if="episode['image-main']"
+                      :image="
+                        episode['image-main'].template.replace(
+                          '%s/%s/%s/%s',
+                          '%width%/%height%/c/%quality%'
+                        )
+                      "
+                      :width="200"
+                      :height="200"
+                      :alt="episode['image-main']['alt-text']"
+                      :ratio="[1, 1]"
+                      :sizes="[1]"
+                      flat-quality
+                      :max-width="episode['image-main'].w"
+                      :max-height="episode['image-main'].h"
+                      class="episode-image"
+                    />
+                  </client-only>
                   <div class="episode-content">
-                    <p class="date mb-1">
+                    <p v-if="episode['publish-at']" class="date mb-1">
                       {{ formatDate(episode['publish-at']) }}
                     </p>
-                    <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
-                    <episode-tools
-                      class="hidden md:block"
-                      :episode="episode"
-                      @toggleTranscript="onToggleTranscript"
-                    />
+                    <div
+                      class="h2 title mb-0 md:mb-4"
+                      v-html="episode.title"
+                    ></div>
+                    <client-only>
+                      <episode-tools
+                        class="hidden md:block"
+                        :episode="episode"
+                        @toggleTranscript="onToggleTranscript"
+                      />
+                    </client-only>
+                    <div
+                      v-if="imageCredits"
+                      class="mt-2 md:mt-3 footer type-body"
+                    >
+                      Image credits:
+                      <v-flexible-link
+                        class="inline"
+                        :class="{ raw: !imageCreditsLink }"
+                        :to="imageCreditsLink"
+                        >{{ imageCredits }}
+                      </v-flexible-link>
+                    </div>
                   </div>
                 </div>
                 <episode-head-skeleton v-else />
-                <episode-tools
-                  v-if="dataLoaded"
-                  class="mt-3 block md:hidden"
-                  :episode="episode"
-                  @toggleTranscript="onToggleTranscript"
-                />
-                <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
+                <client-only>
+                  <episode-tools
+                    v-if="!pending"
+                    class="mt-3 block md:hidden"
+                    :episode="episode"
+                    @toggleTranscript="onToggleTranscript"
+                  />
+                  <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
+                </client-only>
               </div>
             </div>
-            <p
-              v-if="dataLoaded"
+            <div
+              v-if="!pending"
               class="mt-5 html-formatting"
               v-html="episode.body"
-            />
+            ></div>
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 xl:col-3 xl:col-offset-1">
@@ -165,35 +153,39 @@ const onToggleTranscript = () => {
         </div>
       </div>
     </section>
-    <Sidebar
-      v-if="dataLoaded"
-      v-model:visible="showTranscriptSidePanel"
-      class="transcript-panel p-sidebar-lg"
-      :baseZIndex="1000"
-      position="right"
-    >
-      <div class="flex align-items-center mt-3">
-        <h5>Transcript</h5>
-        <Button
-          icon="pi pi-link"
-          class="p-button-sm p-button-rounded ml-1"
-          @click="copyTranscriptLink"
-          aria-label="copy transcript link"
-          title="Copy transcript link"
-        />
-      </div>
-      <Divider />
-      <div class="my-5">
-        <p class="date">{{ formatDate(episode['publish-at']) }}</p>
-        <h2 class="title mb-0 md:mb-4" v-html="episode.title" />
-      </div>
-      <Divider />
-      <div
-        v-if="!!episode['transcript']"
-        v-html="episode['transcript']"
-        class="transcript-body mt-2 html-formatting"
-      ></div>
-    </Sidebar>
+    <client-only>
+      <Sidebar
+        v-if="!pending"
+        v-model:visible="showTranscriptSidePanel"
+        class="transcript-panel p-sidebar-lg"
+        :baseZIndex="1000"
+        position="right"
+      >
+        <div class="flex align-items-center mt-3">
+          <h5>Transcript</h5>
+          <Button
+            icon="pi pi-link"
+            class="p-button-sm p-button-rounded ml-1"
+            @click="copyTranscriptLink"
+            aria-label="copy transcript link"
+            title="Copy transcript link"
+          />
+        </div>
+        <Divider />
+        <div class="my-5">
+          <p class="date" v-if="episode['publish-at']">
+            {{ formatDate(episode['publish-at']) }}
+          </p>
+          <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
+        </div>
+        <Divider />
+        <div
+          v-if="!!episode['transcript']"
+          v-html="episode['transcript']"
+          class="transcript-body mt-2 html-formatting"
+        ></div>
+      </Sidebar>
+    </client-only>
     <div
       v-html="episode['transcript']"
       style="visibility: hidden; height: 0; overflow: hidden"
@@ -223,6 +215,8 @@ const onToggleTranscript = () => {
         width: 90px;
         height: 90px;
         border-radius: 20px;
+        min-width: 90px;
+        min-height: 90px;
       }
     }
 
