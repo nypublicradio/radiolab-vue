@@ -15,7 +15,24 @@ export default defineNuxtConfig({
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ff3904' }
     ],
   },
-  //buildModules: [],
+  modules: [
+    [
+      "@nuxtjs/algolia",
+      {
+        apiKey: process.env['ALGOLIA_API_KEY'],
+        applicationId: process.env['ALGOLIA_APP_KEY'],
+        //lite: true,
+        //instantSearch: true,
+        // crawler: {
+        //   apiKey: '<YOUR_API_KEY>',
+        //   indexName: '<YOUR_INDEX_NAME>',
+        //   meta: ['title', 'description'],
+        //   include: () => true
+        // },
+        //recommend: true
+      },
+    ],
+  ],
   css: [
     '@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
     '@nypublicradio/nypr-design-system-vue3/src/assets/styles/flags.css',

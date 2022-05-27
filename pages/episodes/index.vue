@@ -1,22 +1,38 @@
 <script setup>
 import { useRuntimeConfig } from '#app'
 import TitleWithSearch from '~/components/TitleWithSearch.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
+const { result, search } = useSearch('Radiolab Demo') // pass your index name as param
 const searchTerm = ref('')
+const searchResults = ref(null)
 const isSearching = ref(false)
-const onSearch = (event) => {
+
+// fired when the user presses enter or searches in the input textfield whitch triggers a Algolia search and controls the loading icon spinner state
+const onSearch = async (event) => {
   console.log('search for = ', event)
   searchTerm.value = event
   isSearching.value = true
-
-  setTimeout(() => {
-    isSearching.value = false
-  }, 3000)
+  await search({ query: event })
+}
+// fired every time the search input is updated except with the enter key, this then detects if the field is empty, and to clear the results
+const onUpdate = (event) => {
+  if (event === '') {
+    searchResults.value = null
+  }
 }
 
 const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
+
+// watches for new search results and updates
+watch(result, (res) => {
+  console.log('results', res)
+  searchResults.value = res
+  setTimeout(() => {
+    isSearching.value = false
+  }, 500)
+})
 </script>
 
 <template>
@@ -43,6 +59,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
               placeholder="Search by topic, guest, host"
               :isSearching="isSearching"
               @search="onSearch"
+              @update="onUpdate"
             />
           </div>
         </div>
@@ -55,6 +72,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
       :api="apiUrl"
       path="data.included"
       :paginate="true"
+      :episodes-search-results="searchResults"
     />
     <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>

@@ -12,7 +12,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['search'])
+const emit = defineEmits(['search', 'update'])
 
 onMounted(() => {})
 
@@ -21,6 +21,12 @@ const searchValue = ref('')
 const onSearchEnter = (event) => {
   if (searchValue.value) {
     emit('search', searchValue.value)
+  }
+}
+
+const onInputUpdate = (event) => {
+  if (event.key !== 'Enter') {
+    emit('update', searchValue.value)
   }
 }
 </script>
@@ -34,6 +40,7 @@ const onSearchEnter = (event) => {
       v-model="searchValue"
       :placeholder="props.placeholder"
       @keyup.enter="onSearchEnter"
+      @keyup="onInputUpdate"
     />
   </div>
 </template>
@@ -83,6 +90,24 @@ const onSearchEnter = (event) => {
     &::-ms-input-placeholder {
       /* Microsoft Edge */
       color: var(--gray-200);
+    }
+    /* clears the ‘X’ from IE */
+    &[type='search']::-ms-clear {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    &[type='search']::-ms-reveal {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    /* clears the ‘X’ from Chrome */
+    &[type='search']::-webkit-search-decoration,
+    &[type='search']::-webkit-search-cancel-button,
+    &[type='search']::-webkit-search-results-button,
+    &[type='search']::-webkit-search-results-decoration {
+      display: none;
     }
   }
 }

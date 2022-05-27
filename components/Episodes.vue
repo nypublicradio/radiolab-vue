@@ -64,6 +64,10 @@ const props = defineProps({
     type: Number,
     default: null,
   },
+  episodesSearchResults: {
+    type: Object,
+    default: null,
+  },
 })
 
 const dataLoaded = ref(false)
@@ -186,7 +190,24 @@ async function onPage(event) {
                   </Button>
                 </v-flexible-link>
               </div>
-
+              <!-- search results section -->
+              <div v-if="episodesSearchResults?.hits?.length > 0">
+                <template
+                  v-for="(episode, index) in episodesSearchResults?.hits"
+                  :key="`searchCard${index}`"
+                >
+                  <div>
+                    <v-flexible-link :to="episode.Link"
+                      >{{ episode.Title }}
+                      {{ formatDate(episode['Publish Date']) }}</v-flexible-link
+                    >
+                  </div>
+                </template>
+              </div>
+              <div v-else v-if="episodesSearchResults?.hits">
+                no results, search again
+              </div>
+              <!-- search results section -->
               <div class="grid justify-content-center">
                 <template
                   v-for="(episode, index) in getEpisodes"

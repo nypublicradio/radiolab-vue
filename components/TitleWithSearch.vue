@@ -18,7 +18,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['search'])
+const emit = defineEmits(['search', 'update'])
 
 onMounted(() => {})
 </script>
@@ -30,6 +30,7 @@ onMounted(() => {})
       :placeholder="props.placeholder"
       :isSearching="isSearching"
       @search="emit('search', $event)"
+      @update="emit('update', $event)"
     />
   </div>
 </template>
