@@ -17,9 +17,6 @@ const onSearch = async (event) => {
   //await search({ query: event })
   await search({
     query: event,
-    page: 1,
-    // any searchParameters
-    // any requestOptions
   }).then(({ hits }) => {
     console.log('result   = ', result.value)
     searchResults.value = result.value
@@ -33,6 +30,20 @@ const onUpdate = (event) => {
   if (event === '') {
     searchResults.value = null
   }
+}
+
+// every time the uer paginates, the method is called to update the page number in the Algolia search
+const updatePaginationInfo = (event) => {
+  console.log('updatePaginationInfo = ', event)
+  isSearching.value = true
+  search({
+    query: searchTerm.value,
+    page: event.page,
+  }).then(({ hits }) => {
+    console.log('result paginate   = ', result.value)
+    searchResults.value = result.value
+    isSearching.value = false
+  })
 }
 
 const config = useRuntimeConfig()
@@ -85,6 +96,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
       :rowsPerAd="2"
       :episodes-search-results="searchResults"
       :paginate="true"
+      @seach-page-event="updatePaginationInfo"
     />
     <episodes
       v-else

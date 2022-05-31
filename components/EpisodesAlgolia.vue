@@ -54,6 +54,8 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['seachPageEvent'])
+
 const dataLoaded = ref(false)
 const episodes = ref([])
 const totalCount = ref(null)
@@ -118,7 +120,8 @@ async function onPage(event) {
   //event.first: Index of first record
   //event.rows: Number of rows to display in new page
   //event.pageCount: Total number of pages
-  dataLoaded.value = false
+  emit('seachPageEvent', event)
+  //dataLoaded.value = false
 }
 </script>
 
@@ -204,14 +207,17 @@ async function onPage(event) {
               :paginate="props.paginate"
             />
             <paginator
-              :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
               v-show="props.paginate && episodesSearchResults?.nbPages > 1"
               :total-records="episodesSearchResults?.nbHits"
               :pageLinkSize="3"
+              :rows="cardCountCalc"
               @page="onPage($event)"
             />
-            <!-- :rows="cardCountCalc"
-              :first="startPageNumber * cardCountCalc - 1" -->
+            <!-- 
+              :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
+              :rows="cardCountCalc"
+              :first="startPageNumber * cardCountCalc - 1" 
+            -->
           </div>
         </div>
       </div>
