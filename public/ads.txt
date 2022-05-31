@@ -1,0 +1,15 @@
+#Google AdExchange
+google.com, pub-6728307037029826, RESELLER, f08c47fec0942fa0
+
+#AppNexus
+appnexus.com, 2398, DIRECT, f5ab79cb980f11d1
+
+#Rubicon 
+rubiconproject.com, 13322, DIRECT, 0bfd66d529a55807
+
+#OpenX
+openx.com, 539087730, DIRECT, 6a698e2ec38604c6
+
+#Pubmatic
+pubmatic.com, 159885, DIRECT, 5d62403b186f2ace
+
