@@ -20,7 +20,7 @@ export default defineNuxtConfig({
       "@nuxtjs/algolia",
       {
         apiKey: process.env['ALGOLIA_API_KEY'],
-        applicationId: process.env['ALGOLIA_APP_KEY'],
+        applicationId: process.env['ALGOLIA_APP_ID'],
         //lite: true,
         //instantSearch: true,
         // crawler: {
@@ -72,6 +72,8 @@ export default defineNuxtConfig({
     ]
   },
   publicRuntimeConfig: {
+    ALGOLIA_APP_ID: process.env['ALGOLIA_APP_ID'],
+    ALGOLIA_API_KEY: process.env['ALGOLIA_API_KEY'],
     SENTRY_DSN: process.env['SENTRY_DSN'],
     ENV: process.env['ENV'],
     HTL_CSS: process.env['HTL_CSS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.css',

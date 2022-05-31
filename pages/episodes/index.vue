@@ -65,14 +65,22 @@ watch(result, (res) => {
         </div>
       </div>
     </section>
+    <episodes-algolia
+      v-if="searchResults"
+      class="mb-4"
+      :row-count="4"
+      :rowsPerAd="2"
+      :episodes-search-results="searchResults"
+      :paginate="true"
+    />
     <episodes
+      v-else
       class="mb-4"
       :row-count="4"
       :rowsPerAd="2"
       :api="apiUrl"
       path="data.included"
       :paginate="true"
-      :episodes-search-results="searchResults"
     />
     <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>

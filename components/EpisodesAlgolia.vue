@@ -4,8 +4,8 @@ import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
 import { formatDate, traverseObjectByString } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
 
 const router = useRouter()
@@ -21,14 +21,6 @@ const props = defineProps({
     default: null,
   },
   buttonLink: {
-    type: String,
-    default: null,
-  },
-  api: {
-    type: String,
-    default: null,
-  },
-  path: {
     type: String,
     default: null,
   },
@@ -56,12 +48,8 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  bucket: {
-    type: Boolean,
-    default: false,
-  },
-  bucketLimit: {
-    type: Number,
+  episodesSearchResults: {
+    type: Object,
     default: null,
   },
 })
@@ -70,7 +58,6 @@ const dataLoaded = ref(false)
 const episodes = ref([])
 const totalCount = ref(null)
 const startPageNumber = ref(props.startPage)
-const axiosSuccessful = ref(true)
 const cardsPerRow = ref(3) // based on grid col-4 on (>= lg breakpoint)
 
 const rowsPerAdArr = []
@@ -90,6 +77,9 @@ onMounted(() => {
     const adPoint = i * props.rowsPerAd * currentCardsPerRow
     rowsPerAdArr.push(adPoint)
   }
+
+  // temp data loaded
+  dataLoaded.value = true
 })
 
 // checks if the index is where we should populate an ad
@@ -107,37 +97,13 @@ const cardCountCalc = computed(() => {
 })
 
 // handle the episodes array based on startCount and buckeltlimit props
-const getEpisodes = computed(() => {
-  // if using startCount, we need to offset the episodes array
-  return props.startCount
-    ? episodes.value.slice(props.startCount, cardCountCalc.value)
-    : // if limiting the bucket, we need to limit the episodes array
-    props.bucketLimit
-    ? episodes.value.slice(0, props.bucketLimit)
-    : episodes.value
-})
+const getEpisodes = computed(() => {})
 
 onBeforeMount(async () => {
   // if the url query page has a value, set the startPageNumber to that value
   if (route.query.page) {
     startPageNumber.value = route.query.page
   }
-
-  await axios
-    .get(
-      props.bucket
-        ? props.api
-        : `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
-    )
-
-    .then((response) => {
-      episodes.value = traverseObjectByString(props.path, response)
-      totalCount.value = response.data.data.attributes['total-count']
-      dataLoaded.value = true
-    })
-    .catch(function () {
-      axiosSuccessful.value = false
-    })
 })
 
 // a watcher to update the route page query when startPageNumber changes
@@ -153,23 +119,11 @@ async function onPage(event) {
   //event.rows: Number of rows to display in new page
   //event.pageCount: Total number of pages
   dataLoaded.value = false
-  await axios
-    .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
-    .then((response) => {
-      episodes.value = traverseObjectByString(props.path, response)
-      dataLoaded.value = true
-      // set startPageNumber var for page url param
-      startPageNumber.value = event.page + 1
-      gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
-    })
-    .catch(function () {
-      axiosSuccessful.value = false
-    })
 }
 </script>
 
 <template>
-  <div v-if="axiosSuccessful">
+  <div>
     <section>
       <div class="content xl:px-8">
         <div class="grid">
@@ -186,47 +140,60 @@ async function onPage(event) {
                   </Button>
                 </v-flexible-link>
               </div>
-              <div class="grid justify-content-center">
-                <template
-                  v-for="(episode, index) in getEpisodes"
-                  :key="`card${index}`"
-                >
-                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
-                    <client-only>
-                      <v-card
-                        :image="
-                          episode.attributes['image-main'].template.replace(
-                            '%s/%s/%s/%s',
-                            '%width%/%height%/c/%quality%'
-                          )
-                        "
-                        :width="320"
-                        :height="240"
-                        :alt="episode.attributes['image-main']['alt-text']"
-                        :title="episode.attributes.title"
-                        :titleLink="`/episodes/${episode.attributes.slug}`"
-                        :eyebrow="formatDate(episode.attributes['publish-at'])"
-                        :blurb="episode.attributes.tease"
-                        :max-width="episode.attributes['image-main'].w"
-                        :max-height="episode.attributes['image-main'].h"
-                        responsive
-                        :ratio="[3, 2]"
-                        :sizes="[2]"
-                        flat-quality
-                        bp="max"
-                        class="radiolab-card"
+              <div v-if="episodesSearchResults?.hits?.length > 0">
+                <div class="grid justify-content-center">
+                  <template
+                    v-for="(episode, index) in episodesSearchResults?.hits"
+                    :key="`searchCard${index}`"
+                  >
+                    <div class="col-12 sm:col-6 lg:col-4 mb-6">
+                      <v-flexible-link :to="episode.Link"
+                        >{{ episode.Title }}
+                        {{
+                          formatDate(episode['Publish Date'])
+                        }}</v-flexible-link
                       >
-                        <div class="divider"></div>
-                        <play-selector :episode="episode.attributes" />
-                      </v-card>
-                    </client-only>
-                  </div>
-                  <div
-                    v-if="props.rowCount > 1 && insertAD(index + 1)"
-                    class="htlad-radiolab_in-content_1 col-fixed mb-6"
-                    style="width: 100%"
-                  />
-                </template>
+                      <client-only>
+                        <v-card
+                          :image="
+                            episode.attributes['image-main'].template.replace(
+                              '%s/%s/%s/%s',
+                              '%width%/%height%/c/%quality%'
+                            )
+                          "
+                          :width="320"
+                          :height="240"
+                          :alt="episode.attributes['image-main']['alt-text']"
+                          :title="episode.attributes.title"
+                          :titleLink="`/episodes/${episode.attributes.slug}`"
+                          :eyebrow="
+                            formatDate(episode.attributes['publish-at'])
+                          "
+                          :blurb="episode.attributes.tease"
+                          :max-width="episode.attributes['image-main'].w"
+                          :max-height="episode.attributes['image-main'].h"
+                          responsive
+                          :ratio="[3, 2]"
+                          :sizes="[2]"
+                          flat-quality
+                          bp="max"
+                          class="radiolab-card"
+                        >
+                          <div class="divider"></div>
+                          <play-selector :episode="episode.attributes" />
+                        </v-card>
+                      </client-only>
+                    </div>
+                    <div
+                      v-if="props.rowCount > 1 && insertAD(index + 1)"
+                      class="htlad-radiolab_in-content_1 col-fixed mb-6"
+                      style="width: 100%"
+                    />
+                  </template>
+                </div>
+              </div>
+              <div v-else v-if="episodesSearchResults?.hits">
+                no results, search again
               </div>
             </div>
             <episodes-skeleton
