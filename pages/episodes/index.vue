@@ -13,7 +13,20 @@ const onSearch = async (event) => {
   console.log('search for = ', event)
   searchTerm.value = event
   isSearching.value = true
-  await search({ query: event })
+
+  //await search({ query: event })
+  await search({
+    query: event,
+    page: 1,
+    // any searchParameters
+    // any requestOptions
+  }).then(({ hits }) => {
+    console.log('result   = ', result.value)
+    searchResults.value = result.value
+    setTimeout(() => {
+      isSearching.value = false
+    }, 500)
+  })
 }
 // fired every time the search input is updated except with the enter key, this then detects if the field is empty, and to clear the results
 const onUpdate = (event) => {
@@ -26,13 +39,13 @@ const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
 
 // watches for new search results and updates
-watch(result, (res) => {
-  console.log('results', res)
-  searchResults.value = res
-  setTimeout(() => {
-    isSearching.value = false
-  }, 500)
-})
+// watch(result, (res) => {
+//   console.log('results', res)
+//   searchResults.value = res
+//   setTimeout(() => {
+//     isSearching.value = false
+//   }, 500)
+// })
 </script>
 
 <template>

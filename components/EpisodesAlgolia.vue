@@ -205,13 +205,13 @@ async function onPage(event) {
             />
             <paginator
               :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
-              v-show="props.paginate"
-              :total-records="totalCount"
-              :rows="cardCountCalc"
-              :first="startPageNumber * cardCountCalc - 1"
+              v-show="props.paginate && episodesSearchResults?.nbPages > 1"
+              :total-records="episodesSearchResults?.nbHits"
               :pageLinkSize="3"
               @page="onPage($event)"
             />
+            <!-- :rows="cardCountCalc"
+              :first="startPageNumber * cardCountCalc - 1" -->
           </div>
         </div>
       </div>
