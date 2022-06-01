@@ -131,6 +131,7 @@ onBeforeMount(async () => {
     )
 
     .then((response) => {
+      //console.log('response = ', response)
       episodes.value = traverseObjectByString(props.path, response)
       totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true

@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import SearchField from '~/components/SearchField.vue'
-
 const props = defineProps({
   title: {
     type: String,
@@ -18,7 +17,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['search', 'update'])
+const emit = defineEmits(['search', 'update', 'year'])
 
 onMounted(() => {})
 </script>
@@ -31,6 +30,7 @@ onMounted(() => {})
       :isSearching="isSearching"
       @search="emit('search', $event)"
       @update="emit('update', $event)"
+      @year="emit('year', $event)"
     />
   </div>
 </template>
@@ -42,13 +42,14 @@ onMounted(() => {})
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  @include media('<md') {
+  @include media('<lg') {
     flex-direction: column;
     align-items: flex-start;
   }
   .search-field {
-    max-width: 300px;
-    @include media('<md') {
+    width: 285px;
+    @include media('<lg') {
+      width: 100%;
       max-width: 100%;
     }
   }

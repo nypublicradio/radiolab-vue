@@ -54,7 +54,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['seachPageEvent'])
+const emit = defineEmits(['searchPageEvent'])
 
 const dataLoaded = ref(false)
 const episodes = ref([])
@@ -120,7 +120,7 @@ async function onPage(event) {
   //event.first: Index of first record
   //event.rows: Number of rows to display in new page
   //event.pageCount: Total number of pages
-  emit('seachPageEvent', event)
+  emit('searchPageEvent', event)
   //dataLoaded.value = false
 }
 </script>

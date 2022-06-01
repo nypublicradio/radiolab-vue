@@ -21,8 +21,8 @@ export default defineNuxtConfig({
       {
         apiKey: process.env['ALGOLIA_API_KEY'],
         applicationId: process.env['ALGOLIA_APP_ID'],
-        //lite: true,
-        //instantSearch: true,
+        //lite: false,
+        //instantSearch: false,
         // crawler: {
         //   apiKey: '<YOUR_API_KEY>',
         //   indexName: '<YOUR_INDEX_NAME>',
