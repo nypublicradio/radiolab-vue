@@ -37,7 +37,7 @@ onBeforeMount(async () => {
       </Head>
     </Html>
     <section>
-      <div class="content lg:px-8 pb-0">
+      <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col-12">
             <h1 class="h2">The Team</h1>
@@ -46,12 +46,12 @@ onBeforeMount(async () => {
       </div>
     </section>
     <section>
-      <div class="content lg:px-8 cards">
+      <div class="content xl:px-8 cards">
         <div v-if="dataLoaded" class="grid">
           <div
             v-for="(person, index) in people"
             :key="`${person.attributes.person.name}-${index}`"
-            class="col-12 md:col-6 xl:col-4 mb-6"
+            class="col-12 sm:col-6 lg:col-4 mb-6"
           >
             <client-only>
               <v-card

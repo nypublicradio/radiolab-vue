@@ -19,7 +19,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
       </Head>
     </Html>
     <section>
-      <div class="content lg:px-8 pb-0">
+      <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col">
             <h1 class="h2">Radio Shows</h1>
