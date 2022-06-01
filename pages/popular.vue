@@ -21,7 +21,7 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
       </Head>
     </Html>
     <section>
-      <div class="content lg:px-8 pb-0">
+      <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col">
             <div class="episode-archive">

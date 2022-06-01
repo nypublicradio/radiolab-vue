@@ -22,7 +22,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab-kids/recent_stor
       </Head>
     </Html>
     <section>
-      <div class="content lg:px-8 pb-0">
+      <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col">
             <h1 class="mb-4 h2">Radiolab for Kids</h1>

@@ -35,7 +35,7 @@ onBeforeMount(async () => {
       </Head>
     </Html>
     <section>
-      <div class="content lg:px-8 pb-0">
+      <div class="content xl:px-8 pb-0">
         <div v-if="dataLoaded" class="grid">
           <div class="col">
             <div class="series-logo-title mb-4">
