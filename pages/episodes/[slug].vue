@@ -1,17 +1,18 @@
 <script setup>
 import gaEvent from '~/utilities/ga.js'
-import { onMounted, computed, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
-import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 
 const config = useRuntimeConfig()
 const episode = ref([])
+const imageCredits = ref(null)
+const imageCreditsLink = ref(null)
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
-const router = useRouter()
 
 const {
   data: page,
@@ -20,6 +21,8 @@ const {
 } = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
 
 episode.value = page.value.data.attributes
+imageCredits.value = episode.value['image-main']['credits-name']
+imageCreditsLink.value = episode.value['image-main']['credits-url']
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
@@ -53,12 +56,12 @@ useHead({
     { name: 'og:title', content: episode.value?.title },
     { name: 'description', content: episode.value?.tease },
     { name: 'og:description', content: episode.value?.tease },
-    { name: 'og:image', content: episode.value?.['image-main'].url },
-    { name: 'og:image:width', content: episode.value?.['image-main'].w },
-    { name: 'og:image:height', content: episode.value?.['image-main'].h },
+    { name: 'og:image', content: episode.value?.['image-main']?.url },
+    { name: 'og:image:width', content: episode.value?.['image-main']?.w },
+    { name: 'og:image:height', content: episode.value?.['image-main']?.h },
     { name: 'twitter:title', content: episode.value?.title },
     { name: 'twitter:description', content: episode?.value.tease },
-    { name: 'twitter:image', content: episode.value?.['image-main'].url },
+    { name: 'twitter:image', content: episode.value?.['image-main']?.url },
   ],
   bodyAttrs: {
     class: 'has-head-color',
@@ -69,7 +72,7 @@ useHead({
 <template>
   <div>
     <section class="head-color yellow">
-      <div class="content p-3 md:p-5 lg:p-6">
+      <div class="content">
         <div class="grid">
           <div class="col-12 xl:col-8">
             <div class="grid">
@@ -77,17 +80,18 @@ useHead({
                 <div v-if="!pending" class="episode flex">
                   <client-only>
                     <v-image-with-caption
+                      v-if="episode['image-main']"
                       :image="
                         episode['image-main'].template.replace(
                           '%s/%s/%s/%s',
                           '%width%/%height%/c/%quality%'
                         )
                       "
-                      :width="320"
-                      :height="240"
+                      :width="200"
+                      :height="200"
                       :alt="episode['image-main']['alt-text']"
                       :ratio="[1, 1]"
-                      :sizes="[2]"
+                      :sizes="[1]"
                       flat-quality
                       :max-width="episode['image-main'].w"
                       :max-height="episode['image-main'].h"
@@ -109,6 +113,18 @@ useHead({
                         @toggleTranscript="onToggleTranscript"
                       />
                     </client-only>
+                    <div
+                      v-if="imageCredits"
+                      class="mt-2 md:mt-3 footer type-body"
+                    >
+                      Image credits:
+                      <v-flexible-link
+                        class="inline"
+                        :class="{ raw: !imageCreditsLink }"
+                        :to="imageCreditsLink"
+                        >{{ imageCredits }}
+                      </v-flexible-link>
+                    </div>
                   </div>
                 </div>
                 <episode-head-skeleton v-else />
@@ -199,6 +215,8 @@ useHead({
         width: 90px;
         height: 90px;
         border-radius: 20px;
+        min-width: 90px;
+        min-height: 90px;
       }
     }
 
