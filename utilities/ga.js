@@ -4,7 +4,6 @@
 // fires a custom google analytics GA4 event
 // note: we use gaAction to specify the component name
 function gaEvent(gaCategory, gaAction, gaLabel) {
-  console.log(gaCategory, gaAction, gaLabel);
   // event('Event', {
   //   hit_time_stamp: new Date().toISOString(),
   //   component: gaAction,
