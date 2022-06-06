@@ -126,101 +126,99 @@ async function onPage(event) {
 </script>
 
 <template>
-  <div>
-    <section>
-      <div class="content xl:px-8">
-        <div class="grid">
-          <div class="col">
-            <div v-if="dataLoaded" class="recent-episodes">
-              <div
-                v-if="props.header || props.buttonText"
-                class="col flex justify-content-between align-items-center mb-3"
-              >
-                <h3 v-if="props.header">{{ props.header }}</h3>
-                <v-flexible-link v-if="props.buttonText" raw :to="buttonLink">
-                  <Button class="p-button-rounded p-button-sm">
-                    {{ props.buttonText }}
-                  </Button>
-                </v-flexible-link>
-              </div>
-              <div v-if="episodesSearchResults?.hits?.length > 0">
-                <div class="grid justify-content-center">
-                  <template
-                    v-for="(episode, index) in episodesSearchResults?.hits"
-                    :key="`searchCard${index}`"
-                  >
-                    <div class="col-12 sm:col-6 lg:col-4 mb-6">
-                      <!-- <v-flexible-link :to="episode.Link"
+  <section>
+    <div class="content xl:px-8">
+      <div class="grid">
+        <div class="col">
+          <div v-if="dataLoaded" class="recent-episodes">
+            <div
+              v-if="props.header || props.buttonText"
+              class="col flex justify-content-between align-items-center mb-3"
+            >
+              <h3 v-if="props.header">{{ props.header }}</h3>
+              <v-flexible-link v-if="props.buttonText" raw :to="buttonLink">
+                <Button class="p-button-rounded p-button-sm">
+                  {{ props.buttonText }}
+                </Button>
+              </v-flexible-link>
+            </div>
+            <template v-if="episodesSearchResults?.hits?.length > 0">
+              <div class="grid justify-content-center">
+                <template
+                  v-for="(episode, index) in episodesSearchResults?.hits"
+                  :key="`searchCard${index}`"
+                >
+                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
+                    <!-- <v-flexible-link :to="episode.Link"
                         >{{ episode.Title }}
                         {{
                           formatDate(episode['Publish Date'])
                         }}</v-flexible-link
                       > -->
-                      <client-only>
-                        <v-card
-                          :image="
-                            episode['image-main'].template.replace(
-                              '%s/%s/%s/%s',
-                              '%width%/%height%/c/%quality%'
-                            )
-                          "
-                          :width="320"
-                          :height="240"
-                          :alt="episode['image-main']['alt-text']"
-                          :title="episode.title"
-                          :titleLink="`/episodes/${episode.slug}`"
-                          :eyebrow="formatDate(episode['publish-at'])"
-                          :blurb="episode.tease"
-                          :max-width="episode['image-main'].w"
-                          :max-height="episode['image-main'].h"
-                          responsive
-                          :ratio="[3, 2]"
-                          :sizes="[2]"
-                          flat-quality
-                          bp="max"
-                          class="radiolab-card"
-                        >
-                          <div class="divider"></div>
-                          <play-selector :episode="episode" />
-                        </v-card>
-                      </client-only>
-                    </div>
-                    <div
-                      v-if="props.rowCount > 1 && insertAD(index + 1)"
-                      class="htlad-radiolab_in-content_1 col-fixed mb-6"
-                      style="width: 100%"
-                    />
-                  </template>
-                </div>
+                    <client-only>
+                      <v-card
+                        :image="
+                          episode['image-main'].template.replace(
+                            '%s/%s/%s/%s',
+                            '%width%/%height%/c/%quality%'
+                          )
+                        "
+                        :width="320"
+                        :height="240"
+                        :alt="episode['image-main']['alt-text']"
+                        :title="episode.title"
+                        :titleLink="`/episodes/${episode.slug}`"
+                        :eyebrow="formatDate(episode['publish-at'])"
+                        :blurb="episode.tease"
+                        :max-width="episode['image-main'].w"
+                        :max-height="episode['image-main'].h"
+                        responsive
+                        :ratio="[3, 2]"
+                        :sizes="[2]"
+                        flat-quality
+                        bp="max"
+                        class="radiolab-card"
+                      >
+                        <div class="divider"></div>
+                        <play-selector :episode="episode" />
+                      </v-card>
+                    </client-only>
+                  </div>
+                  <div
+                    v-if="props.rowCount > 1 && insertAD(index + 1)"
+                    class="htlad-radiolab_in-content_1 col-fixed mb-6"
+                    style="width: 100%"
+                  />
+                </template>
               </div>
-              <div v-else v-if="episodesSearchResults?.hits">
-                no results, search again
-              </div>
+            </template>
+            <div v-else v-if="episodesSearchResults?.hits">
+              no results, search again
             </div>
-            <episodes-skeleton
-              v-else
-              :card-count="cardCountCalc - startCount"
-              :header="props.header"
-              :button-text="props.buttonText"
-              :paginate="props.paginate"
-            />
-            <paginator
-              v-show="props.paginate && episodesSearchResults?.nbPages > 1"
-              :total-records="episodesSearchResults?.nbHits"
-              :pageLinkSize="3"
-              :rows="cardCountCalc"
-              @page="onPage($event)"
-            />
-            <!-- 
+          </div>
+          <episodes-skeleton
+            v-else
+            :card-count="cardCountCalc - startCount"
+            :header="props.header"
+            :button-text="props.buttonText"
+            :paginate="props.paginate"
+          />
+          <paginator
+            v-show="props.paginate && episodesSearchResults?.nbPages > 1"
+            :total-records="episodesSearchResults?.nbHits"
+            :pageLinkSize="3"
+            :rows="cardCountCalc"
+            @page="onPage($event)"
+          />
+          <!-- 
               :style="`pointer-events: ${dataLoaded ? 'auto' : 'none'}`"
               :rows="cardCountCalc"
               :first="startPageNumber * cardCountCalc - 1" 
             -->
-          </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style lang="scss">
