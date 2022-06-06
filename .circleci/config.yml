@@ -50,6 +50,9 @@ workflows:
           requires:
             - test_js
             - test_nginx
+      - updateIndex:
+          name: Update index
+          <<: *filter_all
 
 jobs: 
   # Note (allie): This is its own job because I don't 
@@ -72,7 +75,7 @@ jobs:
       - checkout
       - setup_npmrc
       - run: 
-          name: Assert that it builds
+          name: Update search index
           command: |
             npm ci
             npm run updateIndex
