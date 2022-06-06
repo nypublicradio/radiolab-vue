@@ -52,7 +52,6 @@ workflows:
             - test_nginx
       - updateIndex:
           name: Update index
-          env: prod
           <<: *filter_all
 
 jobs: 

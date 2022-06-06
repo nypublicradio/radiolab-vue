@@ -3,7 +3,7 @@ const axios = require('axios')
 const algoliasearch = require("algoliasearch");
 
 const client = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_ADMIN_API_KEY']);
-const index = client.initIndex("radiolab");
+const index = client.initIndex(process.env['DEMO_ALGOLIA_RADIOLAB_INDEX']);
 
 async function updateRecent() {
     const episodes = await getBatch(1);
@@ -32,7 +32,7 @@ async function reIndexAll() {
 }
 
 async function getBatch(page) {
-    const recent = await axios.get(`${process.env['API_URL']}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
+    const recent = await axios.get(`${process.env['PROD_API_URL']}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
     if (recent.status === 200) {
         console.log("eps", recent.data.included.length);
         const episodes = recent.data.included
