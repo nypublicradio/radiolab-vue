@@ -3,28 +3,40 @@ import { useRuntimeConfig } from '#app'
 import TitleWithSearch from '~/components/TitleWithSearch.vue'
 import { ref, watch } from 'vue'
 
-const { result, search } = useSearch('Radiolab Demo') // pass your index name as param
+const { result, search } = useSearch('radiolab') // pass your index name as param
 const searchTerm = ref('')
+const searchYear = ref('')
+const searchPage = ref(0)
 const searchResults = ref(null)
 const isSearching = ref(false)
 
 // the actual search logic to Algolia
-const searching = async (term, page = 0, year = '') => {
-  const selectedYearSeconds = new Date(`January 1, ${year} 00:00:00`).getTime()
+const searching = async () => {
+  isSearching.value = true
+  // gets time stamp (ts) from beginning of the selected year
+  const selectedYearSeconds =
+    new Date(`January 1, ${searchYear.value} 00:00:00`).getTime() / 1000
+  // set length of one year in seconds
   const yearSeconds = 31556926
-  const filters = year
+  // if a search year is selected, set the search range filter to the selected year
+  const filters = searchYear.value
     ? `date-line-ts:${selectedYearSeconds} TO ${
         selectedYearSeconds + yearSeconds
       }`
     : ''
+  // console.log('searching ---------')
+  // console.log('term = ', searchTerm.value)
+  // console.log('page = ', searchPage.value)
+  // console.log('year = ', searchYear.value)
+  // console.log('filters = ', filters)
   await search({
-    query: term,
+    query: searchTerm.value,
     requestOptions: {
-      page: page,
+      page: searchPage.value,
       filters: filters,
     },
   }).then(({ hits }) => {
-    console.log('result   = ', result.value)
+    //console.log('result   = ', result.value)
     searchResults.value = result.value
     setTimeout(() => {
       isSearching.value = false
@@ -35,24 +47,36 @@ const searching = async (term, page = 0, year = '') => {
 // fired when the user presses enter or searches in the input textfield whitch triggers a Algolia search and controls the loading icon spinner state
 const onSearch = async (term) => {
   searchTerm.value = term
-  searching(term)
+  searching()
 }
 // fired every time the search input is updated except with the enter key, this then detects if the field is empty, and to clear the results
 const onUpdate = (event) => {
+  console.log('searchYear.value = ', searchYear.value)
   searchTerm.value = event
-  if (event === '') {
+  if (event === '' && searchYear.value === '') {
     searchResults.value = null
+  } else {
+    searchPage.value = 0
+    searching()
   }
 }
 // every time the user paginates, the method is called to update the page number in the Algolia search
 const updatePaginationInfo = (event) => {
-  searching(searchTerm.value, event.page)
+  searchPage.value = event.page
+  searching()
 }
 // every time the user selects a year filter, the method is called to update the filter in the Algolia search
 const onYearFilter = (yearValue) => {
+  /* console.log('onYearFilter -------------')
+  console.log('yearValue = ', yearValue) */
   const thisTerm = searchTerm.value ? searchTerm.value : ''
-  const thisYear = !isNaN(yearValue) ? '' : yearValue
-  searching(thisTerm, 0, thisYear)
+  const thisYear = isNaN(yearValue) ? '' : yearValue
+  /*  console.log('thisTerm = ', thisTerm)
+  console.log('thisYear = ', thisYear) */
+  searchTerm.value = thisTerm
+  searchYear.value = thisYear
+  searchPage.value = 0
+  searching()
 }
 
 const config = useRuntimeConfig()

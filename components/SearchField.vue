@@ -46,9 +46,9 @@ const onInputUpdate = (event) => {
     </Dropdown>
     <div class="search-field p-input-icon-left">
       <i class="pi" :class="isSearching ? 'pi-spin pi-spinner' : 'pi-search'" />
+      <!-- :disabled="isSearching" -->
       <InputText
         type="search"
-        :disabled="isSearching"
         v-model="searchValue"
         :placeholder="props.placeholder"
         @keyup.enter="onSearchEnter"
@@ -84,6 +84,9 @@ const onInputUpdate = (event) => {
         font-size: 0.75rem;
         color: var(--black100);
       }
+    }
+    .p-placeholder {
+      color: var(--gray-200);
     }
   }
   .search-field,

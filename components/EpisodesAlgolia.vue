@@ -150,31 +150,29 @@ async function onPage(event) {
                     :key="`searchCard${index}`"
                   >
                     <div class="col-12 sm:col-6 lg:col-4 mb-6">
-                      <v-flexible-link :to="episode.Link"
+                      <!-- <v-flexible-link :to="episode.Link"
                         >{{ episode.Title }}
                         {{
                           formatDate(episode['Publish Date'])
                         }}</v-flexible-link
-                      >
+                      > -->
                       <client-only>
                         <v-card
                           :image="
-                            episode.attributes['image-main'].template.replace(
+                            episode['image-main'].template.replace(
                               '%s/%s/%s/%s',
                               '%width%/%height%/c/%quality%'
                             )
                           "
                           :width="320"
                           :height="240"
-                          :alt="episode.attributes['image-main']['alt-text']"
-                          :title="episode.attributes.title"
-                          :titleLink="`/episodes/${episode.attributes.slug}`"
-                          :eyebrow="
-                            formatDate(episode.attributes['publish-at'])
-                          "
-                          :blurb="episode.attributes.tease"
-                          :max-width="episode.attributes['image-main'].w"
-                          :max-height="episode.attributes['image-main'].h"
+                          :alt="episode['image-main']['alt-text']"
+                          :title="episode.title"
+                          :titleLink="`/episodes/${episode.slug}`"
+                          :eyebrow="formatDate(episode['publish-at'])"
+                          :blurb="episode.tease"
+                          :max-width="episode['image-main'].w"
+                          :max-height="episode['image-main'].h"
                           responsive
                           :ratio="[3, 2]"
                           :sizes="[2]"
@@ -183,7 +181,7 @@ async function onPage(event) {
                           class="radiolab-card"
                         >
                           <div class="divider"></div>
-                          <play-selector :episode="episode.attributes" />
+                          <play-selector :episode="episode" />
                         </v-card>
                       </client-only>
                     </div>
