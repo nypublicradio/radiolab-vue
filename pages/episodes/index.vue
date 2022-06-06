@@ -1,10 +1,12 @@
 <script setup>
-import { useRuntimeConfig } from '#app'
 import TitleWithSearch from '~/components/TitleWithSearch.vue'
 import { ref } from 'vue'
+import { useRuntimeConfig } from '#app'
+
+const config = useRuntimeConfig()
 
 /*Algolia Search START*/
-const { result, search } = useSearch('radiolab') // pass your index name as param
+const { result, search } = useSearch(config.ALGOLIA_RADIOLAB_INDEX) // pass your index name as param
 const searchTerm = ref('')
 const searchYear = ref('')
 const searchPage = ref(0)
@@ -72,7 +74,6 @@ const onYearFilter = (yearValue) => {
 }
 /*Algolia Search END*/
 
-const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
 </script>
 

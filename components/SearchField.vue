@@ -18,12 +18,13 @@ const emit = defineEmits(['search', 'update', 'year'])
 const selectedYear = ref()
 const searchValue = ref('')
 
+// method triggered when the user presses the ENTER key
 const onSearchEnter = (event) => {
   if (searchValue.value) {
     emit('search', searchValue.value)
   }
 }
-
+// method triggered when the user presses any key except the ENTER key
 const onInputUpdate = (event) => {
   if (event.key !== 'Enter') {
     emit('update', searchValue.value)

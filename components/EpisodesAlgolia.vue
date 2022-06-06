@@ -1,9 +1,8 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
+//import gaEvent from '../utilities/ga.js'
 import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
-import { formatDate, traverseObjectByString } from '~/utilities/helpers'
+import { formatDate } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
-import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
@@ -192,7 +191,7 @@ async function onPage(event) {
                 </template>
               </div>
             </template>
-            <div v-else v-if="episodesSearchResults?.hits">
+            <div v-else-if="episodesSearchResults?.hits">
               no results, search again
             </div>
           </div>
