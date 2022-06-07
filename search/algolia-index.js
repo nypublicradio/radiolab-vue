@@ -2,14 +2,15 @@ import express from 'express';
 const app = express();
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
-require('dotenv').config();
 
-const client = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_ADMIN_API_KEY']);
-const index = client.initIndex(process.env['ALGOLIA_RADIOLAB_INDEX']);
+const getIndex = () => {
+    const client = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_ADMIN_API_KEY']);
+    return client.initIndex(process.env['ALGOLIA_RADIOLAB_INDEX']);
+}
 
 async function updateRecent() {
     const episodes = await getBatch(1);
-    index.saveObjects(episodes).then((ids) => {
+    getIndex().saveObjects(episodes).then((ids) => {
         console.log("saved", ids);
     }).catch((e) => {
         console.log("error", e);
@@ -26,7 +27,7 @@ async function reIndexAll() {
         page = await getBatch(pageNum++);
     }
     console.log("Got", episodes.length, " episodes, replacing index");
-    index.replaceAllObjects(episodes).then((ids) => {
+    getIndex().replaceAllObjects(episodes).then((ids) => {
         console.log("saved", ids.length);
     }).catch((e) => {
         console.log("error", e);
@@ -63,6 +64,7 @@ async function getBatch(page) {
 
 // CLI interface
 export function cli() {
+    require('dotenv').config();
     const task = process.argv.pop();
     if (task === 'rebuild-index') {
         console.log("Rebuilding complete index...");
