@@ -2,9 +2,10 @@ import express from 'express';
 const app = express();
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
+require('dotenv').config();
 
 const client = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_ADMIN_API_KEY']);
-const index = client.initIndex(process.env['DEMO_ALGOLIA_RADIOLAB_INDEX']);
+const index = client.initIndex(process.env['ALGOLIA_RADIOLAB_INDEX']);
 
 async function updateRecent() {
     const episodes = await getBatch(1);
@@ -24,7 +25,7 @@ async function reIndexAll() {
         episodes.push(...page);
         page = await getBatch(pageNum++);
     }
-    console.log("get this eps: ", episodes.length);
+    console.log("Got", episodes.length, " episodes, replacing index");
     index.replaceAllObjects(episodes).then((ids) => {
         console.log("saved", ids.length);
     }).catch((e) => {
@@ -33,9 +34,8 @@ async function reIndexAll() {
 }
 
 async function getBatch(page) {
-    const recent = await axios.get(`${process.env['PROD_API_URL']}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
+    const recent = await axios.get(`${process.env['API_URL']}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
     if (recent.status === 200) {
-        console.log("eps", recent.data.included.length);
         const episodes = recent.data.included
             .filter(episode => episode.attributes["audio-may-download"]) // only episodes with audio
             .map(episode => {
@@ -62,13 +62,17 @@ async function getBatch(page) {
 }
 
 // CLI interface
-const task = process.argv[2];
-if (task === 'rebuild-index') {
-    reIndexAll();
-} else if (task === 'update-recent') {
-    updateRecent();
-} else {
-    console.error("Unknown task", task);
+export function cli() {
+    const task = process.argv.pop();
+    if (task === 'rebuild-index') {
+        console.log("Rebuilding complete index...");
+        reIndexAll();
+    } else if (task === 'update-recent') {
+        console.log("Indexing most recent episodes...");
+        updateRecent();
+    } else {
+        console.error("Unknown task", task);
+    }
 }
 
 // API endpoint
