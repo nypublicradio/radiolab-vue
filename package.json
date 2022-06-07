@@ -7,8 +7,8 @@
         "preview": "nuxi preview",
         "test": "vitest",
         "coverage": "vitest run --coverage",
-        "updateIndex": "node ./algolia-index.js update-recent",
-        "rebuildIndex": "node ./algolia-index.js rebuild-index"
+        "updateIndex": "esm ./search/algolia-index:cli update-recent",
+        "rebuildIndex": "esm ./search/algolia-index:cli rebuild-index"
     },
     "devDependencies": {
         "@babel/core": "^7.17.7",

@@ -66,3 +66,11 @@ Build the application for production:
 docker build -t radiolab-vue .
 docker run -p 3000:3000 -e HOST=0.0.0.0 radiolab-vue -e API_URL=https://api.demo2.wnyc.net
 ```
+
+## Search Index
+
+Keyword search and archive filtering is driven by the [Algolia](https://algolia.com/dashboard) search engine. Credentials for Algolia are in 1Password. Log in to the dashboard to view the indices (one for demo and one prod) as well as to retrieve the API keys and application ID that will need to be set in the `.env` file. There is only one set of API credentials for both demo and prod, so make sure the index name is set appropriately. The indexer fetches episode data from the Publisher API and sends it to Algolia. There are two options, one to do an update of the 10 most recent episodes another to rebuild the index from scratch. The refresh of recent episode is available via URL at `/update-index` and is invoked nightly via Zapier. The update and full rebuild are also available as command-line options:
+
+`npm run updateIndex`
+
+`npm run rebuildIndex`
