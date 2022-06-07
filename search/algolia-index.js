@@ -3,39 +3,15 @@ const app = express();
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
 
+// Get the Algolia index object
 const getIndex = () => {
-    const client = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_ADMIN_API_KEY']);
-    return client.initIndex(process.env['ALGOLIA_RADIOLAB_INDEX']);
+    const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_API_KEY);
+    return client.initIndex(process.env.ALGOLIA_RADIOLAB_INDEX);
 }
 
-async function updateRecent() {
-    const episodes = await getBatch(1);
-    getIndex().saveObjects(episodes).then((ids) => {
-        console.log("saved", ids);
-    }).catch((e) => {
-        console.log("error", e);
-    });
-}
-
-async function reIndexAll() {
-    let pageNum = 1;
-    const episodes = [];
-    let page = await getBatch(pageNum);
-    while (page.length > 0) {
-        console.log(page.length, "eps for page", pageNum);
-        episodes.push(...page);
-        page = await getBatch(pageNum++);
-    }
-    console.log("Got", episodes.length, " episodes, replacing index");
-    getIndex().replaceAllObjects(episodes).then((ids) => {
-        console.log("saved", ids.length);
-    }).catch((e) => {
-        console.log("error", e);
-    });
-}
-
+// Retrieves one page of episodes from the API and returns them as an array
 async function getBatch(page) {
-    const recent = await axios.get(`${process.env['API_URL']}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
+    const recent = await axios.get(`${process.env.API_URL}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
     if (recent.status === 200) {
         const episodes = recent.data.included
             .filter(episode => episode.attributes["audio-may-download"]) // only episodes with audio
@@ -58,8 +34,34 @@ async function getBatch(page) {
             })
         return episodes;
     } else {
-        console.log("Failed to retrieve page", page);
+        throw new Error("Failed to retrieve page " + page);
     }
+}
+
+// Fetch most recent episodes and reindex them
+async function updateRecent() {
+    const episodes = await getBatch(1);
+    getIndex().saveObjects(episodes).then((ids) => {
+        // success
+    }).catch((e) => {
+        throw new Error("error", e);
+    });
+}
+
+// Fetch all episodes and replace the entire index
+async function reIndexAll() {
+    let pageNum = 1;
+    const episodes = [];
+    let page = await getBatch(pageNum);
+    while (page.length > 0) {
+        episodes.push(...page);
+        page = await getBatch(pageNum++);
+    }
+    getIndex().replaceAllObjects(episodes).then((ids) => {
+        // success
+    }).catch((e) => {
+        throw new Error("Error rebuilding index", { cause: e });
+    });
 }
 
 // CLI interface
