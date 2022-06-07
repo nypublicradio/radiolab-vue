@@ -1,6 +1,7 @@
-require('dotenv').config();
-const axios = require('axios')
-const algoliasearch = require("algoliasearch");
+import express from 'express';
+const app = express();
+import axios from 'axios';
+import algoliasearch from 'algoliasearch';
 
 const client = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_ADMIN_API_KEY']);
 const index = client.initIndex(process.env['DEMO_ALGOLIA_RADIOLAB_INDEX']);
@@ -60,6 +61,7 @@ async function getBatch(page) {
     }
 }
 
+// CLI interface
 const task = process.argv[2];
 if (task === 'rebuild-index') {
     reIndexAll();
@@ -68,3 +70,11 @@ if (task === 'rebuild-index') {
 } else {
     console.error("Unknown task", task);
 }
+
+// API endpoint
+app.get('/update-index', (req, res) => {
+    updateRecent();
+    res.send("OK");
+});
+
+export default app;
