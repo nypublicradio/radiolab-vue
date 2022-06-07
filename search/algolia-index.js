@@ -10,7 +10,7 @@ const getIndex = () => {
 }
 
 // Retrieves one page of episodes from the API and returns them as an array
-async function getBatch(page) {
+function getBatch(page) {
     const recent = await axios.get(`${process.env.API_URL}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
     if (recent.status === 200) {
         const episodes = recent.data.included
@@ -33,14 +33,13 @@ async function getBatch(page) {
                 };
             })
         return episodes;
-    } else {
-        throw new Error("Failed to retrieve page " + page);
     }
+    throw new Error(`Failed to retrieve page ${page}`);
 }
 
 // Fetch most recent episodes and reindex them
 async function updateRecent() {
-    const episodes = await getBatch(1);
+    const episodes = getBatch(1);
     getIndex().saveObjects(episodes).then((ids) => {
         // success
     }).catch((e) => {
@@ -52,10 +51,10 @@ async function updateRecent() {
 async function reIndexAll() {
     let pageNum = 1;
     const episodes = [];
-    let page = await getBatch(pageNum);
+    let page = getBatch(pageNum);
     while (page.length > 0) {
         episodes.push(...page);
-        page = await getBatch(pageNum++);
+        page = getBatch(pageNum++);
     }
     getIndex().replaceAllObjects(episodes).then((ids) => {
         // success
