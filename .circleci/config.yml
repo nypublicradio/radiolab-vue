@@ -69,17 +69,6 @@ jobs:
             npm ci
             npm run build
 
-  updateIndex:
-    executor: default
-    steps:
-      - checkout
-      - setup_npmrc
-      - run: 
-          name: Update search index
-          command: |
-            npm ci
-            npm run updateIndex
-
   test_js:
     executor: default
     steps:
