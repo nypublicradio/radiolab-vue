@@ -3,6 +3,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRuntimeConfig } from '#app'
 //import { isElementXPercentInViewport } from '../utilities/helpers.js'
+
 const config = useRuntimeConfig()
 const route = useRoute()
 const darkMode = ref(false)

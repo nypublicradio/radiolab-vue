@@ -15,7 +15,24 @@ export default defineNuxtConfig({
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ff3904' }
     ],
   },
-  //buildModules: [],
+  modules: [
+    [
+      "@nuxtjs/algolia",
+      {
+        apiKey: process.env['ALGOLIA_API_KEY'],
+        applicationId: process.env['ALGOLIA_APP_ID'],
+        //lite: false,
+        //instantSearch: false,
+        // crawler: {
+        //   apiKey: '<YOUR_API_KEY>',
+        //   indexName: '<YOUR_INDEX_NAME>',
+        //   meta: ['title', 'description'],
+        //   include: () => true
+        // },
+        //recommend: true
+      },
+    ],
+  ],
   css: [
     '@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
     '@nypublicradio/nypr-design-system-vue3/src/assets/styles/flags.css',
@@ -56,6 +73,10 @@ export default defineNuxtConfig({
     ]
   },
   publicRuntimeConfig: {
+    ALGOLIA_APP_ID: process.env['ALGOLIA_APP_ID'],
+    ALGOLIA_API_KEY: process.env['ALGOLIA_API_KEY'],
+    ALGOLIA_ADMIN_API_KEY: process.env['ALGOLIA_ADMIN_API_KEY'],
+    ALGOLIA_RADIOLAB_INDEX: process.env['ALGOLIA_RADIOLAB_INDEX'],
     SENTRY_DSN: process.env['SENTRY_DSN'],
     ENV: process.env['ENV'],
     HTL_CSS: process.env['HTL_CSS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.css',
