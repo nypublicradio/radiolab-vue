@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     'primeicons/primeicons.css',
     'mosha-vue-toastify/dist/style.css',
   ],
+  serverMiddleware: ['~/search/algolia-index'],
   vite: {
     css: {
       preprocessorOptions: {
