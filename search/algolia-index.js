@@ -25,7 +25,7 @@ async function getBatch(page) {
                     audio: episode.attributes.audio,
                     description: episode.attributes.body,
                     tease: episode.attributes.tease,
-                    publishTime: publishTime,
+                    publishTime,
                     "publish-at": episode.attributes["publish-at"],
                     "date-line-ts": episode.attributes["date-line-ts"],
                     "estimated-duration": episode.attributes["estimated-duration"],
@@ -74,7 +74,7 @@ export async function cli() {
     } else {
         return `Unknown task ${task}. Valid options are 'rebuild-index' and 'update-recent'`;
     }
-    return "Update sucssessful";
+    return "Update successful";
 }
 
 // API endpoint
