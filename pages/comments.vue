@@ -21,7 +21,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
       <div class="content">
         <div class="grid">
           <div class="col-12">
-            <h1 class="h2 mb-5">Comments Policy</h1>
+            <h1 class="h2 mb-5 font-normal">Comments Policy</h1>
             <p class="mb-3">
               We love hearing from our listeners and appreciate your
               feedback--you are why we do what we do. Like many other content
