@@ -26,52 +26,58 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="testimonial-comp flex flex-column h-full justify-content-between">
-    <div class="quote-holder">
-      <p class="quote pl-0 md:pl-3 pr-0 lg:pr-4 md:pr-8">“{{ props.quote }}”</p>
-      <p class="pl-0 md:pl-3 mt-3">
-        &#8212;{{ props.name }}, {{ props.city }}, {{ props.country }}
-        <img
-          src="/flag_placeholder.png"
-          alt="flag image"
-          :class="`flag flag-${props.flagCode} ml-1`"
-        />
-      </p>
-    </div>
-    <div class="bottom" data-style-mode="blue">
-      <Divider />
-      <div class="flex mt-5 align-items-center justify-content-between">
-        <div>
-          <div class="flex" style="gap: 1rem">
-            <v-flexible-link to="https://members.radiolab.org" raw>
-              <Button
-                class="p-button-rounded"
-                label="Become a member"
-                @click="
-                  gaEvent(
-                    'Click Tracking',
-                    'The Lab Testimonial',
-                    'Become a member'
-                  )
-                "
-              />
-            </v-flexible-link>
-            <v-flexible-link
-              to="https://members.radiolab.org/request_access"
-              raw
-            >
-              <Button
-                class="blue p-button-rounded p-button-outlined"
-                label="Sign in"
-              />
-            </v-flexible-link>
+  <div>
+    <div
+      class="testimonial-comp flex flex-column h-full justify-content-between"
+    >
+      <div class="quote-holder">
+        <p class="quote pl-0 md:pl-3 pr-0 lg:pr-4 md:pr-8">
+          “{{ props.quote }}”
+        </p>
+        <p class="pl-0 md:pl-3 mt-3">
+          &#8212;{{ props.name }}, {{ props.city }}, {{ props.country }}
+          <img
+            src="/flag_placeholder.png"
+            alt="flag image"
+            :class="`flag flag-${props.flagCode} ml-1`"
+          />
+        </p>
+      </div>
+      <div class="bottom" data-style-mode="blue">
+        <Divider />
+        <div class="flex mt-5 align-items-center justify-content-between">
+          <div>
+            <div class="flex" style="gap: 1rem">
+              <v-flexible-link to="https://members.radiolab.org" raw>
+                <Button
+                  class="p-button-rounded"
+                  label="Become a member"
+                  @click="
+                    gaEvent(
+                      'Click Tracking',
+                      'The Lab Testimonial',
+                      'Become a member'
+                    )
+                  "
+                />
+              </v-flexible-link>
+              <v-flexible-link
+                to="https://members.radiolab.org/request_access"
+                raw
+              >
+                <Button
+                  class="blue p-button-rounded p-button-outlined"
+                  label="Sign in"
+                />
+              </v-flexible-link>
+            </div>
           </div>
+          <img
+            class="rl-icon hidden sm:block"
+            src="/rl-icon-stripes.svg"
+            alt="radiolab icon"
+          />
         </div>
-        <img
-          class="rl-icon hidden sm:block"
-          src="/rl-icon-stripes.svg"
-          alt="radiolab icon"
-        />
       </div>
     </div>
   </div>
