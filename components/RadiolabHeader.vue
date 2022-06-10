@@ -38,7 +38,7 @@ onUnmounted(() => {
     <section>
       <div
         v-if="isMenuVisible"
-        class="content max-width flex lg:block align-items-center justify-content-between lg:pl-4"
+        class="content flex lg:block align-items-center justify-content-between lg:px-2 pr-3"
       >
         <Menubar :model="menuItems" id="p-menu">
           <template #start>
@@ -133,17 +133,7 @@ onUnmounted(() => {
 
     .content {
       width: 100%;
-      padding: spacingTRBL(0, 10, 0, 10);
-
-      @include media('<lg') {
-        //padding: spacingTRBL(0, 6, 0, 6);
-        padding: 0;
-        padding-right: 1em;
-      }
-
-      @include media('<md') {
-        // padding: spacingTRBL(0, 1, 0, 1);
-      }
+      padding: 0;
     }
 
     .p-menubar:not(.p-menubar-mobile-active) {
