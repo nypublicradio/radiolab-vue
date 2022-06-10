@@ -72,16 +72,18 @@ export default defineNuxtConfig({
       'mosha-vue-toastify'
     ]
   },
-  publicRuntimeConfig: {
-    ALGOLIA_APP_ID: process.env['ALGOLIA_APP_ID'],
-    ALGOLIA_API_KEY: process.env['ALGOLIA_API_KEY'],
-    ALGOLIA_ADMIN_API_KEY: process.env['ALGOLIA_ADMIN_API_KEY'],
-    ALGOLIA_RADIOLAB_INDEX: process.env['ALGOLIA_RADIOLAB_INDEX'],
-    SENTRY_DSN: process.env['SENTRY_DSN'],
-    ENV: process.env['ENV'],
-    HTL_CSS: process.env['HTL_CSS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.css',
-    HTL_JS: process.env['HTL_JS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.js',
-    HTL_IS_TESTING: process.env['HTL_IS_TESTING'] || 'yes',
-    API_URL: process.env['API_URL'] || "https://api.wnyc.org"
+  runtimeConfig: {
+    public: {
+      ALGOLIA_APP_ID: process.env['ALGOLIA_APP_ID'],
+      ALGOLIA_API_KEY: process.env['ALGOLIA_API_KEY'],
+      ALGOLIA_ADMIN_API_KEY: process.env['ALGOLIA_ADMIN_API_KEY'],
+      ALGOLIA_RADIOLAB_INDEX: process.env['ALGOLIA_RADIOLAB_INDEX'],
+      SENTRY_DSN: process.env['SENTRY_DSN'],
+      ENV: process.env['ENV'],
+      HTL_CSS: process.env['HTL_CSS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.css',
+      HTL_JS: process.env['HTL_JS'] || 'https://htlbid.com/stage/v3/radiolab.com/htlbid.js',
+      HTL_IS_TESTING: process.env['HTL_IS_TESTING'] || 'yes',
+      API_URL: process.env['API_URL'] || "https://api.wnyc.org"
+    }
   }
 })
