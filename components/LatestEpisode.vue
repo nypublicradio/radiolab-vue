@@ -29,7 +29,7 @@ onBeforeMount(async () => {
         <div class="grid">
           <div class="col">
             <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">
-              <div class="col-12 md:col-7 p-0">
+              <div class="col-12 md:col-7 lg:7 p-0">
                 <client-only>
                   <v-image-with-caption
                     :image="
@@ -38,20 +38,20 @@ onBeforeMount(async () => {
                         '%width%/%height%/c/%quality%'
                       )
                     "
-                    :width="640"
-                    :height="480"
+                    :width="778"
+                    :height="545"
                     :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
                     :alt="episodes[0].attributes['image-main']['alt-text']"
                     :max-width="episodes[0].attributes['image-main'].w"
                     :max-height="episodes[0].attributes['image-main'].h"
                     class="latest-episode-image"
-                    :ratio="[8, 6.2]"
+                    :ratio="[8, 5.6]"
                     :sizes="[1]"
                   />
                 </client-only>
               </div>
               <div
-                class="latest-episode-content flex flex-column justify-content-center col-12 md:col-5 p-4 lg:p-7"
+                class="latest-episode-content flex flex-column justify-content-center col-12 md:col-5 p-4 lg:p-5 xl:p-7"
               >
                 <div>
                   <h5 class="mb-0 lg:mb-2">Latest Episode</h5>
@@ -102,7 +102,7 @@ onBeforeMount(async () => {
 }
 
 .latest-episode .latest-episode-image {
-  max-height: 500px;
+  //max-height: 500px;
   max-width: 100%;
   height: auto;
   width: 100%;
