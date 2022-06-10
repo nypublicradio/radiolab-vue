@@ -3,7 +3,7 @@ import Skeleton from 'primevue/skeleton'
 </script>
 
 <template>
-  <div class="content lg:pl-4">
+  <div class="content lg:pl-2 lg:pr-2">
     <div
       class="hidden lg:flex header-menu-skeleton align-items-center w-full justify-content-between"
     >
@@ -20,14 +20,14 @@ import Skeleton from 'primevue/skeleton'
     </div>
 
     <div
-      class="flex lg:hidden header-menu-skeleton align-items-center w-full justify-content-between"
+      class="flex lg:hidden header-menu-skeleton align-items-center w-full justify-content-between pr-3"
     >
       <div class="flex align-items-center">
         <skeleton class="hamburger" width="15px" height="15px" />
         <icons-radiolab-logo class="logo" />
       </div>
       <div class="inline-flex align-items-center" style="gap: 12px">
-        <skeleton width="170px" height="40px" />
+        <skeleton width="175px" height="40px" />
       </div>
     </div>
   </div>

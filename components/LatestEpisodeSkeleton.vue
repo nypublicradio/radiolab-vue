@@ -9,12 +9,15 @@ import Skeleton from 'primevue/skeleton'
         <skeleton width="100%" class="latest-episode-skeleton-image" />
       </div>
       <div
-        class="col-12 md:col-5 p-4 lg:p-7 latest-episode-skeleton-content flex flex-column justify-content-center"
+        class="col-12 md:col-5 p-4 lg:p-5 xl:p-7 latest-episode-skeleton-content flex flex-column justify-content-center"
       >
         <skeleton width="10rem" class="mt-2 mb-2" />
         <skeleton width="100%" height="50px" class="mb-3" />
         <skeleton width="100%" height="72px" class="mb-6" />
-        <skeleton width="10rem" class="mb-2" />
+        <div class="flex justify-content-between">
+          <skeleton width="5rem" class="mb-2" />
+          <skeleton width="5rem" class="mb-2" />
+        </div>
       </div>
     </div>
   </div>
@@ -35,13 +38,13 @@ import Skeleton from 'primevue/skeleton'
   }
   .latest-episode-skeleton-image {
     @include media('<md') {
-      height: calc(86.5vw - 5rem) !important;
+      height: calc(80vw - 5rem) !important;
     }
-    @include media('>md') {
-      height: 42vw !important;
+    @include media('>=md') {
+      height: 40vw !important;
     }
     @include media('>xl') {
-      height: 500px !important;
+      height: 544px !important;
     }
   }
   .latest-episode-skeleton-content {
