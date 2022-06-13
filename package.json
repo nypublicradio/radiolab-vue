@@ -30,11 +30,10 @@
         "algoliasearch": "^4.13.1",
         "howler": "^2.2.3",
         "mosha-vue-toastify": "^1.0.23",
-        "nuxt": "npm:nuxt3@3.0.0-rc.3-27550969.a4a3cff",
+        "nuxt": "npm:nuxt3@3.0.0-rc.4-27585508.c9d4b2e",
         "primeicons": "^5.0.0",
         "primevue": "^3.12.1",
         "sass": "^1.49.9",
-        "vite": "2.9.9",
         "vitest": "^0.10.2",
         "vue-social-sharing": "^4.0.0-alpha4"
     }
