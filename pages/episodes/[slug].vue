@@ -1,78 +1,75 @@
 <script setup>
-import gaEvent from '~/utilities/ga.js'
-import { onMounted, ref } from 'vue'
-import { formatDate, copyToClipBoard } from '~/utilities/helpers'
-import { useRuntimeConfig } from '#app'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import gaEvent from "~/utilities/ga.js";
+import { onMounted, ref } from "vue";
+import { formatDate, copyToClipBoard } from "~/utilities/helpers";
+import { useRuntimeConfig } from "#app";
+import VImageWithCaption from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue";
+import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue";
 
-const config = useRuntimeConfig()
-const episode = ref([])
-const imageCredits = ref(null)
-const imageCreditsLink = ref(null)
-const showTranscriptSidePanel = ref(false)
+const config = useRuntimeConfig();
+const episode = ref([]);
+const imageCredits = ref(null);
+const imageCreditsLink = ref(null);
+const showTranscriptSidePanel = ref(false);
 
-const route = useRoute()
+const route = useRoute();
 
-const {
-  data: page,
-  pending,
-  error,
-} = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
+const { data: page, pending, error } = await useFetch(
+  `${config.API_URL}/api/v3/story/${route.params.slug}/`
+);
 
-episode.value = page.value.data.attributes
-imageCredits.value = episode.value['image-main']['credits-name']
-imageCreditsLink.value = episode.value['image-main']['credits-url']
+episode.value = page.value.data.attributes;
+imageCredits.value = episode.value["image-main"]["credits-name"];
+imageCreditsLink.value = episode.value["image-main"]["credits-url"];
 
 onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
-  if (route.query.transcript) onToggleTranscript()
-})
+  if (route.query.transcript) onToggleTranscript();
+});
 
 // copy transcript link to clipboard
 const copyTranscriptLink = () => {
   copyToClipBoard(
-    `${window.location.href}${
-      route.query.transcript ? '' : '?transcript=true'
-    }`,
-    'Transcript link copied to clipboard'
-  )
-  gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
-}
+    `${window.location.href}${route.query.transcript ? "" : "?transcript=true"}`,
+    "Transcript link copied to clipboard"
+  );
+  gaEvent("Click Tracking", "Episode Tools", "Copy transcript link");
+};
 
 // function to toggle transcript sidebar panel
 const onToggleTranscript = () => {
-  showTranscriptSidePanel.value = true
-}
+  showTranscriptSidePanel.value = true;
+};
 
 useHead({
   title: episode.value?.title,
   meta: [
     {
-      name: 'theme-color',
-      content: '#f4be2e',
+      name: "theme-color",
+      content: "#f4be2e",
     },
-    { name: 'og:type', content: 'article' },
-    { name: 'og:title', content: episode.value?.title },
-    { name: 'description', content: episode.value?.tease },
-    { name: 'og:description', content: episode.value?.tease },
-    { name: 'og:image', content: episode.value?.['image-main']?.url },
-    { name: 'og:image:width', content: episode.value?.['image-main']?.w },
-    { name: 'og:image:height', content: episode.value?.['image-main']?.h },
-    { name: 'twitter:title', content: episode.value?.title },
-    { name: 'twitter:description', content: episode?.value.tease },
-    { name: 'twitter:image', content: episode.value?.['image-main']?.url },
+    { name: "og:type", content: "article" },
+    { name: "og:title", content: episode.value?.title },
+    { name: "description", content: episode.value?.tease },
+    { name: "og:description", content: episode.value?.tease },
+    { name: "og:image", content: episode.value?.["image-main"]?.url },
+    { name: "og:image:width", content: episode.value?.["image-main"]?.w },
+    { name: "og:image:height", content: episode.value?.["image-main"]?.h },
+    { name: "twitter:title", content: episode.value?.title },
+    { name: "twitter:description", content: episode?.value.tease },
+    { name: "twitter:image", content: episode.value?.["image-main"]?.url },
   ],
   bodyAttrs: {
-    class: 'has-head-color',
+    class: "has-head-color",
   },
-})
+});
 </script>
 
 <template>
   <div>
     <section class="head-color yellow">
       <div class="content">
+        <edit-button :data="episode"/>
         <div class="grid">
           <div class="col-12 xl:col-8">
             <div class="grid">
@@ -100,12 +97,9 @@ useHead({
                   </client-only>
                   <div class="episode-content">
                     <p v-if="episode['publish-at']" class="date mb-1">
-                      {{ formatDate(episode['publish-at']) }}
+                      {{ formatDate(episode["publish-at"]) }}
                     </p>
-                    <div
-                      class="h2 title mb-0 md:mb-4"
-                      v-html="episode.title"
-                    ></div>
+                    <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
                     <client-only>
                       <episode-tools
                         class="hidden md:block"
@@ -113,10 +107,7 @@ useHead({
                         @toggleTranscript="onToggleTranscript"
                       />
                     </client-only>
-                    <div
-                      v-if="imageCredits"
-                      class="mt-2 md:mt-3 footer type-body"
-                    >
+                    <div v-if="imageCredits" class="mt-2 md:mt-3 footer type-body">
                       Image credits:
                       <v-flexible-link
                         class="inline"
@@ -139,11 +130,7 @@ useHead({
                 </client-only>
               </div>
             </div>
-            <div
-              v-if="!pending"
-              class="mt-5 html-formatting"
-              v-html="episode.body"
-            ></div>
+            <div v-if="!pending" class="mt-5 html-formatting" v-html="episode.body"></div>
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 xl:col-3 xl:col-offset-1">
@@ -174,7 +161,7 @@ useHead({
         <Divider />
         <div class="my-5">
           <p class="date" v-if="episode['publish-at']">
-            {{ formatDate(episode['publish-at']) }}
+            {{ formatDate(episode["publish-at"]) }}
           </p>
           <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
         </div>
@@ -206,11 +193,11 @@ useHead({
       border-radius: 20px;
       overflow: hidden;
 
-      @include media('<lg') {
+      @include media("<lg") {
         margin-right: 1rem;
       }
 
-      @include media('<md') {
+      @include media("<md") {
         margin-right: 0.75rem;
         width: 90px;
         height: 90px;
@@ -228,7 +215,7 @@ useHead({
         text-transform: uppercase;
         line-height: normal;
 
-        @include media('<md') {
+        @include media("<md") {
           font-size: var(--font-size-3);
         }
       }
@@ -238,7 +225,7 @@ useHead({
         line-height: var(--font-size-13);
         font-weight: 500;
 
-        @include media('<md') {
+        @include media("<md") {
           font-size: var(--font-size-8);
           line-height: var(--font-size-9);
         }
@@ -247,7 +234,7 @@ useHead({
   }
 
   .wide {
-    @include media('<md') {
+    @include media("<md") {
       margin-left: -1.5rem;
       margin-right: -1.5rem;
     }
@@ -265,12 +252,12 @@ useHead({
       }
     }
   }
-  @include media('>md') {
+  @include media(">md") {
     &.p-sidebar-lg {
       width: 768px !important;
     }
   }
-  @include media('<md') {
+  @include media("<md") {
     &.p-sidebar-lg {
       width: 100% !important;
     }
@@ -282,7 +269,7 @@ useHead({
       font-size: var(--font-size-12);
       line-height: var(--font-size-13);
       font-weight: 400;
-      @include media('<md') {
+      @include media("<md") {
         font-size: var(--font-size-8);
         line-height: var(--font-size-9);
       }
