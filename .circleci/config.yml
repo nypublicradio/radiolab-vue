@@ -64,6 +64,10 @@ jobs:
           name: Assert that it builds
           command: |
             npm ci
+
+            export ALGOLIA_API_KEY=$DEMO_ALGOLIA_API_KEY
+            export ALGOLIA_APP_ID=$DEMO_ALGOLIA_APP_ID
+
             npm run build
 
   test_js:
