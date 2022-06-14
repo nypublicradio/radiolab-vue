@@ -1,8 +1,7 @@
 #!/bin/bash
 
-
 declare key=${ENV^^}_ALGOLIA_API_KEY
-export ALGOLIA_API_KEY=$key
+set ALGOLIA_API_KEY=$key
 
 echo key: ${!key}
 echo second: $ALGOLIA_API_KEY
