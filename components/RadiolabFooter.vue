@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import {useRuntimeConfig } from '#app';
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import BecomeMember from './BecomeMember.vue'
@@ -9,8 +8,6 @@ const menuItems = ref(menuItemsImport)
 const menuItemsFooter = ref([])
 const ignoredMenuItems = ref([])
 
-const config = useRuntimeConfig()
-console.log(config.ALGOLIA_API_KEY)
 
 // check if any of the items label mataches a string in the ignoredMenuItems array
 const checkifIgnorded = (item) => {
