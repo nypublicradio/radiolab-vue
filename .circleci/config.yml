@@ -66,11 +66,8 @@ jobs:
           command: |
             npm ci
 
-            declare -n key="${ENV^^}_ALGOLIA_API_KEY"
-            export ALGOLIA_API_KEY=$key
-
-            declare -n app_id="${ENV^^}_ALGOLIA_APP_ID"
-            export ALGOLIA_APP_ID=$app_id
+            export $ENV=demo
+            scripts/env.sh
 
             npm run build
 
