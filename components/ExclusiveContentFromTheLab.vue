@@ -1,21 +1,21 @@
 <script setup>
-import { onBeforeMount, ref } from "vue";
-import axios from "axios";
-import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue";
-import { useRuntimeConfig } from "#app";
+import { onBeforeMount, ref } from 'vue'
+import axios from 'axios'
+import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import { useRuntimeConfig } from '#app'
 
-const config = useRuntimeConfig();
-const dataLoaded = ref(false);
-const episodes = ref([]);
+const config = useRuntimeConfig()
+const dataLoaded = ref(false)
+const episodes = ref([])
 
 onBeforeMount(async () => {
   await axios
     .get(`${config.API_URL}/api/v3/buckets/radiolab-exclusive-content/`)
     .then((response) => {
-      episodes.value = response.data.data.attributes["bucket-items"];
-      dataLoaded.value = true;
-    });
-});
+      episodes.value = response.data.data.attributes['bucket-items']
+      dataLoaded.value = true
+    })
+})
 </script>
 
 <template>
@@ -26,8 +26,14 @@ onBeforeMount(async () => {
           <div>
             <div class="flex justify-content-between align-items-end mb-3">
               <h3>Exclusive content from The Lab</h3>
-              <v-flexible-link raw class="the-lab" to="https://members.radiolab.org/">
-                <Button class="p-button-rounded p-button-sm">Become a member</Button>
+              <v-flexible-link
+                raw
+                class="the-lab"
+                to="https://members.radiolab.org/"
+              >
+                <Button class="p-button-rounded p-button-sm"
+                  >Become a member</Button
+                >
               </v-flexible-link>
             </div>
             <div v-if="dataLoaded" class="grid">
@@ -48,7 +54,9 @@ onBeforeMount(async () => {
                   members-only
                   subtitle="exclusive"
                   :title="episode.attributes.title"
-                  :tease="episode.attributes.tease ? episode.attributes.tease : null"
+                  :tease="
+                    episode.attributes.tease ? episode.attributes.tease : null
+                  "
                 />
               </div>
             </div>

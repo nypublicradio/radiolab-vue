@@ -1,8 +1,8 @@
 <script setup>
-import { useRuntimeConfig } from "#app";
-const config = useRuntimeConfig();
-const recentEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`;
-const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular-episodes/`;
+import { useRuntimeConfig } from '#app'
+const config = useRuntimeConfig()
+const recentEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
+const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular-episodes/`
 </script>
 
 <template>

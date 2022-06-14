@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRuntimeConfig } from "#app";
-const config = useRuntimeConfig();
-const isStaff = ref(false);
+import { ref, onMounted } from 'vue'
+import { useRuntimeConfig } from '#app'
+const config = useRuntimeConfig()
+const isStaff = ref(false)
 
 const props = defineProps({
   data: {
@@ -17,30 +17,30 @@ const props = defineProps({
     type: String,
     default: null,
   },
-});
+})
 
 //const emit = defineEmits(["change", "click"]);
 
 // lifecycle hooks
 onMounted(() => {
   // detect if user is logged in
-  console.log(localStorage.getItem("ember_simple_auth-session"));
-  isStaff.value = true;
-});
+  console.log(localStorage.getItem('ember_simple_auth-session'))
+  isStaff.value = true
+})
 
 const cmsLink = () => {
   if (props.data) {
     //use episode data edit-link
-    return `${config.ADMIN_CMS_ROOT}${props.data["edit-link"]}`;
+    return `${config.ADMIN_CMS_ROOT}${props.data['edit-link']}`
   } else {
     //use path prop for tout/bucket
-    return `${config.ADMIN_CMS_ROOT}${props.path}`;
+    return `${config.ADMIN_CMS_ROOT}${props.path}`
   }
-};
+}
 
 const editThisContent = () => {
-  window.open(cmsLink(), "_blank");
-};
+  window.open(cmsLink(), '_blank')
+}
 </script>
 
 <template>
