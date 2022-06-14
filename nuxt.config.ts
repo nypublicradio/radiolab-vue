@@ -19,8 +19,8 @@ export default defineNuxtConfig({
     [
       "@nuxtjs/algolia",
       {
-        apiKey: 'bb2019d56336a60e45422b9a5c6b51af',
-        applicationId: 'KXHZN32IEJ',
+        apiKey: process.env['ALGOLIA_API_KEY'],
+        applicationId: process.env['ALGOLIA_APP_ID'],
         //lite: false,
         //instantSearch: false,
         // crawler: {
