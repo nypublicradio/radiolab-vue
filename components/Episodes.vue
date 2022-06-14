@@ -178,7 +178,7 @@ async function onPage(event) {
             <div v-if="dataLoaded" class="recent-episodes">
               <div
                 v-if="props.header || props.buttonText"
-                class="col flex justify-content-between align-items-end mb-3"
+                class="col flex justify-content-between align-items-end mb-3 px-0"
               >
                 <h3 v-if="props.header">{{ props.header }}</h3>
                 <v-flexible-link v-if="props.buttonText" raw :to="buttonLink">
