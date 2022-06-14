@@ -66,7 +66,7 @@ jobs:
           command: |
             npm ci
 
-            export $ENV=demo
+            export ENV=demo
             scripts/env.sh
 
             npm run build
