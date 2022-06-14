@@ -1,6 +1,9 @@
 FROM node:16.14.2 as build
 WORKDIR /code
 
+ENV ALGOLIA_API_KEY=$ALGOLIA_API_KEY
+ENV ALGOLIA_APP_ID=$ALGOLIA_APP_ID
+
 COPY ./.npmrc .
 COPY ./package.json .
 COPY ./package-lock.json .
