@@ -114,6 +114,7 @@ onUnmounted(() => {
     </main>
     <radiolab-footer />
     <audio-player />
+    <div class="htlad-radiolab_adhesion"></div>
   </div>
 </template>
 
