@@ -30,25 +30,10 @@ export const useTogglePlayTrigger = () => useState('useTogglePlayTrigger', () =>
 /**
  * Global state to track if the user is logged into wnyc CMS
  */
-// const getSessionData = () => {
-//   const resp = fetch('https://internal.wnyc.org/api/v1/is_logged_in/')
-//     .then(response => {
-//       return response.json()
-//     })
-//   console.log('resp = ', resp)
-//   return resp
-// }
-// export const useCmsSession = () => useState('useCmsSession', () => {
-//   return getSessionData()
-// })
-
-
-
 export const useCmsSession = async () => {
   const response = await fetch('https://internal.wnyc.org/api/v1/is_logged_in/').then(response => {
     return response.json()
   })
-
   return await response
 }
 

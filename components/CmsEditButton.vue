@@ -21,12 +21,8 @@ const props = defineProps({
   },
 })
 
-//const emit = defineEmits(["change", "click"]);
-
-// lifecycle hooks
 onMounted(() => {
   // detect if user is logged in
-  console.log('cmsSession', cmsSession)
   isStaff.value = cmsSession.is_staff
 })
 
