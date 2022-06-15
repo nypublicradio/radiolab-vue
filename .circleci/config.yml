@@ -25,16 +25,10 @@ filter_prod: &filter_prod
 workflows:
   test-and-deploy:
     jobs:
-      - build:
-          <<: *filter_all
       - test_js:
           <<: *filter_all
-          requires:
-            - build
       - test_nginx:
           <<: *filter_all
-          requires:
-            - build
       - deploy:
           name: Deploy (demo)
           context: "AWS Deploy"
@@ -53,24 +47,6 @@ workflows:
             - test_nginx
 
 jobs: 
-  # Note (allie): This is its own job because I don't 
-  # want to run the tests in an environment that has the
-  # built project. 
-  build:
-    executor: default
-    steps:
-      - checkout
-      - setup_npmrc
-      - run: 
-          name: Assert that it builds
-          command: |
-            npm ci
-
-            export ENV=demo
-            scripts/env.sh
-
-            npm run build
-
   test_js:
     executor: default
     steps:
@@ -120,13 +96,7 @@ jobs:
             ROLE: radiolab-vue-<<parameters.env>>
           command: |
             TAG=${TAG:-$CIRCLE_TAG}
-
-            declare -n key="${ENV^^}_ALGOLIA_API_KEY"
-            export ALGOLIA_API_KEY=$key
-
-            declare -n app_id="${ENV^^}_ALGOLIA_APP_ID"
-            export ALGOLIA_APP_ID=$app_id
-
+            
             python3 -m venv ~/.venv
             source ~/.venv/bin/activate
             pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git

@@ -8,7 +8,6 @@ const menuItems = ref(menuItemsImport)
 const menuItemsFooter = ref([])
 const ignoredMenuItems = ref([])
 
-
 // check if any of the items label mataches a string in the ignoredMenuItems array
 const checkifIgnorded = (item) => {
   return !ignoredMenuItems.value.includes(item.label) ? true : false

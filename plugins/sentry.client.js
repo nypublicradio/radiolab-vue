@@ -7,8 +7,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     const config = useRuntimeConfig();
 
-    console.log(config.ALGOLIA_API_KEY)
-
     Sentry.init({
         app: [vueApp],
         dsn: config.SENTRY_DSN,
