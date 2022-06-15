@@ -36,16 +36,3 @@ export const useCmsSession = async () => {
   })
   return await response
 }
-
-
-
-
-
-
-
-// fetch('https://internal.wnyc.org/api/v1/is_logged_in/')
-//   .then(async response => {
-//     console.log('response = ', response.json())
-//     sessionData = response.json()
-//   })
-

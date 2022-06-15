@@ -26,6 +26,7 @@ onMounted(() => {
   isStaff.value = cmsSession.is_staff
 })
 
+// manage condition and return the CMS link
 const cmsLink = () => {
   if (props.data) {
     //use episode data edit-link
@@ -36,6 +37,7 @@ const cmsLink = () => {
   }
 }
 
+// triggered wher the button is clicked to open the desired CMS link in a new tab
 const editThisContent = () => {
   window.open(cmsLink(), '_blank')
 }
