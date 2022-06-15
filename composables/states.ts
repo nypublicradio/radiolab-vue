@@ -25,3 +25,42 @@ const togglePlayTrigger = false
  * Global state for the current play toggle for player play-toggle prop.
  */
 export const useTogglePlayTrigger = () => useState('useTogglePlayTrigger', () => togglePlayTrigger)
+
+
+/**
+ * Global state to track if the user is logged into wnyc CMS
+ */
+// const getSessionData = () => {
+//   const resp = fetch('https://internal.wnyc.org/api/v1/is_logged_in/')
+//     .then(response => {
+//       return response.json()
+//     })
+//   console.log('resp = ', resp)
+//   return resp
+// }
+// export const useCmsSession = () => useState('useCmsSession', () => {
+//   return getSessionData()
+// })
+
+
+
+export const useCmsSession = async () => {
+  const response = await fetch('https://internal.wnyc.org/api/v1/is_logged_in/').then(response => {
+    return response.json()
+  })
+
+  return await response
+}
+
+
+
+
+
+
+
+// fetch('https://internal.wnyc.org/api/v1/is_logged_in/')
+//   .then(async response => {
+//     console.log('response = ', response.json())
+//     sessionData = response.json()
+//   })
+

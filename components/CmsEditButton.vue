@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useCmsSession } from '~/composables/states'
 import { useRuntimeConfig } from '#app'
 const config = useRuntimeConfig()
 const isStaff = ref(false)
+const cmsSession = await useCmsSession()
 
 const props = defineProps({
   data: {
@@ -24,8 +26,8 @@ const props = defineProps({
 // lifecycle hooks
 onMounted(() => {
   // detect if user is logged in
-  console.log(localStorage.getItem('ember_simple_auth-session'))
-  isStaff.value = true
+  console.log('cmsSession', cmsSession)
+  isStaff.value = cmsSession.is_staff
 })
 
 const cmsLink = () => {
