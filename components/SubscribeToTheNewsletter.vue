@@ -3,7 +3,9 @@
     <div>
       <h2 class="mb-4">Subscribe to the newsletter</h2>
       <p class="mb-6">
-        Stay in the know. Subscribe to Radiolab's weekly newsletter.
+        Dive deeper into Radiolab's world. Every Wednesday, you will receive
+        little essays, book reviews, staff recommendations, and more. Sign up
+        here:
       </p>
     </div>
     <newsletter-form location="home page" />
