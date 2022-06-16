@@ -24,8 +24,8 @@ onBeforeMount(async () => {
       <div class="grid">
         <div class="col">
           <div>
-            <div class="flex justify-content-between">
-              <h3 class="mb-4">Exclusive content from The Lab</h3>
+            <div class="flex justify-content-between align-items-end mb-3">
+              <h3>Exclusive content from The Lab</h3>
               <v-flexible-link
                 raw
                 class="the-lab"

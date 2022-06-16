@@ -83,6 +83,12 @@ const apiUrl = `${config.API_URL}/api/v3/buckets/radiolab-404/`
           </div>
         </div>
       </section>
+      <cms-edit-button
+        class="absolute mt-4 left-0 right-0 w-full m-auto py-0 pl-3 xl:pl-8"
+        style="max-width: 1366px"
+        path="touts/bucket/1203469/"
+        label="Edit Radiolab-404 episode list in the CMS"
+      />
       <episodes
         class="mt-6 mb-4"
         :row-count="100"

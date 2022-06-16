@@ -73,6 +73,7 @@ useHead({
   <div>
     <section class="head-color yellow">
       <div class="content">
+        <cms-edit-button :data="episode" label="Edit this Episode in the CMS" />
         <div class="grid">
           <div class="col-12 xl:col-8">
             <div class="grid">
@@ -196,6 +197,11 @@ useHead({
 
 <style lang="scss">
 .episodes-slug {
+  .cms-edit-button {
+    position: absolute;
+    padding: 0.5rem;
+    z-index: 10;
+  }
   .episode {
     align-items: center;
 
