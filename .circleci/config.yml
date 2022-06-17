@@ -21,19 +21,14 @@ filter_prod: &filter_prod
     tags:
       only: /^v[0-9]+\.[0-9]+\.[0-9]+/
 
+
 workflows:
   test-and-deploy:
     jobs:
-      - build:
-          <<: *filter_all
       - test_js:
           <<: *filter_all
-          requires:
-            - build
       - test_nginx:
           <<: *filter_all
-          requires:
-            - build
       - deploy:
           name: Deploy (demo)
           context: "AWS Deploy"
@@ -52,20 +47,6 @@ workflows:
             - test_nginx
 
 jobs: 
-  # Note (allie): This is its own job because I don't 
-  # want to run the tests in an environment that has the
-  # built project. 
-  build:
-    executor: default
-    steps:
-      - checkout
-      - setup_npmrc
-      - run: 
-          name: Assert that it builds
-          command: |
-            npm ci
-            npm run build
-
   test_js:
     executor: default
     steps:
@@ -106,7 +87,7 @@ jobs:
       - checkout
       - setup_npmrc
       - setup_remote_docker:
-          version: 19.03.13            
+          version: 20.10.12       
       - run:
           name: Deploy
           environment:
@@ -115,7 +96,7 @@ jobs:
             ROLE: radiolab-vue-<<parameters.env>>
           command: |
             TAG=${TAG:-$CIRCLE_TAG}
-
+            
             python3 -m venv ~/.venv
             source ~/.venv/bin/activate
             pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git

@@ -19,8 +19,8 @@ export default defineNuxtConfig({
     [
       "@nuxtjs/algolia",
       {
-        apiKey: 'bb2019d56336a60e45422b9a5c6b51af',
-        applicationId: 'KXHZN32IEJ',
+        apiKey: process.env['ALGOLIA_API_KEY'],
+        applicationId: process.env['ALGOLIA_APP_ID'],
         //lite: false,
         //instantSearch: false,
         // crawler: {
@@ -74,8 +74,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      ALGOLIA_APP_ID: 'KXHZN32IEJ',
-      ALGOLIA_API_KEY: 'bb2019d56336a60e45422b9a5c6b51af',
+      ALGOLIA_APP_ID: process.env['ALGOLIA_APP_ID'],
+      ALGOLIA_API_KEY: process.env['ALGOLIA_API_KEY'],
       ALGOLIA_ADMIN_API_KEY: process.env['ALGOLIA_ADMIN_API_KEY'],
       ALGOLIA_RADIOLAB_INDEX: process.env['ALGOLIA_RADIOLAB_INDEX'],
       SENTRY_DSN: process.env['SENTRY_DSN'],

@@ -1,4 +1,8 @@
 FROM node:16.14.2 as build
+
+ARG ALGOLIA_API_KEY
+ARG ALGOLIA_APP_ID
+
 WORKDIR /code
 
 COPY ./.npmrc .
