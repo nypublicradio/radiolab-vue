@@ -51,6 +51,7 @@ jobs:
     executor: default
     steps:
       - checkout
+      - setup_npmrc
       - run:
           name: Run unit tests
           command: |
@@ -62,6 +63,7 @@ jobs:
       - image: nginx
     steps:
       - checkout
+      - setup_npmrc
       - run:
           command: |
             apt-get update && \
@@ -83,6 +85,7 @@ jobs:
         default: ""
     steps:
       - checkout
+      - setup_npmrc
       - setup_remote_docker:
           version: 20.10.12       
       - run:
@@ -110,6 +113,15 @@ jobs:
               --environment=$ENV \
               --tag=$TAG \
               --wait=300
+
+commands:
+  setup_npmrc:
+    steps:
+      - run:
+          name: Setup .npmrc
+          command: |
+            echo "@nypublicradio:registry=https://npm.pkg.github.com" > .npmrc
+            echo "//npm.pkg.github.com/:_authToken=$PAT" >> .npmrc
     
 executors:
   default:
