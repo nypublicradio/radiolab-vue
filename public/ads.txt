@@ -13,3 +13,4 @@ openx.com, 539087730, DIRECT, 6a698e2ec38604c6
 #Pubmatic
 pubmatic.com, 159885, DIRECT, 5d62403b186f2ace
 
+google.com, pub-9835879021808285, DIRECT, f08c47fec0942fa0
