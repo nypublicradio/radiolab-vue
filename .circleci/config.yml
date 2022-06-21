@@ -51,7 +51,6 @@ jobs:
     executor: default
     steps:
       - checkout
-      - setup_npmrc
       - run:
           name: Run unit tests
           command: |
@@ -63,7 +62,6 @@ jobs:
       - image: nginx
     steps:
       - checkout
-      - setup_npmrc
       - run:
           command: |
             apt-get update && \
@@ -85,7 +83,6 @@ jobs:
         default: ""
     steps:
       - checkout
-      - setup_npmrc
       - setup_remote_docker:
           version: 20.10.12       
       - run:
