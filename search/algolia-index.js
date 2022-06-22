@@ -6,7 +6,7 @@ import algoliasearch from 'algoliasearch';
 // Get the Algolia index object
 const getIndex = () => {
     const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_API_KEY);
-    return client.initIndex(process.env.ALGOLIA_RADIOLAB_INDEX);
+    return client.initIndex('radiolab');
 }
 
 // Retrieves one page of episodes from the API and returns them as an array
