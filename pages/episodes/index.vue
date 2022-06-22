@@ -6,7 +6,7 @@ import { useRuntimeConfig } from '#app'
 const config = useRuntimeConfig()
 
 /*Algolia Search START*/
-const { result, search } = useSearch(config.ALGOLIA_RADIOLAB_INDEX) // pass your index name as param
+const { result, search } = useSearch('radiolab') // pass your index name as param
 const searchTerm = ref('')
 const searchYear = ref('')
 const searchPage = ref(0)
