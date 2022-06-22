@@ -53,9 +53,12 @@ const onUpdate = (event) => {
     // clear the results and use non-angolia episode component
     searchResults.value = null
   } else {
-    // new search: reset pagination to 0
-    searchPage.value = 0
-    searching()
+    // dont start search until search query is 3 characters or longer
+    if (event.length >= 3) {
+      // new search: reset pagination to 0
+      searchPage.value = 0
+      searching()
+    }
   }
 }
 // every time the user paginates, the method is called to update the page number in the Algolia search
