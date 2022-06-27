@@ -39,13 +39,13 @@ onBeforeMount(async () => {
                       )
                     "
                     :width="778"
-                    :height="545"
+                    :height="500"
                     :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
                     :alt="episodes[0].attributes['image-main']['alt-text']"
                     :max-width="episodes[0].attributes['image-main'].w"
                     :max-height="episodes[0].attributes['image-main'].h"
                     class="latest-episode-image"
-                    :ratio="[8, 5.6]"
+                    :ratio="[778, 500]"
                     :sizes="[1]"
                   />
                 </client-only>
