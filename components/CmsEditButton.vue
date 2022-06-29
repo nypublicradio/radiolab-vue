@@ -1,10 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useCmsSession } from '~/composables/states'
 import { useRuntimeConfig } from '#app'
 const config = useRuntimeConfig()
-const isStaff = ref(false)
-const cmsSession = await useCmsSession()
+const isOnDemo = ref(config.ENV === 'demo' ? true : false)
 
 const props = defineProps({
   data: {
@@ -19,11 +17,6 @@ const props = defineProps({
     type: String,
     default: null,
   },
-})
-
-onMounted(() => {
-  // detect if user is logged in
-  isStaff.value = cmsSession.is_staff
 })
 
 // manage condition and return the CMS link
@@ -44,7 +37,7 @@ const editThisContent = () => {
 </script>
 
 <template>
-  <div v-if="isStaff" class="cms-edit-button">
+  <div v-if="isOnDemo" class="cms-edit-button">
     <Button
       icon="pi pi-user-edit"
       class="cms-edit-button p-button-rounded p-button-sm"
