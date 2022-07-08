@@ -16,8 +16,7 @@ async function getBatch(page) {
         const episodes = recent.data.included
             .filter(episode => episode.attributes["audio-may-download"]) // only episodes with audio
             .map(episode => {
-                console.dir(episode.at)
-                    // Algolia requires a posix timestamp to do date sorting
+                // Algolia requires a posix timestamp to do date sorting
                 const publishTime = new Date(episode.attributes["publish-at"]).getTime();
                 return {
                     objectID: episode.attributes["cms-pk"], // Algolia's unique identifier
@@ -45,7 +44,6 @@ async function updateRecent() {
     getIndex().saveObjects(episodes).then(() => {
         // success
     }).catch((e) => {
-        console.dir(e);
         throw new Error("error", e);
     });
 }
