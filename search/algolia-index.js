@@ -1,5 +1,5 @@
-import express from 'express';
-const app = express();
+import { Router } from‘ express’
+const app = Router()
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
 
@@ -16,7 +16,8 @@ async function getBatch(page) {
         const episodes = recent.data.included
             .filter(episode => episode.attributes["audio-may-download"]) // only episodes with audio
             .map(episode => {
-                // Algolia requires a posix timestamp to do date sorting
+                console.dir(episode.at)
+                    // Algolia requires a posix timestamp to do date sorting
                 const publishTime = new Date(episode.attributes["publish-at"]).getTime();
                 return {
                     objectID: episode.attributes["cms-pk"], // Algolia's unique identifier
@@ -25,6 +26,7 @@ async function getBatch(page) {
                     audio: episode.attributes.audio,
                     description: episode.attributes.body,
                     tease: episode.attributes.tease,
+                    transcript: episode.attributes.transcript,
                     publishTime,
                     "publish-at": episode.attributes["publish-at"],
                     "date-line-ts": episode.attributes["date-line-ts"],
@@ -43,6 +45,7 @@ async function updateRecent() {
     getIndex().saveObjects(episodes).then(() => {
         // success
     }).catch((e) => {
+        console.dir(e);
         throw new Error("error", e);
     });
 }
