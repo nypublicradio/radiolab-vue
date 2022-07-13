@@ -2,7 +2,7 @@
  * Global state for the menu
  */
 
-import gaEvent from '../utilities/ga.js'
+import gaEvent from './ga.js'
 
 export default [
   {
