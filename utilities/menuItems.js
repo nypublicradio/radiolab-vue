@@ -146,11 +146,11 @@ export default [
     }
   },
   {
-    label: 'Listener Panel',
+    label: 'Internship Opportunities',
     visible: false,
-    to: 'https://www.wnycstudios.org/listener-panel',
+    to: 'https://www.wnyc.org/internships-new-york-public-radio/',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Listener Panel')
+      gaEvent('Click Tracking', 'Navigation', 'Internship Opportunities')
     }
   },
   {
