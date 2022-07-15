@@ -1,5 +1,5 @@
-import { Router } from 'express';
-const app = Router();
+import express from 'express';
+const app = express();
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
 
