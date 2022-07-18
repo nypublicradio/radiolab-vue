@@ -24,12 +24,6 @@ const onSearchEnter = (event) => {
     emit('search', searchValue.value)
   }
 }
-// method triggered when the user presses any key except the ENTER key
-const onInputUpdate = (event) => {
-  if (event.key !== 'Enter') {
-    emit('update', searchValue.value)
-  }
-}
 </script>
 
 <template>
@@ -53,7 +47,6 @@ const onInputUpdate = (event) => {
         v-model="searchValue"
         :placeholder="props.placeholder"
         @keyup.enter="onSearchEnter"
-        @keyup="onInputUpdate"
       />
     </div>
   </div>
