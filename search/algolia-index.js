@@ -1,5 +1,5 @@
 import express from 'express';
-const app = express();
+const router = express.Router();
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
 
@@ -78,9 +78,9 @@ export async function cli() {
 }
 
 // API endpoint
-app.get('/update-index', (req, res) => {
-    updateRecent();
-    res.send("OK");
+router.get('/update-index', (req, res, next) => {
+    // updateRecent();
+    res.end('OK');
 });
 
-export default app;
+export default router;
