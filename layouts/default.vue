@@ -78,7 +78,10 @@ onUnmounted(() => {
           content="Radiolab: Podcasts | WNYC Studios | Podcasts"
         />
         <Meta name="og:description" content="Investigating a strange world." />
-        <Meta name="og:image" content="/og-default-image.png" />
+        <Meta
+          name="og:image"
+          content="https://radiolab.org/og-default-image.png"
+        />
         <Meta
           name="og:image:alt"
           content="Radiolab: Podcasts | WNYC Studios | Podcasts"
@@ -101,7 +104,10 @@ onUnmounted(() => {
           name="twitter:description"
           content="Investigating a strange world."
         />
-        <Meta name="twitter:image" content="/og-default-image.png" />
+        <Meta
+          name="twitter:image"
+          content="https://radiolab.org/og-default-image.png"
+        />
         <Meta
           name="apple-itunes-app"
           content="app-id=152249110, affiliate-data=at=1010lSme&amp;ct=radiolab"
