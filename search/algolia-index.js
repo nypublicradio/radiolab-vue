@@ -78,8 +78,8 @@ export async function cli() {
 }
 
 // API endpoint
-router.get('/update-index', (req, res, next) => {
-    // updateRecent();
+router.get('/update-index', (req, res) => {
+    updateRecent();
     res.end('OK');
 });
 
