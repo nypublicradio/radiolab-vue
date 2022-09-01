@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     ],
   ],
   css: [
+    '@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/fonts/fonts.css',
     '@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/radiolab.min.css',
     '@nypublicradio/nypr-design-system-vue3/src/assets/styles/flags.css',
     'primevue/resources/primevue.min.css',
