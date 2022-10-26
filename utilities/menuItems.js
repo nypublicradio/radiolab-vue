@@ -172,7 +172,7 @@ export default [
   {
     label: 'Accessibility',
     visible: false,
-    to: 'https://media.wnyc.org/media/resources/2021/Jul/07/accessibility_policy_10.30.20.pdf',
+    to: 'https://media.wnyc.org/media/resources/2022/May/06/accessibility_policy_5.6.22.pdf',
     command: () => {
       gaEvent('Click Tracking', 'Navigation', 'Accessibility')
     }
