@@ -31,7 +31,7 @@
         "debug": "4.3.3",
         "howler": "^2.2.3",
         "mosha-vue-toastify": "^1.0.23",
-        "nuxt": "npm:nuxt3@3.0.0-rc.4-27585508.c9d4b2e",
+        "nuxt": "3.0.0",
         "primeicons": "^5.0.0",
         "primevue": "^3.12.1",
         "sass": "^1.49.9",

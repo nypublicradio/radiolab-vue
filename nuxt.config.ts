@@ -1,6 +1,4 @@
-import { defineNuxtConfig } from 'nuxt'
-
-export default defineNuxtConfig({
+export default {
   meta: {
     meta: [
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -88,4 +86,4 @@ export default defineNuxtConfig({
       ADMIN_CMS_ROOT: process.env['ADMIN_CMS_ROOT']
     }
   }
-})
+}
