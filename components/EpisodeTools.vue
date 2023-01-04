@@ -5,6 +5,7 @@ import {
   copyToClipBoard,
   shareAPI,
   toastGlobalConfig,
+  formatDate,
 } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
@@ -21,7 +22,8 @@ const props = defineProps({
 const emit = defineEmits(['toggleTranscript'])
 
 const toastConfig = ref(toastGlobalConfig())
-//const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
+const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
+const toastConfigSuccess = ref(toastGlobalConfig({ type: 'info' }))
 
 const dotsMenu = ref()
 const shareMenu = ref()
@@ -30,11 +32,16 @@ const dotsItems = ref([
     label: 'Download',
     icon: 'pi pi-download',
     command: () => {
-      window.open(props.episode['audio'], '_top')
+      //window.open(props.episode['audio'], '_top')
+      downloadResource(
+        props.episode['audio'],
+        `Radiolab - ${props.episode['title']} - ${formatDate(
+          props.episode['newsdate']
+        )}`
+      )
       createToast(
         {
-          title: 'Downloading episode audio file',
-          description: "Check your system's downloads folder",
+          title: 'Download started...',
         },
         toastConfig.value
       )
@@ -114,6 +121,41 @@ const toggleShare = (event) => {
 const toggleTranscript = () => {
   emit('toggleTranscript')
   gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
+}
+const downloadBlob = (blob, filename) => {
+  var a = document.createElement('a')
+  a.download = filename
+  a.href = blob
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+  createToast(
+    {
+      title: `Download completed!`,
+      description: "Check your system's downloads folder",
+    },
+    toastConfigSuccess.value
+  )
+}
+
+const downloadResource = (url, title) => {
+  fetch(url, {
+    mode: 'no-cors',
+  })
+    .then((response) => response.blob())
+    .then((blob) => {
+      let blobUrl = window.URL.createObjectURL(blob)
+      downloadBlob(blobUrl, title)
+    })
+    .catch((e) => {
+      createToast(
+        {
+          title: `Download failed!`,
+          description: `Please try again later. Error: ${e}`,
+        },
+        toastConfigDanger.value
+      )
+    })
 }
 </script>
 
