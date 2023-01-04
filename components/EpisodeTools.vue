@@ -5,7 +5,6 @@ import {
   copyToClipBoard,
   shareAPI,
   toastGlobalConfig,
-  formatDate,
 } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
