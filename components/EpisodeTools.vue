@@ -21,7 +21,6 @@ const props = defineProps({
 const emit = defineEmits(['toggleTranscript'])
 
 const toastConfig = ref(toastGlobalConfig())
-//const toastConfigDanger = ref(toastGlobalConfig({ type: 'danger' }))
 
 const dotsMenu = ref()
 const shareMenu = ref()
@@ -30,11 +29,10 @@ const dotsItems = ref([
     label: 'Download',
     icon: 'pi pi-download',
     command: () => {
-      window.open(props.episode['audio'], '_top')
+      window.open(props.episode['audio'], '_blank')
       createToast(
         {
-          title: 'Downloading episode audio file',
-          description: "Check your system's downloads folder",
+          title: 'Download started...',
         },
         toastConfig.value
       )

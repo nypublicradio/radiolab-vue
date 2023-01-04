@@ -48,6 +48,15 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', onScroll)
 })
+
+useHead({
+  script: [
+    {
+      src: config.HTL_JS,
+      async: true,
+    },
+  ],
+})
 </script>
 
 <template>
@@ -60,7 +69,6 @@ onUnmounted(() => {
       <Head>
         <Link rel="canonical" :href="`https://radiolab.org${route.path}`" />
         <Link rel="stylesheet" :href="config.HTL_CSS" type="text/css" />
-        <Script :src="config.HTL_JS" async />
         <Title>Radiolab: Podcasts | WNYC Studios | Podcasts</Title>
         <Meta name="description" content="Investigating a strange world." />
         <Meta
