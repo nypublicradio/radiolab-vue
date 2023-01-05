@@ -117,7 +117,6 @@ const getEpisodes = computed(() => {
 
 onBeforeMount(async () => {
   // if the url query page has a value, set the startPageNumber to that value
-  console.log('before mount', props.api)
   if (route.query.page) {
     startPageNumber.value = route.query.page
   }
@@ -134,10 +133,8 @@ onBeforeMount(async () => {
       episodes.value = traverseObjectByString(props.path, response)
       totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
-      console.log('then')
     })
     .catch(function () {
-      console.log('error')
       axiosSuccessful.value = false
     })
 })

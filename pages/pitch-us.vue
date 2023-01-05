@@ -1,7 +1,8 @@
 <script setup>
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import colors from '~/assets/scss/colors.module.scss'
-useMeta({
+
+useHead({
   meta: [
     {
       name: 'theme-color',

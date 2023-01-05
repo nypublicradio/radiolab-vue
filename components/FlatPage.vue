@@ -2,7 +2,7 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 
-useMeta({
+useHead({
   bodyAttrs: {
     class: 'has-head-color',
   },

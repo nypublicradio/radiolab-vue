@@ -2,7 +2,8 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import SkeletonGeneralContent from '~/components/SkeletonGeneralContent.vue'
-useMeta({
+
+useHead({
   bodyAttrs: {
     class: 'has-head-color',
   },
