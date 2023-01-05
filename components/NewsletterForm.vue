@@ -97,6 +97,7 @@ function submitForm() {
 }
 
 .newsletter-form .pi-spinner {
+  color: var(--white100);
   font-size: 1.25rem;
   margin: auto;
 }

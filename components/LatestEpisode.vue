@@ -104,10 +104,16 @@ onBeforeMount(async () => {
 .latest-episode .latest-episode-image {
   //max-height: 500px;
   max-width: 100%;
-  height: auto;
+  height: 100%;
   width: 100%;
   object-fit: cover;
   overflow-y: hidden;
+  .image-with-caption-wrapper,
+  .image-with-caption-image,
+  .simple-responsive-image-holder {
+    height: 100%;
+    overflow: hidden;
+  }
 }
 
 .latest-episode .latest-episode-content {
