@@ -11,7 +11,8 @@
         "rebuildIndex": "esm ./search/algolia-index:cli rebuild-index"
     },
     "devDependencies": {
-        "jest-axe": "^5.0.1"
+        "jest-axe": "^5.0.1",
+        "jsdom": "^20.0.3"
     },
     "dependencies": {
         "@nuxtjs/algolia": "^1.4.2",
