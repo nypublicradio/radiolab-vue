@@ -19,7 +19,7 @@ const year = date.getFullYear()
 onMounted(() => {
   for (const [i, v] of menuItems.value.entries()) {
     if (v.items) {
-      for (const [i, item] of v.items.entries()) {
+      for (const [j, item] of v.items.entries()) {
         if (checkifIgnorded(item)) menuItemsFooter.value.push(item)
       }
     } else {

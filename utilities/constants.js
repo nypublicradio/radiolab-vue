@@ -13,7 +13,7 @@ export const playServices = [
   { name: 'RSS', icon: 'rss', url: 'http://feeds.wnyc.org/radiolab' }
 ]
 
-export let yearFilterOptions = [{ year: 'All' }]
+export const yearFilterOptions = [{ year: 'All' }]
 const yearfilterStart = 2007
 const yearfilterEnd = new Date().getFullYear()
 Array.from(new Array(yearfilterEnd - yearfilterStart + 1), (x, i) =>
