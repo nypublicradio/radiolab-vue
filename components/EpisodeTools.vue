@@ -5,6 +5,7 @@ import {
   copyToClipBoard,
   shareAPI,
   toastGlobalConfig,
+  convertHTMLtoPlainText,
 } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
@@ -187,7 +188,7 @@ const toggleTranscript = () => {
           network="email"
           :url="props.episode['url']"
           :title="props.episode['title']"
-          :description="props.episode['tease']"
+          :description="convertHTMLtoPlainText(props.episode['tease'])"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="props.episode['tags'].join()"
           >Share on Email</ShareNetwork

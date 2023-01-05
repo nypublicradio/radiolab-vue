@@ -21,11 +21,11 @@ const playerRef = ref()
 const onDownload = () => {
   createToast(
     {
-      title: 'Downloading episode audio file',
-      description: "Check your system's downloads folder",
+      title: 'Download started...',
     },
     toastConfig.value
   )
+  gaEvent('Click Tracking', 'Audio Player', 'Download')
 }
 
 /*function that updated the global useIsEpisodePlaying */

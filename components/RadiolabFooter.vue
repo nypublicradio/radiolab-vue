@@ -13,10 +13,13 @@ const checkifIgnorded = (item) => {
   return !ignoredMenuItems.value.includes(item.label) ? true : false
 }
 
+const date = new Date()
+const year = date.getFullYear()
+
 onMounted(() => {
   for (const [i, v] of menuItems.value.entries()) {
     if (v.items) {
-      for (const [i, item] of v.items.entries()) {
+      for (const [j, item] of v.items.entries()) {
         if (checkifIgnorded(item)) menuItemsFooter.value.push(item)
       }
     } else {
@@ -67,7 +70,7 @@ onMounted(() => {
           <div class="col-12">
             <div class="mt-4">
               <p class="footer mb-2">Produced by WNYC Studios</p>
-              <p class="footer">© 2022 WNYC Studios</p>
+              <p class="footer">© {{ year }} WNYC Studios</p>
             </div>
           </div>
         </div>

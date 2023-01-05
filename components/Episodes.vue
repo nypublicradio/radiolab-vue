@@ -6,9 +6,7 @@ import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/librar
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-import PlaySelector from '~/components/PlaySelector.vue'
 
-const router = useRouter()
 const route = useRoute()
 
 const props = defineProps({
@@ -143,7 +141,7 @@ onBeforeMount(async () => {
 
 // a watcher to update the route page query when startPageNumber changes
 watch(startPageNumber, (page, prev) => {
-  router.push({
+  navigateTo({
     query: { page: page },
   })
 })

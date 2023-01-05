@@ -93,3 +93,12 @@ export const traverseObjectByString = (pathString, data) => {
   })
   return tempData
 }
+
+/*
+takes html and converts to plain text
+*/
+export const convertHTMLtoPlainText = (html) => {
+  const tempDivElement = document.createElement('div')
+  tempDivElement.innerHTML = html
+  return tempDivElement.textContent || tempDivElement.innerText || ''
+}
