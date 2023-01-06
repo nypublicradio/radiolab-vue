@@ -11,7 +11,6 @@ useHead({
 const dataLoaded = ref(false)
 const page = ref([])
 const route = useRoute()
-const router = useRouter()
 
 onBeforeMount(async () => {
   await axios
@@ -22,8 +21,12 @@ onBeforeMount(async () => {
       page.value = response.data.included[0].attributes
       dataLoaded.value = true
     })
-    .catch((error) => {
-      throwError(error)
+    .catch(() => {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Page Not Found',
+        fatal: true,
+      })
     })
 })
 </script>

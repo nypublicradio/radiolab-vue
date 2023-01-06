@@ -22,7 +22,13 @@ onBeforeMount(async () => {
       logo.value = response.data.data.attributes['logo-image']
       dataLoaded.value = true
     })
-    .catch((error) => throwError(error))
+    .catch(() => {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Page Not Found',
+        fatal: true,
+      })
+    })
 })
 </script>
 
