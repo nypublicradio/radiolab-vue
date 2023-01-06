@@ -21,11 +21,16 @@ const props = defineProps({
 // list IDs are listed here https://github.com/nypublicradio/marketing-cloud-proxy/blob/main/marketing_cloud_proxy/mailchimp.py
 function submitForm() {
   submitted.value = true
+  let sourceLocation = 'radiolab_footer'
+  if (props.location === 'home page') {
+    sourceLocation = 'radiolab_homePage'
+  }
   axios
     // .post(`https://api.prod.nypr.digital/email-proxy/subscribe`,
     .post(`${config.API_URL}/email-proxy/subscribe`, {
       list: '2fe8150dd6',
       email: email.value,
+      source: sourceLocation,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
