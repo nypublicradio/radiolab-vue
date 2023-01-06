@@ -6,7 +6,7 @@ import {
   useIsEpisodePlaying,
   useTogglePlayTrigger,
 } from '~/composables/states'
-import { toastGlobalConfig } from '~/utilities/helpers'
+import { toastGlobalConfig, formatPublisherImageUrl } from '~/utilities/helpers'
 import { createToast } from 'mosha-vue-toastify'
 // had to install howler.js locally and add this import to stop it from breaking the build
 import { Howl, Howler } from 'howler'
@@ -63,12 +63,7 @@ watch(togglePlayTrigger, () => {
         :title-link="`/episodes/${currentEpisode.slug}`"
         :station="currentEpisode['show-title']"
         :description="currentEpisode.tease"
-        :image="
-          currentEpisode['image-main'].template.replace(
-            '%s/%s/%s/%s',
-            '%width%/%height%/c/%quality%'
-          )
-        "
+        :image="formatPublisherImageUrl(currentEpisode['image-main'].template)"
         :file="currentEpisode.audio"
         :duration-seconds="currentEpisode['estimated-duration']"
         :show-download="currentEpisode['audio-may-download'] ? true : false"

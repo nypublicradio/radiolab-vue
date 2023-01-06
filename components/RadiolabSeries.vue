@@ -2,7 +2,7 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import Skeleton from 'primevue/skeleton'
+import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
@@ -42,9 +42,8 @@ onBeforeMount(async () => {
               >
                 <mini-card
                   :image="
-                    episode.attributes['image-main'].template.replace(
-                      '%s/%s/%s/%s',
-                      '%width%/%height%/c/%quality%'
+                    formatPublisherImageUrl(
+                      episode.attributes['image-main'].template
                     )
                   "
                   :alt="episode.attributes['image-main']['alt-text']"

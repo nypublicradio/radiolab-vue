@@ -4,6 +4,7 @@ import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import PlaySelector from '~/components/PlaySelector.vue'
+import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
@@ -33,9 +34,8 @@ onBeforeMount(async () => {
                 <client-only>
                   <v-image-with-caption
                     :image="
-                      episodes[0].attributes['image-main'].template.replace(
-                        '%s/%s/%s/%s',
-                        '%width%/%height%/c/%quality%'
+                      formatPublisherImageUrl(
+                        episodes[0].attributes['image-main'].template
                       )
                     "
                     :width="778"

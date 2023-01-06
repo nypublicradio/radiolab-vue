@@ -1,7 +1,11 @@
 <script setup>
 import gaEvent from '~/utilities/ga.js'
 import { onMounted, ref } from 'vue'
-import { formatDate, copyToClipBoard } from '~/utilities/helpers'
+import {
+  formatDate,
+  copyToClipBoard,
+  formatPublisherImageUrl,
+} from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
@@ -83,10 +87,7 @@ useHead({
                     <v-image-with-caption
                       v-if="episode['image-main']"
                       :image="
-                        episode['image-main'].template.replace(
-                          '%s/%s/%s/%s',
-                          '%width%/%height%/c/%quality%'
-                        )
+                        formatPublisherImageUrl(episode['image-main'].template)
                       "
                       :width="200"
                       :height="200"

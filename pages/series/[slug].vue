@@ -2,6 +2,7 @@
 import { onBeforeMount, ref } from 'vue'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import axios from 'axios'
+import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
@@ -41,12 +42,7 @@ onBeforeMount(async () => {
             <div class="series-logo-title mb-4">
               <client-only>
                 <v-image-with-caption
-                  :image="
-                    logo.template.replace(
-                      '%s/%s/%s/%s',
-                      '%width%/%height%/c/%quality%'
-                    )
-                  "
+                  :image="formatPublisherImageUrl(logo.template)"
                   :alt="
                     logo['alt-text'] ? logo['alt-text'] : 'Series logo image'
                   "
