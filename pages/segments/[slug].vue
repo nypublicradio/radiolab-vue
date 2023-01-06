@@ -35,8 +35,12 @@ onBeforeMount(async () => {
       episode.value = response.data.data.attributes
       dataLoaded.value = true
     })
-    .catch((error) => {
-      throwError(error)
+    .catch(() => {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Page Not Found',
+        fatal: true,
+      })
     })
 })
 
