@@ -1,8 +1,8 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
-import { bpSizes } from '~/utilities/helpers'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
+import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
@@ -56,9 +56,8 @@ onBeforeMount(async () => {
             <client-only>
               <v-card
                 :image="
-                  person.attributes.person.image.template.replace(
-                    '%s/%s/%s/%s',
-                    '%width%/%height%/c/%quality%'
+                  formatPublisherImageUrl(
+                    person.attributes.person.image.template
                   )
                 "
                 :width="320"

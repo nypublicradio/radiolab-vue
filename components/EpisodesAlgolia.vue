@@ -1,7 +1,7 @@
 <script setup>
 //import gaEvent from '../utilities/ga.js'
 import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
-import { formatDate } from '~/utilities/helpers'
+import { formatDate, formatPublisherImageUrl } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
@@ -155,9 +155,8 @@ async function onPage(event) {
                     <client-only>
                       <v-card
                         :image="
-                          episode['image-main'].template.replace(
-                            '%s/%s/%s/%s',
-                            '%width%/%height%/c/%quality%'
+                          formatPublisherImageUrl(
+                            episode['image-main'].template
                           )
                         "
                         :width="320"

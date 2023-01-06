@@ -2,6 +2,7 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
@@ -44,10 +45,7 @@ onBeforeMount(async () => {
               >
                 <mini-card
                   :image="
-                    episode.attributes.image.template.replace(
-                      '%s/%s/%s/%s',
-                      '%width%/%height%/c/%quality%'
-                    )
+                    formatPublisherImageUrl(episode.attributes.image.template)
                   "
                   :alt="episode.attributes.title"
                   :url="episode.attributes.url"
