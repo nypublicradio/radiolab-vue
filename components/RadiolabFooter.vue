@@ -76,6 +76,7 @@ onMounted(() => {
         </div>
       </div>
     </section>
+    <div class='htlad-radiolab_adhesion' />
   </div>
 </template>
 
