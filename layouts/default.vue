@@ -8,30 +8,18 @@ const config = useRuntimeConfig()
 const route = useRoute()
 const darkMode = ref(false)
 const atTop = ref(true)
-
-/*
-scroll event func that is used for the menu knowing when it is at the very top and for viewport GA tracking
-*/
-const onScroll = (e) => {
-  atTop.value = window.scrollY > 0 ? false : true
-  //atBottom.value = ((window.scrollY + (window.innerHeight + 115) >= document.body.scrollHeight)) ? true : false
-
-  // entering viewport ga tracking
-  // const trackedGaElements = document.querySelectorAll('[ga-enter-viewport]')
-  // trackedGaElements.forEach((element) => {
-  //   if (isElementXPercentInViewport(element, 33)) {
-  //     element.removeAttribute('ga-enter-viewport')
-  //     gaEvent(
-  //       'Scroll Viewport Tracking',
-  //       route.name,
-  //       element.attributes['ga-info'].value
-  //     )
-  //   }
-  // })
-}
+const scrollSentinel = ref(null)
 
 onMounted(() => {
-  window.addEventListener('scroll', onScroll)
+  console.log('ref: ', scrollSentinel.value)
+  let callback = (entries, observer) => {
+    entries.forEach((entry) => {
+      console.log(entry)
+      atTop.value = entry.isIntersecting
+    })
+  }
+  let observer = new IntersectionObserver(callback)
+  observer.observe(scrollSentinel.value)
 
   // Ads
   window.htlbid = window.htlbid || {}
@@ -122,6 +110,12 @@ useHead({
         />
       </Head>
     </Html>
+    <div
+        class="leaderboard-ad-wrapper flex justify-content-center align-items-center flex-column"
+      >
+      <div class="htlad-radiolab_adhesion" />
+    </div>
+    <div class="scrollSentinel" ref="scrollSentinel" />
     <radiolab-header :class="[{ 'at-top': atTop }]" />
     <main>
       <slot />
@@ -132,13 +126,28 @@ useHead({
 </template>
 
 <style lang="scss">
-body,
-html {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
 
-main {
-  padding-top: var(--header-height);
+.leaderboard-ad-wrapper {
+  z-index: 1;
+  background: #111111;
+  padding: 0;
+  @include media('<md') {
+    min-height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 5000;
+  }
+  @include media('>=md') {
+    position: relative;
+    min-height: 92px;
+    padding: 1px 0;
+  }
+}
+.scrollSentinel {
+  height: 0;
+  @include media('<md') {
+    position: absolute;
+    top: 0px;
+  }
 }
 </style>

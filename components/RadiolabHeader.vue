@@ -120,8 +120,14 @@ onUnmounted(() => {
 }
 
 .site-header {
-  position: fixed;
-  top: 0;
+  @include media('>=md') {
+    position: sticky;
+    top: 0px;
+  }
+  @include media('<md') {
+    position: sticky;
+    top: 50px;
+  }
   width: 100%;
   z-index: var(--header-z-index);
   transition: background-color var(--transition-duration);
