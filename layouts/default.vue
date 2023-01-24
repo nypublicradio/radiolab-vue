@@ -11,14 +11,11 @@ const atTop = ref(true)
 const scrollSentinel = ref(null)
 
 onMounted(() => {
-  console.log('ref: ', scrollSentinel.value)
-  let callback = (entries, observer) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      console.log(entry)
       atTop.value = entry.isIntersecting
     })
-  }
-  let observer = new IntersectionObserver(callback)
+  })
   observer.observe(scrollSentinel.value)
 
   // Ads
@@ -113,7 +110,9 @@ useHead({
     <div
         class="leaderboard-ad-wrapper flex justify-content-center align-items-center flex-column"
       >
-      <div class="htlad-radiolab_adhesion" />
+      <div class="leaderboard-ad-wrapper-inner">
+        <div class="htlad-radiolab_adhesion" />
+      </div>
     </div>
     <div class="scrollSentinel" ref="scrollSentinel" />
     <radiolab-header :class="[{ 'at-top': atTop }]" />
@@ -143,6 +142,16 @@ useHead({
     padding: 1px 0;
   }
 }
+
+.leaderboard-ad-wrapper-inner {
+    min-width: 300px;
+    min-height: 50px;
+    @include media('>=md') {
+        min-width: 728px;
+        min-height: 90px;
+    }
+}
+
 .scrollSentinel {
   height: 0;
   @include media('<md') {
