@@ -77,5 +77,5 @@ export default {
       API_URL: process.env['API_URL'] || "https://api.wnyc.org",
       ADMIN_CMS_ROOT: process.env['ADMIN_CMS_ROOT']
     }
-  }
+  },
 }
