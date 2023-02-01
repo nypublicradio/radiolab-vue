@@ -12,7 +12,8 @@
     },
     "devDependencies": {
         "jest-axe": "^5.0.1",
-        "jsdom": "^20.0.3"
+        "jsdom": "^20.0.3",
+        "nuxt": "^3.1.1"
     },
     "dependencies": {
         "@nuxtjs/algolia": "^1.4.2",
@@ -25,7 +26,6 @@
         "debug": "4.3.3",
         "howler": "^2.2.3",
         "mosha-vue-toastify": "^1.0.23",
-        "nuxt": "3.0.0",
         "primeicons": "^5.0.0",
         "primevue": "^3.21.0",
         "sass": "^1.57.1",
