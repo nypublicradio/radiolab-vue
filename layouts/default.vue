@@ -125,6 +125,9 @@ useHead({
 </template>
 
 <style lang="scss">
+body, html {
+  overflow-x: clip;
+}
 
 .leaderboard-ad-wrapper {
   z-index: 1;
