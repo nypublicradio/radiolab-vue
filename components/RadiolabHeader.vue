@@ -52,7 +52,7 @@ onUnmounted(() => {
         
           </template>-->
         </Menubar>
-        <v-flexible-link raw to="the-lab">
+        <v-flexible-link raw to="/the-lab">
           <Button
             class="flex lg:hidden p-button-rounded"
             @click="
