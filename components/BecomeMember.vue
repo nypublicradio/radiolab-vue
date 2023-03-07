@@ -11,7 +11,7 @@ import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/compone
           Unlock exclusives
           <span class="white-space-nowrap">
             in
-            <v-flexible-link raw rawHover="underline" to="the-lab"
+            <v-flexible-link raw rawHover="underline" to="/the-lab"
               >The Lab</v-flexible-link
             >
             <span>
