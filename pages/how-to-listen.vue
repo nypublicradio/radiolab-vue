@@ -46,7 +46,7 @@ useHead({
                 member to access the entire archive directly in your podcast
                 feed
               </p>
-              <v-flexible-link raw to="the-lab">
+              <v-flexible-link raw to="/the-lab">
                 <Button
                   class="p-button-rounded"
                   @click="
