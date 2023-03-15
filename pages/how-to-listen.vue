@@ -2,7 +2,7 @@
 import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import { playServices } from '~/utilities/constants'
-useHead({
+useHead( {
   meta: [
     {
       name: 'theme-color',
@@ -12,7 +12,7 @@ useHead({
   bodyAttrs: {
     class: 'has-head-color invert-menu-color',
   },
-})
+} )
 </script>
 
 <template>
@@ -97,8 +97,8 @@ useHead({
             </Divider>
             <h3>On the radio</h3>
             <p class="mt-2 text-padding">
-              New episodes of Radiolab air every Saturday and 12pm EST on WNYC.
-              Episodes repeat Monday's at 8pm EST. Check with your local station
+              New episodes of Radiolab air every Saturday at 12pm EST on WNYC.
+              Episodes repeat Mondays at 8pm EST. Check with your local station
               for more air times.
             </p>
           </div>
