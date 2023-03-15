@@ -4,95 +4,91 @@
 
 import gaEvent from './ga.js'
 
-export default [
-  {
-    label: 'Podcasts',
-    items: [
-      {
-        label: 'Episodes',
+export default [ {
+    label: 'Episodes',
+    items: [ {
+        label: 'Podcasts',
         to: '/episodes',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'Podcasts: Episodes')
+          gaEvent( 'Click Tracking', 'Navigation', 'Podcasts: Episodes' )
         }
       },
       {
-        label: 'Radio Shows',
+        label: 'On The Radio',
         to: '/radio-shows',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'Podcasts: Radio Shows')
+          gaEvent( 'Click Tracking', 'Navigation', 'Podcasts: Radio Shows' )
         }
       },
       {
         label: 'Series',
         to: '/series',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'Podcasts: Series')
+          gaEvent( 'Click Tracking', 'Navigation', 'Podcasts: Series' )
         }
       },
       {
         label: 'Radiolab for Kids',
         to: '/radiolab-kids',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'Podcasts: Radiolab for Kids')
+          gaEvent( 'Click Tracking', 'Navigation', 'Podcasts: Radiolab for Kids' )
         }
       }
     ]
   },
   {
     label: 'About',
-    items: [
-      {
+    items: [ {
         label: 'About the Show',
         to: '/about',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'About: About the Show')
+          gaEvent( 'Click Tracking', 'Navigation', 'About: About the Show' )
         }
       },
       {
         label: 'Team',
         to: '/team',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'About: Team')
+          gaEvent( 'Click Tracking', 'Navigation', 'About: Team' )
         }
       },
       {
         label: 'Announcements',
         to: '/new-cohosts-latif-nasser-lulu-miller',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'About: Announcements')
+          gaEvent( 'Click Tracking', 'Navigation', 'About: Announcements' )
         }
       },
       {
         label: 'Pitch Us',
         to: '/pitch-us',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'About: Pitch Us')
+          gaEvent( 'Click Tracking', 'Navigation', 'About: Pitch Us' )
         }
       }
     ]
   },
   {
     label: 'For Listeners',
-    items: [
-      {
+    items: [ {
         label: 'The Lab',
         to: '/the-lab',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'For Listeners: The Lab')
+          gaEvent( 'Click Tracking', 'Navigation', 'For Listeners: The Lab' )
         }
       },
       {
         label: 'Read the credits',
         to: '/radiolab-read-credit',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'For Listeners: Read the credits')
+          gaEvent( 'Click Tracking', 'Navigation', 'For Listeners: Read the credits' )
         }
       },
       {
         label: 'Newsletter',
         to: '/newsletter',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'For Listeners: Newsletter')
+          gaEvent( 'Click Tracking', 'Navigation', 'For Listeners: Newsletter' )
         }
       },
       {
@@ -100,7 +96,7 @@ export default [
         url: 'https://shop.radiolab.org',
         target: '_blank',
         command: () => {
-          gaEvent('Click Tracking', 'Navigation', 'For Listeners: Swag Lab')
+          gaEvent( 'Click Tracking', 'Navigation', 'For Listeners: Swag Lab' )
         }
       }
     ]
@@ -110,7 +106,7 @@ export default [
     to: '/how-to-listen',
     class: 'gap alone',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'How to listen')
+      gaEvent( 'Click Tracking', 'Navigation', 'How to listen' )
     }
   },
   {
@@ -118,7 +114,7 @@ export default [
     to: '/the-lab',
     class: 'button alone',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Become a member')
+      gaEvent( 'Click Tracking', 'Navigation', 'Become a member' )
     }
   },
   {
@@ -126,7 +122,7 @@ export default [
     visible: false,
     to: 'https://nypublicradio.force.com/wnyc/s/programming-help-and-feedback',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'FAQs')
+      gaEvent( 'Click Tracking', 'Navigation', 'FAQs' )
     }
   },
   {
@@ -134,7 +130,7 @@ export default [
     visible: false,
     to: 'https://sponsorship.wnyc.org/',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Sponsorship')
+      gaEvent( 'Click Tracking', 'Navigation', 'Sponsorship' )
     }
   },
   {
@@ -142,7 +138,7 @@ export default [
     visible: false,
     to: 'https://www.nypublicradio.org/diversity-dei-overview/',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Diversity (DEI)')
+      gaEvent( 'Click Tracking', 'Navigation', 'Diversity (DEI)' )
     }
   },
   {
@@ -150,7 +146,7 @@ export default [
     visible: false,
     to: 'https://www.wnyc.org/internships-new-york-public-radio/',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Internship Opportunities')
+      gaEvent( 'Click Tracking', 'Navigation', 'Internship Opportunities' )
     }
   },
   {
@@ -158,7 +154,7 @@ export default [
     visible: false,
     to: 'https://www.wnyc.org/terms/',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Terms of Use')
+      gaEvent( 'Click Tracking', 'Navigation', 'Terms of Use' )
     }
   },
   {
@@ -166,7 +162,7 @@ export default [
     visible: false,
     to: 'https://www.wnyc.org/privacy/',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Privacy Policy')
+      gaEvent( 'Click Tracking', 'Navigation', 'Privacy Policy' )
     }
   },
   {
@@ -174,7 +170,7 @@ export default [
     visible: false,
     to: 'https://media.wnyc.org/media/resources/2022/May/06/accessibility_policy_5.6.22.pdf',
     command: () => {
-      gaEvent('Click Tracking', 'Navigation', 'Accessibility')
+      gaEvent( 'Click Tracking', 'Navigation', 'Accessibility' )
     }
   },
 ]
