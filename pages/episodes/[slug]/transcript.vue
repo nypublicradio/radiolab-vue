@@ -51,7 +51,7 @@ useHead({
               </div>
             </div>
             <div v-if="!pending" class="mt-5">
-              <div class="transcript-panel flex gap-4">
+              <div class="transcript-panel flex gap-2 md:gap-4">
                 <div class="left relative">
                   <Button
                     label="Full Episode"
@@ -86,6 +86,21 @@ useHead({
   .transcript-panel {
     .left {
       min-width: 200px;
+      @include media('<md') {
+        min-width: 90px;
+      }
+      .p-button {
+        @include media('<md') {
+          font-size: 0.75rem;
+          padding: 0.27rem 0.27rem;
+        }
+        .pi {
+          @include media('<md') {
+            font-size: 0.5rem;
+            margin-right: 0.2rem;
+          }
+        }
+      }
     }
   }
 }
