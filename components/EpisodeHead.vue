@@ -23,6 +23,7 @@ const imageCreditsLink = ref(props.episode['image-main']['credits-url'])
 // function to route to the transcript page
 const onToggleTranscript = () => {
   router.push({ path: `${props.episode.slug}-transcript` })
+  //router.push({ path: `${props.episode.slug}/transcript` })
 }
 </script>
 

@@ -16,20 +16,20 @@ const {
 episode.value = page.value.data.attributes
 
 useHead({
-  title: `${episode.value?.title} - transcript`,
+  title: episode.value?.title,
   meta: [
     {
       name: 'theme-color',
       content: '#f4be2e',
     },
     { name: 'og:type', content: 'article' },
-    { name: 'og:title', content: `${episode.value?.title} - transcript` },
+    { name: 'og:title', content: episode.value?.title },
     { name: 'description', content: episode.value?.tease },
     { name: 'og:description', content: episode.value?.tease },
     { name: 'og:image', content: episode.value?.['image-main']?.url },
     { name: 'og:image:width', content: episode.value?.['image-main']?.w },
     { name: 'og:image:height', content: episode.value?.['image-main']?.h },
-    { name: 'twitter:title', content: `${episode.value?.title} - transcript` },
+    { name: 'twitter:title', content: episode.value?.title },
     { name: 'twitter:description', content: episode?.value.tease },
     { name: 'twitter:image', content: episode.value?.['image-main']?.url },
   ],

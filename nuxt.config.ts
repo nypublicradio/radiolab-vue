@@ -30,6 +30,7 @@ export default {
     '@nypublicradio/nypr-design-system-vue3/src/assets/styles/flags.css',
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
+    'primeflex/primeflex.css',
     'mosha-vue-toastify/dist/style.css',
   ],
   serverMiddleware: ['~/search/algolia-index'],
