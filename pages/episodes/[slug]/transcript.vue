@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRuntimeConfig } from '#app'
+import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 const currentBreakpoint = useCurrentBreakpoint()
 const config = useRuntimeConfig()
 const episode = ref([])
@@ -37,6 +38,8 @@ useHead({
     class: 'has-head-color',
   },
 })
+console.log('breakpoint.md = ', breakpoint.md)
+console.log('breakpoint.md = ', Number(breakpoint.md))
 </script>
 
 <template>
@@ -55,7 +58,11 @@ useHead({
                 <div class="left relative">
                   <ClientOnly>
                     <Button
-                      :label="currentBreakpoint <= 767 ? '' : 'Episode Details'"
+                      :label="
+                        currentBreakpoint < Number(breakpoint.md)
+                          ? ''
+                          : 'Episode Details'
+                      "
                       icon="pi pi-chevron-left"
                       class="p-button-rounded blue mx-auto block"
                     />
