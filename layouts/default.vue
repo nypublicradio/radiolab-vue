@@ -2,6 +2,7 @@
 //import gaEvent from '../utilities/ga.js'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRuntimeConfig } from '#app'
+import BreakpointsSolver from '~/components/breakpointsSolver.vue'
 //import { isElementXPercentInViewport } from '../utilities/helpers.js'
 
 const config = useRuntimeConfig()
@@ -107,9 +108,10 @@ useHead({
         />
       </Head>
     </Html>
+    <BreakpointsSolver />
     <div
-        class="leaderboard-ad-wrapper flex justify-content-center align-items-center flex-column"
-      >
+      class="leaderboard-ad-wrapper flex justify-content-center align-items-center flex-column"
+    >
       <div class="leaderboard-ad-wrapper-inner">
         <div class="htlad-radiolab_adhesion" />
       </div>
@@ -125,7 +127,8 @@ useHead({
 </template>
 
 <style lang="scss">
-body, html {
+body,
+html {
   overflow-x: clip;
 }
 
@@ -147,12 +150,12 @@ body, html {
 }
 
 .leaderboard-ad-wrapper-inner {
-    min-width: 300px;
-    min-height: 50px;
-    @include media('>=md') {
-        min-width: 728px;
-        min-height: 90px;
-    }
+  min-width: 300px;
+  min-height: 50px;
+  @include media('>=md') {
+    min-width: 728px;
+    min-height: 90px;
+  }
 }
 
 .scrollSentinel {

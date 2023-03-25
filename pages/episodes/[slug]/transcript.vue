@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRuntimeConfig } from '#app'
-
+const currentBreakpoint = useCurrentBreakpoint()
 const config = useRuntimeConfig()
 const episode = ref([])
 
@@ -53,11 +53,18 @@ useHead({
             <div v-if="!pending" class="mt-5">
               <div class="transcript-panel flex gap-2 md:gap-4">
                 <div class="left relative">
-                  <Button
-                    label="Full Episode"
-                    icon="pi pi-chevron-left"
-                    class="p-button-rounded blue mx-auto block"
-                  />
+                  <ClientOnly>
+                    <Button
+                      :label="currentBreakpoint <= 767 ? '' : 'Episode Details'"
+                      icon="pi pi-chevron-left"
+                      class="p-button-rounded blue mx-auto block"
+                    />
+                    <Button
+                      label="Episode Details"
+                      icon="pi pi-chevron-left"
+                      class="p-button-rounded blue mx-auto block"
+                    />
+                  </ClientOnly>
                 </div>
                 <div class="right">
                   <div
@@ -93,6 +100,9 @@ useHead({
         @include media('<md') {
           font-size: 0.75rem;
           padding: 0.27rem 0.27rem;
+          .p-button-label {
+            display: none;
+          }
         }
         .pi {
           @include media('<md') {

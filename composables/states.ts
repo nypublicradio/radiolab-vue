@@ -25,3 +25,6 @@ const togglePlayTrigger = false
  * Global state for the current play toggle for player play-toggle prop.
  */
 export const useTogglePlayTrigger = () => useState('useTogglePlayTrigger', () => togglePlayTrigger)
+
+
+export const useCurrentBreakpoint = () => useState<boolean>('currentBreakpoint', () => null)
