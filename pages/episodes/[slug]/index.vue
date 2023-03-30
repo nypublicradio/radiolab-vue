@@ -15,6 +15,15 @@ const {
 
 episode.value = page.value.data.attributes
 
+// if not a Radiolab show, route to 404
+if (episode.value.show !== 'radiolab') {
+  nuxtError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    message: 'Page not found',
+  })
+}
+
 useHead({
   title: episode.value?.title,
   meta: [
