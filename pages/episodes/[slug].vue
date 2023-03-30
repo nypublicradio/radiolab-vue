@@ -17,6 +17,7 @@ const imageCreditsLink = ref(null)
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
+const nuxtError = useError()
 
 const {
   data: page,
@@ -25,6 +26,16 @@ const {
 } = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
 
 episode.value = page.value.data.attributes
+
+// if not a Radiolab show, route to 404
+if (episode.value.show !== 'radiolab') {
+  nuxtError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    message: 'Page not found',
+  })
+}
+
 imageCredits.value = episode.value['image-main']['credits-name']
 imageCreditsLink.value = episode.value['image-main']['credits-url']
 
