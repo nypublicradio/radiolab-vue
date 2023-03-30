@@ -82,8 +82,6 @@ useHead({
     class: 'has-head-color',
   },
 })
-
-console.log('episode', episode.value)
 </script>
 
 <template>
