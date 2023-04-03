@@ -13,7 +13,7 @@ import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCar
 
 const route = useRoute()
 
-const props = defineProps( {
+const props = defineProps({
   header: {
     type: String,
     default: null,
@@ -66,62 +66,62 @@ const props = defineProps( {
     type: Number,
     default: null,
   },
-} )
+})
 
-const dataLoaded = ref( false )
-const episodes = ref( [] )
-const totalCount = ref( null )
-const startPageNumber = ref( props.startPage )
-const axiosSuccessful = ref( true )
-const cardsPerRow = ref( 3 ) // based on grid col-4 on (>= lg breakpoint)
+const dataLoaded = ref(false)
+const episodes = ref([])
+const totalCount = ref(null)
+const startPageNumber = ref(props.startPage)
+const axiosSuccessful = ref(true)
+const cardsPerRow = ref(3) // based on grid col-4 on (>= lg breakpoint)
 
 const rowsPerAdArr = []
 
-onMounted( () => {
+onMounted(() => {
   let currentCardsPerRow = cardsPerRow.value
   // when less than breakpoint.lg, we are showing 2 cards per row, update currentCardsPerRow var
-  if ( window.innerWidth <= breakpoint.lg ) {
+  if (window.innerWidth <= breakpoint.lg) {
     currentCardsPerRow = 2
   }
   // get the total number of ads that will show in the current layout
   const numOfAds =
     cardCountCalc.value / props.rowsPerAd / currentCardsPerRow +
-    ( props.showLastAd ? 1 : 0 )
+    (props.showLastAd ? 1 : 0)
   // loop through the number of ads and push number where the add will populate to the rowsPerAdArr
-  for ( let i = 1; i < numOfAds; i++ ) {
+  for (let i = 1; i < numOfAds; i++) {
     const adPoint = i * props.rowsPerAd * currentCardsPerRow
-    rowsPerAdArr.push( adPoint )
+    rowsPerAdArr.push(adPoint)
   }
-} )
+})
 
 // checks if the index is where we should populate an ad
-const insertAD = ( index ) => {
-  return rowsPerAdArr.includes( index )
+const insertAD = (index) => {
+  return rowsPerAdArr.includes(index)
 }
 
 /*
 func to determin how many cards to show
 */
-const cardCountCalc = computed( () => {
+const cardCountCalc = computed(() => {
   return props.startCount
     ? props.startCount + props.rowCount * cardsPerRow.value
     : props.rowCount * cardsPerRow.value // (3 cards per )
-} )
+})
 
 // handle the episodes array based on startCount and buckeltlimit props
-const getEpisodes = computed( () => {
+const getEpisodes = computed(() => {
   // if using startCount, we need to offset the episodes array
   return props.startCount
-    ? episodes.value.slice( props.startCount, cardCountCalc.value )
+    ? episodes.value.slice(props.startCount, cardCountCalc.value)
     : // if limiting the bucket, we need to limit the episodes array
     props.bucketLimit
-      ? episodes.value.slice( 0, props.bucketLimit )
-      : episodes.value
-} )
+    ? episodes.value.slice(0, props.bucketLimit)
+    : episodes.value
+})
 
-onBeforeMount( async () => {
+onBeforeMount(async () => {
   // if the url query page has a value, set the startPageNumber to that value
-  if ( route.query.page ) {
+  if (route.query.page) {
     startPageNumber.value = route.query.page
   }
 
@@ -129,45 +129,45 @@ onBeforeMount( async () => {
     .get(
       props.bucket
         ? props.api
-        : `${ props.api }${ startPageNumber.value }?limit=${ cardCountCalc.value }`
+        : `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
     )
 
-    .then( ( response ) => {
+    .then((response) => {
       //console.log('response = ', response)
-      episodes.value = traverseObjectByString( props.path, response )
-      totalCount.value = response.data.data.attributes[ 'total-count' ]
+      episodes.value = traverseObjectByString(props.path, response)
+      totalCount.value = response.data.data.attributes['total-count']
       dataLoaded.value = true
-    } )
-    .catch( function () {
+    })
+    .catch(function () {
       axiosSuccessful.value = false
-    } )
-} )
+    })
+})
 
 // a watcher to update the route page query when startPageNumber changes
-watch( startPageNumber, ( page, prev ) => {
-  navigateTo( {
+watch(startPageNumber, (page, prev) => {
+  navigateTo({
     query: { page: page },
-  } )
-} )
+  })
+})
 
-async function onPage ( event ) {
+async function onPage(event) {
   //event.page: New page number
   //event.first: Index of first record
   //event.rows: Number of rows to display in new page
   //event.pageCount: Total number of pages
   dataLoaded.value = false
   await axios
-    .get( `${ props.api }${ event.page + 1 }?limit=${ cardCountCalc.value }` )
-    .then( ( response ) => {
-      episodes.value = traverseObjectByString( props.path, response )
+    .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
+    .then((response) => {
+      episodes.value = traverseObjectByString(props.path, response)
       dataLoaded.value = true
       // set startPageNumber var for page url param
       startPageNumber.value = event.page + 1
-      gaEvent( 'Click Tracking', 'Episodes Pagination', `Page ${ event.page + 1 }` )
-    } )
-    .catch( function () {
+      gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
+    })
+    .catch(function () {
       axiosSuccessful.value = false
-    } )
+    })
 }
 </script>
 

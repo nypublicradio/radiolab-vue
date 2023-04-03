@@ -13,8 +13,8 @@ import { Howl, Howler } from 'howler'
 const currentEpisode = useCurrentEpisode()
 const isEpisodePlaying = useIsEpisodePlaying()
 const togglePlayTrigger = useTogglePlayTrigger()
-const toastConfig = ref( toastGlobalConfig() )
-const showPlayer = ref( false )
+const toastConfig = ref(toastGlobalConfig())
+const showPlayer = ref(false)
 const playerRef = ref()
 
 /*function called from the emit of the persistent player when the download button is clicked to trigger the toast notification*/
@@ -25,11 +25,11 @@ const onDownload = () => {
     },
     toastConfig.value
   )
-  gaEvent( 'Click Tracking', 'Audio Player', 'Download' )
+  gaEvent('Click Tracking', 'Audio Player', 'Download')
 }
 
 /*function that updated the global useIsEpisodePlaying */
-const updateUseIsEpisodePlaying = ( e ) => {
+const updateUseIsEpisodePlaying = (e) => {
   isEpisodePlaying.value = e
 }
 
@@ -37,19 +37,19 @@ let delay = 0
 // function that handles the logic for the persistent player to show and hide when the user changes the episode
 const switchEpisode = () => {
   showPlayer.value = false
-  setTimeout( () => {
+  setTimeout(() => {
     showPlayer.value = true
     delay = 1000
-  }, delay )
+  }, delay)
 }
 
-watch( currentEpisode, () => {
+watch(currentEpisode, () => {
   switchEpisode()
-} )
+})
 
-watch( togglePlayTrigger, () => {
+watch(togglePlayTrigger, () => {
   playerRef.value.togglePlay()
-} )
+})
 </script>
 
 <template>

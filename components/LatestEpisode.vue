@@ -8,19 +8,19 @@ import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const dataLoaded = ref( false )
-const episodes = ref( [] )
+const dataLoaded = ref(false)
+const episodes = ref([])
 
-onBeforeMount( async () => {
+onBeforeMount(async () => {
   await axios
     .get(
-      `${ config.API_URL }/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
+      `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
     )
-    .then( ( response ) => {
+    .then((response) => {
       episodes.value = response.data.included
       dataLoaded.value = true
-    } )
-} )
+    })
+})
 </script>
 
 <template>

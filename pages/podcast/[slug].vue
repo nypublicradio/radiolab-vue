@@ -11,10 +11,10 @@ import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/com
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 
 const config = useRuntimeConfig()
-const episode = ref( [] )
-const imageCredits = ref( null )
-const imageCreditsLink = ref( null )
-const showTranscriptSidePanel = ref( false )
+const episode = ref([])
+const imageCredits = ref(null)
+const imageCreditsLink = ref(null)
+const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
 const nuxtError = useError()
@@ -23,35 +23,36 @@ const {
   data: page,
   pending,
   error,
-} = await useFetch( `${ config.API_URL }/api/v3/story/${ route.params.slug }/` )
+} = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
 
 episode.value = page.value.data.attributes
 
 // if not a Radiolab show, route to 404
-if ( episode.value.show !== 'radiolab' ) {
-  nuxtError( {
+if (episode.value.show !== 'radiolab') {
+  nuxtError({
     statusCode: 404,
     statusMessage: 'Page not found',
     message: 'Page not found',
-  } )
+  })
 }
 
-imageCredits.value = episode.value[ 'image-main' ][ 'credits-name' ]
-imageCreditsLink.value = episode.value[ 'image-main' ][ 'credits-url' ]
+imageCredits.value = episode.value['image-main']['credits-name']
+imageCreditsLink.value = episode.value['image-main']['credits-url']
 
-onMounted( () => {
+onMounted(() => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
-  if ( route.query.transcript ) onToggleTranscript()
-} )
+  if (route.query.transcript) onToggleTranscript()
+})
 
 // copy transcript link to clipboard
 const copyTranscriptLink = () => {
   copyToClipBoard(
-    `${ window.location.href }${ route.query.transcript ? '' : '?transcript=true'
+    `${window.location.href}${
+      route.query.transcript ? '' : '?transcript=true'
     }`,
     'Transcript link copied to clipboard'
   )
-  gaEvent( 'Click Tracking', 'Episode Tools', 'Copy transcript link' )
+  gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
 }
 
 // function to toggle transcript sidebar panel
@@ -59,7 +60,7 @@ const onToggleTranscript = () => {
   showTranscriptSidePanel.value = true
 }
 
-useHead( {
+useHead({
   title: episode.value?.title,
   meta: [
     {
@@ -70,17 +71,17 @@ useHead( {
     { name: 'og:title', content: episode.value?.title },
     { name: 'description', content: episode.value?.tease },
     { name: 'og:description', content: episode.value?.tease },
-    { name: 'og:image', content: episode.value?.[ 'image-main' ]?.url },
-    { name: 'og:image:width', content: episode.value?.[ 'image-main' ]?.w },
-    { name: 'og:image:height', content: episode.value?.[ 'image-main' ]?.h },
+    { name: 'og:image', content: episode.value?.['image-main']?.url },
+    { name: 'og:image:width', content: episode.value?.['image-main']?.w },
+    { name: 'og:image:height', content: episode.value?.['image-main']?.h },
     { name: 'twitter:title', content: episode.value?.title },
     { name: 'twitter:description', content: episode?.value.tease },
-    { name: 'twitter:image', content: episode.value?.[ 'image-main' ]?.url },
+    { name: 'twitter:image', content: episode.value?.['image-main']?.url },
   ],
   bodyAttrs: {
     class: 'has-head-color',
   },
-} )
+})
 </script>
 
 <template>
