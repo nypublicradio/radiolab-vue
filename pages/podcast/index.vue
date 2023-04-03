@@ -82,14 +82,11 @@ const onYearFilter = (yearValue) => {
   <div>
     <Html lang="en">
       <Head>
-        <Title>Episode Archive | Radiolab | WNYC Studios</Title>
-        <Meta
-          name="og:title"
-          content="Episode Archive | Radiolab | WNYC Studios"
-        />
+        <Title>Podcast | Radiolab | WNYC Studios</Title>
+        <Meta name="og:title" content="Podcast | Radiolab | WNYC Studios" />
         <Meta
           name="twitter:title"
-          content="Episode Archive | Radiolab | WNYC Studios"
+          content="Podcast | Radiolab | WNYC Studios"
         />
       </Head>
     </Html>
@@ -98,7 +95,7 @@ const onYearFilter = (yearValue) => {
         <div class="grid">
           <div class="col">
             <title-with-search
-              title="Episode Archive"
+              title="Podcast"
               placeholder="Search by topic, guest, host"
               :isSearching="isSearching"
               @search="onSearch"

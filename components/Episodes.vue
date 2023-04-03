@@ -206,7 +206,7 @@ async function onPage(event) {
                         :height="240"
                         :alt="episode.attributes['image-main']['alt-text']"
                         :title="episode.attributes.title"
-                        :titleLink="`/episodes/${episode.attributes.slug}`"
+                        :titleLink="`/podcast/${episode.attributes.slug}`"
                         :eyebrow="formatDate(episode.attributes['publish-at'])"
                         :blurb="episode.attributes.tease"
                         :max-width="episode.attributes['image-main'].w"

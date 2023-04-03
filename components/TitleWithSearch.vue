@@ -24,7 +24,7 @@ onMounted(() => {})
 
 <template>
   <div class="title-with-search">
-    <h1 class="h2 font-normal">Episode Archive</h1>
+    <h1 class="h2 font-normal">Podcast</h1>
     <search-field
       :placeholder="props.placeholder"
       :isSearching="isSearching"

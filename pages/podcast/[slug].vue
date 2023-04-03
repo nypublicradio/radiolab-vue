@@ -208,7 +208,8 @@ useHead({
 </template>
 
 <style lang="scss">
-.episodes-slug {
+.episodes-slug,
+.podcast-slug {
   .cms-edit-button {
     position: absolute;
     padding: 0.5rem;
