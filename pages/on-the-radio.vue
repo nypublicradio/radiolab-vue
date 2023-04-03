@@ -2,7 +2,7 @@
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const apiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab/radio-shows/`
+const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
 // const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/radio-shows/`
 </script>
 
