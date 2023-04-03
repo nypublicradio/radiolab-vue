@@ -8,19 +8,19 @@ import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const dataLoaded = ref(false)
-const episodes = ref([])
+const dataLoaded = ref( false )
+const episodes = ref( [] )
 
-onBeforeMount(async () => {
+onBeforeMount( async () => {
   await axios
     .get(
-      `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
+      `${ config.API_URL }/api/v3/channel/shows/radiolab/recent_stories/1?limit=1`
     )
-    .then((response) => {
+    .then( ( response ) => {
       episodes.value = response.data.included
       dataLoaded.value = true
-    })
-})
+    } )
+} )
 </script>
 
 <template>
@@ -40,7 +40,7 @@ onBeforeMount(async () => {
                     "
                     :width="778"
                     :height="545"
-                    :imageUrl="`/episodes/${episodes[0].attributes.slug}`"
+                    :imageUrl="`/podcast/${episodes[0].attributes.slug}`"
                     :alt="episodes[0].attributes['image-main']['alt-text']"
                     :max-width="episodes[0].attributes['image-main'].w"
                     :max-height="episodes[0].attributes['image-main'].h"
@@ -56,7 +56,7 @@ onBeforeMount(async () => {
                 <div>
                   <h5 class="mb-0 lg:mb-2">Latest Episode</h5>
                   <v-flexible-link
-                    :to="`/episodes/${episodes[0].attributes.slug}`"
+                    :to="`/podcast/${episodes[0].attributes.slug}`"
                     class="latest-episode-title inline-block"
                   >
                     <div

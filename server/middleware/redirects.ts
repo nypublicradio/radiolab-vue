@@ -1,12 +1,10 @@
 const redirects =
   [
-    // { from: '/episodes', to: '/podcast' },
+    { from: '/episodes', to: '/podcast' },
     { from: '/radio-shows', to: '/on-the-radio' }
   ]
 
 export default fromNodeMiddleware((req, res, next) => {
-  // const host = req.headers.host
-  // const fullUrl = req.url
   const url = req.url.split('?')[0]
   let urlParams = null
   if (req.url.includes('?')) {

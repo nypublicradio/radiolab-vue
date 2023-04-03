@@ -8,7 +8,7 @@ export default [ {
     label: 'Episodes',
     items: [ {
         label: 'Podcast',
-        to: '/episodes',
+        to: '/podcast',
         command: () => {
           gaEvent( 'Click Tracking', 'Navigation', 'Podcasts: Episodes' )
         }

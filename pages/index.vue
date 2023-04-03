@@ -1,8 +1,8 @@
 <script setup>
 import { useRuntimeConfig } from '#app'
 const config = useRuntimeConfig()
-const recentEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
-const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular-episodes/`
+const recentEpisodesApiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab/recent_stories/`
+const popularEpisodesApiUrl = `${ config.API_URL }/api/v3/buckets/radiolab-popular-episodes/`
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
       class="mb-4"
       header="Recent Episodes"
       button-text="All Episodes"
-      button-link="/episodes"
+      button-link="/podcast"
       :row-count="1"
       :startCount="1"
       :api="recentEpisodesApiUrl"

@@ -8,7 +8,7 @@ import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/com
 import EpisodeTools from '~/components/EpisodeTools.vue'
 import { useRuntimeConfig } from '#app'
 
-useHead({
+useHead( {
   meta: [
     {
       name: 'theme-color',
@@ -18,50 +18,49 @@ useHead({
   bodyAttrs: {
     class: 'has-head-color',
   },
-})
+} )
 
 const config = useRuntimeConfig()
-const dataLoaded = ref(false)
-const episode = ref([])
-const showTranscriptSidePanel = ref(false)
+const dataLoaded = ref( false )
+const episode = ref( [] )
+const showTranscriptSidePanel = ref( false )
 
 const route = useRoute()
 const router = useRouter()
 
-onBeforeMount(async () => {
+onBeforeMount( async () => {
   await axios
-    .get(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
-    .then((response) => {
+    .get( `${ config.API_URL }/api/v3/story/${ route.params.slug }/` )
+    .then( ( response ) => {
       episode.value = response.data.data.attributes
       dataLoaded.value = true
-    })
-    .catch(() => {
-      throw createError({
+    } )
+    .catch( () => {
+      throw createError( {
         statusCode: 404,
         statusMessage: 'Page Not Found',
         fatal: true,
-      })
-    })
-})
+      } )
+    } )
+} )
 
-onMounted(() => {
+onMounted( () => {
   // when mounted and data is ready, if url query transcript exists, show transcript side panel
-  if (route.query.transcript) onToggleTranscript()
-})
+  if ( route.query.transcript ) onToggleTranscript()
+} )
 
-const isMobile = computed(() => {
-  return window.innerWidth < breakpoint['md']
-})
+const isMobile = computed( () => {
+  return window.innerWidth < breakpoint[ 'md' ]
+} )
 
 // copy transcript link to clipboard
 const copyTranscriptLink = () => {
   copyToClipBoard(
-    `${window.location.href}${
-      route.query.transcript ? '' : '?transcript=true'
+    `${ window.location.href }${ route.query.transcript ? '' : '?transcript=true'
     }`,
     'Transcript link copied to clipboard'
   )
-  gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
+  gaEvent( 'Click Tracking', 'Episode Tools', 'Copy transcript link' )
 }
 
 // function to toggle transcript sidebar panel
@@ -182,7 +181,8 @@ const onToggleTranscript = () => {
 </template>
 
 <style lang="scss">
-.episodes-slug {
+.episodes-slug,
+.podcast-slug {
   .episode {
     align-items: center;
 
