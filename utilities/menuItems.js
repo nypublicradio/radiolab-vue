@@ -5,9 +5,9 @@
 import gaEvent from './ga.js'
 
 export default [ {
-    label: 'Podcast',
+    label: 'Episodes',
     items: [ {
-        label: 'Episodes',
+        label: 'Podcast',
         to: '/episodes',
         command: () => {
           gaEvent( 'Click Tracking', 'Navigation', 'Podcasts: Episodes' )
@@ -15,7 +15,7 @@ export default [ {
       },
       {
         label: 'On The Radio',
-        to: '/radio-shows',
+        to: '/on-the-radio',
         command: () => {
           gaEvent( 'Click Tracking', 'Navigation', 'Podcasts: Radio Shows' )
         }

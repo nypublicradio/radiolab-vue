@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import SearchField from '~/components/SearchField.vue'
-const props = defineProps({
+const props = defineProps( {
   title: {
     type: String,
     default: '',
@@ -15,16 +15,16 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
+} )
 
-const emit = defineEmits(['search', 'update', 'year'])
+const emit = defineEmits( [ 'search', 'update', 'year' ] )
 
-onMounted(() => {})
+onMounted( () => { } )
 </script>
 
 <template>
   <div class="title-with-search">
-    <h1 class="h2 font-normal">Episode Archive</h1>
+    <h1 class="h2 font-normal">Podcast</h1>
     <search-field
       :placeholder="props.placeholder"
       :isSearching="isSearching"

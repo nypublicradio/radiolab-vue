@@ -2,7 +2,7 @@
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
+const apiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab/radio-shows/`
 // const apiUrl = `https://private-anon-c9c388aa36-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/radio-shows/`
 </script>
 
@@ -10,11 +10,14 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
   <div>
     <Html lang="en">
       <Head>
-        <Title>Radio Shows | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="Radio Shows | Radiolab | WNYC Studios" />
+        <Title>On The Radio | Radiolab | WNYC Studios</Title>
+        <Meta
+          name="og:title"
+          content="On The Radio | Radiolab | WNYC Studios"
+        />
         <Meta
           name="twitter:title"
-          content="Radio Shows | Radiolab | WNYC Studios"
+          content="On The Radio | Radiolab | WNYC Studios"
         />
       </Head>
     </Html>
@@ -22,7 +25,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
       <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <h1 class="h2 font-normal">Radio Shows</h1>
+            <h1 class="h2 font-normal">On The Radio</h1>
           </div>
         </div>
       </div>
