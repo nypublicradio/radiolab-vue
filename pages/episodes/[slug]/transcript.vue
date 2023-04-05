@@ -154,10 +154,10 @@ useHead({
       }
     }
     .episode-details-button {
+      padding-left: 0.5rem;
       @include media('<md') {
         font-size: 0.8rem;
         line-height: 1rem;
-        padding-left: 0.5rem;
         .p-button-label {
           vertical-align: text-bottom;
         }
