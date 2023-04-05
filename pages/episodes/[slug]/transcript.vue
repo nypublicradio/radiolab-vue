@@ -79,12 +79,12 @@ useHead({
               <div class="scrollTrigger" ref="scrollTrigger" />
               <div
                 :class="[{ intersected: intersected }]"
-                class="fixed-header flex gap-2 align-items-center"
+                class="fixed-header flex flex-wrap gap-2 align-items-center flex-row"
               >
                 <Button
                   label="Episode Details"
                   icon="pi pi-chevron-left"
-                  class="p-button-rounded blue block"
+                  class="p-button-rounded blue block episode-details-button"
                   @click="
                     () =>
                       router.push({
@@ -153,9 +153,20 @@ useHead({
         top: 0;
       }
     }
+    .episode-details-button {
+      @include media('<md') {
+        font-size: 0.8rem;
+        line-height: 1rem;
+        padding-left: 0.5rem;
+        .p-button-label {
+          vertical-align: text-bottom;
+        }
+      }
+    }
     .fixed-image {
       border-radius: 6px;
       width: 36px;
+      min-width: 36px;
       height: 36px;
     }
   }
