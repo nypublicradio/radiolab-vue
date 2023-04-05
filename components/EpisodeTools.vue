@@ -17,6 +17,10 @@ const props = defineProps({
     type: Object,
     default: null,
   },
+  isTranscript: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emit = defineEmits(['toggleTranscript'])
@@ -126,7 +130,7 @@ const toggleTranscript = () => {
         />
       </client-only>
       <Button
-        v-if="!!props.episode['transcript']"
+        v-if="!!props.episode['transcript'] && !props.isTranscript"
         class="p-button-sm p-button-rounded"
         label="Transcript"
         @click="toggleTranscript"

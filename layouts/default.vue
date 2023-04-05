@@ -137,7 +137,7 @@ html {
   background: #111111;
   padding: 0;
   @include media('<md') {
-    min-height: 50px;
+    min-height: $leaderboardHeightMobile;
     position: sticky;
     top: 0;
     z-index: 5000;
@@ -151,10 +151,10 @@ html {
 
 .leaderboard-ad-wrapper-inner {
   min-width: 300px;
-  min-height: 50px;
+  min-height: $leaderboardHeightMobile;
   @include media('>=md') {
     min-width: 728px;
-    min-height: 90px;
+    min-height: $leaderboardHeight;
   }
 }
 

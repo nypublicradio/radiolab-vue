@@ -1,5 +1,10 @@
 <script setup>
-import { formatDate, formatPublisherImageUrl } from '~/utilities/helpers'
+import gaEvent from '../utilities/ga.js'
+import {
+  formatDate,
+  formatPublisherImageUrl,
+  shareAPI,
+} from '~/utilities/helpers'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 
@@ -7,6 +12,10 @@ const props = defineProps({
   pending: {
     type: Boolean,
     default: true,
+  },
+  isTranscript: {
+    type: Boolean,
+    default: false,
   },
   episode: {
     type: Object,
@@ -22,12 +31,23 @@ const imageCreditsLink = ref(props.episode['image-main']['credits-url'])
 
 // function to route to the transcript page
 const onToggleTranscript = () => {
-  console.log('onToggleTranscript = ', route)
   if (route.name !== 'episodes-slug-transcript') {
     router.push({ path: `/episodes/${props.episode.slug}/transcript` })
   } else {
     router.back()
   }
+}
+
+const copyTranscriptLink = () => {
+  shareAPI(
+    {
+      title: props.episode['title'],
+      text: props.episode['tease'],
+      url: props.episode['url'],
+    },
+    'Episode link copied to the clipboard'
+  )
+  gaEvent('Click Tracking', 'Transcript Link Icon', 'Copy link')
 }
 </script>
 
@@ -53,12 +73,24 @@ const onToggleTranscript = () => {
       <p v-if="episode['publish-at']" class="date mb-1">
         {{ formatDate(episode['publish-at']) }}
       </p>
+      <div class="flex align-items-center" v-if="isTranscript">
+        <h5 class="transcript font-bold">Transcript</h5>
+        <Button
+          class="transcript-link"
+          icon="pi pi-link"
+          text
+          rounded
+          aria-label="Copy transcript link"
+          @click="copyTranscriptLink"
+        />
+      </div>
       <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
       <client-only>
         <episode-tools
           class="hidden md:block"
           :episode="episode"
           @toggleTranscript="onToggleTranscript"
+          :isTranscript="isTranscript"
         />
       </client-only>
       <div v-if="imageCredits" class="mt-2 md:mt-3 footer type-body">
@@ -79,6 +111,7 @@ const onToggleTranscript = () => {
       class="mt-3 block md:hidden"
       :episode="episode"
       @toggleTranscript="onToggleTranscript"
+      :isTranscript="isTranscript"
     />
     <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
   </client-only>
@@ -138,6 +171,20 @@ const onToggleTranscript = () => {
       @include media('<md') {
         font-size: var(--font-size-8);
         line-height: var(--font-size-9);
+      }
+    }
+    .transcript {
+      @include media('<md') {
+        font-size: 13px;
+      }
+    }
+    .transcript-link {
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-left: 5px;
+      @include media('<md') {
+        width: 1.375rem;
+        height: 1.375rem;
       }
     }
   }
