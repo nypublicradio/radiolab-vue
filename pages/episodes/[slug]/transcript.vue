@@ -142,7 +142,7 @@ useHead({
     right: 0;
     z-index: 100;
     background-color: #fff;
-    padding: 16px 0px;
+    padding: 0px 0px 16px 0px;
     &.intersected {
       position: relative;
       top: 0;
