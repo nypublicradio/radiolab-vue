@@ -93,7 +93,9 @@ const shareItems = ref([
         {
           title: props.episode['title'],
           text: props.episode['tease'],
-          url: `${props.episode['url']}${isTranscript ? '/transcript' : ''}`,
+          url: `${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`,
         },
         'Episode link copied to the clipboard'
       )
@@ -169,7 +171,9 @@ const toggleTranscript = () => {
         <ShareNetwork
           class="facebookShareRef"
           network="facebook"
-          :url="props.episode['url']"
+          :url="`${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`"
           :title="props.episode['title']"
           :description="props.episode['tease']"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
@@ -179,7 +183,9 @@ const toggleTranscript = () => {
         <ShareNetwork
           class="twitterShareRef"
           network="twitter"
-          :url="props.episode['url']"
+          :url="`${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`"
           :title="props.episode['title']"
           :description="props.episode['tease']"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
@@ -190,7 +196,9 @@ const toggleTranscript = () => {
         <ShareNetwork
           class="emailShareRef"
           network="email"
-          :url="props.episode['url']"
+          :url="`${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`"
           :title="props.episode['title']"
           :description="convertHTMLtoPlainText(props.episode['tease'])"
           :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
