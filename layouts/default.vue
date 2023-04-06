@@ -2,7 +2,6 @@
 //import gaEvent from '../utilities/ga.js'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRuntimeConfig } from '#app'
-import BreakpointsSolver from '~/components/breakpointsSolver.vue'
 //import { isElementXPercentInViewport } from '../utilities/helpers.js'
 
 const config = useRuntimeConfig()
@@ -108,7 +107,6 @@ useHead({
         />
       </Head>
     </Html>
-    <BreakpointsSolver />
     <div
       class="leaderboard-ad-wrapper flex justify-content-center align-items-center flex-column"
     >
