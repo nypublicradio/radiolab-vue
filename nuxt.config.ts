@@ -30,6 +30,7 @@ export default {
     '@nypublicradio/nypr-design-system-vue3/src/assets/styles/flags.css',
     'primevue/resources/primevue.min.css',
     'primeicons/primeicons.css',
+    'primeflex/primeflex.css',
     'mosha-vue-toastify/dist/style.css',
   ],
   serverMiddleware: ['~/search/algolia-index'],
@@ -38,7 +39,7 @@ export default {
       preprocessorOptions: {
         scss: {
           // besure to mirror theses imports in the vitest.config.ts
-          additionalData: `@import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss"; @import "~/assets/scss/global.scss";`,
+          additionalData: '@import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/variables.scss"; @import "@nypublicradio/nypr-design-system-vue3/src/assets/themes/radiolab/_mixins.scss"; @import "~/assets/scss/global.scss";'
         },
       },
       postcss: {

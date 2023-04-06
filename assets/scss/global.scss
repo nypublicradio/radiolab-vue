@@ -1,16 +1,4 @@
-$maxWidth: 1440px;
-$contentWidth: 1366px;
-$thinContentWidth: 768px;
-$headerHeight: 70px;
-$playerHeight: 100px;
-$toolsBreakPoint: 472px;
-
-:root {
-  --header-height: #{$headerHeight};
-  --player-height: #{$playerHeight};
-  --header-z-index: 900;
-  --line-clamp: 3;
-}
+@import '_variables.scss';
 
 body {
   background: #ffffff;
@@ -85,11 +73,6 @@ section {
       max-width: $maxWidth;
     }
   }
-
-  $head-color-height: 280px;
-  $head-color-height-lg: 130px;
-  $head-color-height-md: 162px;
-  $head-color-height-sm: 210px;
 
   @mixin head-color-before {
     &:before {
