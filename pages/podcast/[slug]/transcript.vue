@@ -88,7 +88,7 @@ useHead({
                   @click="
                     () =>
                       router.push({
-                        path: `/episodes/${episode.slug}`,
+                        path: `/podcast/${episode.slug}`,
                       })
                   "
                 />
@@ -134,7 +134,7 @@ useHead({
 </template>
 
 <style lang="scss">
-.episodes-slug-transcript {
+.podcast-slug-transcript {
   .fixed-header {
     position: sticky;
     top: $headerHeight;

@@ -182,7 +182,6 @@ const onToggleTranscript = () => {
 </template>
 
 <style lang="scss">
-.episodes-slug,
 .podcast-slug {
   .episode {
     align-items: center;
