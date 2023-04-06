@@ -93,7 +93,7 @@ const shareItems = ref([
         {
           title: props.episode['title'],
           text: props.episode['tease'],
-          url: props.episode['url'],
+          url: `${props.episode['url']}${isTranscript ? '/transcript' : ''}`,
         },
         'Episode link copied to the clipboard'
       )
