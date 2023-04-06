@@ -1,12 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
 const episode = ref([])
 
 const route = useRoute()
-
 const {
   data: page,
   pending,
@@ -63,7 +62,7 @@ useHead({
               v-if="!pending"
               class="mt-5 html-formatting"
               v-html="episode.body"
-            ></div>
+            />
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>
           <div class="col-12 xl:col-3 xl:col-offset-1">
