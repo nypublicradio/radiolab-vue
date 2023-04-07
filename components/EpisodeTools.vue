@@ -97,7 +97,8 @@ const shareItems = ref([
             props.isTranscript ? 'transcript' : ''
           }`,
         },
-        'Episode link copied to the clipboard'
+        'Episode link copied to the clipboard',
+        true
       )
       gaEvent('Click Tracking', 'Episode Share Tools', 'Copy link')
     },

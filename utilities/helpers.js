@@ -50,11 +50,22 @@ export const copyToClipBoard = async (content, msg) => {
     })
 }
 
+// global funcrtion for decoding html entities
+export const decodeHTMLEntities = (str) => {
+  const txt = new DOMParser().parseFromString(str, "text/html")
+  return txt.documentElement.textContent
+}
+
 // global funcrtion for shareApi and copyToClipboard fallback
 // fyi, This feature is available only in secure contexts (HTTPS), etc... testing local will have no result on mobile, using browserstack works for andriod-chrome only... Best to just test it on the DEMO link.
-export const shareAPI = async (content, msg) => {
+export const shareAPI = async (content, msg, isLinkOnly = false) => {
+  //convert html entities to plain text
+  content.text = decodeHTMLEntities(content.text)
+  content.title = decodeHTMLEntities(content.title)
+
+  //check if the share api is available and if the browser is mobile
   if (navigator.canShare && isMobileBrowser()) {
-    await navigator.share(content)
+    await navigator.share(isLinkOnly ? content.url : content)
   } else {
     copyToClipBoard(content.url, msg)
   }
@@ -88,7 +99,7 @@ export const traverseObjectByString = (pathString, data) => {
   pathParts.forEach((key) => {
     tempData = tempData[key]
     if (tempData === undefined || tempData === null) {
-      throw new Error(`path prop wrong format`)
+      throw new Error('path prop wrong format')
     }
   })
   return tempData

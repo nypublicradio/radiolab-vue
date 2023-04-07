@@ -23,6 +23,8 @@ const props = defineProps({
   },
 })
 
+const isMounted = ref(false)
+
 const route = useRoute()
 const router = useRouter()
 
@@ -45,30 +47,35 @@ const copyTranscriptLink = () => {
       text: props.episode['tease'],
       url: `${props.episode['url']}transcript`,
     },
-    'Episode link copied to the clipboard'
+    'Episode link copied to the clipboard',
+    true
   )
   gaEvent('Click Tracking', 'Transcript Link Icon', 'Copy link')
 }
+
+onMounted(() => {
+  isMounted.value = true
+})
 </script>
 
 <template>
   <div v-if="!pending" class="episode flex">
     <cms-edit-button :data="episode" label="Edit this Episode in the CMS" />
-    <client-only>
-      <v-image-with-caption
-        v-if="episode['image-main']"
-        :image="formatPublisherImageUrl(episode['image-main'].template)"
-        :width="200"
-        :height="200"
-        :alt="episode['image-main']['alt-text']"
-        :ratio="[1, 1]"
-        :sizes="[1]"
-        flat-quality
-        :max-width="episode['image-main'].w"
-        :max-height="episode['image-main'].h"
-        class="episode-image"
-      />
-    </client-only>
+
+    <v-image-with-caption
+      v-if="episode['image-main']"
+      :image="formatPublisherImageUrl(episode['image-main'].template)"
+      :width="200"
+      :height="200"
+      :alt="episode['image-main']['alt-text']"
+      :ratio="[1, 1]"
+      :sizes="[1]"
+      flat-quality
+      :max-width="episode['image-main'].w"
+      :max-height="episode['image-main'].h"
+      class="episode-image"
+    />
+
     <div class="episode-content">
       <p v-if="episode['publish-at']" class="date mb-1">
         {{ formatDate(episode['publish-at']) }}
@@ -85,7 +92,7 @@ const copyTranscriptLink = () => {
         />
       </div>
       <div class="h2 title mb-0 md:mb-4" v-html="episode.title"></div>
-      <client-only>
+      <client-only v-if="isMounted">
         <episode-tools
           class="hidden md:block"
           :episode="episode"
@@ -93,6 +100,11 @@ const copyTranscriptLink = () => {
           :isTranscript="isTranscript"
         />
       </client-only>
+      <episode-tools-skeleton
+        v-else
+        class="mt-3 hidden md:block"
+        :isTranscript="isTranscript"
+      />
       <div v-if="imageCredits" class="mt-2 md:mt-3 footer type-body">
         Image credits:
         <v-flexible-link
@@ -105,16 +117,19 @@ const copyTranscriptLink = () => {
     </div>
   </div>
   <episode-head-skeleton v-else />
-  <client-only>
+  <client-only v-if="isMounted">
     <episode-tools
-      v-if="!pending"
       class="mt-3 block md:hidden"
       :episode="episode"
       @toggleTranscript="onToggleTranscript"
       :isTranscript="isTranscript"
     />
-    <episode-tools-skeleton v-else class="mt-3 block md:hidden" />
   </client-only>
+  <episode-tools-skeleton
+    v-else
+    class="mt-3 block md:hidden"
+    :isTranscript="isTranscript"
+  />
 </template>
 
 <style lang="scss">
