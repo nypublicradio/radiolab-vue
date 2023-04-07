@@ -50,10 +50,9 @@ export const copyToClipBoard = async (content, msg) => {
     })
 }
 
-export const decodeHTMLEntities = (text) => {
-  let textArea = document.createElement('textarea')
-  textArea.innerHTML = text
-  return textArea.value
+export const decodeHTMLEntities = (str) => {
+  let txt = new DOMParser().parseFromString(str, "text/html")
+  return txt.documentElement.textContent
 }
 
 // global funcrtion for shareApi and copyToClipboard fallback
