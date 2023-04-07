@@ -54,7 +54,7 @@ export const copyToClipBoard = async (content, msg) => {
 // fyi, This feature is available only in secure contexts (HTTPS), etc... testing local will have no result on mobile, using browserstack works for andriod-chrome only... Best to just test it on the DEMO link.
 export const shareAPI = async (content, msg) => {
   if (navigator.canShare && isMobileBrowser()) {
-    await navigator.share(content)
+    await navigator.share(content.url)
   } else {
     copyToClipBoard(content.url, msg)
   }
