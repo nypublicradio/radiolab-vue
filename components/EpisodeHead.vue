@@ -47,7 +47,8 @@ const copyTranscriptLink = () => {
       text: props.episode['tease'],
       url: `${props.episode['url']}transcript`,
     },
-    'Episode link copied to the clipboard'
+    'Episode link copied to the clipboard',
+    true
   )
   gaEvent('Click Tracking', 'Transcript Link Icon', 'Copy link')
 }
