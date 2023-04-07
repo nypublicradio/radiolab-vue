@@ -35,9 +35,6 @@ const props = defineProps({
       .play {
         width: 75% !important;
       }
-      .dd {
-        //width: 25% !important;
-      }
     }
   }
 }
