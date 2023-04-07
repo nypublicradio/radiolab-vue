@@ -50,8 +50,9 @@ export const copyToClipBoard = async (content, msg) => {
     })
 }
 
+// global funcrtion for decoding html entities
 export const decodeHTMLEntities = (str) => {
-  let txt = new DOMParser().parseFromString(str, "text/html")
+  const txt = new DOMParser().parseFromString(str, "text/html")
   return txt.documentElement.textContent
 }
 
@@ -98,7 +99,7 @@ export const traverseObjectByString = (pathString, data) => {
   pathParts.forEach((key) => {
     tempData = tempData[key]
     if (tempData === undefined || tempData === null) {
-      throw new Error(`path prop wrong format`)
+      throw new Error('path prop wrong format')
     }
   })
   return tempData
