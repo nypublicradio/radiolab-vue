@@ -34,17 +34,21 @@ const launchService = (service) => {
   //launch tab of service
   window.open(service.url, '_blank')
 
-  gaEvent(
-    'Click Tracking',
-    `Launch Audio Service: ${service.name}`,
-    props.episode.title
-  )
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: `Launch Audio Service: ${service.name}`,
+    event_label: props.episode.title,
+  })
 }
 
 // This is where the magic happens.
 // if this instances props.episode.slug matches the currentEpisode.value.slug, this method now handles the play toggle and the setting of 2 global vars that control the persistent player and the display of the listen/play/pause button
 const launchEpisode = () => {
-  gaEvent('Click Tracking', 'Launch Audio Player', props.episode.title)
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: 'Launch Audio Player',
+    event_label: props.episode.title,
+  })
   if (
     currentEpisode.value &&
     currentEpisode.value.slug === props.episode.slug

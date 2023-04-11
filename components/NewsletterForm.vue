@@ -37,16 +37,20 @@ function submitForm() {
     })
     .then(() => {
       submissionStatus.value = 'success'
-      gaEvent(
-        'Click Tracking',
-        `Newsletter Signup: ${props.location}`,
-        'Success'
-      )
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: `Newsletter Signup: ${props.location}`,
+        event_label: 'Success',
+      })
     })
     .catch(() => {
       submissionStatus.value = 'error'
       submitted.value = false
-      gaEvent('Click Tracking', `Newsletter Signup: ${props.location}`, 'Error')
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: `Newsletter Signup: ${props.location}`,
+        event_label: 'Error',
+      })
     })
 }
 </script>

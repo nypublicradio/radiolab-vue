@@ -60,7 +60,11 @@ const copyTranscriptLink = () => {
     }`,
     'Transcript link copied to clipboard'
   )
-  gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: 'Episode Tools',
+    event_label: 'Copy transcript link',
+  })
 }
 
 // function to toggle transcript sidebar panel

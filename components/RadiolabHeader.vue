@@ -56,7 +56,11 @@ onUnmounted(() => {
           <Button
             class="flex lg:hidden p-button-rounded"
             @click="
-              gaEvent('Click Tracking', 'Header (mobile)', 'Become a member')
+              $analytics.sendEvent('click_tracking', {
+                event_category: 'Click Tracking',
+                component: 'Header (mobile)',
+                event_label: 'Become a member',
+              })
             "
           >
             Become a member

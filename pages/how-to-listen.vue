@@ -50,11 +50,11 @@ const { $analytics } = useNuxtApp()
                 <Button
                   class="p-button-rounded"
                   @click="
-                    gaEvent(
-                      'Click Tracking',
-                      'How To Listen CTA',
-                      'Become a member'
-                    )
+                    $analytics.sendEvent('click_tracking', {
+                      event_category: 'Click Tracking',
+                      component: 'How To Listen CTA',
+                      event_label: 'Become a member',
+                    })
                   "
                 >
                   Become a member

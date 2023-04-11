@@ -45,7 +45,11 @@ const { $analytics } = useNuxtApp()
             class="p-button-rounded"
             label="Become a member"
             @click="
-              gaEvent('Click Tracking', 'The Lab Hero CTA', 'Become a member')
+              $analytics.sendEvent('click_tracking', {
+                event_category: 'Click Tracking',
+                component: 'The Lab Hero CTA',
+                event_label: 'Become a member',
+              })
             "
           />
         </v-flexible-link>
