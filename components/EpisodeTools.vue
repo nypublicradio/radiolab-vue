@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { ref } from 'vue'
 import {
   copyToClipBoard,
@@ -11,7 +10,7 @@ import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
 // import { emit } from 'process'
-
+const { $analytics } = useNuxtApp()
 const props = defineProps({
   episode: {
     type: Object,

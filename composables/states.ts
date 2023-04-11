@@ -25,3 +25,8 @@ const togglePlayTrigger = false
  * Global state for the current play toggle for player play-toggle prop.
  */
 export const useTogglePlayTrigger = () => useState('useTogglePlayTrigger', () => togglePlayTrigger)
+
+/**
+ * Global state for the current user membership status.
+ */
+export const useMembershipStatus = () => useState('membershipStatus', () => 'status-unknown')

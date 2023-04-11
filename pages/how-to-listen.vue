@@ -1,8 +1,7 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import { playServices } from '~/utilities/constants'
-useHead( {
+useHead({
   meta: [
     {
       name: 'theme-color',
@@ -12,7 +11,8 @@ useHead( {
   bodyAttrs: {
     class: 'has-head-color invert-menu-color',
   },
-} )
+})
+const { $analytics } = useNuxtApp()
 </script>
 
 <template>

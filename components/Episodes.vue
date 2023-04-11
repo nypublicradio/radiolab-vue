@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
 import {
   formatDate,
@@ -10,7 +9,7 @@ import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/librar
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-
+const { $analytics } = useNuxtApp()
 const route = useRoute()
 
 const props = defineProps({

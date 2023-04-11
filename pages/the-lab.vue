@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import colors from '~/assets/scss/colors.module.scss'
 useHead({
@@ -13,6 +12,7 @@ useHead({
     class: 'has-head-color invert-menu-color',
   },
 })
+const { $analytics } = useNuxtApp()
 </script>
 
 <template>

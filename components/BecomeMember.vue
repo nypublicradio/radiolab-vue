@@ -1,6 +1,6 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+const { $analytics } = useNuxtApp()
 </script>
 
 <template>

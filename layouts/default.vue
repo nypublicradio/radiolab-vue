@@ -1,5 +1,5 @@
 <script setup>
-//import gaEvent from '../utilities/ga.js'
+//
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRuntimeConfig } from '#app'
 //import { isElementXPercentInViewport } from '../utilities/helpers.js'

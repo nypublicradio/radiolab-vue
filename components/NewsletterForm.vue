@@ -1,9 +1,8 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRuntimeConfig } from '#app'
-
+const { $analytics } = useNuxtApp()
 const config = useRuntimeConfig()
 
 const submitted = ref(false)

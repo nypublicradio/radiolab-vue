@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '~/utilities/ga.js'
 import { onBeforeMount, computed, ref, watch } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
@@ -19,7 +18,7 @@ useHead({
     class: 'has-head-color',
   },
 })
-
+const { $analytics } = useNuxtApp()
 const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const episode = ref([])

@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { ref, computed } from 'vue'
 import {
   useCurrentEpisode,
@@ -8,7 +7,7 @@ import {
   usePlayServicePreference,
 } from '~/composables/states'
 import { playServices, lsSelectedPlayService } from '~/utilities/constants'
-
+const { $analytics } = useNuxtApp()
 const props = defineProps({
   menuClass: {
     default: '',
