@@ -162,7 +162,11 @@ async function onPage(event) {
       dataLoaded.value = true
       // set startPageNumber var for page url param
       startPageNumber.value = event.page + 1
-      gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episodes Pagination',
+        event_label: `Page ${event.page + 1}`,
+      })
     })
     .catch(function () {
       axiosSuccessful.value = false

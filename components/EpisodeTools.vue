@@ -40,7 +40,11 @@ const dotsItems = ref([
         },
         toastConfig.value
       )
-      gaEvent('Click Tracking', 'Episode Tools', 'Download')
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episode Tools',
+        event_label: 'Download',
+      })
     },
   },
   {
@@ -51,7 +55,11 @@ const dotsItems = ref([
         props.episode['embed-code'],
         'Embed code copied to clipboard'
       )
-      gaEvent('Click Tracking', 'Episode Tools', 'Embed')
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episode Tools',
+        event_label: 'Embed',
+      })
     },
   },
 ])
@@ -63,7 +71,11 @@ const shareItems = ref([
     command: () => {
       var twitterShare = document.getElementsByClassName('twitterShareRef')
       twitterShare[0].click()
-      gaEvent('Click Tracking', 'Episode Share Tools', 'Twitter')
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episode Share Tools',
+        event_label: 'Twitter',
+      })
     },
   },
   {
@@ -72,7 +84,11 @@ const shareItems = ref([
     command: () => {
       var facebookShare = document.getElementsByClassName('facebookShareRef')
       facebookShare[0].click()
-      gaEvent('Click Tracking', 'Episode Share Tools', 'Facebook')
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episode Share Tools',
+        event_label: 'Facebook',
+      })
     },
   },
   {
@@ -81,7 +97,11 @@ const shareItems = ref([
     command: () => {
       var emailShare = document.getElementsByClassName('emailShareRef')
       emailShare[0].click()
-      gaEvent('Click Tracking', 'Episode Share Tools', 'Email')
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episode Share Tools',
+        event_label: 'Email',
+      })
     },
   },
   {
@@ -99,7 +119,11 @@ const shareItems = ref([
         'Episode link copied to the clipboard',
         true
       )
-      gaEvent('Click Tracking', 'Episode Share Tools', 'Copy link')
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episode Share Tools',
+        event_label: 'Copy link',
+      })
     },
   },
 ])
@@ -107,18 +131,30 @@ const shareItems = ref([
 // toggle function for dot menu
 const toggleDots = (event) => {
   dotsMenu.value.toggle(event)
-  gaEvent('Click Tracking', 'Episode Tools', 'Dots Menu')
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: 'Episode Tools',
+    event_label: 'Dots Menu',
+  })
 }
 // toggle function for dot menu
 const toggleShare = (event) => {
   shareMenu.value.toggle(event)
-  gaEvent('Click Tracking', 'Episode Tools', 'Share Menu')
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: 'Episode Tools',
+    event_label: 'Share Menu',
+  })
 }
 
 // toggle function for toggle transcript emit
 const toggleTranscript = () => {
   emit('toggleTranscript')
-  gaEvent('Click Tracking', 'Episode Tools', 'Transcript')
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: 'Episode Tools',
+    event_label: 'Transcript',
+  })
 }
 </script>
 
