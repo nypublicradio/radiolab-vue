@@ -1,9 +1,8 @@
 <script setup>
-import { onBeforeMount, computed, ref, watch } from 'vue'
+import { onBeforeMount, computed, ref } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import EpisodeTools from '~/components/EpisodeTools.vue'
 import { useRuntimeConfig } from '#app'
 
@@ -25,7 +24,6 @@ const episode = ref([])
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
-const router = useRouter()
 
 onBeforeMount(async () => {
   await axios
