@@ -1,6 +1,6 @@
 export default defineNuxtPlugin(() => {
     addRouteMiddleware('global-test', (route: { name: string; params: { slug: string; } }) => {
-        console.log("route = ", route)
+        //console.log("route = ", route)
         const { $analytics } = useNuxtApp()
         const excludedList = ['podcast-slug']
         if (excludedList.indexOf(route.name) === -1) {

@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import { useRuntimeConfig } from '#app'
-
+import { useEpisodePageTrackingData } from '~/utilities/metadata.ts'
+const { $analytics } = useNuxtApp()
 const config = useRuntimeConfig()
 const episode = ref([])
 
@@ -13,6 +14,8 @@ const {
 } = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
 
 episode.value = page.value.data.attributes
+
+const trackingData = useEpisodePageTrackingData(episode.value)
 
 // if not a Radiolab show, route to 404
 const showsToInclude = ['radiolab', 'radiolab-kids']
@@ -45,6 +48,9 @@ useHead({
   bodyAttrs: {
     class: 'has-head-color',
   },
+})
+onMounted(() => {
+  $analytics.sendPageView(trackingData)
 })
 </script>
 
