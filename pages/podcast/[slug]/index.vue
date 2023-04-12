@@ -15,7 +15,8 @@ const {
 episode.value = page.value.data.attributes
 
 // if not a Radiolab show, route to 404
-if (episode.value.show !== 'radiolab') {
+const showsToInclude = ['radiolab', 'radiolab-kids']
+if (showsToInclude.indexOf(episode.value.show) === -1) {
   nuxtError({
     statusCode: 404,
     statusMessage: 'Page not found',
