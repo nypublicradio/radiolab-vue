@@ -73,7 +73,8 @@ export default {
       HTL_IS_TESTING: process.env['HTL_IS_TESTING'] || 'yes',
       API_URL: process.env['API_URL'] || "https://api.wnyc.org",
       ADMIN_CMS_ROOT: process.env['ADMIN_CMS_ROOT'],
-      GA_MEASUREMENT_ID: process.env['GA_MEASUREMENT_ID'] || 'G-T0Q62GL5TY'
+      GA_MEASUREMENT_ID: process.env['GA_MEASUREMENT_ID'] || 'G-T0Q62GL5TY',
+      GTM_ID: process.env['GTM_ID'] || 'GTM-312335707',
     }
   },
 }
