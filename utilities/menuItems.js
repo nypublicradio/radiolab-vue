@@ -1,3 +1,4 @@
+import { useNuxtApp } from '#app'
 /**
  * Global state for the menu
  */
