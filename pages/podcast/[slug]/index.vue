@@ -50,7 +50,7 @@ useHead({
   },
 })
 onMounted(() => {
-  $analytics.sendPageView(trackingData)
+  //$analytics.sendPageView(trackingData)
 })
 </script>
 
