@@ -32,7 +32,6 @@
         "primevue": "^3.21.0",
         "sass": "^1.57.1",
         "vitest": "^0.26.3",
-        "vue-gtag-next": "^1.14.0",
         "vue-social-sharing": "^4.0.0-alpha4"
     }
 }
