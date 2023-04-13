@@ -172,6 +172,14 @@ async function onPage(event) {
       axiosSuccessful.value = false
     })
 }
+
+const onCardClick = (episode, elm) => {
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: `Episode Card - ${elm}`,
+    event_label: episode.attributes.title,
+  })
+}
 </script>
 
 <template>
@@ -220,6 +228,8 @@ async function onPage(event) {
                         flat-quality
                         bp="max"
                         class="radiolab-card"
+                        @title-click="onCardClick(episode, 'title')"
+                        @image-click="onCardClick(episode, 'image')"
                       >
                         <div class="divider"></div>
                         <play-selector :episode="episode.attributes" />

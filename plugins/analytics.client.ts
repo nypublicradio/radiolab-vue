@@ -17,7 +17,6 @@ export default defineNuxtPlugin(() => {
   }
   // gtag even for reporting on page views
   const sendPageView = (params: Record<string, string>) => {
-    //console.log('params = ', params)
     sendEvent('page_view', {
       page_location: document.location.href,
       page_title: document.title,
