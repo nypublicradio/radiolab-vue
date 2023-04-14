@@ -40,6 +40,7 @@ export const publisherImageFormatter = (url) => {
 
 // global funcrtion for copying to clipboard
 export const copyToClipBoard = async (content, msg) => {
+  if (!navigator.clipboard) return
   await navigator.clipboard.writeText(content)
     .then(() => {
       createToast(msg ? msg : 'Copied to the clipboard', toastConfig)
@@ -60,9 +61,8 @@ export const decodeHTMLEntities = (str) => {
 // fyi, This feature is available only in secure contexts (HTTPS), etc... testing local will have no result on mobile, using browserstack works for andriod-chrome only... Best to just test it on the DEMO link.
 export const shareAPI = async (content, msg, isLinkOnly = false) => {
   //convert html entities to plain text
-  content.text = decodeHTMLEntities(content.text)
-  content.title = decodeHTMLEntities(content.title)
-
+  if (content.text) { content.text = decodeHTMLEntities(content.text) }
+  if (content.title) { content.title = decodeHTMLEntities(content.title) }
   //check if the share api is available and if the browser is mobile
   if (navigator.canShare && isMobileBrowser()) {
     await navigator.share(isLinkOnly ? content.url : content)
