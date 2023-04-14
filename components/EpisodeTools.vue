@@ -114,14 +114,11 @@ const shareItems = ref([
       )
       shareAPI(
         {
-          title: props.episode['title'],
-          text: props.episode['tease'],
           url: `${props.episode['url']}${
             props.isTranscript ? 'transcript' : ''
           }`,
         },
         'Episode link copied to the clipboard'
-        //true
       )
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
