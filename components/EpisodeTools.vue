@@ -108,6 +108,10 @@ const shareItems = ref([
     label: 'Copy link',
     icon: 'pi pi-link',
     command: () => {
+      console.log(
+        'link =',
+        `${props.episode['url']}${props.isTranscript ? 'transcript' : ''}`
+      )
       shareAPI(
         {
           title: props.episode['title'],
@@ -116,8 +120,8 @@ const shareItems = ref([
             props.isTranscript ? 'transcript' : ''
           }`,
         },
-        'Episode link copied to the clipboard',
-        true
+        'Episode link copied to the clipboard'
+        //true
       )
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',

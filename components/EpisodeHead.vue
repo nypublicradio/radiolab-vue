@@ -46,8 +46,8 @@ const copyTranscriptLink = () => {
       text: props.episode['tease'],
       url: `${props.episode['url']}transcript`,
     },
-    'Episode link copied to the clipboard',
-    true
+    'Episode link copied to the clipboard'
+    //true
   )
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',

@@ -59,15 +59,22 @@ export const decodeHTMLEntities = (str) => {
 
 // global funcrtion for shareApi and copyToClipboard fallback
 // fyi, This feature is available only in secure contexts (HTTPS), etc... testing local will have no result on mobile, using browserstack works for andriod-chrome only... Best to just test it on the DEMO link.
-export const shareAPI = async (content, msg, isLinkOnly = false) => {
-  //convert html entities to plain text
-  if (!isLinkOnly) {
-    if (content.text) { content.text = decodeHTMLEntities(content.text) }
-    if (content.title) { content.title = decodeHTMLEntities(content.title) }
-  }
-  //check if the share api is available and if the browser is mobile
+// export const shareAPI = async (content, msg, isLinkOnly = false) => {
+//   //convert html entities to plain text
+//   if (!isLinkOnly) {
+//     if (content.text) { content.text = decodeHTMLEntities(content.text) }
+//     if (content.title) { content.title = decodeHTMLEntities(content.title) }
+//   }
+//   //check if the share api is available and if the browser is mobile
+//   if (navigator.canShare && isMobileBrowser()) {
+//     await navigator.share(isLinkOnly ? content.url : content)
+//   } else {
+//     copyToClipBoard(content.url, msg)
+//   }
+// }
+export const shareAPI = async (content, msg) => {
   if (navigator.canShare && isMobileBrowser()) {
-    await navigator.share(isLinkOnly ? content.url : content)
+    await navigator.share(content)
   } else {
     copyToClipBoard(content.url, msg)
   }
