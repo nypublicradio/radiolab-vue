@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useMenuItems } from '../composables/states'
+//import { useMenuItems } from '../composables/states'
+import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import BecomeMember from './BecomeMember.vue'
 import Newsletter from './Newsletter.vue'
-const menuItems = useMenuItems()
+//const menuItems = useMenuItems()
+const menuItems = ref(menuItemsImport)
 const menuItemsFooter = ref([])
 const ignoredMenuItems = ref([])
 

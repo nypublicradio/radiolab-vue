@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useMenuItems } from '../composables/states'
+//import { useMenuItems } from '../composables/states'
+import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 const { $analytics } = useNuxtApp()
-const menuItems = useMenuItems()
+//const menuItems = useMenuItems()
+const menuItems = ref(menuItemsImport)
 //console.log('menuItems = ', menuItems.value)
 const isMenuVisible = ref(false)
 let pMenu = null

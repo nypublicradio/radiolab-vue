@@ -16,6 +16,7 @@
         "nuxt": "^3.1.1"
     },
     "dependencies": {
+        "@nuxt/test-utils": "^3.4.1",
         "@nuxtjs/algolia": "^1.4.2",
         "@nypublicradio/nypr-design-system-vue3": "^1.0.8",
         "@sentry/tracing": "^6.18.2",
