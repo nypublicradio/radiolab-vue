@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import {
   formatDate,
   formatPublisherImageUrl,
@@ -7,7 +6,7 @@ import {
 } from '~/utilities/helpers'
 import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-
+const { $analytics } = useNuxtApp()
 const props = defineProps({
   pending: {
     type: Boolean,
@@ -50,7 +49,11 @@ const copyTranscriptLink = () => {
     'Episode link copied to the clipboard',
     true
   )
-  gaEvent('Click Tracking', 'Transcript Link Icon', 'Copy link')
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: 'Transcript Link Icon',
+    event_label: 'Copy link',
+  })
 }
 
 onMounted(() => {

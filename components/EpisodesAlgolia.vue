@@ -1,5 +1,5 @@
 <script setup>
-//import gaEvent from '../utilities/ga.js'
+//
 import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
 import { formatDate, formatPublisherImageUrl } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'

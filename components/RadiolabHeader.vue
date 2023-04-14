@@ -1,10 +1,13 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { ref, onMounted, onUnmounted } from 'vue'
+//import { useMenuItems } from '../composables/states'
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
+const { $analytics } = useNuxtApp()
+//const menuItems = useMenuItems()
 const menuItems = ref(menuItemsImport)
+//console.log('menuItems = ', menuItems.value)
 const isMenuVisible = ref(false)
 let pMenu = null
 let hamburger = null
@@ -56,7 +59,11 @@ onUnmounted(() => {
           <Button
             class="flex lg:hidden p-button-rounded"
             @click="
-              gaEvent('Click Tracking', 'Header (mobile)', 'Become a member')
+              $analytics.sendEvent('click_tracking', {
+                event_category: 'Click Tracking',
+                component: 'Header (mobile)',
+                event_label: 'Become a member',
+              })
             "
           >
             Become a member

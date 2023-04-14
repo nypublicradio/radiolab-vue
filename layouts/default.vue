@@ -1,5 +1,5 @@
 <script setup>
-//import gaEvent from '../utilities/ga.js'
+//
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRuntimeConfig } from '#app'
 //import { isElementXPercentInViewport } from '../utilities/helpers.js'
@@ -37,8 +37,18 @@ onUnmounted(() => {
 useHead({
   script: [
     {
+      src: `https://www.googletagmanager.com/gtag/js?id=${config.GA_MEASUREMENT_ID}`,
+      async: true,
+    },
+    {
       src: config.HTL_JS,
       async: true,
+    },
+  ],
+  noscript: [
+    {
+      children: `<iframe src=&quot;https://www.googletagmanager.com/ns.html?id=${config.GTM_ID}&quot;
+    height=&quot;0&quot; width=&quot;0&quot; style=&quot;display:none;visibility:hidden&quot;></iframe>`,
     },
   ],
 })

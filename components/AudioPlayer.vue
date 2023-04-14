@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch } from 'vue'
 import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VPersistentPlayer.vue'
 import {
   useCurrentEpisode,
@@ -10,6 +10,7 @@ import { toastGlobalConfig, formatPublisherImageUrl } from '~/utilities/helpers'
 import { createToast } from 'mosha-vue-toastify'
 // had to install howler.js locally and add this import to stop it from breaking the build
 import { Howl, Howler } from 'howler'
+const { $analytics } = useNuxtApp()
 const currentEpisode = useCurrentEpisode()
 const isEpisodePlaying = useIsEpisodePlaying()
 const togglePlayTrigger = useTogglePlayTrigger()
@@ -25,7 +26,11 @@ const onDownload = () => {
     },
     toastConfig.value
   )
-  gaEvent('Click Tracking', 'Audio Player', 'Download')
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking - Footer - Newsletter',
+    component: 'Audio Player',
+    event_label: 'Download',
+  })
 }
 
 /*function that updated the global useIsEpisodePlaying */

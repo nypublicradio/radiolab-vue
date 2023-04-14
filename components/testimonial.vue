@@ -1,6 +1,6 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+const { $analytics } = useNuxtApp()
 const props = defineProps({
   name: {
     type: String,
@@ -53,11 +53,11 @@ const props = defineProps({
                   class="p-button-rounded"
                   label="Become a member"
                   @click="
-                    gaEvent(
-                      'Click Tracking',
-                      'The Lab Testimonial',
-                      'Become a member'
-                    )
+                    $analytics.sendEvent('click_tracking', {
+                      event_category: 'Click Tracking',
+                      component: 'The Lab Testimonial',
+                      event_label: 'Become a member',
+                    })
                   "
                 />
               </v-flexible-link>

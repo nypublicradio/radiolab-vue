@@ -6,7 +6,7 @@ import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/com
 import PlaySelector from '~/components/PlaySelector.vue'
 import { formatPublisherImageUrl } from '~/utilities/helpers'
 import { useRuntimeConfig } from '#app'
-
+const { $analytics } = useNuxtApp()
 const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const episodes = ref([])
@@ -21,6 +21,14 @@ onBeforeMount(async () => {
       dataLoaded.value = true
     })
 })
+
+const onCardClick = (episode, elm) => {
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: `Hero Episode Card - ${elm}`,
+    event_label: episode.attributes.title,
+  })
+}
 </script>
 
 <template>
@@ -47,6 +55,7 @@ onBeforeMount(async () => {
                     class="latest-episode-image"
                     :ratio="[8, 5.6]"
                     :sizes="[1]"
+                    @image-click="onCardClick(episodes[0], 'image')"
                   />
                 </client-only>
               </div>
@@ -58,6 +67,7 @@ onBeforeMount(async () => {
                   <v-flexible-link
                     :to="`/podcast/${episodes[0].attributes.slug}`"
                     class="latest-episode-title inline-block"
+                    @click="onCardClick(episodes[0], 'title')"
                   >
                     <div
                       class="pb-1 mb-2 lg:mb-3 h2 truncate t2lines"

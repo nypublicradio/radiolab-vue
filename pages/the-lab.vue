@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import colors from '~/assets/scss/colors.module.scss'
 useHead({
@@ -13,6 +12,7 @@ useHead({
     class: 'has-head-color invert-menu-color',
   },
 })
+const { $analytics } = useNuxtApp()
 </script>
 
 <template>
@@ -45,7 +45,11 @@ useHead({
             class="p-button-rounded"
             label="Become a member"
             @click="
-              gaEvent('Click Tracking', 'The Lab Hero CTA', 'Become a member')
+              $analytics.sendEvent('click_tracking', {
+                event_category: 'Click Tracking',
+                component: 'The Lab Hero CTA',
+                event_label: 'Become a member',
+              })
             "
           />
         </v-flexible-link>

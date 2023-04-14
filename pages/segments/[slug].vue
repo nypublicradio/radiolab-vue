@@ -1,10 +1,8 @@
 <script setup>
-import gaEvent from '~/utilities/ga.js'
-import { onBeforeMount, computed, ref, watch } from 'vue'
+import { onBeforeMount, computed, ref } from 'vue'
 import { formatDate, copyToClipBoard } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
-import VImageWithCaption from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue'
 import EpisodeTools from '~/components/EpisodeTools.vue'
 import { useRuntimeConfig } from '#app'
 
@@ -19,14 +17,13 @@ useHead({
     class: 'has-head-color',
   },
 })
-
+const { $analytics } = useNuxtApp()
 const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const episode = ref([])
 const showTranscriptSidePanel = ref(false)
 
 const route = useRoute()
-const router = useRouter()
 
 onBeforeMount(async () => {
   await axios
@@ -61,7 +58,11 @@ const copyTranscriptLink = () => {
     }`,
     'Transcript link copied to clipboard'
   )
-  gaEvent('Click Tracking', 'Episode Tools', 'Copy transcript link')
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: 'Episode Tools',
+    event_label: 'Copy transcript link',
+  })
 }
 
 // function to toggle transcript sidebar panel

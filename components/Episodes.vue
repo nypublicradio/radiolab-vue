@@ -1,5 +1,4 @@
 <script setup>
-import gaEvent from '../utilities/ga.js'
 import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
 import {
   formatDate,
@@ -10,7 +9,7 @@ import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/librar
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-
+const { $analytics } = useNuxtApp()
 const route = useRoute()
 
 const props = defineProps({
@@ -163,11 +162,23 @@ async function onPage(event) {
       dataLoaded.value = true
       // set startPageNumber var for page url param
       startPageNumber.value = event.page + 1
-      gaEvent('Click Tracking', 'Episodes Pagination', `Page ${event.page + 1}`)
+      $analytics.sendEvent('click_tracking', {
+        event_category: 'Click Tracking',
+        component: 'Episodes Pagination',
+        event_label: `Page ${event.page + 1}`,
+      })
     })
     .catch(function () {
       axiosSuccessful.value = false
     })
+}
+
+const onCardClick = (episode, elm) => {
+  $analytics.sendEvent('click_tracking', {
+    event_category: 'Click Tracking',
+    component: `Episode Card - ${elm}`,
+    event_label: episode.attributes.title,
+  })
 }
 </script>
 
@@ -217,6 +228,8 @@ async function onPage(event) {
                         flat-quality
                         bp="max"
                         class="radiolab-card"
+                        @title-click="onCardClick(episode, 'title')"
+                        @image-click="onCardClick(episode, 'image')"
                       >
                         <div class="divider"></div>
                         <play-selector :episode="episode.attributes" />
