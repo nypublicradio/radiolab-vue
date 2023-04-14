@@ -2,13 +2,14 @@
  * Global state for the menu
  */
 import { useNuxtApp } from '#app'
-const { $analytics } = useNuxtApp()
+
 export default [{
     label: 'Episodes',
     items: [{
         label: 'Podcast',
         to: '/podcast',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -20,6 +21,7 @@ export default [{
         label: 'On The Radio',
         to: '/on-the-radio',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -31,6 +33,7 @@ export default [{
         label: 'Series',
         to: '/series',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -42,6 +45,7 @@ export default [{
         label: 'Radiolab for Kids',
         to: '/radiolab-kids',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -57,6 +61,7 @@ export default [{
         label: 'About the Show',
         to: '/about',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -68,6 +73,7 @@ export default [{
         label: 'Team',
         to: '/team',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -79,6 +85,7 @@ export default [{
         label: 'Announcements',
         to: '/new-cohosts-latif-nasser-lulu-miller',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -90,6 +97,7 @@ export default [{
         label: 'Pitch Us',
         to: '/pitch-us',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -105,6 +113,7 @@ export default [{
         label: 'The Lab',
         to: '/the-lab',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -116,6 +125,7 @@ export default [{
         label: 'Read the credits',
         to: '/radiolab-read-credit',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -127,6 +137,7 @@ export default [{
         label: 'Newsletter',
         to: '/newsletter',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -139,6 +150,7 @@ export default [{
         url: 'https://shop.radiolab.org',
         target: '_blank',
         command: () => {
+            const { $analytics } = useNuxtApp()
             $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
@@ -153,6 +165,7 @@ export default [{
     to: '/how-to-listen',
     class: 'gap alone',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -165,6 +178,7 @@ export default [{
     to: '/the-lab',
     class: 'button alone',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -177,6 +191,7 @@ export default [{
     visible: false,
     to: 'https://nypublicradio.force.com/wnyc/s/programming-help-and-feedback',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -189,6 +204,7 @@ export default [{
     visible: false,
     to: 'https://sponsorship.wnyc.org/',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -201,6 +217,7 @@ export default [{
     visible: false,
     to: 'https://www.nypublicradio.org/diversity-dei-overview/',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -213,6 +230,7 @@ export default [{
     visible: false,
     to: 'https://www.wnyc.org/internships-new-york-public-radio/',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -225,6 +243,7 @@ export default [{
     visible: false,
     to: 'https://www.wnyc.org/terms/',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -237,6 +256,7 @@ export default [{
     visible: false,
     to: 'https://www.wnyc.org/privacy/',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
@@ -249,6 +269,7 @@ export default [{
     visible: false,
     to: 'https://media.wnyc.org/media/resources/2022/May/06/accessibility_policy_5.6.22.pdf',
     command: () => {
+        const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
             event_category: 'Click Tracking',
             component: 'Navigation',
