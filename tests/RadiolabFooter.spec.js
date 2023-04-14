@@ -2,7 +2,7 @@
 import { describe, test, expect } from 'vitest'
 import { toHaveNoViolations } from 'jest-axe'
 //import RadiolabFooter from '../components/RadiolabFooter.vue'
-import axe from './axe-helper'
+//import axe from './axe-helper'
 
 /* THESE TEST HAVE BEEN SKIPPED BECAUSE #APP CAN NOT BE LOADED FROM THE TET ENV AND WE CAN NOT FIGURE OUT HOW TO MOCK IT PROPPERLY */
 
