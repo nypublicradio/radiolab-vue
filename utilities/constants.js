@@ -3,7 +3,7 @@ export const playServices = [
   {
     name: 'Apple Podcasts',
     icon: 'apple',
-    url: 'https://itunes.apple.com/us/podcast/radiolab/id152249110?mt=2'
+    url: 'https://podcasts.apple.com/us/podcast/radiolab/id152249110?itsct=radiolab_podcasts&itscg=30200&ls=1&at=1000l39Mm&ct=rldotorg'
   },
   {
     name: 'Spotify',
@@ -62,15 +62,15 @@ export const playServices = [
   }
 ]
 
-export const yearFilterOptions = [ {
+export const yearFilterOptions = [{
   year: 'All'
-} ]
+}]
 const yearfilterStart = 2007
 const yearfilterEnd = new Date().getFullYear()
-Array.from( new Array( yearfilterEnd - yearfilterStart + 1 ), ( x, i ) =>
-  yearFilterOptions.push( {
-    'year': String( yearfilterEnd - i )
-  } )
+Array.from(new Array(yearfilterEnd - yearfilterStart + 1), (x, i) =>
+  yearFilterOptions.push({
+    'year': String(yearfilterEnd - i)
+  })
 )
 //console.log('yearFilterOptions = ', yearFilterOptions)
 
