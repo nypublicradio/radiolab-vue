@@ -13,7 +13,7 @@
     "devDependencies": {
         "jest-axe": "^5.0.1",
         "jsdom": "^20.0.3",
-        "nuxt": "^3.1.1"
+        "nuxt": "^3.4.3"
     },
     "dependencies": {
         "@nuxt/test-utils": "^3.4.1",
