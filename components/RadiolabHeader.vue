@@ -54,7 +54,7 @@ onUnmounted(() => {
             </nuxt-link>
           </template>
         </Menubar>
-        <v-flexible-link raw to="/the-lab">
+        <v-flexible-link raw to="/the-lab" aria-label="Become a member">
           <Button
             class="flex lg:hidden p-button-rounded"
             @click="
