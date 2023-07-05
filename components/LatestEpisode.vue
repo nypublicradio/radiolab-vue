@@ -22,6 +22,7 @@ onBeforeMount(async () => {
     })
 })
 
+// track clicks on the cards
 const onCardClick = (episode, elm) => {
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',
@@ -56,6 +57,7 @@ const onCardClick = (episode, elm) => {
                     :ratio="[8, 5.6]"
                     :sizes="[1]"
                     @image-click="onCardClick(episodes[0], 'image')"
+                    :isDecorative="true"
                   />
                 </client-only>
               </div>

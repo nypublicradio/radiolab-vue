@@ -19,7 +19,7 @@ const selectedYear = ref()
 const searchValue = ref('')
 
 // method triggered when the user presses the ENTER key
-const onSearchEnter = (event) => {
+const onSearchEnter = () => {
   if (searchValue.value) {
     emit('search', searchValue.value)
   }
@@ -41,7 +41,7 @@ const onInputUpdate = (event) => {
       option-label="year"
       placeholder="Year"
       aria-label="Filter by year"
-      aria-labelled-by="Filter by year"
+      aria-labelledby="Filter by year"
       @change="emit('year', selectedYear.year)"
     >
     </Dropdown>

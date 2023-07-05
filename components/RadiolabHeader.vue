@@ -4,7 +4,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
-const { $analytics } = useNuxtApp()
+// const { $analytics } = useNuxtApp()
 //const menuItems = useMenuItems()
 const menuItems = ref(menuItemsImport)
 
@@ -42,17 +42,16 @@ onUnmounted(() => {
       >
         <Menubar :model="menuItems" ref="pMenuRef">
           <template #start>
-            <nuxt-link to="/" class="logo-holder-link">
+            <nuxt-link
+              to="/"
+              class="logo-holder-link"
+              aria-label="go to the Radiolab home page"
+            >
               <icons-radiolab-logo class="logo mr-2" />
             </nuxt-link>
           </template>
-          <!--  <template #end>
-        <Button :label="menuItems[2].label" icon class="p-button-text p-button-plain" />
-        <Button :label="menuItems[3].label" icon class="p-button-text p-button-plain" />
-        
-          </template>-->
         </Menubar>
-        <v-flexible-link raw to="/the-lab">
+        <v-flexible-link raw to="/the-lab" aria-label="Become a member">
           <Button
             class="flex lg:hidden p-button-rounded"
             @click="
