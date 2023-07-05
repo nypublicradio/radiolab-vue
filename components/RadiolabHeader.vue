@@ -43,7 +43,7 @@ onUnmounted(() => {
         v-if="isMenuVisible"
         class="content flex lg:block align-items-center justify-content-between lg:px-2 pr-3"
       >
-        <Menubar :model="menuItems" id="p-menu">
+        <Menubar :model="menuItems">
           <template #start>
             <nuxt-link
               to="/"
