@@ -128,7 +128,7 @@ const checkEpisodeMatch = computed(() => {
         :panel-class="menuClass"
         option-label="name"
         aria-label="Select a service to play this episode"
-        aria-labelled-by="Select a service to play this episode"
+        aria-labelledby="Select a service to play this episode"
       >
         <template #option="slotProps">
           <div class="service-item">

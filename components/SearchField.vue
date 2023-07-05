@@ -41,7 +41,7 @@ const onInputUpdate = (event) => {
       option-label="year"
       placeholder="Year"
       aria-label="Filter by year"
-      aria-labelled-by="Filter by year"
+      aria-labelledby="Filter by year"
       @change="emit('year', selectedYear.year)"
     >
     </Dropdown>
