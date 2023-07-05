@@ -19,7 +19,7 @@ const selectedYear = ref()
 const searchValue = ref('')
 
 // method triggered when the user presses the ENTER key
-const onSearchEnter = (event) => {
+const onSearchEnter = () => {
   if (searchValue.value) {
     emit('search', searchValue.value)
   }

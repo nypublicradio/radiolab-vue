@@ -22,6 +22,7 @@ onBeforeMount(async () => {
     })
 })
 
+// track clicks on the cards
 const onCardClick = (episode, elm) => {
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',

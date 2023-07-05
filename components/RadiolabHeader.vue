@@ -4,7 +4,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
-const { $analytics } = useNuxtApp()
+// const { $analytics } = useNuxtApp()
 //const menuItems = useMenuItems()
 const menuItems = ref(menuItemsImport)
 //console.log('menuItems = ', menuItems.value)
@@ -13,7 +13,7 @@ let pMenu = null
 let hamburger = null
 
 // if the menu is mobile... and expanded, then the user resizes the window larger or equal to breakpoint.lg(992px), it will click the hamburger button to collapse the menu
-const onResize = (e) => {
+const onResize = () => {
   if (!pMenu) {
     pMenu = document.getElementById('p-menu')
     hamburger = pMenu.getElementsByClassName('p-menubar-button')[0]
