@@ -3,33 +3,30 @@ import { ref, onMounted, onUnmounted } from 'vue'
 //import { useMenuItems } from '../composables/states'
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
+//import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 // const { $analytics } = useNuxtApp()
 //const menuItems = useMenuItems()
 const menuItems = ref(menuItemsImport)
-//console.log('menuItems = ', menuItems.value)
+
 const isMenuVisible = ref(false)
-let pMenu = null
+const pMenuRef = ref(null)
 let hamburger = null
 
-// if the menu is mobile... and expanded, then the user resizes the window larger or equal to breakpoint.lg(992px), it will click the hamburger button to collapse the menu
+// if the menu is mobile... and expanded, then the user resizes the window larger or equal to 960px, it will click the hamburger button to collapse the menu
 const onResize = () => {
-  if (!pMenu) {
-    pMenu = document.getElementById('p-menu')
-    hamburger = pMenu.getElementsByClassName('p-menubar-button')[0]
-  }
   if (
-    window.innerWidth >= breakpoint.lg &&
-    pMenu?.classList?.contains('p-menubar-mobile-active')
+    window.innerWidth >= 960 &&
+    pMenuRef.value?.$el.classList?.contains('p-menubar-mobile-active')
   ) {
     hamburger.click()
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener('resize', onResize)
-
   isMenuVisible.value = true
+  await nextTick()
+  hamburger = pMenuRef.value.$el.getElementsByClassName('p-menubar-button')[0]
 })
 onUnmounted(() => {
   window.removeEventListener('resize', onResize)
@@ -43,7 +40,7 @@ onUnmounted(() => {
         v-if="isMenuVisible"
         class="content flex lg:block align-items-center justify-content-between lg:px-2 pr-3"
       >
-        <Menubar :model="menuItems">
+        <Menubar :model="menuItems" ref="pMenuRef">
           <template #start>
             <nuxt-link
               to="/"
