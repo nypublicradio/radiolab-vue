@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 //import { useMenuItems } from '../composables/states'
 import menuItemsImport from '../utilities/menuItems'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
+//import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 // const { $analytics } = useNuxtApp()
 //const menuItems = useMenuItems()
 const menuItems = ref(menuItemsImport)
@@ -13,7 +13,7 @@ const pMenuRef = ref(null)
 let hamburger = null
 
 // if the menu is mobile... and expanded, then the user resizes the window larger or equal to 960px, it will click the hamburger button to collapse the menu
-const onResize = (e) => {
+const onResize = () => {
   if (
     window.innerWidth >= 960 &&
     pMenuRef.value?.$el.classList?.contains('p-menubar-mobile-active')
