@@ -45,15 +45,14 @@ onUnmounted(() => {
       >
         <Menubar :model="menuItems" id="p-menu">
           <template #start>
-            <nuxt-link to="/" class="logo-holder-link">
+            <nuxt-link
+              to="/"
+              class="logo-holder-link"
+              aria-label="go to the Radiolab home page"
+            >
               <icons-radiolab-logo class="logo mr-2" />
             </nuxt-link>
           </template>
-          <!--  <template #end>
-        <Button :label="menuItems[2].label" icon class="p-button-text p-button-plain" />
-        <Button :label="menuItems[3].label" icon class="p-button-text p-button-plain" />
-        
-          </template>-->
         </Menubar>
         <v-flexible-link raw to="/the-lab">
           <Button

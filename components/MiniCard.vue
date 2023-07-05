@@ -45,6 +45,7 @@ const props = defineProps({
       :ratio="[1, 1]"
       :sizes="[1]"
       class="mini-card-image"
+      :isDecorative="true"
     />
     <div class="mini-card-content">
       <p class="mini-card-subtitle">
