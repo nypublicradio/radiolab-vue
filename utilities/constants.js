@@ -21,11 +21,6 @@ export const playServices = [
     url: 'https://overcast.fm/itunes152249110/radiolab'
   },
   {
-    name: 'Stitcher',
-    icon: 'stitcher',
-    url: 'https://www.stitcher.com/podcast/wnycs-radiolab'
-  },
-  {
     name: 'NPR One',
     icon: 'nprone',
     url: 'https://www.npr.org/podcasts/452538884/radiolab'
@@ -62,15 +57,15 @@ export const playServices = [
   }
 ]
 
-export const yearFilterOptions = [{
+export const yearFilterOptions = [ {
   year: 'All'
-}]
+} ]
 const yearfilterStart = 2007
 const yearfilterEnd = new Date().getFullYear()
-Array.from(new Array(yearfilterEnd - yearfilterStart + 1), (x, i) =>
-  yearFilterOptions.push({
-    'year': String(yearfilterEnd - i)
-  })
+Array.from( new Array( yearfilterEnd - yearfilterStart + 1 ), ( x, i ) =>
+  yearFilterOptions.push( {
+    'year': String( yearfilterEnd - i )
+  } )
 )
 //console.log('yearFilterOptions = ', yearFilterOptions)
 
