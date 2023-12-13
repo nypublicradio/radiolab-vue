@@ -6,7 +6,7 @@ export const tiers = [
         index: 0,
         name: 'Vipers',
         icon: '/the-lab/viper.svg',
-        cost: '5',
+        cost: '7',
         link: 'https://members.radiolab.org/join-vipers',
     },
     {
