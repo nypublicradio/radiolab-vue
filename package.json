@@ -25,6 +25,7 @@
         "@vueuse/core": "^9.13.0",
         "algoliasearch": "^4.14.3",
         "axios": "^1.2.2",
+        "bcrypt": "^5.1.1",
         "debug": "4.3.3",
         "howler": "^2.2.3",
         "mosha-vue-toastify": "^1.0.23",
