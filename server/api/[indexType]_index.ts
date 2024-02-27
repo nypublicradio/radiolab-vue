@@ -2,12 +2,20 @@ import axios from 'axios';
 import algoliasearch from 'algoliasearch';
 
 const config = useRuntimeConfig();
-
+/**
+ * Instantiates an Algolia client and returns the Radiolab index.
+ * @returns {Promise<algoliasearch.Index>}
+ */
 const getIndex = async () => {
-    const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_API_KEY);
+    const client = await algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_API_KEY);
     return client.initIndex('radiolab');
 };
 
+/**
+ * Fetches episodes from publisher's API and returns them in a format suitable for indexing.
+ * @param page Page number to fetch
+ * @returns episode data to be indexed
+ */
 const getBatch = async ( page: number ) => {
     const recent = await axios.get(`${config.public.API_URL}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
     if (recent.status === 200) {
@@ -34,14 +42,21 @@ const getBatch = async ( page: number ) => {
     throw new Error(`Failed to retrieve recent page ${page}`);
 };
 
+/**
+ * Updates the index with the most recent episodes.
+ */
 const updateRecent = async () => {
     const episodes = await getBatch(1);
     (await getIndex()).saveObjects(episodes).then(() => {
+        //Not doing anything with the response
     }).catch((e) => {
         throw new Error("error", e);
     });
 };
 
+/**
+ * Indexes all RadioLab episodes.
+ */
 const indexAll = async () => {
     let pageNum = 1;
     const episodes = [];
@@ -51,16 +66,28 @@ const indexAll = async () => {
         page = await getBatch(pageNum++);
     }
     (await getIndex()).replaceAllObjects(episodes).then(() => {
+        //Not doing anything with the response
     }).catch((e) => {
         throw new Error("Error rebuilding index", { cause: e });
     });
 };
 
+/**
+ * Validates the token
+ * @param token The token to validate
+ * @returns {boolean} true if the token is valid, false otherwise
+ */
 const validateToken = (token: string): boolean => {
     const validToken = process.env.VALID_TOKEN;
     return token === validToken;
 };
 
+/**
+ * Gets the header from the event
+ * @param event The event to get the header from
+ * @param header The header to get
+ * @returns {JSON} Status and body
+ */
 export default defineEventHandler(async (event) => {
     try {
         // Get the indexType from the event context and call the appropriate function
@@ -73,10 +100,10 @@ export default defineEventHandler(async (event) => {
         }
         // Call the appropriate function based on the indexType parameter. Options are 'update_index' and 'all_index'
         if (indexType === 'update_index') {
-            const callUpdate = await updateRecent();
+            await updateRecent();
             return {status: 200, body: 'Updated recent episodes'};
         }else if (indexType === 'all_index') {
-            const callIndex = await indexAll();
+             await indexAll();
             return {status: 200, body: 'Indexed all episodes'};
         }else{
             return {status: 404, body: 'Not Found'};
