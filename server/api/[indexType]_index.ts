@@ -1,6 +1,5 @@
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
-import bcrypt from 'bcrypt';
 
 const config = useRuntimeConfig();
 
@@ -38,7 +37,6 @@ const getBatch = async ( page: number ) => {
 const updateRecent = async () => {
     const episodes = await getBatch(1);
     (await getIndex()).saveObjects(episodes).then(() => {
-        console.log('Updated recent episodes');
     }).catch((e) => {
         throw new Error("error", e);
     });
@@ -53,7 +51,6 @@ const indexAll = async () => {
         page = await getBatch(pageNum++);
     }
     (await getIndex()).replaceAllObjects(episodes).then(() => {
-        console.log('Indexed all episodes');
     }).catch((e) => {
         throw new Error("Error rebuilding index", { cause: e });
     });
@@ -68,13 +65,13 @@ export default defineEventHandler(async (event) => {
     try {
         // Get the indexType from the event context and call the appropriate function
         const indexType: string | undefined = event?.context?.params?.indexType_index;
+
         // Validate the token
         const token = getRequestHeader(event,'Authorization').replace('Bearer ', '');
-        console.log('token', token);
         if (!token || !validateToken(token)) {
             return {status: 401, body: 'Unauthorized'};
         }
-
+        // Call the appropriate function based on the indexType parameter. Options are 'update_index' and 'all_index'
         if (indexType === 'update_index') {
             const callUpdate = await updateRecent();
             return {status: 200, body: 'Updated recent episodes'};
