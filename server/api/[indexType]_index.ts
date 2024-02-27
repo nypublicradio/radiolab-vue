@@ -57,7 +57,7 @@ const indexAll = async () => {
 };
 
 const validateToken = (token: string): boolean => {
-    const validToken = process.env.VALID_TOKEN; // Replace VALID_TOKEN with the name of your environment variable
+    const validToken = process.env.VALID_TOKEN;
     return token === validToken;
 };
 
