@@ -109,6 +109,6 @@ export default defineEventHandler(async (event) => {
             return {status: 404, body: 'Not Found'};
         }
     } catch (e) {
-        return {status: 500, body: 'Internal Server Error'};
+        return {status: 500, body: e.message};
     }
 });
