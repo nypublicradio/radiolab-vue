@@ -1,5 +1,30 @@
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
+import sizeOf from 'image-size';
+import https from 'https';
+import { URL } from 'url';
+
+/**
+ * Get the image dimensions from a URL
+ * @param url The URL to get the image dimensions from
+ * @returns {Promise<{width: number, height: number}>} The width and height of the image
+ */
+const getImageDimensions = async (url: string) => {
+    const options = new URL(url);
+    return new Promise((resolve, reject) => {
+        https.get(options, (response) => {
+            const chunks = [];
+            response
+                .on('data', (chunk) => {
+                    chunks.push(chunk);
+                })
+                .on('end', () => {
+                    const buffer = Buffer.concat(chunks);
+                    resolve(sizeOf(buffer));
+                });
+        });
+    });
+}
 
 const config = useRuntimeConfig();
 /**
@@ -12,31 +37,52 @@ const getIndex = async () => {
 };
 
 /**
- * Fetches episodes from publisher's API and returns them in a format suitable for indexing.
- * @param page Page number to fetch
- * @returns episode data to be indexed
+ * Creates the main image for an episode.
+ * @param episode - The episode object.
+ * @returns The main image object with URL, width, and height.
+ */
+const createImageMain = async (episode: any) => {
+    const dimensions: any = await getImageDimensions(episode.image_url);
+    episode['image-main'] = {
+        url: episode.image_url,
+        width: dimensions.width,
+        height: dimensions.height
+    };
+    return episode['image-main'];
+};
+
+/**
+ * Retrieves a batch of episodes from the server.
+ * @param page - The page number of the batch to retrieve.
+ * @returns An array of episodes.
+ * @throws An error if the retrieval fails.
  */
 const getBatch = async ( page: number ) => {
-    const recent = await axios.get(`${config.public.API_URL}/api/v3/channel/shows/radiolab/recent_stories/${page}`);
+    const recent = await axios.get(process.env.SIMPLECAST_URL);
+    
     if (recent.status === 200) {
-        const episodes = recent.data.included
-        .filter(episode => episode.attributes["audio-may-download"]) // filter out episodes that don't have audio
-        .map(episode => {
-            const publishTime = new Date(episode.attributes["publish-at"]).getTime();
-            return {
-                objectID: episode.attributes["cms-pk"], // Algolia's unique identifier
-                slug: episode.attributes.slug,
-                title: episode.attributes.title,
-                audio: episode.attributes.audio,
-                description: episode.attributes.body,
-                tease: episode.attributes.tease,
+        const episodes = [];
+        const collection = recent.data.collection;
+
+        for (let i = 0; i < collection.length; i++) {
+            const episode = collection[i];
+            const publishTime = new Date(episode.published_at).getTime();
+            const imageMain = await createImageMain(episode);
+            episodes.push({
+                objectID: episode.id,
+                slug: episode.slug,
+                title: episode.title,
+                audio: episode.enclosure_url,
+                description: episode.description,
+                tease: episode.description,
                 publishTime,
-                "publish-at": episode.attributes["publish-at"],
-                "date-line-ts": episode.attributes["date-line-ts"],
-                "estimated-duration": episode.attributes["estimated-duration"],
-                "image-main": episode.attributes["image-main"]
-            };
-        })
+                "publish-at": episode.published_at,
+                "date-line-ts": episode.updated_at,
+                "estimated-duration": episode.duration,
+                "image-main": imageMain
+            });
+        }
+
         return episodes;
     }
     throw new Error(`Failed to retrieve recent page ${page}`);
