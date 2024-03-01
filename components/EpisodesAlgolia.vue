@@ -95,10 +95,7 @@ const cardCountCalc = computed( () => {
     : props.rowCount * cardsPerRow.value // (3 cards per )
 } )
 
-// handle the episodes array based on startCount and buckeltlimit props
-const getEpisodes = computed( () => { } )
-
-onBeforeMount( async () => {
+onBeforeMount( () => {
   // if the url query page has a value, set the startPageNumber to that value
   if ( route.query.page ) {
     startPageNumber.value = route.query.page
@@ -106,7 +103,7 @@ onBeforeMount( async () => {
 } )
 
 // a watcher to update the route page query when startPageNumber changes
-watch( startPageNumber, ( page, prev ) => {
+watch( startPageNumber, ( page ) => {
   navigateTo( {
     query: { page: page },
   } )
