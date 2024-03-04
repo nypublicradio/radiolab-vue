@@ -5,7 +5,7 @@ import { useRuntimeConfig } from '#app'
 const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
 /*Algolia Search START*/
-const { result, search } = useAlgoliaSearch('radiolab') // pass your index name as param
+const { result, search } = useAlgoliaSearch(config.public.ALGOLIA_RADIOLAB_INDEX) // pass your index name as param
 const searchTerm = ref('')
 const searchYear = ref('')
 const searchPage = ref(0)
