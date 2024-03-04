@@ -33,7 +33,7 @@ const config = useRuntimeConfig();
  */
 const getIndex = async () => {
     const client = await algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_API_KEY);
-    return client.initIndex('radiolab');
+    return client.initIndex(process.env.ALGOLIA_RADIOLAB_INDEX);
 };
 
 /**
@@ -52,18 +52,24 @@ const createImageMain = async (episode: any) => {
 };
 
 /**
- * Retrieves a batch of episodes from the server.
- * @param page - The page number of the batch to retrieve.
- * @returns An array of episodes.
- * @throws An error if the retrieval fails.
+ * Gets the batch of episodes from the Simplecast API.
+ * @param full - Whether to get the full batch or not.
+ * @returns The batch of episodes.
  */
-const getBatch = async ( page: number ) => {
-    const recent = await axios.get(process.env.SIMPLECAST_URL);
+const getBatch = async ( full: boolean, offset: number = 0 ) => {
+    let simplecastUrl = process.env.SIMPLECAST_URL;
+    // If we're not getting the full batch, limit the number of episodes to 10.
+    if (!full) {
+        simplecastUrl = `${simplecastUrl}&limit=10`;
+    } else {
+        simplecastUrl = `${simplecastUrl}&offset=${offset}`;
+    }
+    console.log(simplecastUrl);
+    const recent = await axios.get(simplecastUrl);
     
     if (recent.status === 200) {
         const episodes = [];
         const collection = recent.data.collection;
-
         for (let i = 0; i < collection.length; i++) {
             const episode = collection[i];
             const publishTime = new Date(episode.published_at).getTime();
@@ -85,14 +91,14 @@ const getBatch = async ( page: number ) => {
 
         return episodes;
     }
-    throw new Error(`Failed to retrieve recent page ${page}`);
+    throw new Error(`Failed to retrieve episodes from Simplecast. Status: ${recent.status}`);
 };
 
 /**
  * Updates the index with the most recent episodes.
  */
 const updateRecent = async () => {
-    const episodes = await getBatch(1);
+    const episodes = await getBatch(false);
     (await getIndex()).saveObjects(episodes).then(() => {
         //Not doing anything with the response
     }).catch((e) => {
@@ -100,16 +106,26 @@ const updateRecent = async () => {
     });
 };
 
+const getCount = async () => {
+    const request = await axios.get(process.env.SIMPLECAST_URL);
+    if (request.status === 200) {
+        return request.data.count;
+    }
+    throw new Error(`Failed to retrieve episode count from Simplecast. Status: ${request.status}`);
+};
+
 /**
  * Indexes all RadioLab episodes.
  */
 const indexAll = async () => {
-    let pageNum = 1;
-    const episodes = [];
-    let page = await getBatch(pageNum);
-    while (page.length > 0) {
-        episodes.push(...page);
-        page = await getBatch(pageNum++);
+    let count = await getCount();
+    let episodes = [];
+    let offset = 0;
+    while (count > 0) {
+        const batch = await getBatch(true, offset);
+        episodes = episodes.concat(batch);
+        count -= 100;
+        offset += 100;
     }
     (await getIndex()).replaceAllObjects(episodes).then(() => {
         //Not doing anything with the response
