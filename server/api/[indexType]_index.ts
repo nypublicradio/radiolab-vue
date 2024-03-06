@@ -4,6 +4,7 @@ import sizeOf from 'image-size';
 import https from 'https';
 import { URL } from 'url';
 
+
 /**
  * Get the image dimensions from a URL
  * @param url The URL to get the image dimensions from
@@ -56,19 +57,23 @@ const createImageMain = async (episode: any) => {
  * @param full - Whether to get the full batch or not.
  * @returns The batch of episodes.
  */
-const getBatch = async ( full: boolean, offset: number = 0 ) => {
+const getBatch = async ( full: boolean, next: URL) => {
     let simplecastUrl = process.env.SIMPLECAST_URL;
     // If we're not getting the full batch, limit the number of episodes to 10.
     if (!full) {
         simplecastUrl = `${simplecastUrl}&limit=10`;
-    } else {
-        simplecastUrl = `${simplecastUrl}&offset=${offset}`;
     }
+    //If next is not null, use the next URL
+    if (next) {
+        simplecastUrl = next;
+    }
+
     console.log(simplecastUrl);
     const recent = await axios.get(simplecastUrl);
     
     if (recent.status === 200) {
         const episodes = [];
+        const pages = recent.data.pages;
         const collection = recent.data.collection;
         for (let i = 0; i < collection.length; i++) {
             const episode = collection[i];
@@ -88,7 +93,7 @@ const getBatch = async ( full: boolean, offset: number = 0 ) => {
                 "image-main": imageMain
             });
         }
-
+        episodes.pages = pages;
         return episodes;
     }
     throw new Error(`Failed to retrieve episodes from Simplecast. Status: ${recent.status}`);
@@ -98,7 +103,7 @@ const getBatch = async ( full: boolean, offset: number = 0 ) => {
  * Updates the index with the most recent episodes.
  */
 const updateRecent = async () => {
-    const episodes = await getBatch(false);
+    const episodes = await getBatch(false, null);
     (await getIndex()).saveObjects(episodes).then(() => {
         //Not doing anything with the response
     }).catch((e) => {
@@ -106,27 +111,29 @@ const updateRecent = async () => {
     });
 };
 
-const getCount = async () => {
-    const request = await axios.get(process.env.SIMPLECAST_URL);
-    if (request.status === 200) {
-        return request.data.count;
-    }
-    throw new Error(`Failed to retrieve episode count from Simplecast. Status: ${request.status}`);
-};
-
 /**
  * Indexes all RadioLab episodes.
  */
 const indexAll = async () => {
-    let count = await getCount();
+    // On the first run it will set the next url to null but on subsequent runs it will be set to the next url
+    //if the next url is null, we are done
+    let next = process.env.SIMPLECAST_URL;
     let episodes = [];
-    let offset = 0;
+    
+    while (next) {
+        const batch = await getBatch(true, next);
+        console.log(batch.pages);
+        episodes = episodes.concat(batch);
+        next = batch.pages?.next?.href;
+    }
+/*     let count = await getCount();
+    let episodes = [];
     while (count > 0) {
         const batch = await getBatch(true, offset);
         episodes = episodes.concat(batch);
         count -= 100;
         offset += 100;
-    }
+    } */
     (await getIndex()).replaceAllObjects(episodes).then(() => {
         //Not doing anything with the response
     }).catch((e) => {
@@ -171,6 +178,7 @@ export default defineEventHandler(async (event) => {
             return {status: 404, body: 'Not Found'};
         }
     } catch (e) {
+        console.log(e);
         return {status: 500, body: e.message};
     }
 });
