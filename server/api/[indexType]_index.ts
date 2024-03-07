@@ -43,13 +43,17 @@ const getIndex = async () => {
  * @returns The main image object with URL, width, and height.
  */
 const createImageMain = async (episode: any) => {
-    const dimensions: any = await getImageDimensions(episode.image_url);
+    if (!episode?.image_url){
+        return null;
+    } else {
+    const dimensions: any = await getImageDimensions(episode?.image_url);
     episode['image-main'] = {
         url: episode.image_url,
         width: dimensions.width,
         height: dimensions.height
     };
     return episode['image-main'];
+}
 };
 
 
@@ -67,6 +71,10 @@ const getBatch = async (url: string) => {
         const collection = response.data.collection;
         for (let i = 0; i < collection.length; i++) {
             const episode = collection[i];
+            // Skip if episode is null
+            if (!episode) {
+                continue;
+            }
             const publishTime = (new Date(episode.published_at).getTime())/1000;
             const imageMain = await createImageMain(episode);
             episodes.push({
