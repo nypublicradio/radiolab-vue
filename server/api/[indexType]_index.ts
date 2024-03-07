@@ -10,9 +10,9 @@ import { URL } from 'url';
  * @param url The URL to get the image dimensions from
  * @returns {Promise<{width: number, height: number}>} The width and height of the image
  */
-const getImageDimensions = async (url: string) => {
+const getImageDimensions = (url: string) => {
     const options = new URL(url);
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         https.get(options, (response) => {
             const chunks = [];
             response
@@ -66,11 +66,10 @@ const getBatch = async (url: string) => {
     const response = await axios.get(url);
     
     if (response.status === 200) {
-        const episodes: any = [];
+        const episodes: Array<Array<string>> = [];
         const pages = response.data.pages;
         const collection = response.data.collection;
-        for (let i = 0; i < collection.length; i++) {
-            const episode = collection[i];
+        for (const episode of collection) {
             // Skip if episode is null
             if (!episode) {
                 continue;
@@ -123,7 +122,6 @@ const indexAll = async () => {
         const batch = await getBatch(url);
         episodes = episodes.concat(batch);
         url = batch.pages?.next?.href;
-        console.log(url);
     }
     (await getIndex()).replaceAllObjects(episodes).then(() => {
         //Not doing anything with the response
