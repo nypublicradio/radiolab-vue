@@ -3,7 +3,41 @@ import algoliasearch from 'algoliasearch';
 import sizeOf from 'image-size';
 import https from 'https';
 import { URL } from 'url';
+interface Season {
+    href: string;
+    number: number;
+}
 
+interface Episode {
+    updated_at: string;
+    type: string;
+    token: string;
+    title: string;
+    status: string;
+    slug: string;
+    season: Season;
+    scheduled_for: null | string;
+    published_at: string;
+    number: number;
+    is_hidden: boolean;
+    image_url: string;
+    image_path: string;
+    id: string;
+    href: string;
+    guid: string;
+    feeds: null | string;
+    enclosure_url: string;
+    duration: number;
+    description: string;
+    days_since_release: number;
+    audio_status: string;
+    analytics: null | string;
+}
+
+interface Dimensions {
+    width: number;
+    height: number;
+}
 
 /**
  * Get the image dimensions from a URL
@@ -27,7 +61,6 @@ const getImageDimensions = (url: string) => {
     });
 }
 
-const config = useRuntimeConfig();
 /**
  * Instantiates an Algolia client and returns the Radiolab index.
  * @returns {Promise<algoliasearch.Index>}
@@ -42,11 +75,11 @@ const getIndex = async () => {
  * @param episode - The episode object.
  * @returns The main image object with URL, width, and height.
  */
-const createImageMain = async (episode: any) => {
+const createImageMain = async (episode: Episode) => {
     if (!episode?.image_url){
         return null;
     } else {
-    const dimensions: any = await getImageDimensions(episode?.image_url);
+    const dimensions: Dimensions = await getImageDimensions(episode?.image_url) as Dimensions;
     episode['image-main'] = {
         url: episode.image_url,
         width: dimensions.width,
