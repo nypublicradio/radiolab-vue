@@ -52,32 +52,22 @@ const createImageMain = async (episode: any) => {
     return episode['image-main'];
 };
 
-/**
- * Gets the batch of episodes from the Simplecast API.
- * @param full - Whether to get the full batch or not.
- * @returns The batch of episodes.
- */
-const getBatch = async ( full: boolean, next: URL) => {
-    let simplecastUrl = process.env.SIMPLECAST_URL;
-    // If we're not getting the full batch, limit the number of episodes to 10.
-    if (!full) {
-        simplecastUrl = `${simplecastUrl}&limit=10`;
-    }
-    //If next is not null, use the next URL
-    if (next) {
-        simplecastUrl = next;
-    }
 
-    console.log(simplecastUrl);
-    const recent = await axios.get(simplecastUrl);
+/**
+ * Retrieves a batch of episodes from Simplecast.
+ * @returns {Promise<any>} A promise that resolves to an array of episodes.
+ * @throws {Error} If the request to Simplecast fails.
+ */
+const getBatch = async (url: string) => {
+    const response = await axios.get(url);
     
-    if (recent.status === 200) {
-        const episodes = [];
-        const pages = recent.data.pages;
-        const collection = recent.data.collection;
+    if (response.status === 200) {
+        const episodes: any = [];
+        const pages = response.data.pages;
+        const collection = response.data.collection;
         for (let i = 0; i < collection.length; i++) {
             const episode = collection[i];
-            const publishTime = new Date(episode.published_at).getTime();
+            const publishTime = (new Date(episode.published_at).getTime())/1000;
             const imageMain = await createImageMain(episode);
             episodes.push({
                 objectID: episode.id,
@@ -88,7 +78,7 @@ const getBatch = async ( full: boolean, next: URL) => {
                 tease: episode.description,
                 publishTime,
                 "publish-at": episode.published_at,
-                "date-line-ts": episode.updated_at,
+                "date-line-ts": (new Date(episode.updated_at).getTime())/1000,
                 "estimated-duration": episode.duration,
                 "image-main": imageMain
             });
@@ -96,14 +86,15 @@ const getBatch = async ( full: boolean, next: URL) => {
         episodes.pages = pages;
         return episodes;
     }
-    throw new Error(`Failed to retrieve episodes from Simplecast. Status: ${recent.status}`);
+    throw new Error(`Failed to retrieve episodes from Simplecast. Status: ${response.status}`);
 };
 
 /**
  * Updates the index with the most recent episodes.
  */
 const updateRecent = async () => {
-    const episodes = await getBatch(false, null);
+    const url = `${process.env.SIMPLECAST_URL}&limit=10`;
+    const episodes = await getBatch(url);
     (await getIndex()).saveObjects(episodes).then(() => {
         //Not doing anything with the response
     }).catch((e) => {
@@ -117,23 +108,15 @@ const updateRecent = async () => {
 const indexAll = async () => {
     // On the first run it will set the next url to null but on subsequent runs it will be set to the next url
     //if the next url is null, we are done
-    let next = process.env.SIMPLECAST_URL;
+    let url = process.env.SIMPLECAST_URL;
     let episodes = [];
     
-    while (next) {
-        const batch = await getBatch(true, next);
-        console.log(batch.pages);
+    while (url) {
+        const batch = await getBatch(url);
         episodes = episodes.concat(batch);
-        next = batch.pages?.next?.href;
+        url = batch.pages?.next?.href;
+        console.log(url);
     }
-/*     let count = await getCount();
-    let episodes = [];
-    while (count > 0) {
-        const batch = await getBatch(true, offset);
-        episodes = episodes.concat(batch);
-        count -= 100;
-        offset += 100;
-    } */
     (await getIndex()).replaceAllObjects(episodes).then(() => {
         //Not doing anything with the response
     }).catch((e) => {
