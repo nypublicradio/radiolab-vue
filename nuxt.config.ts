@@ -85,6 +85,7 @@ export default {
       ADMIN_CMS_ROOT: process.env['ADMIN_CMS_ROOT'],
       GA_MEASUREMENT_ID: process.env['GA_MEASUREMENT_ID'] || 'G-T0Q62GL5TY',
       GTM_ID: process.env['GTM_ID'] || 'GTM-312335707',
+      ALGOLIA_RADIOLAB_INDEX: process.env['ALGOLIA_RADIOLAB_INDEX'], 
     }
   },
 }
