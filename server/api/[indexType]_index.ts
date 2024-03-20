@@ -107,7 +107,7 @@ const getBatch = async (url: string) => {
             if (!episode) {
                 continue;
             }
-            const publishTime = (new Date(episode.published_at).getTime())/1000;
+            const publishTime = new Date(episode.published_at).getTime();
             const imageMain = await createImageMain(episode);
             episodes.push({
                 objectID: episode.id,
