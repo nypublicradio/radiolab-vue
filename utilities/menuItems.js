@@ -144,20 +144,20 @@ export default [{
                 event_label: 'For Listeners: Newsletter',
             })
         }
-    },
-    {
-        label: 'Swag Lab',
-        url: 'https://shop.radiolab.org',
-        target: '_blank',
-        command: () => {
-            const { $analytics } = useNuxtApp()
-            $analytics.sendEvent('click_tracking', {
-                event_category: 'Click Tracking',
-                component: 'Navigation',
-                event_label: 'For Listeners: Swag Lab',
-            })
+     //,
+    //     {
+    //         label: 'Swag Lab',
+    //         url: 'https://shop.radiolab.org',
+    //         target: '_blank',
+    //         command: () => {
+    //             const { $analytics } = useNuxtApp()
+    //             $analytics.sendEvent('click_tracking', {
+    //                 event_category: 'Click Tracking',
+    //                 component: 'Navigation',
+    //                 event_label: 'For Listeners: Swag Lab',
+    //             })
+    //         }
         }
-    }
     ]
 },
 {

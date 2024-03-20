@@ -35,7 +35,7 @@ const carouselEmitGetCurrPageIndex = (ind) => {
             :icon="tier.icon"
             :name="tier.name"
             :cost="tier.cost"
-            :style="`margin-top:${index === 1 ? '-23' : 0}px;`"
+            :style="`margin-top:${index === 1 ? '0' : 0}px;`"
           />
         </div>
       </div>
@@ -45,17 +45,17 @@ const carouselEmitGetCurrPageIndex = (ind) => {
       <div class="icons flex justify-content-around mb-3">
         <img
           :class="{ selected: contentIndex === 0 }"
-          src="/the-lab/viper.svg"
+          src="/the-lab/radiolabicons_viper_60x60.png"
           alt="viper icon"
         />
         <img
           :class="{ selected: contentIndex === 1 }"
-          src="/the-lab/butterfly.svg"
+          src="/the-lab/radiolabicons_butterfly_60x60_popular.png"
           alt="butterfly icon"
         />
         <img
           :class="{ selected: contentIndex === 2 }"
-          src="/the-lab/shrimp.svg"
+          src="/the-lab/radiolabicons_mantisshrimp_60x60.png"
           alt="shrimp icon"
         />
       </div>

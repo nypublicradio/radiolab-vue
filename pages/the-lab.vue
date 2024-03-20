@@ -27,38 +27,48 @@ const { $analytics } = useNuxtApp()
         />
       </Head>
     </Html>
-    <section
-      class="graphic-head flex justify-content-center align-content-center"
-      data-style-mode="blue"
-    >
+    <section class='graphic-head flex justify-content-center align-content-center' data-style-mode='blue'>
+    <div>
       <img
-        class="the-lab-sticker mt-2 lg:mt-6 mb-4"
-        src="/the-lab-sticker.svg"
-        alt="The Lab logo"
+        class='the-lab-sticker mt-2 lg:mt-6 mb-4'
+        src='/the-lab-sticker.svg'
+        alt='The Lab logo'
       />
-      <h1 class="h4 text text-center">
-        Join us in our investigation into this strange world.
-      </h1>
-      <div class="flex mt-5" style="gap: 1rem">
-        <v-flexible-link to="https://members.radiolab.org" raw>
-          <Button
-            class="p-button-rounded"
-            label="Become a member"
-            @click="
-              $analytics.sendEvent('click_tracking', {
-                event_category: 'Click Tracking',
-                component: 'The Lab Hero CTA',
-                event_label: 'Become a member',
-              })
-            "
-          />
-        </v-flexible-link>
-        <v-flexible-link to="https://members.radiolab.org/request_access" raw>
-          <Button
-            class="blue p-button-rounded p-button-outlined"
-            label="Sign in"
-          />
-        </v-flexible-link>
+    </div>
+    <div class='content'>
+        <div class='grid'>
+          <div class='col-4'><img src='/the-lab/Radiolab_TheLabHero_Final_800.jpg' height='450' width='450' alt='Digital Collage'></div>
+          <div class='col-8'>
+            <div class='container'>
+                <div class='my-5 row justify-content-center align-content-center'>
+                  <h1 class='h4 text text-center'>
+                      Join us in our investigation into this strange world.
+                  </h1></div>
+                <div class='my-3 row flex justify-content-center align-content-center' style='gap: 1rem;'>
+                  <v-flexible-link to='https://members.radiolab.org' raw>
+                    <Button
+                      class='p-button-rounded'
+                      label='Become a member'
+                      style='padding-right: 1rem;'
+                      @click="
+                        $analytics.sendEvent('click_tracking', {
+                        event_category: 'Click Tracking',
+                        component: 'The Lab Hero CTA',
+                        event_label: 'Become a member',
+                  })
+                  "
+                />
+                </v-flexible-link>
+                <v-flexible-link to='https://members.radiolab.org/request_access' raw>
+                <Button
+                  class='blue p-button-rounded p-button-outlined'
+                  label='Sign in'
+                />
+                </v-flexible-link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="white100bg">
