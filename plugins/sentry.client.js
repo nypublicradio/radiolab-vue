@@ -12,8 +12,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         dsn: config.SENTRY_DSN,
         integrations: [
             new Integrations.BrowserTracing({
-                routingInstrumentation: Sentry.vueRouterInstrumentation(nuxtApp.$router),
-                tracingOrigins: ['radiolab.org']
+                routingInstrumentation: Sentry.vueRouterInstrumentation(nuxtApp.$router)
             })
         ],
         logErrors: false,
