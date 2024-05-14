@@ -40,18 +40,6 @@ export default [{
                 event_label: 'Podcasts: Series',
             })
         }
-    },
-    {
-        label: 'Radiolab for Kids',
-        to: '/radiolab-kids',
-        command: () => {
-            const { $analytics } = useNuxtApp()
-            $analytics.sendEvent('click_tracking', {
-                event_category: 'Click Tracking',
-                component: 'Navigation',
-                event_label: 'Podcasts: Radiolab for Kids',
-            })
-        }
     }
     ]
 },
@@ -106,6 +94,18 @@ export default [{
         }
     }
     ]
+},
+{
+    label: 'Radiolab for Kids',
+    to: '/radiolab-kids',
+    command: () => {
+        const { $analytics } = useNuxtApp()
+        $analytics.sendEvent('click_tracking', {
+            event_category: 'Click Tracking',
+            component: 'Navigation',
+            event_label: 'Podcasts: Radiolab for Kids',
+        })
+    }
 },
 {
     label: 'For Listeners',
