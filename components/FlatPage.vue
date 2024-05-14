@@ -2,37 +2,43 @@
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 
-useHead({
+useHead( {
   bodyAttrs: {
     class: 'has-head-color',
   },
-})
+} )
 
-const title = ref('')
-const body = ref('')
-const dataLoaded = ref(false)
+const body = ref( '' )
+const dataLoaded = ref( false )
 
-const props = defineProps({
+const props = defineProps( {
   api: {
     type: String,
     default: null,
   },
-})
+  title: {
+    type: String,
+    default: null,
+  },
+} )
 
-onBeforeMount(async () => {
+onBeforeMount( async () => {
   await axios
-    .get(props.api)
-    .then((response) => {
-      title.value = response.data.included[0].attributes.title
-      body.value = response.data?.included[0]?.attributes?.body
-        ? response.data?.included[0]?.attributes?.body
-        : response.data?.data?.attributes.about.body
+    .get( props.api )
+    .then( ( response ) => {
+      if ( response.data?.data?.attributes?.content ) {
+        body.value = response.data.data.attributes.content
+      } else {
+        body.value = response.data?.included[ 0 ]?.attributes?.body
+          ? response.data?.included[ 0 ]?.attributes?.body
+          : response.data?.data?.attributes.about.body
+      }
       dataLoaded.value = true
-    })
-    .catch(() => {
+    } )
+    .catch( () => {
       throwError()
-    })
-})
+    } )
+} )
 </script>
 
 <template>
