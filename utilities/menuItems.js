@@ -98,6 +98,7 @@ export default [{
 {
     label: 'Radiolab for Kids',
     to: '/radiolab-kids',
+    class: 'alone',
     command: () => {
         const { $analytics } = useNuxtApp()
         $analytics.sendEvent('click_tracking', {
