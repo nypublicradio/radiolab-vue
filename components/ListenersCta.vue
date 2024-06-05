@@ -7,6 +7,10 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
   <div class="listeners-cta p-5">
     <h2>Listeners</h2>
     <div class="text-right">
+      <v-flexible-link to="https://woobox.com/wc2qxd/">
+        Naming Contest
+        <arrow-right />
+      </v-flexible-link>
       <v-flexible-link to="/radiolab-read-credit">
         Read The Credits
         <arrow-right />

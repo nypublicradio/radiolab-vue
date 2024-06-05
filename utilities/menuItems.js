@@ -40,18 +40,6 @@ export default [{
                 event_label: 'Podcasts: Series',
             })
         }
-    },
-    {
-        label: 'Radiolab for Kids',
-        to: '/radiolab-kids',
-        command: () => {
-            const { $analytics } = useNuxtApp()
-            $analytics.sendEvent('click_tracking', {
-                event_category: 'Click Tracking',
-                component: 'Navigation',
-                event_label: 'Podcasts: Radiolab for Kids',
-            })
-        }
     }
     ]
 },
@@ -108,6 +96,19 @@ export default [{
     ]
 },
 {
+    label: 'Radiolab for Kids',
+    to: '/radiolab-kids',
+    class: 'alone',
+    command: () => {
+        const { $analytics } = useNuxtApp()
+        $analytics.sendEvent('click_tracking', {
+            event_category: 'Click Tracking',
+            component: 'Navigation',
+            event_label: 'Podcasts: Radiolab for Kids',
+        })
+    }
+},
+{
     label: 'For Listeners',
     items: [{
         label: 'The Lab',
@@ -144,21 +145,34 @@ export default [{
                 event_label: 'For Listeners: Newsletter',
             })
         }
-    },
-    {
-        label: 'Swag Lab',
-        url: 'https://shop.radiolab.org',
-        target: '_blank',
-        command: () => {
-            const { $analytics } = useNuxtApp()
-            $analytics.sendEvent('click_tracking', {
-                event_category: 'Click Tracking',
-                component: 'Navigation',
-                event_label: 'For Listeners: Swag Lab',
-            })
+     //,
+    //     {
+    //         label: 'Swag Lab',
+    //         url: 'https://shop.radiolab.org',
+    //         target: '_blank',
+    //         command: () => {
+    //             const { $analytics } = useNuxtApp()
+    //             $analytics.sendEvent('click_tracking', {
+    //                 event_category: 'Click Tracking',
+    //                 component: 'Navigation',
+    //                 event_label: 'For Listeners: Swag Lab',
+    //             })
+    //         }
         }
-    }
     ]
+},
+{
+    label: 'Naming Contest',
+    url: 'https://woobox.com/wc2qxd/',
+    class: 'alone',
+    command: () => {
+        const { $analytics } = useNuxtApp()
+        $analytics.sendEvent('click_tracking', {
+            event_category: 'Click Tracking',
+            component: 'Navigation',
+            event_label: 'Naming Contest',
+        })
+    }
 },
 {
     label: 'How to listen',
