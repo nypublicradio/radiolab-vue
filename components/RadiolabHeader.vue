@@ -38,7 +38,7 @@ onUnmounted(() => {
     <section>
       <div
         v-if="isMenuVisible"
-        class="content flex lg:block align-items-center justify-content-between lg:px-2 pr-3"
+        class="content align-items-center justify-content-between lg:px-2 pr-3"
       >
         <Menubar :model="menuItems" ref="pMenuRef">
           <template #start>
@@ -148,8 +148,12 @@ onUnmounted(() => {
     .content {
       width: 100%;
       padding: 0;
+      display: flex;
+      @media (min-width: $menuBreakpoint) {
+        display: block !important;
+      }
       .mobile-bm-button {
-        @media (min-width: 961px) {
+        @media (min-width: $menuBreakpoint) {
           display: none;
         }
       }
@@ -178,7 +182,7 @@ onUnmounted(() => {
         display: flex;
       }
 
-      @include media(">lg") {
+      @media (min-width: $menuBreakpoint) {
         justify-content: space-between;
       }
 
