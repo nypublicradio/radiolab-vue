@@ -40,7 +40,7 @@ onUnmounted(() => {
         v-if="isMenuVisible"
         class="content flex lg:block align-items-center justify-content-between lg:px-2 pr-3"
       >
-        <Menubar :model="menuItems" ref="pMenuRef" breakpoint="1180px">
+        <Menubar :model="menuItems" ref="pMenuRef">
           <template #start>
             <nuxt-link
               to="/"
@@ -51,9 +51,14 @@ onUnmounted(() => {
             </nuxt-link>
           </template>
         </Menubar>
-        <v-flexible-link raw to="/the-lab" aria-label="Become a member">
+        <v-flexible-link
+          raw
+          to="/the-lab"
+          aria-label="Become a member"
+          class="mobile-bm-button"
+        >
           <Button
-            class="flex lg:hidden p-button-rounded"
+            class="flex p-button-rounded"
             @click="
               $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
@@ -143,6 +148,11 @@ onUnmounted(() => {
     .content {
       width: 100%;
       padding: 0;
+      .mobile-bm-button {
+        @media (min-width: 961px) {
+          display: none;
+        }
+      }
     }
 
     .p-menubar:not(.p-menubar-mobile-active) {
