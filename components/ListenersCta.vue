@@ -1,12 +1,16 @@
 <script setup>
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import ArrowRight from '~/components/icons/ArrowRight.vue'
+import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
+import ArrowRight from "~/components/icons/ArrowRight.vue"
 </script>
 
 <template>
   <div class="listeners-cta p-5">
     <h2>Listeners</h2>
     <div class="text-right">
+      <v-flexible-link to="https://woobox.com/wc2qxd/">
+        Naming Contest
+        <arrow-right />
+      </v-flexible-link>
       <v-flexible-link to="/radiolab-read-credit">
         Read The Credits
         <arrow-right />
@@ -23,7 +27,6 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
 .listeners-cta {
   position: relative;
   background: var(--gold-500);
-  min-height: 433px;
   border-radius: 20px;
   height: 100%;
   display: flex;
@@ -38,7 +41,7 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
       var(--pink-500) 100%
     );
     border-radius: 0 0 70% 70%;
-    content: '';
+    content: "";
     height: 740px;
     position: absolute;
     top: -580px;
@@ -46,6 +49,9 @@ import ArrowRight from '~/components/icons/ArrowRight.vue'
     left: -250px;
     right: 0;
     margin: auto;
+  }
+  .text-right {
+    padding-top: 130px;
   }
 }
 .listeners-cta h2,

@@ -127,8 +127,12 @@ section {
     }
     &:after {
       content: '';
-      transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
-      -webkit-transition: height calc(var(--transition-duration) * 2), top calc(var(--transition-duration) * 2);
+      transition:
+        height calc(var(--transition-duration) * 2),
+        top calc(var(--transition-duration) * 2);
+      -webkit-transition:
+        height calc(var(--transition-duration) * 2),
+        top calc(var(--transition-duration) * 2);
 
       //default alpha gradient
       background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 68%, rgba(255, 255, 255, 0.46) 100%);
@@ -363,3 +367,104 @@ section {
 }
 
 @import 'cards';
+
+// had to bring this entire file in because of the menu breakpoint
+@media screen and (max-width: $menuBreakpoint) {
+  .p-menubar {
+    position: relative;
+
+    .p-menubar-button {
+      display: flex;
+      width: $actionIconWidth;
+      height: $actionIconHeight;
+      color: $horizontalMenuRootMenuitemIconColor;
+      border-radius: $actionIconBorderRadius;
+      transition: $actionIconTransition;
+
+      &:hover {
+        color: $horizontalMenuRootMenuitemIconHoverColor;
+        background: $horizontalMenuRootMenuitemHoverBg;
+      }
+
+      &:focus {
+        @include focused();
+      }
+    }
+
+    .p-menubar-root-list {
+      position: absolute;
+      display: none;
+      padding: $verticalMenuPadding;
+      background: $overlayMenuBg;
+      border: $overlayMenuBorder;
+      box-shadow: $overlayMenuShadow;
+      width: 100%;
+
+      .p-menu-separator {
+        border-top: $divider;
+        margin: $menuSeparatorMargin;
+      }
+
+      .p-submenu-icon {
+        font-size: $menuitemSubmenuIconFontSize;
+      }
+
+      > .p-menuitem {
+        width: 100%;
+        position: static;
+
+        > .p-menuitem-link {
+          @include menuitem-link();
+
+          > .p-submenu-icon {
+            margin-left: auto;
+            transition: transform $transitionDuration;
+          }
+        }
+
+        &.p-menuitem-active {
+          > .p-menuitem-link {
+            > .p-submenu-icon {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+
+      .p-submenu-list {
+        width: 100%;
+        position: static;
+        box-shadow: none;
+        border: 0 none;
+
+        .p-submenu-icon {
+          transition: transform $transitionDuration;
+          transform: rotate(90deg);
+        }
+
+        .p-menuitem-active {
+          > .p-menuitem-link {
+            > .p-submenu-icon {
+              transform: rotate(-90deg);
+            }
+          }
+        }
+      }
+
+      .p-menuitem {
+        width: 100%;
+        position: static;
+      }
+
+      @include nested-submenu-indents(nth($menuitemPadding, 1), 2, 10);
+    }
+
+    &.p-menubar-mobile-active .p-menubar-root-list {
+      display: flex;
+      flex-direction: column;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+    }
+  }
+}

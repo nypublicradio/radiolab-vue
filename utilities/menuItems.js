@@ -162,6 +162,19 @@ export default [{
     ]
 },
 {
+    label: 'Naming Contest',
+    url: 'https://woobox.com/wc2qxd/',
+    class: 'alone',
+    command: () => {
+        const { $analytics } = useNuxtApp()
+        $analytics.sendEvent('click_tracking', {
+            event_category: 'Click Tracking',
+            component: 'Navigation',
+            event_label: 'Naming Contest',
+        })
+    }
+},
+{
     label: 'How to listen',
     to: '/how-to-listen',
     class: 'gap alone',

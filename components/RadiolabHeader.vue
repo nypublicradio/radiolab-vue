@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from "vue"
 //import { useMenuItems } from '../composables/states'
-import menuItemsImport from '../utilities/menuItems'
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
+import menuItemsImport from "../utilities/menuItems"
+import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
 //import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 // const { $analytics } = useNuxtApp()
 //const menuItems = useMenuItems()
@@ -16,20 +16,20 @@ let hamburger = null
 const onResize = () => {
   if (
     window.innerWidth >= 960 &&
-    pMenuRef.value?.$el.classList?.contains('p-menubar-mobile-active')
+    pMenuRef.value?.$el.classList?.contains("p-menubar-mobile-active")
   ) {
     hamburger.click()
   }
 }
 
 onMounted(async () => {
-  window.addEventListener('resize', onResize)
+  window.addEventListener("resize", onResize)
   isMenuVisible.value = true
   await nextTick()
-  hamburger = pMenuRef.value.$el.getElementsByClassName('p-menubar-button')[0]
+  hamburger = pMenuRef.value.$el.getElementsByClassName("p-menubar-button")[0]
 })
 onUnmounted(() => {
-  window.removeEventListener('resize', onResize)
+  window.removeEventListener("resize", onResize)
 })
 </script>
 
@@ -38,7 +38,7 @@ onUnmounted(() => {
     <section>
       <div
         v-if="isMenuVisible"
-        class="content flex lg:block align-items-center justify-content-between lg:px-2 pr-3"
+        class="content align-items-center justify-content-between lg:px-2 pr-3"
       >
         <Menubar :model="menuItems" ref="pMenuRef">
           <template #start>
@@ -51,9 +51,14 @@ onUnmounted(() => {
             </nuxt-link>
           </template>
         </Menubar>
-        <v-flexible-link raw to="/the-lab" aria-label="Become a member">
+        <v-flexible-link
+          raw
+          to="/the-lab"
+          aria-label="Become a member"
+          class="mobile-bm-button"
+        >
           <Button
-            class="flex lg:hidden p-button-rounded"
+            class="flex p-button-rounded"
             @click="
               $analytics.sendEvent('click_tracking', {
                 event_category: 'Click Tracking',
@@ -123,11 +128,11 @@ onUnmounted(() => {
 }
 
 .site-header {
-  @include media('>=md') {
+  @include media(">=md") {
     position: sticky;
     top: 0px;
   }
-  @include media('<md') {
+  @include media("<md") {
     position: sticky;
     top: 50px;
   }
@@ -143,6 +148,15 @@ onUnmounted(() => {
     .content {
       width: 100%;
       padding: 0;
+      display: flex;
+      @media (min-width: $menuBreakpoint) {
+        display: block !important;
+      }
+      .mobile-bm-button {
+        @media (min-width: $menuBreakpoint) {
+          display: none;
+        }
+      }
     }
 
     .p-menubar:not(.p-menubar-mobile-active) {
@@ -152,7 +166,7 @@ onUnmounted(() => {
       border: none;
       padding: 1rem 0.5rem;
 
-      @include media('<xl') {
+      @include media("<xl") {
         padding: 1rem 0.5rem 1rem 0.5rem;
       }
 
@@ -168,7 +182,7 @@ onUnmounted(() => {
         display: flex;
       }
 
-      @include media('>lg') {
+      @media (min-width: $menuBreakpoint) {
         justify-content: space-between;
       }
 
@@ -190,11 +204,11 @@ onUnmounted(() => {
 
         &.gap {
           @media (min-width: 1440px) {
-            margin-left: 290px !important;
+            margin-left: 160px !important;
           }
 
-          @include media('>lg') {
-            margin-left: calc(50vw - 430px);
+          @include media(">lg") {
+            margin-left: calc(50vw - 530px);
           }
         }
 
@@ -221,7 +235,7 @@ onUnmounted(() => {
           }
 
           &:after {
-            content: '';
+            content: "";
             height: 1px;
             background: var(--black100);
             position: absolute;
@@ -259,8 +273,7 @@ onUnmounted(() => {
           top: 0;
           opacity: 0;
           pointer-events: none;
-          transition: top var(--transition-duration),
-            opacity var(--transition-duration);
+          transition: top var(--transition-duration), opacity var(--transition-duration);
           -webkit-transition: top var(--transition-duration),
             opacity var(--transition-duration);
           display: flex;
@@ -272,7 +285,7 @@ onUnmounted(() => {
             -webkit-transition: background-color var(--transition-duration),
               border-color var(--transition-duration);
             background-color: var(--white);
-            content: '';
+            content: "";
             left: -100vw;
             top: 1px;
             position: absolute;
@@ -342,7 +355,7 @@ onUnmounted(() => {
 
         .pi-bars {
           &:before {
-            content: '\e90b';
+            content: "\e90b";
           }
         }
 
