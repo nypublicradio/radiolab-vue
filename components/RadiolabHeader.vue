@@ -374,8 +374,22 @@ onUnmounted(() => {
         top: 0;
         padding: 0;
         padding-top: spacing(8);
-        padding-bottom: spacing(12);
-
+        padding-bottom: 8rem;
+        padding-left: 1rem;
+        flex-wrap: nowrap;
+        &:after {
+          content: "";
+          position: fixed;
+          height: 100px;
+          width: 100vw;
+          bottom: 0;
+          left: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+          );
+        }
         .p-menuitem {
           width: auto;
 
