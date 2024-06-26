@@ -374,11 +374,13 @@ onUnmounted(() => {
         top: 0;
         padding: 0;
         padding-top: spacing(8);
-        padding-bottom: 8rem;
+        padding-bottom: 15rem;
         padding-left: 1rem;
         flex-wrap: nowrap;
         &:after {
           content: "";
+          pointer-events: none;
+
           position: fixed;
           height: 100px;
           width: 100vw;
