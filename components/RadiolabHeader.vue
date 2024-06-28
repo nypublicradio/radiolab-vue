@@ -11,6 +11,7 @@ const menuItems = ref(menuItemsImport)
 const isMenuVisible = ref(false)
 const pMenuRef = ref(null)
 let hamburger = null
+let rootList = null
 
 // if the menu is mobile... and expanded, then the user resizes the window larger or equal to 960px, it will click the hamburger button to collapse the menu
 const onResize = () => {
@@ -27,10 +28,14 @@ onMounted(async () => {
   isMenuVisible.value = true
   await nextTick()
   hamburger = pMenuRef.value.$el.getElementsByClassName("p-menubar-button")[0]
+  rootList = pMenuRef.value.$el.getElementsByClassName("p-menubar-root-list")[0]
 })
 onUnmounted(() => {
   window.removeEventListener("resize", onResize)
 })
+const focusEmit = (e) => {
+  rootList.scrollTop = 0
+}
 </script>
 
 <template>
@@ -40,7 +45,7 @@ onUnmounted(() => {
         v-if="isMenuVisible"
         class="content align-items-center justify-content-between lg:px-2 pr-3"
       >
-        <Menubar :model="menuItems" ref="pMenuRef">
+        <Menubar :model="menuItems" ref="pMenuRef" @focus="focusEmit">
           <template #start>
             <nuxt-link
               to="/"
