@@ -53,7 +53,7 @@ export const playServices = [
   {
     name: 'RSS',
     icon: 'rss',
-    url: 'http://feeds.wnyc.org/radiolab'
+    url: 'https://feeds.wnyc.org/radiolab'
   }
 ]
 
