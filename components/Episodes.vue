@@ -53,6 +53,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  kids: {
+    type: Boolean,
+    default: false,
+  },
   showLastAd: {
     type: Boolean,
     default: false,
@@ -232,7 +236,7 @@ const onCardClick = (episode, elm) => {
                         @image-click="onCardClick(episode, 'image')"
                       >
                         <div class="divider"></div>
-                        <play-selector :episode="episode.attributes" />
+                        <play-selector :episode="episode.attributes" :kids="kids" />
                       </v-card>
                     </client-only>
                   </div>
