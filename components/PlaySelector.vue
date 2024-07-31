@@ -6,7 +6,7 @@ import {
   useTogglePlayTrigger,
   usePlayServicePreference,
 } from '~/composables/states'
-import { playServices, lsSelectedPlayService } from '~/utilities/constants'
+import { playServices, playServicesKids, lsSelectedPlayService } from '~/utilities/constants'
 const { $analytics } = useNuxtApp()
 const props = defineProps({
   menuClass: {
@@ -16,6 +16,10 @@ const props = defineProps({
   episode: {
     default: {},
     type: Object,
+  },
+  kids: {
+    type: Boolean,
+    default: false,
   },
 })
 
@@ -124,7 +128,7 @@ const checkEpisodeMatch = computed(() => {
       <Dropdown
         title="Choose platform"
         v-model="selectedPlayService"
-        :options="playServices"
+        :options="kids ? playServicesKids : playServices"
         :panel-class="menuClass"
         option-label="name"
         aria-label="Select a service to play this episode"
