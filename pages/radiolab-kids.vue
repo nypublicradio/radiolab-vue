@@ -16,6 +16,10 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab-kids/recent_stor
           content="Radiolab for Kids | Radiolab | WNYC Studios"
         />
         <Meta
+          name="og:description"
+          content="Family-friendly nature stories from Terrestrials and Radiolab"
+        />
+        <Meta
           name="twitter:title"
           content="Radiolab for Kids | Radiolab | WNYC Studios"
         />
