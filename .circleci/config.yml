@@ -42,6 +42,7 @@ workflows:
           cluster: radiolab-vue
           cpu: 512
           memory: 1024
+          debug: true
           requires:
             - test_js
             - test_nginx
