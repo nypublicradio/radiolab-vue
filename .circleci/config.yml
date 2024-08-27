@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  nypr-deploy: nypr/nypr-deploy@0.0.63
+  nypr-deploy: nypr/nypr-deploy@0.0.65
 
 filter_all: &filter_all
   filters:
