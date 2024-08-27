@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  nypr-deploy: nypr/nypr-deploy@0.0.65
+
 filter_all: &filter_all
   filters:
     branches:
@@ -29,19 +32,30 @@ workflows:
           <<: *filter_all
       - test_nginx:
           <<: *filter_all
-      - deploy:
+      - nypr-deploy/build_and_deploy:
+          <<: *filter_demo
           name: Deploy (demo)
           context: "AWS Deploy"
-          <<: *filter_demo
-          tag: demo
+          env: demo
+          repo: radiolab-vue
+          service: radiolab-vue
+          cluster: radiolab-vue
+          cpu: 512
+          memory: 1024
+          debug: true
           requires:
             - test_js
             - test_nginx
-      - deploy:
+      - nypr-deploy/build_and_deploy:
+          <<: *filter_prod
           name: Deploy (prod)
           context: "AWS Deploy"
           env: prod
-          <<: *filter_prod
+          repo: radiolab-vue
+          service: radiolab-vue
+          cluster: radiolab-vue
+          cpu: 512
+          memory: 1024
           requires:
             - test_js
             - test_nginx
@@ -71,47 +85,6 @@ jobs:
             mkdir -p /app/nginx 
             cp ./nginx/*.conf /etc/nginx/
             nginx -t
-
-  deploy:
-    docker: 
-      - image: cimg/python:3.7
-    parameters:
-      env:
-        type: enum
-        default: "demo"
-        enum: ["demo", "prod"]
-      tag:
-        type: string
-        default: ""
-    steps:
-      - checkout
-      - setup_npmrc
-      - setup_remote_docker     
-      - run:
-          name: Deploy
-          environment:
-            ENV: <<parameters.env>>
-            TAG: <<parameters.tag>>
-            ROLE: radiolab-vue-<<parameters.env>>
-          command: |
-            TAG=${TAG:-$CIRCLE_TAG}
-            
-            python3 -m venv ~/.venv
-            source ~/.venv/bin/activate
-            pip3 install -U git+https://github.com/nypublicradio/nyprsetuptools.git
-            
-            nyprsetuptools DockerDeploy \
-              --fargate \
-              --cpu=512 \
-              --memory-reservation=1024 \
-              --ecr-repository=radiolab-vue \
-              --ecs-cluster=radiolab-vue \
-              --ports=80 \
-              --execution-role=$ROLE \
-              --task-role=$ROLE \
-              --environment=$ENV \
-              --tag=$TAG \
-              --wait=300
 
 commands:
   setup_npmrc:
