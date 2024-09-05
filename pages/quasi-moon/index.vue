@@ -68,15 +68,33 @@ const goToPersonPage = (slug) => {
     <section
       class="quasi-moon graphic-head-bg flex justify-content-center align-content-center"
     >
-      <section class="graphic-head flex justify-content-center align-content-center">
-        <div class="content">
-          <div class="grid">
-            <div class="col-12">
-              <h1 class="h2 font-normal gold text-center">Name a Quasi-Moon</h1>
-            </div>
+      <div
+        class="flex flex-column justify-content-center align-content-center pb-8 shape-holder"
+      >
+        <img src="/shape_result.webp" class="shape" />
+        <h1 class="title h2 gold text-center lg:text-7xl">Name a Quasi-Moon</h1>
+      </div>
+    </section>
+    <section class="below-head -mt-8">
+      <div class="content py-0">
+        <h4 class="gold md:px-8">
+          An oppertunity to rays ephemeris zodiac cosmology red shift azimuth perigee
+          inertia exoplanet radiant gravity deep space white dwarf
+        </h4>
+      </div>
+    </section>
+    <section class="count-down xs:p-6 lg:p-8">
+      <h2 class="text-center text-white font-normal">Voting begins in...</h2>
+      <CountDown :targetDate="new Date('2024-11-01T00:00:00')" />
+    </section>
+    <section>
+      <div class="content xl:px-8 pb-0">
+        <div class="grid">
+          <div class="col-12">
+            <h1 class="h2 font-normal text-white">Meet the Panel</h1>
           </div>
         </div>
-      </section>
+      </div>
     </section>
     <section>
       <div class="content xl:px-8 cards">
@@ -139,16 +157,41 @@ const goToPersonPage = (slug) => {
     background-position: center bottom;
     background-size: cover;
     background-size: cover;
-    .graphic-head {
+    .shape-holder {
+      width: 100%;
       background-color: #00000080;
-      background-image: url("/shape_result.webp");
-      margin-top: 0;
-      background-position: center;
-      background-size: 430px;
-      .gold {
-        color: var(--gold-500);
+    }
+    .title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .shape {
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+      opacity: 0.5;
+    }
+  }
+
+  .below-head {
+    h4 {
+      font-weight: var(--font-weight-400);
+      font-size: var(--font-size-10);
+      line-height: var(--font-size-13);
+      text-align: center;
+      letter-spacing: 10px;
+      @include media("<md") {
+        font-size: var(--font-size-6);
+        line-height: var(--font-size-9);
+        letter-spacing: 6px;
       }
     }
+  }
+
+  .gold {
+    color: #fff322;
   }
 
   .team .cards > .grid {
