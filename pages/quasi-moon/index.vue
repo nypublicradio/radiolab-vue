@@ -66,15 +66,17 @@ const goToPersonPage = (slug) => {
       </Head>
     </Html>
     <section
-      class="quasi-moon graphic-head flex justify-content-center align-content-center"
+      class="quasi-moon graphic-head-bg flex justify-content-center align-content-center"
     >
-      <div class="content xl:px-8 pb-0">
-        <div class="grid">
-          <div class="col-12">
-            <h1 class="h2 font-normal quasi-moon">Name A Quasi-Moon</h1>
+      <section class="graphic-head flex justify-content-center align-content-center">
+        <div class="content">
+          <div class="grid">
+            <div class="col-12">
+              <h1 class="h2 font-normal gold text-center">Name a Quasi-Moon</h1>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </section>
     <section>
       <div class="content xl:px-8 cards">
@@ -131,9 +133,22 @@ const goToPersonPage = (slug) => {
   // }
 }
 .quasi-moon {
-  .graphic-head {
+  .graphic-head-bg {
     background-color: #000000;
     background-image: url("/stars_result.webp");
+    background-position: center bottom;
+    background-size: cover;
+    background-size: cover;
+    .graphic-head {
+      background-color: #00000080;
+      background-image: url("/shape_result.webp");
+      margin-top: 0;
+      background-position: center;
+      background-size: 430px;
+      .gold {
+        color: var(--gold-500);
+      }
+    }
   }
 
   .team .cards > .grid {
