@@ -1,8 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue"
 
-//const targetDate = new Date('2024-12-31T23:59:59') // Hardcoded date
-
 const props = defineProps({
   targetDate: {
     type: Date,
@@ -39,7 +37,7 @@ onUnmounted(() => {
 
 <template>
   <div class="countdown">
-    <div class="time-display flex gap-5">
+    <div class="time-display flex gap-3 md:gap-5">
       <div class="time-unit">{{ padZero(remainingTime.days) }} <span>days</span></div>
       <div class="time-unit">{{ padZero(remainingTime.hours) }} <span>hours</span></div>
       <div class="time-unit">

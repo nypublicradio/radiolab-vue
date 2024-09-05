@@ -83,7 +83,7 @@ const goToPersonPage = (slug) => {
         </h4>
       </div>
     </section>
-    <section class="count-down xs:p-6 lg:p-8">
+    <section class="count-down px-2 py-6 lg:p-8">
       <h2 class="text-center text-white font-normal">Voting begins in...</h2>
       <CountDown :targetDate="new Date('2024-11-01T00:00:00')" />
     </section>
@@ -145,10 +145,6 @@ const goToPersonPage = (slug) => {
   background-color: #000000;
   color: #ffffff;
   padding: 2rem 0;
-  // .content {
-  //   max-width: 1200px;
-  //   margin: 0 auto;
-  // }
 }
 .quasi-moon {
   .graphic-head-bg {
