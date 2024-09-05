@@ -1,27 +1,27 @@
 <script setup>
-import { onBeforeMount, ref } from 'vue'
-import axios from 'axios'
-import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
-import { formatPublisherImageUrl } from '~/utilities/helpers'
-import { useRuntimeConfig } from '#app'
-import teamData from './team-data'
+import { onBeforeMount, ref } from "vue"
+import axios from "axios"
+import VCard from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue"
+import { formatPublisherImageUrl } from "~/utilities/helpers"
+import { useRuntimeConfig } from "#app"
+import teamData from "./team-data"
 
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
-import colors from '~/assets/scss/colors.module.scss'
+import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
+import colors from "~/assets/scss/colors.module.scss"
 useHead({
   meta: [
     {
-      name: 'theme-color',
+      name: "theme-color",
       content: colors.rlBlue,
     },
   ],
   bodyAttrs: {
-    class: 'has-head-color quasi-moon invert-menu-color',
+    class: "has-head-color quasi-moon invert-menu-color",
   },
 })
 const { $analytics } = useNuxtApp()
 
-console.log('teamData', teamData)
+console.log("teamData", teamData)
 const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const people = ref([])
@@ -38,13 +38,15 @@ onMounted(async () => {
   //     totalCount.value = response.data.data.attributes['total-count']
   //     dataLoaded.value = true
   //   })
-  people.value = teamData.included;
-  totalCount.value = teamData.data.attributes['total-count'];
-  dataLoaded.value = true;
+  people.value = teamData.included
+  totalCount.value = teamData.data.attributes["total-count"]
+  dataLoaded.value = true
 })
 
 const goToPersonPage = (slug) => {
-  if(slug){window.open(slug, "_blank")}
+  if (slug) {
+    window.open(slug, "_blank")
+  }
 }
 </script>
 
@@ -53,15 +55,19 @@ const goToPersonPage = (slug) => {
     <Html lang="en">
       <Head>
         <Title>Name a Quasi-moon Contest | Radiolab | WNYC Studios</Title>
-        <Meta name="og:title" content="Name a Quasi-moon Contest | Radiolab | WNYC Studios" />
+        <Meta
+          name="og:title"
+          content="Name a Quasi-moon Contest | Radiolab | WNYC Studios"
+        />
         <Meta
           name="twitter:title"
           content="Name a Quasi-moon Contest | Radiolab | WNYC Studios"
         />
       </Head>
     </Html>
-    <!-- <section class="quasi-moon graphic-head flex justify-content-center align-content-center"> -->
-    <section class="quasi-moon">
+    <section
+      class="quasi-moon graphic-head flex justify-content-center align-content-center"
+    >
       <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col-12">
@@ -77,25 +83,19 @@ const goToPersonPage = (slug) => {
             v-for="(person, index) in people"
             :key="`${person.attributes.person.name}-${index}`"
             class="col-12 sm:col-6 lg:col-4 mb-6"
-            :class="[{'cursor-pointer': person.attributes.person.slug}]"
+            :class="[{ 'cursor-pointer': person.attributes.person.slug }]"
             @click="goToPersonPage(person.attributes.person.slug)"
           >
             <client-only>
               <v-card
-                :image="
-                  formatPublisherImageUrl(
-                    person.attributes.person.image.template
-                  )
-                "
+                :image="formatPublisherImageUrl(person.attributes.person.image.template)"
                 :width="320"
                 :height="240"
                 :alt="person.attributes.person.name"
                 :title="person.attributes.person.name"
                 :titleLink="`/quasi-moon/${person.attributes.person.slug}`"
                 :eyebrow="person.attributes['appearance-type']"
-                :blurb="
-                  person.attributes.person.lede || person.attributes.person.bio
-                "
+                :blurb="person.attributes.person.lede || person.attributes.person.bio"
                 :max-width="person.attributes.person.image.w"
                 :max-height="person.attributes.person.image.h"
                 :ratio="[3, 2]"
@@ -121,52 +121,48 @@ const goToPersonPage = (slug) => {
 </template>
 
 <style lang="scss">
-
 .has-head-color.quasi-moon {
   background-color: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 2rem 0;
   // .content {
   //   max-width: 1200px;
   //   margin: 0 auto;
   // }
 }
-
-.graphic-head {
+.quasi-moon {
+  .graphic-head {
     background-color: #000000;
-    background-image: url('/rl-icon-on-blue2.svg');
+    background-image: url("/stars_result.webp");
   }
 
-.h2.quasi-moon {
-  color: #FFFFFF;
-}
-
-.team .cards > .grid {
-  margin: 0 -24px;
-}
-
-.team .cards .grid > .col,
-.team .cards .grid > [class*='col'] {
-  padding: 0 24px;
-}
-
-.team .cards .card-eyebrow {
-  text-transform: capitalize;
-}
-
-.team .card-details {
-  justify-content: flex-start !important;
-  .card-blurb {
-    -webkit-line-clamp: unset !important;
+  .team .cards > .grid {
+    margin: 0 -24px;
   }
-}
 
-.radiolab-card.quasi-moon {
-  pointer-events: none;
-  .card-details {
+  .team .cards .grid > .col,
+  .team .cards .grid > [class*="col"] {
+    padding: 0 24px;
+  }
+
+  .team .cards .card-eyebrow {
+    text-transform: capitalize;
+  }
+
+  .team .card-details {
     justify-content: flex-start !important;
     .card-blurb {
       -webkit-line-clamp: unset !important;
+    }
+  }
+
+  .radiolab-card.quasi-moon {
+    pointer-events: none;
+    .card-details {
+      justify-content: flex-start !important;
+      .card-blurb {
+        -webkit-line-clamp: unset !important;
+      }
     }
   }
 }
