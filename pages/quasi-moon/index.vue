@@ -72,7 +72,7 @@ const goToPersonPage = (slug) => {
         class="flex flex-column justify-content-center align-content-center pb-8 shape-holder"
       >
         <img src="/shape_result.webp" class="shape" />
-        <h1 class="title h2 gold text-center lg:text-7xl">Name a Quasi-Moon</h1>
+        <h1 class="quasi-moon title h2 gold text-center lg:text-7xl">Name a Quasi-Moon</h1>
       </div>
     </section>
     <section class="below-head -mt-8">
@@ -155,7 +155,7 @@ const goToPersonPage = (slug) => {
     background-size: cover;
     .shape-holder {
       width: 100%;
-      background-color: #00000080;
+      background-color: #0000004d;
     }
     .title {
       position: absolute;
@@ -168,7 +168,19 @@ const goToPersonPage = (slug) => {
       max-width: 430px;
       margin: 0 auto;
       opacity: 0.5;
+      @include media("<md") {
+        max-width: 360px;
+      }
+      @include media("<sm") {
+        max-width: 280px;
+      }
     }
+  }
+
+  h1.quasi-moon.h2 {
+    @include media("<md") {
+        font-size: var(--font-size-13);
+      }
   }
 
   .below-head {
