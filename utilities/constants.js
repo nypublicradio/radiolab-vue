@@ -69,11 +69,11 @@ export const playServicesKids = [
     icon: 'spotify',
     url: 'https://open.spotify.com/show/7Cwpx4gjeTPngGPCusfes3'
   },
-  /*{
+  {
     name: 'YouTube',
     icon: 'youtube',
-    url: 'https://www.youtube.com/@Radiolabpod'
-  },*/
+    url: ' https://www.youtube.com/playlist?list=PLLHAUHF-RPhm-R7qJLCYtoHPLpbjc4cxh'
+  },
   {
     name: 'Overcast',
     icon: 'overcast',
