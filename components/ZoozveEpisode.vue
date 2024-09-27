@@ -17,7 +17,6 @@ onBeforeMount(async () => {
       `${config.API_URL}/api/v3/story/zoozve/`
     )
     .then((response) => {
-      console.log(response.data.data)
       episodes.value = [response.data.data]
       dataLoaded.value = true
     })

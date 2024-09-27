@@ -9,7 +9,7 @@ const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const person = ref([])
 const route = useRoute()
-const router = useRouter()
+// const router = useRouter()
 onBeforeMount(async () => {
   await axios
     .get(
@@ -90,5 +90,3 @@ onBeforeMount(async () => {
     <skeleton-general-content v-else />
   </div>
 </template>
-
-<style lang="scss"></style>

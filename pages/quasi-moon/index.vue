@@ -1,14 +1,12 @@
 <script setup>
-import { onBeforeMount, ref } from "vue"
-import axios from "axios"
+// import { onBeforeMount, ref } from "vue"
 import VCard from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue"
-import { formatPublisherImageUrl } from "~/utilities/helpers"
+// import { formatPublisherImageUrl } from "~/utilities/helpers"
 import { useRuntimeConfig } from "#app"
 import teamData from "./team-data"
 
-import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
+// import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
 import colors from "~/assets/scss/colors.module.scss"
-import LatestEpisode from "~~/components/LatestEpisode.vue"
 useHead({
   meta: [
     {
@@ -20,14 +18,13 @@ useHead({
     class: "has-head-color quasi-moon invert-menu-color",
   },
 })
-const { $analytics } = useNuxtApp()
 
-const config = useRuntimeConfig()
+// const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const people = ref([])
 const totalCount = ref(null)
 
-onMounted(async () => {
+onMounted( () => {
   // await axios
   //   .get(
   //     `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
@@ -43,11 +40,11 @@ onMounted(async () => {
   dataLoaded.value = true
 })
 
-const goToPersonPage = (slug) => {
-  if (slug) {
-    window.open(slug, "_blank")
-  }
-}
+// const goToPersonPage = (slug) => {
+//   if (slug) {
+//     window.open(slug, "_blank")
+//   }
+// }
 </script>
 
 <template>

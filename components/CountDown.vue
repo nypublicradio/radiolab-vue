@@ -19,10 +19,12 @@ const remainingTime = computed(() => {
 
   return { days, hours, minutes, seconds }
 })
+
+// Pads a number with a zero if it's less than 10
 function padZero(num) {
   return num.toString().padStart(2, "0")
 }
-let intervalId
+let intervalId = null
 
 onMounted(() => {
   intervalId = setInterval(() => {
