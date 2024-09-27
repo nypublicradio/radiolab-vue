@@ -2,7 +2,7 @@
 // import { onBeforeMount, ref } from "vue"
 import VCard from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue"
 // import { formatPublisherImageUrl } from "~/utilities/helpers"
-import { useRuntimeConfig } from "#app"
+// import { useRuntimeConfig } from "#app"
 import teamData from "./team-data"
 
 // import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
@@ -40,6 +40,7 @@ onMounted( () => {
   dataLoaded.value = true
 })
 
+// Goes to the person page URL
 // const goToPersonPage = (slug) => {
 //   if (slug) {
 //     window.open(slug, "_blank")
