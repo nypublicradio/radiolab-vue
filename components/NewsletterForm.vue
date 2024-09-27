@@ -23,6 +23,8 @@ function submitForm() {
   let sourceLocation = 'radiolab_footer'
   if (props.location === 'home page') {
     sourceLocation = 'radiolab_homePage'
+  } else if (props.location === 'quasi moon landing page') {
+    sourceLocation = 'radiolab_quasi_moon_landing_page'
   }
   axios
     // .post(`https://api.prod.nypr.digital/email-proxy/subscribe`,
