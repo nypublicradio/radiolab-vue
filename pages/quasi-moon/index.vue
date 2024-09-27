@@ -8,6 +8,7 @@ import teamData from "./team-data"
 
 import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
 import colors from "~/assets/scss/colors.module.scss"
+import LatestEpisode from "~~/components/LatestEpisode.vue"
 useHead({
   meta: [
     {
@@ -21,7 +22,6 @@ useHead({
 })
 const { $analytics } = useNuxtApp()
 
-console.log("teamData", teamData)
 const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const people = ref([])
@@ -78,8 +78,7 @@ const goToPersonPage = (slug) => {
     <section class="below-head -mt-8">
       <div class="content py-0">
         <h4 class="gold md:px-8">
-          An oppertunity to rays ephemeris zodiac cosmology red shift azimuth perigee
-          inertia exoplanet radiant gravity deep space white dwarf
+          A global naming contest from Radiolab and the International Astronomical Union, vote on the finalists starting in November and make your mark on the heavens! 
         </h4>
       </div>
     </section>
@@ -87,7 +86,10 @@ const goToPersonPage = (slug) => {
       <h2 class="text-center text-white font-normal">Voting begins in...</h2>
       <CountDown :targetDate="new Date('2024-11-01T00:00:00')" />
     </section>
-    <section>
+    <span class="flex justify-content-center align-content-center">
+        <img alt="icon" src="/rl-icon-stripes.svg" class="icon ml-2 pb-2 divider-icon">
+      </span>
+    <!-- <section>
       <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col-12">
@@ -95,10 +97,10 @@ const goToPersonPage = (slug) => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <section>
       <div class="content xl:px-8 cards">
-        <div v-if="dataLoaded" class="grid">
+        <!-- <div v-if="dataLoaded" class="grid mb-6">
           <div
             v-for="(person, index) in people"
             :key="`${person.attributes.person.name}-${index}`"
@@ -128,25 +130,169 @@ const goToPersonPage = (slug) => {
             </client-only>
           </div>
         </div>
-        <team-skeleton v-else :row-count="30" />
-        <section class="alone">
-          <img
-            src="https://cdn.mos.cms.futurecdn.net/wtwfXHFQMXnuEMNMkfprSE.gif"
-            alt="The trajectory of the quasi-moon"
-          />
-        </section>
+        <team-skeleton v-else :row-count="30" /> -->
+        <!-- <section class="mb-8"> -->
+          <div class="info-card mb-6 p-5">
+            <div>
+              <h2 class="mb-4">Get ready to vote</h2>
+              <p class="mb-4 card-nudge">
+                <ul class="submissions-card">
+                  <li class="submissions-card">The <strong>Name a Quasi-Moon</strong> submission phase is now officially closed…and WOW! Thanks to all of you from all over the world who submitted names!</li>
+                  <li class="submissions-card">The results are in and we received over <strong>2,700 submissions</strong> from <strong>96 countries</strong>.</li>
+                  <li class="submissions-card">We've recruited a star-studded (wink wink) panel to help us winnow down all of those names into 10 finalists for you to vote on. <strong>Big reveal soon</strong>!</li>
+                </ul>
+              </p>
+            </div>
+          </div>
+          <div class="subscribe-to-the-newsletter mb-6 p-5">
+            <div>
+              <h2 class="mb-4">We’ll let you know when it is time to vote!</h2>
+              <p class="mb-6">
+                Signup for updates on the contest and more!  The Radiolab newsletter includes short essays, recommendations, 
+                and details about other ways to interact with the show.
+              </p>
+            </div>
+            <newsletter-form location="quasi moon landing page" class="mb-6" />
+            <p class="footer">By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our <a target="_blank" href="https://www.wnyc.org/terms/" rel="noopener noreferrer">Terms</a>.</p>
+          </div>
+        <!-- </section> -->
+        <section>
+      <div class="content xl:px-0 pb-0">
+        <div class="grid">
+          <div class="col-12">
+            <h1 class="h2 font-normal text-white what-is-quasi">What is a Quasi-Moon?</h1>
+            <ZoozveEpisode class="mb-6" />
+            <div class="grid justify-content-center">
+              <div class="col-12 sm:col-6 lg:col-4 mb-6">
+                <client-only>
+                  <v-card
+                        image="https://www.nasa.gov/wp-content/uploads/2023/10/cu06-illustration-16x9-v01.png"
+                        :width="320"
+                        :height="240"
+                        alt="Navy blue and red illustration of Nasa's Curious Universe podcast logo"
+                        title="An Asteroid by Any Other Name..."
+                        titleLink="https://www.nasa.gov/podcasts/curious-universe/an-asteroid-by-any-other-name-with-latif-nasser/"
+                        eyebrow="NASA's Curious Universe"
+                        blurb="Latif join's NASA's Curious Universe to untangle the mystery of a strange space rock that’s not quite a moon but not quite a normal asteroid, either."
+                        :max-width="3840"
+                        :max-height="2160"
+                        responsive
+                        :ratio="[3, 2]"
+                        :sizes="[2]"
+                        flat-quality
+                        bp="max"
+                        class="radiolab-card"
+                      >
+                        <!-- <play-selector :episode="episode.attributes" :kids="kids" /> -->
+                      </v-card>
+                    </client-only>
+                  </div>
+                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
+                <client-only>
+                  <v-card
+                        image="https://media.wnyc.org/i/raw/2024/09/NameAMoon.png"
+                        :width="320"
+                        :height="240"
+                        alt="Blue illustration card for a Youtube Playlist about Radiolab's Quasi Moon Contest"
+                        title="Name a Moon... Make Space History!"
+                        titleLink="https://www.youtube.com/playlist?list=PLLHAUHF-RPhlk5-ou58iu-O0vxhOfyBDX"
+                        eyebrow="Youtube Playlist"
+                        blurb="Watch the Youtube Playlist to learn more about the Quasi Moon Contest and how you can participate."
+                        :max-width="320"
+                        :max-height="240"
+                        responsive
+                        :ratio="[3, 2]"
+                        :sizes="[2]"
+                        flat-quality
+                        bp="max"
+                        class="radiolab-card"
+                      >
+                        <!-- <play-selector :episode="episode.attributes" :kids="kids" /> -->
+                      </v-card>
+                    </client-only>
+                  </div>
+                  <div class="col-12 sm:col-6 lg:col-4 mb-6">
+                <client-only>
+                  <v-card
+                        image="https://cdn.mos.cms.futurecdn.net/gu9kwKxyosV4QuLip5mtSd-640-100.jpg"
+                        :width="320"
+                        :height="240"
+                        alt="Illustration of the Space Dot Com Logo over a colorful image of outer space."
+                        title="Earth has 7 strange quasi-moons — and you could name one of them"
+                        titleLink="https://www.space.com/earth-quasi-moon-naming-radiolab-iau"
+                        eyebrow="Article"
+                        blurb="Usually, things in space are given two names. One is formal, and the other is fun. It makes sense. Researchers need precise nomenclature..."
+                        :max-width="640"
+                        :max-height="360"
+                        responsive
+                        :ratio="[3, 2]"
+                        :sizes="[2]"
+                        flat-quality
+                        bp="max"
+                        class="radiolab-card"
+                      >
+                        <!-- <play-selector :episode="episode.attributes" :kids="kids" /> -->
+                      </v-card>
+                    </client-only>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        
       </div>
     </section>
   </div>
 </template>
 
 <style lang="scss">
+.card-nudge {
+  @include media(">md") {
+    padding-left: 2rem;
+  }
+}
+
 .has-head-color.quasi-moon {
   background-color: #000000;
   color: #ffffff;
   padding: 2rem 0;
 }
 .quasi-moon {
+  .divider-icon {
+    max-width: 5rem;
+    @include media("<md") {
+        max-width: 3rem;
+      }
+  }
+
+  .info-card {
+    background-color: #000000;
+    color: #ffffff;
+    h2 {
+      color:#FFFFFF;
+    }
+  }
+  
+  ul.submissions-card {
+    font-family: var(--font-family);
+    font-size: var(--font-size-8);
+    line-height: var(--font-size-13);
+    font-weight: var(--font-weight-400);
+    color: #FFFFFF;
+    @include media(">md") {
+      padding-left:2.5rem;
+    }
+  }
+
+  li.submissions-card {
+    font-family: var(--font-family);
+    font-size: var(--font-size-8);
+    line-height: var(--font-size-13);
+    font-weight: var(--font-weight-400);
+    color: #FFFFFF;
+  }
+
   .graphic-head-bg {
     background-color: #000000;
     background-image: url("/stars_result.webp");
@@ -202,6 +348,21 @@ const goToPersonPage = (slug) => {
     color: #fff322;
   }
 
+  .subscribe-to-the-newsletter {
+    h2 {
+      max-width: 100%;
+      }
+    @include media(">lg") {
+      .newsletter-form {
+      max-width: 80%;
+      }
+    p {
+      max-width: 80%;
+      }
+    }
+  }
+
+
   .team .cards > .grid {
     margin: 0 -24px;
   }
@@ -230,6 +391,10 @@ const goToPersonPage = (slug) => {
         -webkit-line-clamp: unset !important;
       }
     }
+  }
+
+  .what-is-quasi {
+    padding-bottom: 2.5rem;
   }
 }
 </style>

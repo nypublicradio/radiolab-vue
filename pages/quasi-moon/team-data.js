@@ -954,7 +954,7 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "senior producer",
+          "appearance-type": "Quantum Physicist",
           "person": {
             "bio": "",
             "image": {
@@ -971,7 +971,7 @@ export default {
               "w": 1860
             },
             "job-title": "Senior Producer, Radiolab",
-            "lede": "<p>If my memory serves me, the first time I was asked the proverbial <em>What do you want to be when you grow up?</em> The answer was, “An astronaut.” Later it became a drawer. Then a guy who makes television commercials. By middle school I decided I wanted to be an environmental engineer, before stints hoping to be a photographer and then filmmaker. In high school, after dreaming of being a teacher, I was certain I’d be a professional jazz saxophone player. In college, I jumped from humanitarian aid worker, to psychotherapist, to indie rock musician. After graduating I wanted to be a writer. Now, I make radio. Email me at <a href=\"https://email.wnyc.org/owa/redir.aspx?C=JPxykmM880avZ5rhxpWBr_8hA6vsPdMIUQZJY9Gv1DLvaLI1cCqabxnBqWxNmG7FRIZuUg3LWi8.&amp;URL=mailto%3asadler%40wnyc.org\" target=\"_blank\">sadler@wnyc.org</a></p>",
+            "lede": "<p>Circumpolar Mercury background radiation Neptune geostationary red shift weightlessness Venus Alpha Centauri Saturn dark matter interstellar escape velocity scintillation hypernova helium radiation opposition spectroscope aphelion occultation spectrum gas giant binary star radiant phase</p>",
             "name": "Simon Adler",
             "slug": "simon-adler",
             "social": [
@@ -999,7 +999,7 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "composer",
+          "appearance-type": "Science Geek",
           "person": {
             "bio": "",
             "image": {
@@ -1016,7 +1016,7 @@ export default {
               "w": 1024
             },
             "job-title": "Sound Designer, Radiolab",
-            "lede": "<p><span>Jeremy S. Bloom is a sound designer for Radiolab. </span>Jeremy's<span> work focuses on crafting immersive story-driven soundscapes for podcasts, museum exhibits, films, and theatrical productions.<span> He</span></span> has designed an ever-growing list of sounds including laughing sea-monkeys, satanic snakes, lonely whales, projection-mapped viking battles, generative rainstorms, the Big Bang, two separate Queer island utopias, dopamine molecules, and more!</p>\n<p>Jeremy's original sound design and music can be heard on episodes of WNYC's <em>Nancy</em>, <em>Two Dope Queens</em>, <em>Radiolab</em>, <em>Sooo Many White Guys</em>, and others. His original sound designs include permanent installations at the Statue of Liberty and have been presented internationally by Netflix, Google, HBO, Discovery, Magnolia Films, BBC Wales, CNN Films, History Channel, Planet Word, The Tenement Museum, America's Test Kitchen, ATG London, New York Theatre Workshop, and more.  Jeremy was nominated for a 2019 Primetime Emmy for Outstanding Sound Editing on the documentary <em>FYRE and</em> teaches the next generation of directors how use sound at NYU's graduate film program. <a href=\"http://www.wnyc.org/jeremyb.com\" target=\"_blank\" title=\"jeremyb.com\">jeremyb.com</a></p>",
+            "lede": "<p>Cosmic ipsum astronaut orbital eccentricity bolometer escape velocity Jupiter dwarf star Earth white giant terminator big bang theory constellation azimuth universe Lunar mare neutron star kiloparsec equinox</p>",
             "name": "Jeremy S. Bloom",
             "slug": "jeremy-bloom",
             "social": [
@@ -1044,7 +1044,7 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "producer",
+          "appearance-type": "Telescope Inventor",
           "person": {
             "bio": "",
             "image": {
@@ -1061,7 +1061,7 @@ export default {
               "w": 1860
             },
             "job-title": "",
-            "lede": "<p>Becca is a producer for <em>Radiolab</em>. She was born and raised in the Bay Area, where she graduated without honors from UC Berkeley. There, she studied cognitive science, worked on a documentary film, and obsessed over <em>Mad Men</em>. Before entering the world of radio, she worked in film production at Pixar Animation Studios. She spends much of her free time (and occupied time, frankly) thinking about her next meal.</p>",
+            "lede": "<p>Space weightlessness sun cluster Pluto white dwarf Milky Way starlight variable star vernal equinox conjunction half moon Alpha Centauri local group free fall Neptune minor planet Earth limb extragalactic gravity inertia gibbous moon binary star planet gravitational lens wavelength</p>",
             "name": "Becca Bressler",
             "slug": "becca-bressler",
             "social": [
