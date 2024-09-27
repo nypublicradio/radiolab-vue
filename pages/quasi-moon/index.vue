@@ -58,8 +58,26 @@ onMounted( () => {
           content="Name a Quasi-moon Contest | Radiolab | WNYC Studios"
         />
         <Meta
+          name="og:description"
+          content="Welcome to Name a Quasi Moon - a global naming contest from Radiolab and the International Astronomical Union,
+          Vote on the finalists starting in November and make your mark on the heavens!"
+        />
+        <Meta
+          name="og:image"
+          content="https://media.wnyc.org/i/raw/2024/09/ZoozveOG.png"
+        />
+        <Meta
           name="twitter:title"
           content="Name a Quasi-moon Contest | Radiolab | WNYC Studios"
+        />
+        <Meta
+          name="twitter:description"
+          content="Welcome to Name a Quasi Moon - a global naming contest from Radiolab and the International Astronomical Union,
+          Vote on the finalists starting in November and make your mark on the heavens!"
+        />
+        <Meta
+          name="twitter:image"
+          content="https://media.wnyc.org/i/raw/2024/09/ZoozveOG.png"
         />
       </Head>
     </Html>
