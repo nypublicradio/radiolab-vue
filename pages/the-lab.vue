@@ -156,7 +156,8 @@ const { $analytics } = useNuxtApp()
                 >. From there, you can update your payment details or change
                 your giving tier. You're also free to cancel your membership at
                 any time - though we hope you don't!
-              </p>
+              <br><br>If you have general questions about your membership, please contact Listener Services <v-flexible-link
+                  to="https://newyorkpublicradio.my.site.com/wnyc/s/membership-help">here.</v-flexible-link></p>
             </div>
 
             <div class="question">
