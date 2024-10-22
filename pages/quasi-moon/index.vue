@@ -100,7 +100,7 @@ onMounted( () => {
     </section>
     <section class="count-down px-2 py-6 lg:p-8">
       <h2 class="text-center text-white font-normal">Voting begins in...</h2>
-      <CountDown :targetDate="new Date('2024-11-01T00:00:00')" />
+      <CountDown :targetDate="new Date('2024-11-18T00:00:00')" />
     </section>
     <span class="flex justify-content-center align-content-center">
         <img alt="icon" src="/rl-icon-stripes.svg" class="icon ml-2 pb-2 divider-icon">
