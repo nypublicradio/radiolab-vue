@@ -6,7 +6,11 @@ import {
   useTogglePlayTrigger,
   usePlayServicePreference,
 } from '~/composables/states'
-import { playServices, playServicesKids, lsSelectedPlayService } from '~/utilities/constants'
+import {
+  playServices,
+  playServicesKids,
+  lsSelectedPlayService,
+} from '~/utilities/constants'
 const { $analytics } = useNuxtApp()
 const props = defineProps({
   menuClass: {
@@ -55,7 +59,7 @@ const launchEpisode = () => {
   })
   if (
     currentEpisode.value &&
-    currentEpisode.value.slug === props.episode.slug
+    currentEpisode.value.slug === props.episode.meta.slug
   ) {
     // toggle global isEpisodePlaying state
     isEpisodePlaying.value = !isEpisodePlaying.value
@@ -70,7 +74,7 @@ const launchEpisode = () => {
 const checkEpisodeMatchAndPlaying = computed(() => {
   if (currentEpisode.value) {
     if (
-      currentEpisode.value.slug === props.episode.slug &&
+      currentEpisode.value.slug === props.episode.meta.slug &&
       isEpisodePlaying.value
     ) {
       return true
@@ -81,7 +85,7 @@ const checkEpisodeMatchAndPlaying = computed(() => {
 
 const checkEpisodeMatch = computed(() => {
   if (currentEpisode.value) {
-    if (currentEpisode.value.slug === props.episode.slug) {
+    if (currentEpisode.value.slug === props.episode.meta.slug) {
       return true
     }
   }
