@@ -135,7 +135,7 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       episodes.value = response.data.episodes.data
-      totalCount.value = response.data.episodes.data.length
+      totalCount.value = response.data.episodes.data.length // KIM TO DO - need total count added to api
       dataLoaded.value = true
     })
     .catch(function () {

@@ -27,13 +27,13 @@ const isMounted = ref(false)
 const route = useRoute()
 const router = useRouter()
 
-const imageCredits = ref(props.episode['image-main']['credits-name'])
-const imageCreditsLink = ref(props.episode['image-main']['credits-url'])
+const imageCredits = ref(props.episode.image.creditsName)
+const imageCreditsLink = ref(props.episode.image.creditsUrl)
 
 // function to route to the transcript page
 const onToggleTranscript = () => {
   if (route.name !== 'podcast-slug-transcript') {
-    router.push({ path: `/podcast/${props.episode.slug}/transcript` })
+    router.push({ path: `/podcast/${props.episode.meta.slug}/transcript` })
   } else {
     router.back()
   }
@@ -42,7 +42,7 @@ const onToggleTranscript = () => {
 const copyTranscriptLink = () => {
   shareAPI(
     {
-      url: `${props.episode['url']}transcript`,
+      url: `${props.episode.url}transcript`,
     },
     'Episode link copied to the clipboard'
   )
@@ -61,24 +61,22 @@ onMounted(() => {
 <template>
   <div v-if="!pending" class="episode flex">
     <cms-edit-button :data="episode" label="Edit this Episode in the CMS" />
-
     <v-image-with-caption
-      v-if="episode['image-main']"
-      :image="formatPublisherImageUrl(episode['image-main'].template)"
+      v-if="episode.image"
+      :image="formatPublisherImageUrl(episode.image.template)"
       :width="200"
       :height="200"
-      :alt="episode['image-main']['alt-text']"
+      :alt="episode.image.altText"
       :ratio="[1, 1]"
       :sizes="[1]"
       flat-quality
-      :max-width="episode['image-main'].w"
-      :max-height="episode['image-main'].h"
+      :max-width="episode.image.w"
+      :max-height="episode.image.h"
       class="episode-image"
     />
-
     <div class="episode-content">
-      <p v-if="episode['publish-at']" class="date mb-1">
-        {{ formatDate(episode['publish-at']) }}
+      <p v-if="episode.publicationDate" class="date mb-1">
+        {{ formatDate(episode.publicationDate) }}
       </p>
       <div class="flex align-items-center" v-if="isTranscript">
         <h5 class="transcript font-bold">Transcript</h5>

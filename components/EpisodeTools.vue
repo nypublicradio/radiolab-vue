@@ -51,10 +51,7 @@ const dotsItems = ref([
     label: 'Embed',
     icon: 'pi pi-code',
     command: () => {
-      copyToClipBoard(
-        props.episode['embed-code'],
-        'Embed code copied to clipboard'
-      )
+      copyToClipBoard(props.episode.embedCode, 'Embed code copied to clipboard')
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
         component: 'Episode Tools',
@@ -108,15 +105,9 @@ const shareItems = ref([
     label: 'Copy link',
     icon: 'pi pi-link',
     command: () => {
-      console.log(
-        'link =',
-        `${props.episode['url']}${props.isTranscript ? 'transcript' : ''}`
-      )
       shareAPI(
         {
-          url: `${props.episode['url']}${
-            props.isTranscript ? 'transcript' : ''
-          }`,
+          url: `${props.episode.url}${props.isTranscript ? 'transcript' : ''}`,
         },
         'Episode link copied to the clipboard'
       )
@@ -164,12 +155,12 @@ const toggleTranscript = () => {
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
       <client-only>
         <play-selector
-          :episode="props.episode"
+          :episode="episode"
           menu-class="episode-tools-play-selector"
         />
       </client-only>
       <Button
-        v-if="!!props.episode['transcript'] && !props.isTranscript"
+        v-if="!!episode.transcript && !isTranscript"
         class="p-button-sm p-button-rounded"
         label="Transcript"
         @click="toggleTranscript"
@@ -208,38 +199,33 @@ const toggleTranscript = () => {
         <ShareNetwork
           class="facebookShareRef"
           network="facebook"
-          :url="`${props.episode['url']}${
-            props.isTranscript ? 'transcript' : ''
-          }`"
-          :title="props.episode['title']"
-          :description="props.episode['tease']"
-          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="props.episode['tags'].join()"
-          >Share on Facebook</ShareNetwork
+          :url="`${episode.url}${isTranscript ? 'transcript' : ''}`"
+          :title="episode.title"
+          :description="episode.tease"
+          :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="episode.tags.join()"
         >
+          Share on Facebook
+        </ShareNetwork>
         <ShareNetwork
           class="twitterShareRef"
           network="twitter"
-          :url="`${props.episode['url']}${
-            props.isTranscript ? 'transcript' : ''
-          }`"
-          :title="props.episode['title']"
-          :description="props.episode['tease']"
-          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="props.episode['tags'].join()"
+          :url="`${episode.url}${isTranscript ? 'transcript' : ''}`"
+          :title="episode.title"
+          :description="episode.tease"
+          :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="episode.tags.join()"
           twitter-user="Radiolab"
           >Share on Twitter</ShareNetwork
         >
         <ShareNetwork
           class="emailShareRef"
           network="email"
-          :url="`${props.episode['url']}${
-            props.isTranscript ? 'transcript' : ''
-          }`"
-          :title="props.episode['title']"
-          :description="convertHTMLtoPlainText(props.episode['tease'])"
-          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="props.episode['tags'].join()"
+          :url="`${episode.url}${isTranscript ? 'transcript' : ''}`"
+          :title="episode.title"
+          :description="episode.tease"
+          :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="episode.tags.join()"
           >Share on Email</ShareNetwork
         >
       </div>

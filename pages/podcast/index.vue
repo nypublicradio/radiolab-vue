@@ -1,9 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { useRuntimeConfig } from '#app'
-
 const config = useRuntimeConfig()
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
+const apiUrl = `${config.API_URL}/api/show/radiolab`
 /*Algolia Search START*/
 const { result, search } = useAlgoliaSearch(config.ALGOLIA_RADIOLAB_INDEX) // pass your index name as param
 const searchTerm = ref('')
@@ -106,7 +103,6 @@ const onYearFilter = (yearValue) => {
         </div>
       </div>
     </section>
-
     <episodes-algolia
       v-if="searchResults"
       class="mb-4"
@@ -122,11 +118,9 @@ const onYearFilter = (yearValue) => {
       :row-count="4"
       :rowsPerAd="2"
       :api="apiUrl"
-      path="data.included"
+      path="episodes.data"
       :paginate="true"
     />
     <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>
 </template>
-
-<style lang="scss"></style>

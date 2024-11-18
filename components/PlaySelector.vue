@@ -27,8 +27,6 @@ const props = defineProps({
   },
 })
 
-console.log(props.episode)
-
 const playServicePreference = usePlayServicePreference()
 const selectedPlayService = ref(playServicePreference)
 
