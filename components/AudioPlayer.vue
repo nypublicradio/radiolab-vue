@@ -1,5 +1,4 @@
 <script setup>
-import { ref, watch } from 'vue'
 import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VPersistentPlayer.vue'
 import {
   useCurrentEpisode,
@@ -65,13 +64,13 @@ watch(togglePlayTrigger, () => {
         v-if="showPlayer"
         :auto-play="true"
         :title="currentEpisode.title"
-        :title-link="`/podcast/${currentEpisode.slug}`"
-        :station="currentEpisode['show-title']"
+        :title-link="`/podcast/${currentEpisode.meta.slug}`"
+        :station="currentEpisode['showTitle']"
         :description="currentEpisode.tease"
-        :image="formatPublisherImageUrl(currentEpisode['image-main'].template)"
+        :image="formatPublisherImageUrl(currentEpisode.image.template)"
         :file="currentEpisode.audio"
-        :duration-seconds="currentEpisode['estimated-duration']"
-        :show-download="currentEpisode['audio-may-download'] ? true : false"
+        :duration-seconds="currentEpisode.estimatedDuration"
+        :show-download="true"
         :show-skip="true"
         :can-minimize="true"
         @download="onDownload"

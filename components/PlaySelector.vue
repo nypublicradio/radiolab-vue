@@ -27,6 +27,8 @@ const props = defineProps({
   },
 })
 
+console.log(props.episode)
+
 const playServicePreference = usePlayServicePreference()
 const selectedPlayService = ref(playServicePreference)
 
@@ -59,7 +61,7 @@ const launchEpisode = () => {
   })
   if (
     currentEpisode.value &&
-    currentEpisode.value.slug === props.episode.meta.slug
+    currentEpisode.value.meta.slug === props.episode.meta.slug
   ) {
     // toggle global isEpisodePlaying state
     isEpisodePlaying.value = !isEpisodePlaying.value
@@ -74,7 +76,7 @@ const launchEpisode = () => {
 const checkEpisodeMatchAndPlaying = computed(() => {
   if (currentEpisode.value) {
     if (
-      currentEpisode.value.slug === props.episode.meta.slug &&
+      currentEpisode.value.meta.slug === props.episode.meta.slug &&
       isEpisodePlaying.value
     ) {
       return true
@@ -85,7 +87,7 @@ const checkEpisodeMatchAndPlaying = computed(() => {
 
 const checkEpisodeMatch = computed(() => {
   if (currentEpisode.value) {
-    if (currentEpisode.value.slug === props.episode.meta.slug) {
+    if (currentEpisode.value.meta.slug === props.episode.meta.slug) {
       return true
     }
   }
@@ -145,10 +147,7 @@ const checkEpisodeMatch = computed(() => {
               :src="'/play-service-icons/' + slotProps.option.icon + '.svg'"
             />
             <div>{{ slotProps.option.name }}</div>
-            <div
-              class="hack-click"
-              @click="launchService(slotProps.option)"
-            ></div>
+            <div class="hack-click" @click="launchService(slotProps.option)" />
           </div>
         </template>
       </Dropdown>
