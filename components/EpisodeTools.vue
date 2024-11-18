@@ -214,8 +214,9 @@ const toggleTranscript = () => {
           :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="episode.tags.join()"
           twitter-user="Radiolab"
-          >Share on Twitter</ShareNetwork
         >
+          Share on Twitter
+        </ShareNetwork>
         <ShareNetwork
           class="emailShareRef"
           network="email"
@@ -224,8 +225,9 @@ const toggleTranscript = () => {
           :description="episode.tease"
           :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
           :hashtags="episode.tags.join()"
-          >Share on Email</ShareNetwork
         >
+          Share on Email
+        </ShareNetwork>
       </div>
     </div>
   </div>
