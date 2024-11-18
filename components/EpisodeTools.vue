@@ -1,16 +1,13 @@
 <script setup>
-import { ref } from 'vue'
 import {
   copyToClipBoard,
   shareAPI,
   toastGlobalConfig,
-  convertHTMLtoPlainText,
 } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
-// import { emit } from 'process'
-const { $analytics } = useNuxtApp()
+
 const props = defineProps({
   episode: {
     type: Object,
@@ -22,10 +19,11 @@ const props = defineProps({
   },
 })
 
+console.log(props.episode)
+
+const { $analytics } = useNuxtApp()
 const emit = defineEmits(['toggleTranscript'])
-
 const toastConfig = ref(toastGlobalConfig())
-
 const dotsMenu = ref()
 const shareMenu = ref()
 const dotsItems = ref([
