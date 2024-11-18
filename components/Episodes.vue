@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
 import {
   formatDate,
   traverseObjectByString,
@@ -103,7 +102,7 @@ const insertAD = (index) => {
 }
 
 /*
-func to determin how many cards to show
+func to determine how many cards to show
 */
 const cardCountCalc = computed(() => {
   return props.startCount
@@ -132,13 +131,11 @@ onBeforeMount(async () => {
     .get(
       props.bucket
         ? props.api
-        : `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
+        : `${props.api}?page=${startPageNumber.value}&pageSize=${cardCountCalc.value}`
     )
-
     .then((response) => {
-      //console.log('response = ', response)
-      episodes.value = traverseObjectByString(props.path, response)
-      totalCount.value = response.data.data.attributes['total-count']
+      episodes.value = response.data.episodes.data
+      totalCount.value = response.data.episodes.data.length
       dataLoaded.value = true
     })
     .catch(function () {
@@ -160,7 +157,7 @@ async function onPage(event) {
   //event.pageCount: Total number of pages
   dataLoaded.value = false
   await axios
-    .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
+    .get(`${props.api}?page=${event.page + 1}&pageSize=${cardCountCalc.value}`)
     .then((response) => {
       episodes.value = traverseObjectByString(props.path, response)
       dataLoaded.value = true
@@ -181,7 +178,7 @@ const onCardClick = (episode, elm) => {
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',
     component: `Episode Card - ${elm}`,
-    event_label: episode.attributes.title,
+    event_label: episode.title,
   })
 }
 </script>
@@ -213,19 +210,17 @@ const onCardClick = (episode, elm) => {
                     <client-only>
                       <v-card
                         :image="
-                          formatPublisherImageUrl(
-                            episode.attributes['image-main'].template
-                          )
+                          formatPublisherImageUrl(episode.listingImage.template)
                         "
                         :width="320"
                         :height="240"
-                        :alt="episode.attributes['image-main']['alt-text']"
-                        :title="episode.attributes.title"
-                        :titleLink="`/podcast/${episode.attributes.slug}`"
-                        :eyebrow="formatDate(episode.attributes['publish-at'])"
-                        :blurb="episode.attributes.tease"
-                        :max-width="episode.attributes['image-main'].w"
-                        :max-height="episode.attributes['image-main'].h"
+                        :alt="episode.listingImage.altText"
+                        :title="episode.title"
+                        :titleLink="`/podcast/${episode.meta.slug}`"
+                        :eyebrow="formatDate(episode.publicationDate)"
+                        :blurb="episode.tease"
+                        :max-width="episode.listingImage.w"
+                        :max-height="episode.listingImage.h"
                         responsive
                         :ratio="[3, 2]"
                         :sizes="[2]"
@@ -236,7 +231,7 @@ const onCardClick = (episode, elm) => {
                         @image-click="onCardClick(episode, 'image')"
                       >
                         <div class="divider"></div>
-                        <play-selector :episode="episode.attributes" :kids="kids" />
+                        <play-selector :episode="episode" :kids="kids" />
                       </v-card>
                     </client-only>
                   </div>
