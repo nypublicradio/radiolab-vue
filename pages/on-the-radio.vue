@@ -1,5 +1,4 @@
 <script setup>
-const config = useRuntimeConfig()
 const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
 </script>
 

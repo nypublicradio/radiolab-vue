@@ -1,0 +1,366 @@
+{
+    "id": "91734",
+    "name": "Lulu Miller",
+    "photoID": "https://media.wnyc.org/i/%s/%s/%s/%s/2020/09/lulumillerkristenfinn.jpg",
+    "jobTitle": "Co-Host, Radiolab",
+    "biography": "<p><span>Lulu Miller is a Peabody Award-winning science journalist. She is the Co-Host of </span><a href=\"https://radiolab.org/\"><em><span>Radiolab</span></em></a> <span>(with the wonderful Latif Nasser). And she is the Host/Creator of Radiolab’s podcast for kids, </span><a href=\"https://www.wnycstudios.org/podcasts/radiolab-kids\"><em><span>Terrestrials</span></em></a><span>, all about nature. She was Radiolab’s first producer 20 years ago, and it is a thrill to return as Co-Host to the world’s best team.  </span></p>\n<p><span>Her book, </span><a href=\"https://www.simonandschuster.com/books/Why-Fish-Dont-Exist/Lulu-Miller/9781501160349\"><em><span>Why Fish Don’t Exist</span></em></a><em><span>, </span></em><span>is an international bestseller, translated into 11 languages. It was chosen as a Best Book by The Smithsonian, NPR, The Chicago Tribune, Brainpickings, The Washington Post and was a finalist for the LA Times Book Prize and the American Association for the Advancement of Science Book Prize. Her written work has been published in the </span><em><span>New Yorker, The Paris Review, VQR</span></em><span> and beyond. She has also won honors from The National Academy of Sciences, the Associated Press, the National Center on Disability and Journalism, and most recently an Honorary Doctorate of Science from Swarthmore College. </span></p>\n<p><span>She reports on a range of scientific topics with a special interest in disability, mental illness, and ecology. </span><span>Her written work has been published in the </span><em><span>New Yorker, The Paris Review, VQR</span></em><span> and beyond. </span><span>She serves as a Contributing Advisor to nature magazine </span><em><span>Orion </span></em><span>and she was the co-founder of NPR’s </span><a href=\"https://www.npr.org/podcasts/510307/invisibilia\"><em><span>Invisibilia</span></em></a><span>—a radio show about psychology, emotion, and human behavior. She recently published her debut children’s book, </span><a href=\"https://www.simonandschuster.com/books/Trucky-Roads/Lulu-Miller/9781665919173\"><em><span>Trucky Roads</span></em></a><span>, about trucks and, you’ll never guess this… roads. She lives in the Chicago area with her wife and two sons.</span></p>",
+    "slug": "lulu-miller",
+    "url": "/people/lulu-miller",
+    "socialMediaProfile": [
+        {
+            "id": "",
+            "service": "twitter",
+            "profileUrl": null
+        },
+        {
+            "id": "",
+            "service": "instagram",
+            "profileUrl": null
+        },
+        {
+            "id": "",
+            "service": "facebook",
+            "profileUrl": null
+        }
+    ],
+    "shows": [
+        {
+            "image": {
+                "type": "image",
+                "id": "200563"
+            },
+            "slug": "radiolab",
+            "title": "Radiolab",
+            "url": "https://www.wnycstudios.org/podcasts/radiolab",
+            "linkroll": [
+                {
+                    "href": null,
+                    "navSlug": "seriesandarticles",
+                    "title": "Podcasts"
+                },
+                {
+                    "href": null,
+                    "navSlug": "radio-shows",
+                    "title": "Radio Shows"
+                },
+                {
+                    "href": null,
+                    "navSlug": "membership",
+                    "title": "Join The Lab"
+                },
+                {
+                    "href": "https://shop.radiolab.org",
+                    "title": "Swag Lab"
+                },
+                {
+                    "href": "https://www.wnycstudios.org/podcasts/radiolab-kids",
+                    "title": "Radiolab for Kids"
+                },
+                {
+                    "href": null,
+                    "navSlug": "radiolab-read-credit",
+                    "title": "Read the Credits"
+                },
+                {
+                    "href": null,
+                    "navSlug": "about",
+                    "title": "About"
+                },
+                {
+                    "href": null,
+                    "navSlug": "the-team",
+                    "title": "Team"
+                },
+                {
+                    "href": null,
+                    "navSlug": "projects",
+                    "title": "Projects"
+                },
+                {
+                    "href": null,
+                    "navSlug": "new-cohosts-latif-nasser-lulu-miller",
+                    "title": "Announcements"
+                },
+                {
+                    "href": null,
+                    "navSlug": "pitch-us",
+                    "title": "Pitch Us!"
+                }
+            ],
+            "about": {
+                "body": "<h1>About Radiolab</h1>\n<p><span data-stringify-type=\"paragraph-break\"><span><em>Radiolab</em> is on a curiosity bender. We ask deep questions and use investigative journalism to get the answers. A given episode might whirl you through science, legal history, and into the home of someone halfway across the world. The show is known for innovative sound design, smashing information into music. It is hosted by Lulu Miller and Latif Nasser.</span></span></p>\n<p><span data-stringify-type=\"paragraph-break\"></span><span><span><em>Radiolab</em> is available on Apple, Spotify, Stitcher, or wherever you get your podcasts.</span> Check your<span> </span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://www.wnycstudios.org/shows/radiolab/stations/\" delay=\"150\" data-sk=\"tooltip_parent\" aria-describedby=\"sk-tooltip-10367\" href=\"https://www.wnycstudios.org/shows/radiolab/stations/\" rel=\"noopener noreferrer\">local station</a><span><span> </span>for airtimes. It's also available via the CBC, ABC, and the BBC.</span></p>\n<p><span><span>Follow<span> </span></span><em data-stringify-type=\"italic\">Radiolab</em><span><span> </span>on<span> </span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://www.instagram.com/radiolab/\" delay=\"150\" data-sk=\"tooltip_parent\" href=\"https://www.instagram.com/radiolab/\" rel=\"noopener noreferrer\">Instagram</a><span>,<span> </span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://twitter.com/Radiolab\" delay=\"150\" data-sk=\"tooltip_parent\" href=\"https://twitter.com/Radiolab\" rel=\"noopener noreferrer\">Twitter</a><span>, and<span> </span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://www.facebook.com/Radiolab\" delay=\"150\" data-sk=\"tooltip_parent\" href=\"https://www.facebook.com/Radiolab\" rel=\"noopener noreferrer\">Facebook</a><span>.</span></span></p>\n<p>Contact <em>Radiolab</em> using <a href=\"https://nypublicradio.force.com/wnyc/s/programming-help-and-feedback\" target=\"_blank\">this form</a>. </p>\n<p><span data-renderer-mark=\"true\" data-text-custom-color=\"#000000\">Apply to become a</span><span> </span><a class=\"sc-1ko78hw-0 fiVZLH\" href=\"https://www.wnyc.org/internships-new-york-public-radio/\" title=\"https://www.wnyc.org/internships-new-york-public-radio/\" data-renderer-mark=\"true\" target=\"_blank\"><span data-renderer-mark=\"true\" data-text-custom-color=\"#000000\"><em>Radiolab</em> intern!</span></a></p>\n<p><strong><a class=\"more\" href=\"https://wnycstudios.org/shows/radiolab/getwidget/\">Embed the <em>Radiolab</em> widget on your blog or website.</a></strong></p>\n<p>All press inquiries may be directed to <a href=\"mailto:jhoulihan@nypublicradio.org\" target=\"_blank\">Jennifer Houlihan Roussel</a> at (646) 829-4497.</p>\n<p><em>Leadership support for Radiolab’s science programming is provided by the Gordon and Betty Moore Foundation, Science Sandbox, a Simons Foundation Initiative, and the John Templeton Foundation. Foundational support for Radiolab was provided by the Alfred P. Sloan Foundation.</em></p>\n<p> </p>\n<center><img src=\"https://media.wnyc.org/i/216/116/l/80/1/dark_at_2x.png\" alt=\"WNYC Studios logo\" border=\"0\"></center>\n<p> </p>\n<center><a href=\"https://music.amazon.com/podcasts/ffd8d916-b5a8-4950-95eb-107e448fd436/the-new-yorker-radio-hour\"> <img src=\"https://media.wnyc.org/i/165/40/l/80/2022/11/EN_ListenAFOn_AmazonMusic_button_Indigo_RGB.png\" alt=\"Listen on Amazon\" border=\"0\"> </a></center>",
+                "people": [
+                    {
+                        "name": "Lulu Miller",
+                        "social": [
+                            {
+                                "contactString": "",
+                                "service": "twitter"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "facebook"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "instagram"
+                            }
+                        ],
+                        "url": "/people/lulu-miller/",
+                        "jobTitle": "Co-Host, Radiolab",
+                        "image": {
+                            "altText": "",
+                            "name": "2020/09/lulumillerkristenfinn.jpg",
+                            "source": null,
+                            "url": "https://media.wnyc.org/i/1860/1394/l/80/2020/09/lulumillerkristenfinn.jpg",
+                            "h": 1394,
+                            "isDisplay": true,
+                            "crop": "l",
+                            "caption": "",
+                            "creditsUrl": "",
+                            "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2020/09/lulumillerkristenfinn.jpg",
+                            "w": 1860,
+                            "id": 191981,
+                            "creditsName": "Kristen Finn"
+                        },
+                        "slug": "lulu-miller"
+                    },
+                    {
+                        "name": "Latif Nasser",
+                        "social": [
+                            {
+                                "contactString": "",
+                                "service": "twitter"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "facebook"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "instagram"
+                            }
+                        ],
+                        "url": "/people/latif-nasser/",
+                        "jobTitle": "Co-Host, Radiolab",
+                        "image": {
+                            "altText": "",
+                            "name": "2020/09/NYPR_061319_0585.jpg",
+                            "source": null,
+                            "url": "https://media.wnyc.org/i/1860/1239/l/80/2020/09/NYPR_061319_0585.jpg",
+                            "h": 1239,
+                            "isDisplay": true,
+                            "crop": "l",
+                            "caption": "",
+                            "creditsUrl": "",
+                            "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2020/09/NYPR_061319_0585.jpg",
+                            "w": 1860,
+                            "id": 191976,
+                            "creditsName": "Matthew Septimus"
+                        },
+                        "slug": "latif-nasser"
+                    },
+                    {
+                        "name": "Sindhu Gnanasambandan",
+                        "social": [
+                            {
+                                "contactString": "",
+                                "service": "twitter"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "facebook"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "instagram"
+                            }
+                        ],
+                        "url": "/people/gnanasambandan-sindhu/",
+                        "jobTitle": "Producer",
+                        "image": {
+                            "altText": "",
+                            "name": "2022/06/1w1a7340.JPG",
+                            "source": null,
+                            "url": "https://media.wnyc.org/i/1860/1240/l/80/2022/06/1w1a7340.JPG",
+                            "h": 1240,
+                            "isDisplay": true,
+                            "crop": "l",
+                            "caption": "Sindhu Gnanasambandan",
+                            "creditsUrl": "",
+                            "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2022/06/1w1a7340.JPG",
+                            "w": 1860,
+                            "id": 200963,
+                            "creditsName": "Radiolab | WNYC Studios"
+                        },
+                        "slug": "gnanasambandan-sindhu"
+                    },
+                    {
+                        "name": "Sarah Qari",
+                        "social": [
+                            {
+                                "contactString": "",
+                                "service": "twitter"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "facebook"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "instagram"
+                            }
+                        ],
+                        "url": "/people/sarah-qari/",
+                        "jobTitle": "Producer, Radiolab",
+                        "image": {
+                            "altText": "Producer Sarah Qari, smiling and standing proudly in the foreground of a field of sunflowers.",
+                            "name": "2022/10/IMG_2876.jpg",
+                            "source": null,
+                            "url": "https://media.wnyc.org/i/1860/1395/c/80/2022/10/IMG_2876.jpg",
+                            "h": 1395,
+                            "isDisplay": true,
+                            "crop": "c",
+                            "caption": "",
+                            "creditsUrl": "",
+                            "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2022/10/IMG_2876.jpg",
+                            "w": 1860,
+                            "id": 202534,
+                            "creditsName": "Kathy Yuen"
+                        },
+                        "slug": "sarah-qari"
+                    },
+                    {
+                        "name": "Molly Webster",
+                        "social": [
+                            {
+                                "contactString": "",
+                                "service": "twitter"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "facebook"
+                            },
+                            {
+                                "contactString": "",
+                                "service": "instagram"
+                            }
+                        ],
+                        "url": "/people/molly-webster/",
+                        "jobTitle": "Senior Correspondent, Radiolab",
+                        "image": {
+                            "altText": "",
+                            "name": "2020/07/molly_webster.jpg",
+                            "source": null,
+                            "url": "https://media.wnyc.org/i/1860/1240/c/80/2020/07/molly_webster.jpg",
+                            "h": 1240,
+                            "isDisplay": true,
+                            "crop": "c",
+                            "caption": "",
+                            "creditsUrl": "",
+                            "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2020/07/molly_webster.jpg",
+                            "w": 1860,
+                            "id": 174652,
+                            "creditsName": "Amy Pearl"
+                        },
+                        "slug": "molly-webster"
+                    }
+                ],
+                "social": [
+                    {
+                        "contactString": "Radiolab",
+                        "service": "twitter"
+                    },
+                    {
+                        "contactString": "Radiolab",
+                        "service": "facebook"
+                    },
+                    {
+                        "contactString": "",
+                        "service": "instagram"
+                    }
+                ]
+            },
+            "marqueeImage": null,
+            "description": "<h1>About Radiolab</h1>\r\n<p><span data-stringify-type=\"paragraph-break\"><span><em>Radiolab</em> is on a curiosity bender. We ask deep questions and use investigative journalism to get the answers. A given episode might whirl you through science, legal history, and into the home of someone halfway across the world. The show is known for innovative sound design, smashing information into music. It is hosted by Lulu Miller and Latif Nasser.</span></span></p>\r\n<p><span data-stringify-type=\"paragraph-break\"></span><span><span><em>Radiolab</em> is available on Apple, Spotify, Stitcher, or wherever you get your podcasts.</span> Check your<span>&nbsp;</span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://www.wnycstudios.org/shows/radiolab/stations/\" delay=\"150\" data-sk=\"tooltip_parent\" aria-describedby=\"sk-tooltip-10367\" href=\"https://www.wnycstudios.org/shows/radiolab/stations/\" rel=\"noopener noreferrer\">local station</a><span><span>&nbsp;</span>for airtimes. It's also available via the CBC, ABC, and the BBC.</span></p>\r\n<p><span><span>Follow<span>&nbsp;</span></span><em data-stringify-type=\"italic\">Radiolab</em><span><span>&nbsp;</span>on<span>&nbsp;</span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://www.instagram.com/radiolab/\" delay=\"150\" data-sk=\"tooltip_parent\" href=\"https://www.instagram.com/radiolab/\" rel=\"noopener noreferrer\">Instagram</a><span>,<span>&nbsp;</span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://twitter.com/Radiolab\" delay=\"150\" data-sk=\"tooltip_parent\" href=\"https://twitter.com/Radiolab\" rel=\"noopener noreferrer\">Twitter</a><span>, and<span>&nbsp;</span></span><a target=\"_blank\" class=\"c-link\" data-stringify-link=\"https://www.facebook.com/Radiolab\" delay=\"150\" data-sk=\"tooltip_parent\" href=\"https://www.facebook.com/Radiolab\" rel=\"noopener noreferrer\">Facebook</a><span>.</span></span></p>\r\n<p>Contact <em>Radiolab</em> using <a href=\"https://nypublicradio.force.com/wnyc/s/programming-help-and-feedback\" target=\"_blank\">this form</a>.&nbsp;</p>\r\n<p><span data-renderer-mark=\"true\" data-text-custom-color=\"#000000\">Apply to become a</span><span> </span><a class=\"sc-1ko78hw-0 fiVZLH\" href=\"https://www.wnyc.org/internships-new-york-public-radio/\" title=\"https://www.wnyc.org/internships-new-york-public-radio/\" data-renderer-mark=\"true\" target=\"_blank\"><span data-renderer-mark=\"true\" data-text-custom-color=\"#000000\"><em>Radiolab</em> intern!</span></a></p>\r\n<p><strong><a class=\"more\" href=\"https://wnycstudios.org/shows/radiolab/getwidget/\">Embed the <em>Radiolab</em> widget on your blog or website.</a></strong></p>\r\n<p>All press inquiries may be directed to <a href=\"mailto:jhoulihan@nypublicradio.org\" target=\"_blank\">Jennifer Houlihan Roussel</a>&nbsp;at (646) 829-4497.</p>\r\n<p><em>Leadership support for Radiolab&rsquo;s science programming is provided by the Gordon and Betty Moore Foundation, Science Sandbox, a Simons Foundation Initiative, and the John Templeton Foundation. Foundational support for Radiolab was provided by the Alfred P. Sloan Foundation.</em></p>\r\n<p>&nbsp;</p>\r\n<center><img src=\"https://media.wnyc.org/i/216/116/l/80/1/dark_at_2x.png\" alt=\"WNYC Studios logo\" border=\"0\" /></center>\r\n<p>&nbsp;</p>\r\n<center><a href=\"https://music.amazon.com/podcasts/ffd8d916-b5a8-4950-95eb-107e448fd436/the-new-yorker-radio-hour\"> <img src=\"https://media.wnyc.org/i/165/40/l/80/2022/11/EN_ListenAFOn_AmazonMusic_button_Indigo_RGB.png\" alt=\"Listen on Amazon\" border=\"0\" /> </a></center>",
+            "socialLinks": [
+                {
+                    "href": "https://www.facebook.com/Radiolab/",
+                    "title": "facebook"
+                },
+                {
+                    "href": "https://twitter.com/Radiolab",
+                    "title": "twitter"
+                }
+            ],
+            "bgColor": "rgba(0,201,206,1)",
+            "featured": null,
+            "sidebarChunks": [
+                {
+                    "content": "<a class=\"nudge-big external-link\" style=\"margin-bottom: 20px;display:block;\" href=\"http://www.wnyc.org/shows/radiolabmoreperfect/?utm_content=radiolab-story-sidebar\" target=\"_blank\"><img style=\"max-width:300px;\" src=\"https://media2.wnyc.org/i/raw/1/MorePerfect_RightRailButton.png\" title=\"Radiolab Presents: More Perfect\"></a>\n\n<!-- Google Code for Remarketing Tag -->\n<!--------------------------------------------------\r\nRemarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup\r\n--------------------------------------------------->\n<script type=\"text/javascript\">\r\n/* <![CDATA[ */\r\nvar google_conversion_id = 949931013;\r\nvar google_custom_params = window.google_tag_params;\r\nvar google_remarketing_only = true;\r\n/* ]]> */\r\n\\x3C/script>\n<script type=\"text/javascript\" src=\"//www.googleadservices.com/pagead/conversion.js\">\r\n\\x3C/script>\n<noscript>\n<div style=\"display:inline;\">\n<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//googleads.g.doubleclick.net/pagead/viewthroughconversion/949931013/?value=0&amp;guid=ON&amp;script=0\">\n</div>\n</noscript>\n",
+                    "position": "top"
+                },
+                null
+            ],
+            "donateChunk": {
+                "content": "",
+                "slug": ""
+            },
+            "listingObjectType": "show",
+            "rssFeed": "http://www.wnycstudios.org/feeds/shows/radiolab",
+            "editLink": [
+                "cms/show/15957"
+            ],
+            "podcastLinks": [
+                {
+                    "href": "https://itunes.apple.com/us/podcast/radiolab/id152249110?mt=2",
+                    "title": "via Apple Podcasts"
+                },
+                {
+                    "href": "https://pca.st/radiolab",
+                    "title": "via Pocket Casts"
+                },
+                {
+                    "href": "https://tunein.com/podcasts/Science-Podcasts/RadioLab-p68032/",
+                    "title": "via TuneIn"
+                },
+                {
+                    "href": "https://open.spotify.com/show/2hmkzUtix0qTqvtpPcMzEL",
+                    "title": "via Spotify "
+                },
+                {
+                    "href": "https://www.iheart.com/podcast/Radiolab-18894587/",
+                    "title": "via iHeart Radio"
+                },
+                {
+                    "href": "https://music.amazon.com/podcasts/779c24b4-dfe8-497a-83bb-67e729c1177b/Radiolab",
+                    "title": "via Amazon Music"
+                },
+                {
+                    "href": "http://feeds.wnyc.org/radiolab",
+                    "title": "via RSS"
+                }
+            ],
+            "itunesPodcastId": "152249110",
+            "studiosMarqueeImage": {
+                "type": "image",
+                "id": "198372"
+            },
+            "studiosMarqueeMobileOffset": 80,
+            "cmsPk": 15957,
+            "fbImage": {
+                "type": "image",
+                "id": "191941"
+            },
+            "tease": "<p><span>Investigating a strange world.</span></p>",
+            "producingOrganizations": [
+                {
+                    "type": "producing-organization",
+                    "id": "332"
+                }
+            ],
+            "scheduleSummary": "with Lulu Miller, and Latif Nasser",
+            "contactEmail": "radiolab@wnyc.org"
+        }
+    ]
+}
