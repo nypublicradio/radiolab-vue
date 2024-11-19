@@ -1,13 +1,10 @@
 <script setup>
-import {
-  formatDate,
-  traverseObjectByString,
-  formatPublisherImageUrl,
-} from '~/utilities/helpers'
+import { formatDate, formatPublisherImageUrl } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
+
 const { $analytics } = useNuxtApp()
 const route = useRoute()
 
@@ -135,7 +132,7 @@ onBeforeMount(async () => {
     )
     .then((response) => {
       episodes.value = response.data.episodes.data
-      totalCount.value = response.data.episodes.data.length // KIM TO DO - need total count added to api
+      totalCount.value = response.data.episodes?.meta?.pagination?.count || 1
       dataLoaded.value = true
     })
     .catch(function () {
@@ -159,7 +156,7 @@ async function onPage(event) {
   await axios
     .get(`${props.api}?page=${event.page + 1}&pageSize=${cardCountCalc.value}`)
     .then((response) => {
-      episodes.value = traverseObjectByString(props.path, response)
+      episodes.value = response.data.episodes.data
       dataLoaded.value = true
       // set startPageNumber var for page url param
       startPageNumber.value = event.page + 1
