@@ -11,7 +11,7 @@ const episodes = ref([])
 
 onBeforeMount(async () => {
   await axios
-    .get(`${config.API_URL}/api/v3/buckets/radiolab-exclusive-content/`)
+    .get(`${config.API_URL}/api/buckets/radiolab-exclusive-content/`)
     .then((response) => {
       episodes.value = response.data.data.attributes['bucket-items']
       dataLoaded.value = true
