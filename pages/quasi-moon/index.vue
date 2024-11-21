@@ -148,6 +148,51 @@ onMounted( () => {
         </div>
         <team-skeleton v-else :row-count="30" /> -->
         <!-- <section class="mb-8"> -->
+
+          <div class="kelly">
+            <h2 class="white mb-6">About The Finalists</h2>
+            <div class="grid">
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Enkidu</h4>
+                <p class="small-white-text mb-3">Submitted by Aaron C (USA), Moira P (USA), Aaron F (USA), Brent J (USA)</p>
+                <p class="small-white-text">Named after the wild and noble companion from the ancient Sumerian Epic of Gilgamesh, Enkidu represents both wild freedom and loyal friendship. Like Enkidu’s presence on the fringes of civilization, this quasi-moon orbits close yet distinct from Earth, embodying the bond between two entities sharing space, destined to part ways in time.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Bakunawa</h4>
+                <p class="small-white-text mb-3">Submitted by Arjay L (the Philippines), Enzo M (the Philippines)</p>
+                <p class="small-white-text">Bakunawa, a mythical dragon from Philippine folklore, is said to rise from the ocean to swallow the moon, explaining lunar eclipses in ancient times. This fearsome serpent, associated with powerful natural events, embodies the mysterious and formidable nature of the quasi-moon, which appears and disappears from sight. Naming the quasi-moon Bakunawa would honor pre-colonial Philippine mythology and inspire pride and connection among Filipinos, bringing an ancient cultural story to the forefront of global astronomy.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Tecciztecatl</h4>
+                <p class="small-white-text mb-3">Submitted by Muhammad Hussain 	R (Pakistan), Claudia	C (USA), Gabriel G (Mexico)</p>
+                <p class="small-white-text">An Aztec lunar god who once aspired to be the sun, Tecciztecatl's hesitant leap into the fire ultimately destined him for the moon. His story is echoed in the quasi-moon's orbit—neither sun nor true moon but a celestial presence cast in the role of an eternal companion. The name pays tribute to indigenous stories that often go unrecognized in modern space nomenclature.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Tariaksuq</h4>
+                <p class="small-white-text mb-3">Submitted by Samuel L (USA).</p>
+                <p class="small-white-text">The Tariaksuq of Inuit legend are shadow beings that mirror human forms yet dwell in another dimension. Like these beings, this quasi-moon mimics the true moon but follows a unique, transient path, appearing briefly before vanishing into the dark. The name underscores themes of duality and fleeting visibility, aligning with the moon's parallel, shadow-like existence.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Ótr</h4>
+                <p class="small-white-text mb-3">Submitted by Grzegorz B (Poland).</p>
+                <p class="small-white-text">A shape-shifting dwarf from Norse mythology, Ótr spent his days in the form of an otter, navigating the boundaries between human and wild realms. This quasi-moon, with its quiet presence and potential for both playfulness and mystery, mirrors the qualities of Ótr—observant, elusive, and always near yet unseen. The choice highlights the moon's interaction with Earth, subtly woven into our cosmic neighborhood.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Cardea</h4>
+                <p class="small-white-text mb-3">Submitted by Clay C (USA).</p>
+                <p class="small-white-text">A name imbued with elegance and depth, Cardea is the Roman goddess of doorways and transitions, symbolizing the guardianship of thresholds. This quasi-moon, forever straddling the space between Earth and the cosmos, reflects Cardea’s dominion over liminal states, embodying a celestial gatekeeper of the in-between.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Ehaema</h4>
+                <p class="small-white-text mb-3">Submitted by Liisi A (Estonia)</p>
+                <p class="small-white-text">Rooted in Estonian folklore, Ehaema, the “Mother Twilight,” embodies the serene, mysterious moments of dusk. She symbolizes the delicate balance between light and darkness, guiding people to complete their work before nightfall. This quasi-moon, suspended between Earth and the vastness of space, mirrors Ehaema’s gentle reminder of transitions and the quiet beauty of twilight.</p>
+              </div>
+            </div>
+            <nuxt-link class="flex justify-content-center no-underline" to="#">
+              <Button class="p-button-lg p-button-rounded" label="Read More"/>
+            </nuxt-link>
+          </div>
+
           <div class="info-card mb-6 p-5">
             <div>
               <h2 class="mb-4">Get ready to vote</h2>
@@ -362,6 +407,18 @@ onMounted( () => {
 
   .gold {
     color: #fff322;
+  }
+
+  //kelly add this
+  .white {
+    color: #ffffff;
+  }
+
+  //kelly add this
+  .small-white-text {
+    color: #ffffff;
+    line-height: 20px;
+    font-size: 14px;
   }
 
   .subscribe-to-the-newsletter {
