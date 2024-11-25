@@ -971,7 +971,7 @@ export default {
               "w": 1860
             },
             "job-title": "Student & Teacher",
-            "lede": "<p>Haliʻa is a 16-year-old from Oahu, Hawaiʻi. You can find her out in the water, canoe paddling or surfing, or working hands-on with Hawaiian restoration projects. With her love for the ocean and the environment, she\'s working towards a future as a marine biologist to protect Hawaiʻiʻs unique ecosystems. </br> </br> Ms. Sullivan is a special Education & English Teacher at Castle High School in Kāne\'ohe, Hawai\'i.</p>",
+            "lede": "<p>Haliʻa is a 16-year-old from Oahu, Hawaiʻi. You can find her out in the water, canoe paddling or surfing, or working hands-on with Hawaiian restoration projects. With her love for the ocean and the environment, she's working towards a future as a marine biologist to protect Hawaiʻiʻs unique ecosystems. </br> </br> Ms. Sullivan is a special Education & English Teacher at Castle High School in Kāne'ohe, Hawai'i.</p>",
             "name": "Haliʻa and Ms. Sullivan",
             "slug": "",
             "social": [

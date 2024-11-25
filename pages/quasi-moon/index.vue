@@ -1,11 +1,8 @@
 <script setup>
-import { onBeforeMount, ref } from "vue"
 import VCard from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue"
 import { formatPublisherImageUrl } from "~/utilities/helpers"
-// import { useRuntimeConfig } from "#app"
 import teamData from "./team-data"
 
-import VFlexibleLink from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue"
 import colors from "~/assets/scss/colors.module.scss"
 useHead({
   meta: [
@@ -19,22 +16,11 @@ useHead({
   },
 })
 
-const config = useRuntimeConfig()
 const dataLoaded = ref(false)
 const people = ref([])
 const totalCount = ref(null)
 
-onMounted( (async) => {
-  // await axios
-  //   .get(
-  //     `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
-  //     // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/the-team/1?limit=50`
-  //   )
-  //   .then((response) => {
-  //     people.value = response.data.included
-  //     totalCount.value = response.data.data.attributes['total-count']
-  //     dataLoaded.value = true
-  //   })
+onMounted( () => {
   people.value = teamData.included
   totalCount.value = teamData.data.attributes["total-count"]
   dataLoaded.value = true
@@ -114,11 +100,11 @@ const goToPersonPage = (slug) => {
                 <div>
                   <h2 class="mb-4">Vote Now to Name Earth's Quasi-Moon!</h2>
                     <ul class="submissions-card">
-                      <li class="submissions-card">The <strong>Name a Quasi-Moon contest</strong> is now officially open! From now until January 1,  2025, <a href="https://woobox.com/vcj7rm" target="_blank" class="quasi-link">cast your vote</a> to name earth’s quasi-moon, currently known as (164207) 2004 GU9.</li>
+                      <li class="submissions-card">The <strong>Name a Quasi-Moon contest</strong> is now officially open! From now until January 1,  2025, <a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">cast your vote</a> to name earth’s quasi-moon, currently known as (164207) 2004 GU9.</li>
                       <li class="submissions-card">After voting closes on January 1st, the name with the most votes will be <strong>our new quasi-moon</strong>, certified by International Astronomical Union (IAU) and in our orbit for over 600 years.</li>
-                      <li class="submissions-card"><a href="https://woobox.com/vcj7rm" target="_blank" class="quasi-link">Cast your vote now</a>! Select your favorite quasi-moon name. One vote per person is allowed.</li>
+                      <li class="submissions-card"><a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">Cast your vote now</a>! Select your favorite quasi-moon name. One vote per person is allowed.</li>
                     </ul>
-                    <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://woobox.com/vcj7rm" target="_blank">
+                    <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer'>
                       <Button class="p-button-lg p-button-rounded" label="Vote Now"/>
                     </nuxt-link>
                 </div>
@@ -163,7 +149,7 @@ const goToPersonPage = (slug) => {
                 <p class="small-white-text">Rooted in Estonian folklore, Ehaema, the "Mother Twilight," embodies the serene, mysterious moments of dusk. She symbolizes the delicate balance between light and darkness, guiding people to complete their work before nightfall. This quasi-moon, suspended between Earth and the vastness of space, mirrors Ehaema's gentle reminder of transitions and the quiet beauty of twilight.</p>
               </div>
             </div>
-            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/22/Quasi-Moon_Names.pdf" target="_blank">
+            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/22/Quasi-Moon_Names.pdf" target="_blank" rel='noopener noreferrer'>
               <Button class="p-button-lg p-button-rounded" label="Read More"/>
             </nuxt-link>
           </div>
@@ -204,7 +190,7 @@ const goToPersonPage = (slug) => {
             </client-only>
           </div>
           <section>
-            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/22/MeetThePanel.pdf" target="_blank">
+            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/22/MeetThePanel.pdf" target="_blank" rel='noopener noreferrer'>
                 <Button class="p-button-lg p-button-rounded" label="Read More"/>
             </nuxt-link>
           </section>
@@ -305,9 +291,9 @@ const goToPersonPage = (slug) => {
                   <div class="info-card mb-6 p-5">
             <div>
               <h2 class="mb-4">Naming Contest & Voting FAQ</h2>
-              <p class="mb-4 card-nudge">
+              <div class="mb-4 card-nudge">
                 <h3 class="question">How did we get our quasi-moon name finalists?</h3>
-                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank">Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Nov/22/MeetThePanel.pdf" class="quasi-link" target="_blank">panel of judges</a> narrowed the list down to 10 names with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
+                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank" rel='noopener noreferrer'>Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Nov/22/MeetThePanel.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>panel of judges</a> narrowed the list down to 10 names with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
                 <h3 class="question">What was the rating rubric used to choose the top 10?</h3>
                 <ul class="submissions-card">
                   <li class="submissions-card faq-li"><strong>50% Creativity & Uniqueness:</strong> Does the name stand out as original or clever?</li>
@@ -315,17 +301,17 @@ const goToPersonPage = (slug) => {
                   <li class="submissions-card faq-li"><strong>10% Effort & Thought:</strong> Does the submission reflect thoughtfulness and effort in its explanation?</li>
                 </ul>
                 <h3 class="question">What are the official naming rules for the Name a Quasi-Moon Contest?</h3>
-                <p class="white answer">Read the <a href="https://radiolab.org/moon-official-rules/" target="_blank" class="quasi-link">official contest rules</a> for full naming guidelines. </p>
+                <p class="white answer">Read the <a href="https://radiolab.org/moon-official-rules/" target="_blank" rel='noopener noreferrer' class="quasi-link">official contest rules</a> for full naming guidelines. </p>
                 <h3 class="question">What’s a quasi-moon?</h3>
                 <p class="white answer">Quasi-moons of a planet are asteroids that orbit the Sun and follow a path similar to that of the planet. Due to the relative motion of the two objects, it appears as though the asteroid is orbiting the planet from the perspective of an observer on the planet’s surface.</p>
                 <h3 class="question">What does quasi-moon (164207) 2004 GU9 look like?</h3>
-                <p class="white answer"><a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=164207&view=OPDCA" class="quasi-link" target="_blank">(164207) 2004 GU9</a> is a quasi-moon that will be with us (the Earth) until about the year 2600. It’s a gray rocky asteroid, about 500 feet across, likely potato shaped, with little jagged edges all over it.</p>
+                <p class="white answer"><a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=164207&view=OPDCA" class="quasi-link" target="_blank" rel='noopener noreferrer'>(164207) 2004 GU9</a> is a quasi-moon that will be with us (the Earth) until about the year 2600. It’s a gray rocky asteroid, about 500 feet across, likely potato shaped, with little jagged edges all over it.</p>
                 <h3 class="question">Where can I read all the submissions?</h3>
-                <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Nov/22/Quasi-Moon_Names.pdf" class="quasi-link" target="_blank">read this document</a> about the final name submissions.</p>
+                <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Nov/22/Quasi-Moon_Names.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>read this document</a> about the final name submissions.</p>
                 <h3 class="question">Where can I vote?</h3>
-                <p class="white answer"><a href="https://woobox.com/vcj7rm" target="_blank" class="quasi-link">Vote here</a> to select your favorite name! Please pick one name per person.</p>
-              </p>
-              <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://woobox.com/vcj7rm" target="_blank">
+                <p class="white answer"><a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">Vote here</a> to select your favorite name! Please pick one name per person.</p>
+              </div>
+              <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer'>
                       <Button class="p-button-lg p-button-rounded" label="Vote Now"/>
               </nuxt-link>
             </div>
