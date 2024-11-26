@@ -129,9 +129,9 @@ const goToPersonPage = (slug) => {
                 <p class="small-white-text">An Aztec lunar god who once aspired to be the sun, Tecciztecatl's hesitant leap into the fire ultimately destined him for the moon. His story is echoed in the quasi-moon's orbit—neither sun nor true moon but a celestial presence cast in the role of an eternal companion. The name pays tribute to indigenous stories that often go unrecognized in modern space nomenclature.</p>
               </div>
               <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
-                <h4 class="gold text-2xl mb-2">Tariaksuq</h4>
+                <h4 class="gold text-2xl mb-2">Tarriaksuk</h4>
                 <p class="small-white-text mb-3">Submitted by Samuel L (USA)</p>
-                <p class="small-white-text">The Tariaksuq of Inuit legend are shadow beings that mirror human forms yet dwell in another dimension. Like these beings, this quasi-moon mimics the true moon but follows a unique, transient path, appearing briefly before vanishing into the dark. The name underscores themes of duality and fleeting visibility, aligning with the moon's parallel, shadow-like existence.</p>
+                <p class="small-white-text">The Tarriaksuk of Inuit legend are shadow beings that mirror human forms yet dwell in another dimension. Like these beings, this quasi-moon mimics the true moon but follows a unique, transient path, appearing briefly before vanishing into the dark. The name underscores themes of duality and fleeting visibility, aligning with the moon's parallel, shadow-like existence.</p>
               </div>
               <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
                 <h4 class="gold text-2xl mb-2">Ótr</h4>
@@ -149,7 +149,7 @@ const goToPersonPage = (slug) => {
                 <p class="small-white-text">Rooted in Estonian folklore, Ehaema, the "Mother Twilight," embodies the serene, mysterious moments of dusk. She symbolizes the delicate balance between light and darkness, guiding people to complete their work before nightfall. This quasi-moon, suspended between Earth and the vastness of space, mirrors Ehaema's gentle reminder of transitions and the quiet beauty of twilight.</p>
               </div>
             </div>
-            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/22/Quasi-Moon_Names.pdf" target="_blank" rel='noopener noreferrer'>
+            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-moonNameSubmissions.pdf" target="_blank" rel='noopener noreferrer'>
               <Button class="p-button-lg p-button-rounded" label="Read More"/>
             </nuxt-link>
           </div>
@@ -190,7 +190,7 @@ const goToPersonPage = (slug) => {
             </client-only>
           </div>
           <section>
-            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/22/MeetThePanel.pdf" target="_blank" rel='noopener noreferrer'>
+            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/26/QuasiMoonMeetThePanelists.pdf" target="_blank" rel='noopener noreferrer'>
                 <Button class="p-button-lg p-button-rounded" label="Read More"/>
             </nuxt-link>
           </section>
@@ -293,7 +293,7 @@ const goToPersonPage = (slug) => {
               <h2 class="mb-4">Naming Contest & Voting FAQ</h2>
               <div class="mb-4 card-nudge">
                 <h3 class="question">How did we get our quasi-moon name finalists?</h3>
-                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank" rel='noopener noreferrer'>Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Nov/22/MeetThePanel.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>panel of judges</a> narrowed the list down to 10 names with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
+                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank" rel='noopener noreferrer'>Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Nov/26/QuasiMoonMeetThePanelists.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>panel of judges</a> narrowed the list down to 10 names with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
                 <h3 class="question">What was the rating rubric used to choose the top 10?</h3>
                 <ul class="submissions-card">
                   <li class="submissions-card faq-li"><strong>50% Creativity & Uniqueness:</strong> Does the name stand out as original or clever?</li>
@@ -307,7 +307,7 @@ const goToPersonPage = (slug) => {
                 <h3 class="question">What does quasi-moon (164207) 2004 GU9 look like?</h3>
                 <p class="white answer"><a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=164207&view=OPDCA" class="quasi-link" target="_blank" rel='noopener noreferrer'>(164207) 2004 GU9</a> is a quasi-moon that will be with us (the Earth) until about the year 2600. It’s a gray rocky asteroid, about 500 feet across, likely potato shaped, with little jagged edges all over it.</p>
                 <h3 class="question">Where can I read all the submissions?</h3>
-                <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Nov/22/Quasi-Moon_Names.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>read this document</a> about the final name submissions.</p>
+                <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-moonNameSubmissions.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>read this document</a> about the final name submissions.</p>
                 <h3 class="question">Where can I vote?</h3>
                 <p class="white answer"><a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">Vote here</a> to select your favorite name! Please pick one name per person.</p>
               </div>
