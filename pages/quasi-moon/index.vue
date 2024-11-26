@@ -114,29 +114,9 @@ const goToPersonPage = (slug) => {
             <h2 class="white mb-6">About The Finalists</h2>
             <div class="grid">
               <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
-                <h4 class="gold text-2xl mb-2">Enkidu</h4>
-                <p class="small-white-text mb-3">Submitted by Aaron C (USA), Moira P (USA), Aaron F (USA), Brent J (USA)</p>
-                <p class="small-white-text">Named after the wild and noble companion from the ancient Sumerian Epic of Gilgamesh, Enkidu represents both wild freedom and loyal friendship. Like Enkidu's presence on the fringes of civilization, this quasi-moon orbits close yet distinct from Earth, embodying the bond between two entities sharing space, destined to part ways in time.</p>
-              </div>
-              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
                 <h4 class="gold text-2xl mb-2">Bakunawa</h4>
                 <p class="small-white-text mb-3">Submitted by Arjay L (the Philippines), Enzo M (the Philippines)</p>
                 <p class="small-white-text">Bakunawa, a mythical dragon from Philippine folklore, is said to rise from the ocean to swallow the moon, explaining lunar eclipses in ancient times. This fearsome serpent, associated with powerful natural events, embodies the mysterious and formidable nature of the quasi-moon, which appears and disappears from sight. Naming the quasi-moon Bakunawa would honor pre-colonial Philippine mythology and inspire pride and connection among Filipinos, bringing an ancient cultural story to the forefront of global astronomy.</p>
-              </div>
-              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
-                <h4 class="gold text-2xl mb-2">Tecciztecatl</h4>
-                <p class="small-white-text mb-3">Submitted by Muhammad Hussain 	R (Pakistan), Claudia	C (USA), Gabriel G (Mexico)</p>
-                <p class="small-white-text">An Aztec lunar god who once aspired to be the sun, Tecciztecatl's hesitant leap into the fire ultimately destined him for the moon. His story is echoed in the quasi-moon's orbit—neither sun nor true moon but a celestial presence cast in the role of an eternal companion. The name pays tribute to indigenous stories that often go unrecognized in modern space nomenclature.</p>
-              </div>
-              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
-                <h4 class="gold text-2xl mb-2">Tarriaksuk</h4>
-                <p class="small-white-text mb-3">Submitted by Samuel L (USA)</p>
-                <p class="small-white-text">The Tarriaksuk of Inuit legend are shadow beings that mirror human forms yet dwell in another dimension. Like these beings, this quasi-moon mimics the true moon but follows a unique, transient path, appearing briefly before vanishing into the dark. The name underscores themes of duality and fleeting visibility, aligning with the moon's parallel, shadow-like existence.</p>
-              </div>
-              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
-                <h4 class="gold text-2xl mb-2">Ótr</h4>
-                <p class="small-white-text mb-3">Submitted by Grzegorz B (Poland)</p>
-                <p class="small-white-text">A shape-shifting dwarf from Norse mythology, Ótr spent his days in the form of an otter, navigating the boundaries between human and wild realms. This quasi-moon, with its quiet presence and potential for both playfulness and mystery, mirrors the qualities of Ótr—observant, elusive, and always near yet unseen. The choice highlights the moon's interaction with Earth, subtly woven into our cosmic neighborhood.</p>
               </div>
               <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
                 <h4 class="gold text-2xl mb-2">Cardea</h4>
@@ -148,8 +128,28 @@ const goToPersonPage = (slug) => {
                 <p class="small-white-text mb-3">Submitted by Liisi A (Estonia)</p>
                 <p class="small-white-text">Rooted in Estonian folklore, Ehaema, the "Mother Twilight," embodies the serene, mysterious moments of dusk. She symbolizes the delicate balance between light and darkness, guiding people to complete their work before nightfall. This quasi-moon, suspended between Earth and the vastness of space, mirrors Ehaema's gentle reminder of transitions and the quiet beauty of twilight.</p>
               </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Enkidu</h4>
+                <p class="small-white-text mb-3">Submitted by Aaron C (USA), Moira P (USA), Aaron F (USA), Brent J (USA)</p>
+                <p class="small-white-text">Named after the wild and noble companion from the ancient Sumerian Epic of Gilgamesh, Enkidu represents both wild freedom and loyal friendship. Like Enkidu's presence on the fringes of civilization, this quasi-moon orbits close yet distinct from Earth, embodying the bond between two entities sharing space, destined to part ways in time.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Ótr</h4>
+                <p class="small-white-text mb-3">Submitted by Grzegorz B (Poland)</p>
+                <p class="small-white-text">A shape-shifting dwarf from Norse mythology, Ótr spent his days in the form of an otter, navigating the boundaries between human and wild realms. This quasi-moon, with its quiet presence and potential for both playfulness and mystery, mirrors the qualities of Ótr—observant, elusive, and always near yet unseen. The choice highlights the moon's interaction with Earth, subtly woven into our cosmic neighborhood.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Tarriaksuk</h4>
+                <p class="small-white-text mb-3">Submitted by Samuel L (USA)</p>
+                <p class="small-white-text">The Tarriaksuk of Inuit legend are shadow beings that mirror human forms yet dwell in another dimension. Like these beings, this quasi-moon mimics the true moon but follows a unique, transient path, appearing briefly before vanishing into the dark. The name underscores themes of duality and fleeting visibility, aligning with the moon's parallel, shadow-like existence.</p>
+              </div>
+              <div class="col col-12 md:col-6 lg:col-3 mb-3 p-4">
+                <h4 class="gold text-2xl mb-2">Tecciztecatl</h4>
+                <p class="small-white-text mb-3">Submitted by Muhammad Hussain 	R (Pakistan), Claudia	C (USA), Gabriel G (Mexico)</p>
+                <p class="small-white-text">An Aztec lunar god who once aspired to be the sun, Tecciztecatl's hesitant leap into the fire ultimately destined him for the moon. His story is echoed in the quasi-moon's orbit—neither sun nor true moon but a celestial presence cast in the role of an eternal companion. The name pays tribute to indigenous stories that often go unrecognized in modern space nomenclature.</p>
+              </div>
             </div>
-            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-moonNameSubmissions.pdf" target="_blank" rel='noopener noreferrer'>
+            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-MoonNamesFinal.pdf" target="_blank" rel='noopener noreferrer'>
               <Button class="p-button-lg p-button-rounded" label="Read More"/>
             </nuxt-link>
           </div>
@@ -190,7 +190,7 @@ const goToPersonPage = (slug) => {
             </client-only>
           </div>
           <section>
-            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/26/QuasiMoonMeetThePanelists.pdf" target="_blank" rel='noopener noreferrer'>
+            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-MoonPanel.pdf" target="_blank" rel='noopener noreferrer'>
                 <Button class="p-button-lg p-button-rounded" label="Read More"/>
             </nuxt-link>
           </section>
@@ -293,21 +293,21 @@ const goToPersonPage = (slug) => {
               <h2 class="mb-4">Naming Contest & Voting FAQ</h2>
               <div class="mb-4 card-nudge">
                 <h3 class="question">How did we get our quasi-moon name finalists?</h3>
-                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank" rel='noopener noreferrer'>Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Nov/26/QuasiMoonMeetThePanelists.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>panel of judges</a> narrowed the list down to 10 names with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
+                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank" rel='noopener noreferrer'>Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-MoonPanel.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>panel of judges</a> narrowed it down to a list of finalists with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
                 <h3 class="question">What was the rating rubric used to choose the top 10?</h3>
                 <ul class="submissions-card">
                   <li class="submissions-card faq-li"><strong>50% Creativity & Uniqueness:</strong> Does the name stand out as original or clever?</li>
-                  <li class="submissions-card faq-li"><strong>40% Relevance to the Quasi-Moon's Properties:</strong> Inspired by Radiolab’s Zoozve episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our panel of judges narrowed the list down to 10 names with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</li>
+                  <li class="submissions-card faq-li"><strong>40% Relevance to the Quasi-Moon's Properties:</strong> How well does the name relate to the astronomical or scientific aspects of the quasi-moon?</li>
                   <li class="submissions-card faq-li"><strong>10% Effort & Thought:</strong> Does the submission reflect thoughtfulness and effort in its explanation?</li>
                 </ul>
                 <h3 class="question">What are the official naming rules for the Name a Quasi-Moon Contest?</h3>
                 <p class="white answer">Read the <a href="https://radiolab.org/moon-official-rules/" target="_blank" rel='noopener noreferrer' class="quasi-link">official contest rules</a> for full naming guidelines. </p>
                 <h3 class="question">What’s a quasi-moon?</h3>
-                <p class="white answer">Quasi-moons of a planet are asteroids that orbit the Sun and follow a path similar to that of the planet. Due to the relative motion of the two objects, it appears as though the asteroid is orbiting the planet from the perspective of an observer on the planet’s surface.</p>
+                <p class="white answer">A quasi-moon is a space rock that orbits the sun nearby a planet. Weirdly, if you watch it from the planet, it looks like it’s going around you the way a moon would. But it’s too small and too far away to be a moon. And it’s barely being pulled around by the planet’s gravity. So it’s just hanging out, doing this funny awkward cosmic dance with the planet. Not a moon, but also not NOT a moon.</p>
                 <h3 class="question">What does quasi-moon (164207) 2004 GU9 look like?</h3>
                 <p class="white answer"><a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=164207&view=OPDCA" class="quasi-link" target="_blank" rel='noopener noreferrer'>(164207) 2004 GU9</a> is a quasi-moon that will be with us (the Earth) until about the year 2600. It’s a gray rocky asteroid, about 500 feet across, likely potato shaped, with little jagged edges all over it.</p>
                 <h3 class="question">Where can I read all the submissions?</h3>
-                <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-moonNameSubmissions.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>read this document</a> about the final name submissions.</p>
+                <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-MoonNamesFinal.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>read this document</a> about the final name submissions.</p>
                 <h3 class="question">Where can I vote?</h3>
                 <p class="white answer"><a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">Vote here</a> to select your favorite name! Please pick one name per person.</p>
               </div>
