@@ -476,7 +476,7 @@ export default {
             "job-title": "Astrophysicist",
             "lede": "<p><span>Dr. Wanda Díaz Merced is an astrophysicist and pioneer in sonification, the practice of converting astronomical data into sound. After losing her sight, she revolutionized the way scientists study the universe by making complex data accessible through auditory analysis. You learn more about her on <em>Radiolab's Terrestrials</em> episode \"The Unimaginable: How Gravitational Waves (Literally) Rocked Our World.\"</span></p>",
             "name": "Wanda Diaz Merced",
-            "slug": "",
+            "slug": "https://www.wnycstudios.org/podcasts/radiolab-kids/articles/terrestrials-unimaginable-gravitational-waves",
             "social": [
               {
                 "contact-string": "",
