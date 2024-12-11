@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  nypr-deploy: nypr/nypr-deploy@0.0.81
+  nypr-deploy: nypr/nypr-deploy@0.0.104
 
 filter_all: &filter_all
   filters:
@@ -42,6 +42,7 @@ workflows:
           cluster: radiolab-vue
           cpu: 512
           memory: 1024
+          use_firelens: true
           requires:
             - test_js
             - test_nginx
@@ -55,6 +56,7 @@ workflows:
           cluster: radiolab-vue
           cpu: 512
           memory: 1024
+          use_firelens: true
           requires:
             - test_js
             - test_nginx
