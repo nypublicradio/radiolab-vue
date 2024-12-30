@@ -197,7 +197,7 @@ const goToPersonPage = (slug) => {
             </client-only>
           </div>
           <section>
-            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-MoonPanel.pdf" target="_blank" rel='noopener noreferrer'>
+            <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://media.wnyc.org/media/resources/2024/Dec/04/Quasi-MoonPanel.pdf" target="_blank" rel='noopener noreferrer'>
                 <Button class="p-button-lg p-button-rounded" label="Read More"/>
             </nuxt-link>
           </section>
@@ -300,7 +300,7 @@ const goToPersonPage = (slug) => {
               <h2 class="mb-4">Naming Contest & Voting FAQ</h2>
               <div class="mb-4 card-nudge">
                 <h3 class="question">How did we get our quasi-moon name finalists?</h3>
-                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank" rel='noopener noreferrer'>Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Nov/26/Quasi-MoonPanel.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>panel of judges</a> narrowed it down to a list of finalists with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
+                <p class="white answer">Inspired by Radiolab’s <a href="https://radiolab.org/podcast/zoozve" class="quasi-link" target="_blank" rel='noopener noreferrer'>Zoozve</a> episode, Radiolab and the International Astronomical Union (IAU) put out a call soliciting names for Earth's quasi-moon. We received over 2,700 name submissions from 96 countries! Our <a href="https://media.wnyc.org/media/resources/2024/Dec/04/Quasi-MoonPanel.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>panel of judges</a> narrowed it down to a list of finalists with a voting rubric, panel discussion, and vetting by the IAU and cultural leaders.</p>
                 <h3 class="question">What was the rating rubric used to choose the top 10?</h3>
                 <ul class="submissions-card">
                   <li class="submissions-card faq-li"><strong>50% Creativity & Uniqueness:</strong> Does the name stand out as original or clever?</li>
