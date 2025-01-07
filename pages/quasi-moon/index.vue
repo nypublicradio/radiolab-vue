@@ -96,18 +96,13 @@ const goToPersonPage = (slug) => {
         <div class="grid">
           <div class="col-12">
             <section>
-              <div class="info-card mb-6 p-5">
+              <div class="info-card mb-6 center-card">
                 <div>
-                  <h2 class="mb-4">Vote Now to Name Earth's Quasi-Moon!</h2>
-                    <ul class="submissions-card">
-                      <li class="submissions-card">The <strong>Name a Quasi-Moon contest</strong> is now officially open! From now until January 1,  2025, <a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">cast your vote</a> to name earth’s quasi-moon, currently known as (164207) 2004 GU9.</li>
-                      <li class="submissions-card">After voting closes on January 1st, the name with the most votes will be <strong>our new quasi-moon</strong>, certified by International Astronomical Union (IAU) and in our orbit for over 600 years.</li>
-                      <li class="submissions-card"><a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">Cast your vote now</a>! Select your favorite quasi-moon name. One vote per person is allowed.</li>
-                    </ul>
-                    <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer'>
-                      <Button class="p-button-lg p-button-rounded" label="Vote Now"/>
-                    </nuxt-link>
+                  <h2 class="mb-6">Voting has now ended. We will announce the winner in mid-January, so stay tuned!</h2>
                 </div>
+                <span class="flex justify-content-center align-content-center mt-7">
+                  <img alt="icon" src="/rl-icon-stripes.svg" class="icon ml-2 pb-2 divider-icon">
+                </span>
               </div>
             </section>
             <div class="kelly">
@@ -315,8 +310,6 @@ const goToPersonPage = (slug) => {
                 <p class="white answer"><a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=164207&view=OPDCA" class="quasi-link" target="_blank" rel='noopener noreferrer'>(164207) 2004 GU9</a> is a quasi-moon that will be with us (the Earth) until about the year 2600. It’s a gray rocky asteroid, about 500 feet across, likely potato shaped, with little jagged edges all over it.</p>
                 <h3 class="question">Where can I read all the submissions?</h3>
                 <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Dec/05/Quasi-moon_names_12_5_24.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>read this document</a> about the final name submissions.</p>
-                <h3 class="question">Where can I vote?</h3>
-                <p class="white answer"><a href="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer' class="quasi-link">Vote here</a> to select your favorite name! Please pick one name per person.</p>
               </div>
               <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer'>
                       <Button class="p-button-lg p-button-rounded" label="Vote Now"/>
@@ -363,6 +356,10 @@ const goToPersonPage = (slug) => {
     h3 {
       color:#FFFFFF;
     }
+  }
+
+  .center-card {
+    text-align: center;
   }
 
   .pronunciation {
