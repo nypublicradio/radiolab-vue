@@ -168,13 +168,13 @@ const toggleTranscript = () => {
           menu-class="episode-tools-play-selector"
         />
       </client-only>
-      <Button
+      <nuxt-link
         v-if="!!props.episode['transcript'] && !props.isTranscript"
-        class="p-button-sm p-button-rounded"
-        label="Transcript"
-        @click="toggleTranscript"
-        aria-label="Transcript"
-      ></Button>
+        :to="`/podcast/${episode?.slug}/transcript`"
+        class="p-button p-component p-button-sm p-button-rounded no-underline"
+      >
+        Transcript
+      </nuxt-link>
       <Button
         icon="pi pi-share-alt"
         class="p-button-rounded p-button-sm wh40"
