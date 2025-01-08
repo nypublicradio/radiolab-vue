@@ -22,8 +22,6 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['toggleTranscript'])
-
 const toastConfig = ref(toastGlobalConfig())
 
 const dotsMenu = ref()
@@ -145,16 +143,6 @@ const toggleShare = (event) => {
     event_category: 'Click Tracking',
     component: 'Episode Tools',
     event_label: 'Share Menu',
-  })
-}
-
-// toggle function for toggle transcript emit
-const toggleTranscript = () => {
-  emit('toggleTranscript')
-  $analytics.sendEvent('click_tracking', {
-    event_category: 'Click Tracking',
-    component: 'Episode Tools',
-    event_label: 'Transcript',
   })
 }
 </script>
