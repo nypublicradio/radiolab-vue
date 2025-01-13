@@ -2,6 +2,7 @@
 import VCard from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue"
 import { formatPublisherImageUrl } from "~/utilities/helpers"
 import teamData from "./team-data"
+import VImageWithCaption from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue"
 
 import colors from "~/assets/scss/colors.module.scss"
 useHead({
@@ -87,8 +88,20 @@ const goToPersonPage = (slug) => {
       <CountDown :targetDate="new Date('2024-11-18T00:00:00')" />
     </section> -->
     <span class="flex justify-content-center align-content-center mt-7">
-        <img alt="icon" src="https://media.wnyc.org/i/raw/2025/01/QuasiTrophy2.png" class="icon ml-2 pb-2 trophy-icon">
-      </span>
+      <v-image-with-caption
+        :image="
+          formatPublisherImageUrl(
+            'https://media.wnyc.org/i/%s/%s/%s/%s/2025/01/QuasiTrophy2.png'
+          )
+        "
+        alt="trophy image"
+        :width="224"
+        :height="224"
+        :ratio="[1, 1]"
+        :sizes="[2]"
+        class="trophy-icon"
+      />
+    </span>
     <section>
       <div class="content xl:px-8 pb-0">
         <div class="grid">
