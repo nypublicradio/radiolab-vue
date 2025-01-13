@@ -2,6 +2,7 @@
 import VCard from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue"
 import { formatPublisherImageUrl } from "~/utilities/helpers"
 import teamData from "./team-data"
+import VImageWithCaption from "@nypublicradio/nypr-design-system-vue3/v2/src/components/VImageWithCaption.vue"
 
 import colors from "~/assets/scss/colors.module.scss"
 useHead({
@@ -45,8 +46,7 @@ const goToPersonPage = (slug) => {
         />
         <Meta
           name="og:description"
-          content="Welcome to Name a Quasi Moon - a global naming contest from Radiolab and the International Astronomical Union.
-          Vote now and make your mark on the heavens!"
+          content="Welcome to Name a Quasi Moon - a global naming contest from Radiolab and the International Astronomical Union."
         />
         <Meta
           name="og:image"
@@ -58,8 +58,7 @@ const goToPersonPage = (slug) => {
         />
         <Meta
           name="twitter:description"
-          content="Welcome to Name a Quasi Moon - a global naming contest from Radiolab and the International Astronomical Union.
-          Vote now and make your mark on the heavens!"
+          content="Welcome to Name a Quasi Moon - a global naming contest from Radiolab and the International Astronomical Union."
         />
         <Meta
           name="twitter:image"
@@ -80,7 +79,7 @@ const goToPersonPage = (slug) => {
     <section class="below-head -mt-8">
       <div class="content py-0">
         <h4 class="gold md:px-8">
-          A global naming contest from Radiolab and the International Astronomical Union. Vote now and make your mark on the heavens! 
+          A global naming contest from Radiolab and the International Astronomical Union. 
         </h4>
       </div>
     </section>
@@ -89,8 +88,20 @@ const goToPersonPage = (slug) => {
       <CountDown :targetDate="new Date('2024-11-18T00:00:00')" />
     </section> -->
     <span class="flex justify-content-center align-content-center mt-7">
-        <img alt="icon" src="/rl-icon-stripes.svg" class="icon ml-2 pb-2 divider-icon">
-      </span>
+      <v-image-with-caption
+        :image="
+          formatPublisherImageUrl(
+            'https://media.wnyc.org/i/%s/%s/%s/%s/2025/01/QuasiTrophy2.png'
+          )
+        "
+        alt="trophy image"
+        :width="224"
+        :height="224"
+        :ratio="[1, 1]"
+        :sizes="[2]"
+        class="trophy-icon"
+      />
+    </span>
     <section>
       <div class="content xl:px-8 pb-0">
         <div class="grid">
@@ -98,7 +109,21 @@ const goToPersonPage = (slug) => {
             <section>
               <div class="info-card mb-6 center-card">
                 <div>
-                  <h2 class="mb-6">Voting has now ended. We will announce the winner in mid-January, so stay tuned!</h2>
+                  <h2 class="mb-6">Voting has now ended. And the winner is...</h2>
+                  <h2 class="quasi-moon moonname title h1 text-center lg:text-7xl">CARDEA</h2>
+                  <div>
+                    <p class="white text-center announcement text-2xl mb-2">Here is the <a href="https://www.wgsbn-iau.org/files/Bulletins/V005/WGSBNBull_V005_001.pdf#page=19" target="_blank" rel='noopener noreferrer' class="quasi-link">official announcement</a> from the International Astronomical Union.</p>
+                  </div>
+                  <section>
+                    <div class="subscribe-to-the-newsletter w-full mb-6 p-5">
+                      <div class="about-card">
+                        <h2 class="card-left-header card-black mb-4">About the Contest</h2>
+                        <p class="card-left max-w-full mb-6">
+                          In May 2024, Radiolab and the International Astronomical Union joined forces to launch a contest that invited listeners to help name one of Earth’s quasi-moons. Close to 3,000 people from more than 90 countries submitted entries. Radiolab then convened a panel of experts and interested parties, including teachers, students, astronomers, astrophysicists, journalists and artists. Actor Penn Badgley, Bill Nye “The Science Guy,” astrophysicist and podcast host Dr. Moiya McTier and astronomer and educator Salman Hameed, to name a few. They narrowed the names down to seven finalists. During the month of December 2024, more than 10,000 people cast a vote to choose Cardea to be the name for the quasi-moon previously known as (164207) 2004 GU9.
+                        </p>
+                      </div>
+                    </div>
+                  </section>
                 </div>
                 <span class="flex justify-content-center align-content-center mt-7">
                   <img alt="icon" src="/rl-icon-stripes.svg" class="icon ml-2 pb-2 divider-icon">
@@ -201,10 +226,9 @@ const goToPersonPage = (slug) => {
         <!-- <section class="mb-8"> -->
           <div class="subscribe-to-the-newsletter mb-6 p-5">
             <div>
-              <h2 class="mb-4">We’ll let you know when the results are in!</h2>
+              <h2 class="mb-4">Subscribe to the newsletter</h2>
               <p class="mb-6">
-                Signup for updates on the contest and more!  The Radiolab newsletter includes short essays, recommendations, 
-                and details about other ways to interact with the show.
+                Dive deeper into Radiolab's world. You will receive little essays, book reviews, staff recommendations, and more. Sign up here:
               </p>
             </div>
             <newsletter-form location="quasi moon landing page" class="mb-6" />
@@ -311,9 +335,6 @@ const goToPersonPage = (slug) => {
                 <h3 class="question">Where can I read all the submissions?</h3>
                 <p class="white answer">To get full details, <a href="https://media.wnyc.org/media/resources/2024/Dec/05/Quasi-moon_names_12_5_24.pdf" class="quasi-link" target="_blank" rel='noopener noreferrer'>read this document</a> about the final name submissions.</p>
               </div>
-              <nuxt-link class="flex justify-content-center no-underline quasi-names" to="https://woobox.com/vcj7rm" target="_blank" rel='noopener noreferrer'>
-                      <Button class="p-button-lg p-button-rounded" label="Vote Now"/>
-              </nuxt-link>
             </div>
           </div>
               </div>
@@ -334,6 +355,17 @@ const goToPersonPage = (slug) => {
   }
 }
 
+.moonname {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: 0.17rem;
+}
+
+.announcement {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
 .has-head-color.quasi-moon {
   background-color: #000000;
   color: #ffffff;
@@ -344,6 +376,13 @@ const goToPersonPage = (slug) => {
     max-width: 5rem;
     @include media("<md") {
         max-width: 3rem;
+      }
+  }
+
+  .trophy-icon {
+    max-width: 14rem;
+    @include media("<md") {
+        max-width: 14rem;
       }
   }
 
@@ -358,6 +397,34 @@ const goToPersonPage = (slug) => {
     }
   }
 
+  .about-card {
+    padding-top: 1rem;
+    padding-left: 8vw;
+    padding-right: 8vw;
+    @include media("<md") {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+  }
+
+  .card-left-header {
+    text-align: left;
+    padding-top: 1rem;
+    letter-spacing: 0.04rem;
+    line-height: 2.3rem;
+  }
+
+  .card-left {
+    text-align: left;
+    padding-top: 1rem;
+    letter-spacing: 0.04rem;
+    line-height: 1.5rem;
+  }
+
+  .card-black {
+    color: #000000 !important;
+  }
+
   .center-card {
     text-align: center;
   }
@@ -370,6 +437,10 @@ const goToPersonPage = (slug) => {
     color: #FFFFFF;
     text-decoration: underline;
     font-weight: 600;
+  }
+
+  .quasi-link:hover {
+    color: #fff322 !important;
   }
   
   ul.submissions-card {
