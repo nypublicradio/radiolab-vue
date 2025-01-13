@@ -115,10 +115,10 @@ const goToPersonPage = (slug) => {
                     <p class="white text-center announcement text-2xl mb-2">Here is the <a href="https://www.wgsbn-iau.org/files/Bulletins/V005/WGSBNBull_V005_001.pdf#page=19" target="_blank" rel='noopener noreferrer' class="quasi-link">official announcement</a> from the International Astronomical Union.</p>
                   </div>
                   <section>
-                    <div class="subscribe-to-the-newsletter mb-6 p-5">
+                    <div class="subscribe-to-the-newsletter w-full mb-6 p-5">
                       <div class="about-card">
                         <h2 class="card-left-header card-black mb-4">About the Contest</h2>
-                        <p class="card-left mb-6">
+                        <p class="card-left max-w-full mb-6">
                           In May 2024, Radiolab and the International Astronomical Union joined forces to launch a contest that invited listeners to help name one of Earth’s quasi-moons. Close to 3,000 people from more than 90 countries submitted entries. Radiolab then convened a panel of experts and interested parties, including teachers, students, astronomers, astrophysicists, journalists and artists. Actor Penn Badgley, Bill Nye “The Science Guy,” astrophysicist and podcast host Dr. Moiya McTier and astronomer and educator Salman Hameed, to name a few. They narrowed the names down to seven finalists. During the month of December 2024, more than 10,000 people cast a vote to choose Cardea to be the name for the quasi-moon previously known as (164207) 2004 GU9.
                         </p>
                       </div>
@@ -399,9 +399,11 @@ const goToPersonPage = (slug) => {
 
   .about-card {
     padding-top: 1rem;
-    padding-left: 10rem;
+    padding-left: 8vw;
+    padding-right: 8vw;
     @include media("<md") {
         padding-left: 1rem;
+        padding-right: 1rem;
       }
   }
 
