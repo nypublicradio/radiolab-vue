@@ -73,7 +73,7 @@ onMounted(() => {
       flat-quality
       :max-width="episode['image-main'].w"
       :max-height="episode['image-main'].h"
-      class="episode-image"
+      class="episode-image flex-none"
     />
 
     <div class="episode-content">
