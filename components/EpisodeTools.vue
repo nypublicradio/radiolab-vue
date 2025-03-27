@@ -19,10 +19,6 @@ const props = defineProps({
   },
 })
 
-console.log(props.episode)
-
-const { $analytics } = useNuxtApp()
-const emit = defineEmits(['toggleTranscript'])
 const toastConfig = ref(toastGlobalConfig())
 const dotsMenu = ref()
 const shareMenu = ref()
@@ -136,16 +132,6 @@ const toggleShare = (event) => {
     event_label: 'Share Menu',
   })
 }
-
-// toggle function for toggle transcript emit
-const toggleTranscript = () => {
-  emit('toggleTranscript')
-  $analytics.sendEvent('click_tracking', {
-    event_category: 'Click Tracking',
-    component: 'Episode Tools',
-    event_label: 'Transcript',
-  })
-}
 </script>
 
 <template>
@@ -157,13 +143,13 @@ const toggleTranscript = () => {
           menu-class="episode-tools-play-selector"
         />
       </client-only>
-      <Button
-        v-if="!!episode.transcript && !isTranscript"
-        class="p-button-sm p-button-rounded"
-        label="Transcript"
-        @click="toggleTranscript"
-        aria-label="Transcript"
-      ></Button>
+      <nuxt-link
+        v-if="!!props.episode['transcript'] && !props.isTranscript"
+        :to="`/podcast/${episode?.slug}/transcript`"
+        class="p-button p-component p-button-sm p-button-rounded no-underline"
+      >
+        Transcript
+      </nuxt-link>
       <Button
         icon="pi pi-share-alt"
         class="p-button-rounded p-button-sm wh40"

@@ -22,9 +22,9 @@ export default {
               "w": 1860
             },
             "job-title": "Co-Host, Radiolab",
-            "lede": "<p><span>Bill Nye is a science educator and television host best known for his show <em>Bill Nye the Science Guy</em>, which made complex scientific concepts accessible and entertaining for kids. With a background in mechanical engineering, he combines humor and hands-on experiments to spark a love for science. Nye is also an outspoken advocate for environmental issues.</span></p>",
+            "lede": "<p><span>Bill Nye is The Planetary Society’s Chief Executive Officer (CEO). He has served as CEO since 2010, providing vision and guidance, leading key organizational decision making, and serving as the public face of The Society. You may know him from the television show <em>Bill Nye the Science Guy</em>.</span></p>",
             "name": "Bill Nye",
-            "slug": "https://www.google.com/",
+            "slug": "https://www.planetary.org",
             "social": [
               {
                 "contact-string": "",
@@ -457,9 +457,9 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "Actor, Author and Activist",
+          "appearance-type": "Astrophysicist",
           "person": {
-            "bio": "<p><span>George Takei is a celebrated actor and activist best known for his iconic role as Hikaru Sulu on the original <em>Star Trek</em> series. Beyond his acting career, he is an advocate for LGBTQ+ rights and social justice. Takei's vibrant personality and compelling storytelling have made him a beloved figure both on and off the screen.</span></p>",
+            "bio": "<p><span>TK</span></p>",
             "image": {
               "caption": "",
               "credits-url": "",
@@ -469,14 +469,14 @@ export default {
               "is-display": true,
               "name": "2020/09/NYPR_061319_0585.jpg",
               "source": "",
-              "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2024/08/GeorgeTakei3.png",
-              "url": "https://media.wnyc.org/i/1860/1239/l/80/2020/09/NYPR_061319_0585.jpg",
+              "template": "https://media.wnyc.org/i/raw/2024/11/Wanda3.png",
+              "url": "https://media.wnyc.org/i/raw/2024/11/Wanda3.png",
               "w": 1860
             },
-            "job-title": "Co-Host, Radiolab",
-            "lede": "<p><span>George Takei is a celebrated actor and activist best known for his iconic role as Hikaru Sulu on the original <em>Star Trek</em> series. Beyond his acting career, he is an advocate for LGBTQ+ rights and social justice. Takei's vibrant personality and compelling storytelling have made him a beloved figure both on and off the screen.</span></p>",
-            "name": "George Takei",
-            "slug": "",
+            "job-title": "Astrophysicist",
+            "lede": "<p><span>Dr. Wanda Díaz Merced is an astrophysicist and pioneer in sonification, the practice of converting astronomical data into sound. After losing her sight, she revolutionized the way scientists study the universe by making complex data accessible through auditory analysis. You learn more about her on <em>Radiolab's Terrestrials</em> episode \"The Unimaginable: How Gravitational Waves (Literally) Rocked Our World.\"</span></p>",
+            "name": "Wanda Diaz Merced",
+            "slug": "https://www.wnycstudios.org/podcasts/radiolab-kids/articles/terrestrials-unimaginable-gravitational-waves",
             "social": [
               {
                 "contact-string": "",
@@ -909,7 +909,7 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "Chancellor & Astrophysicist",
+          "appearance-type": "Actor, Director, Producer and Writer",
           "person": {
             "bio": "",
             "image": {
@@ -921,14 +921,14 @@ export default {
               "is-display": true,
               "name": "1/SorenWheeler_1.jpg",
               "source": "",
-              "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2024/08/MaggieAderinPocock2.png",
-              "url": "https://media.wnyc.org/i/1860/1240/c/80/1/SorenWheeler_1.jpg",
+              "template": "https://media.wnyc.org/i/raw/2024/11/Penn.png",
+              "url": "https://media.wnyc.org/i/raw/2024/11/Penn.png",
               "w": 1860
             },
-            "job-title": "Chancellor & Astrophysicist",
-            "lede": "<p><span>Maggie Aderin-Pocock is a renowned British scientist known for her role in making space science accessible to the public. As an accomplished astronomer and engineer, she has inspired countless individuals, particularly young women and minorities, to pursue careers in science and technology.</span></p>",
-            "name": "Maggie Aderin-Pocock",
-            "slug": "https://en.wikipedia.org/wiki/Maggie_Aderin-Pocock",
+            "job-title": "actor, director, producer and writer",
+            "lede": "<p><span>Penn Badgley is an actor, director, producer and writer in television & film. Known most commonly for his roles in <em>Gossip Girl</em> and <em>You</em>, he has been working as a professional in media for over 25 years and is seeking to engage in discourses around the influence of media on young people, particularly in the area of love and relationships. Penn is also the co-founder of Ninth Mode, a production company which premiered <em>Podcrushed</em>, a podcast focusing on the period of adolescence as an opener to deeper conversations about youth and formative experiences.</span></p>",
+            "name": "Penn Badgley",
+            "slug": "",
             "social": [
               {
                 "contact-string": "SorenWheeler",
@@ -954,7 +954,7 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "Quantum Physicist",
+          "appearance-type": "Student & Teacher",
           "person": {
             "bio": "",
             "image": {
@@ -966,14 +966,14 @@ export default {
               "is-display": true,
               "name": "2021/10/SimonAdler_o1TLhq9.png",
               "source": "",
-              "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2021/10/SimonAdler_o1TLhq9.png",
-              "url": "https://media.wnyc.org/i/1860/1056/c/80/2021/10/SimonAdler_o1TLhq9.png",
+              "template": "https://media.wnyc.org/i/raw/2024/11/pair.png",
+              "url": "https://media.wnyc.org/i/raw/2024/11/pair.png",
               "w": 1860
             },
-            "job-title": "Senior Producer, Radiolab",
-            "lede": "<p>Circumpolar Mercury background radiation Neptune geostationary red shift weightlessness Venus Alpha Centauri Saturn dark matter interstellar escape velocity scintillation hypernova helium radiation opposition spectroscope aphelion occultation spectrum gas giant binary star radiant phase</p>",
-            "name": "Simon Adler",
-            "slug": "simon-adler",
+            "job-title": "Student & Teacher",
+            "lede": "<p>Haliʻa is a 16-year-old from Oahu, Hawaiʻi. You can find her out in the water, canoe paddling or surfing, or working hands-on with Hawaiian restoration projects. With her love for the ocean and the environment, she's working towards a future as a marine biologist to protect Hawaiʻiʻs unique ecosystems. </br> </br> Ms. Sullivan is a special Education & English Teacher at Castle High School in Kāne'ohe, Hawai'i.</p>",
+            "name": "Haliʻa and Ms. Sullivan",
+            "slug": "",
             "social": [
               {
                 "contact-string": "",
@@ -988,7 +988,7 @@ export default {
                 "service": "facebook"
               }
             ],
-            "url": "/people/simon-adler/",
+            "url": "",
             "shows": [
               
             ]
@@ -999,7 +999,7 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "Science Geek",
+          "appearance-type": "Professor",
           "person": {
             "bio": "",
             "image": {
@@ -1011,14 +1011,14 @@ export default {
               "is-display": true,
               "name": "2021/02/JeremySBloom_BlueHeadshotCasualFull.jpeg",
               "source": "",
-              "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2021/02/JeremySBloom_BlueHeadshotCasualFull.jpeg",
-              "url": "https://media.wnyc.org/i/1024/768/l/80/2021/02/JeremySBloom_BlueHeadshotCasualFull.jpeg",
+              "template": "https://media.wnyc.org/i/1140/765/l/80/2024/11/SeanCarroll.png",
+              "url": "https://media.wnyc.org/i/1140/765/l/80/2024/11/SeanCarroll.png",
               "w": 1024
             },
-            "job-title": "Sound Designer, Radiolab",
-            "lede": "<p>Cosmic ipsum astronaut orbital eccentricity bolometer escape velocity Jupiter dwarf star Earth white giant terminator big bang theory constellation azimuth universe Lunar mare neutron star kiloparsec equinox</p>",
-            "name": "Jeremy S. Bloom",
-            "slug": "jeremy-bloom",
+            "job-title": "Professor",
+            "lede": "<p>Sean Carroll is Homewood Professor of Natural Philosophy at Johns Hopkins University and Fractal Faculty at the Santa Fe Institute.  He received his Ph.D. in 1993 from Harvard University.  His research focuses on the foundations of physics, including issues in quantum mechanics, spacetime, cosmology, and emergence.  He is the author of several books, most recently <em>The Biggest Ideas in the Universe, Vol. 2: Quanta and Fields</em>. He has been awarded prizes and fellowships by the National Science Foundation, NASA, the Sloan Foundation, the Packard Foundation, the American Physical Society, the American Institute of Physics, the Royal Society of London, the Guggenheim Foundation, and the American Association for the Advancement of Science. He is the host of the weekly <em>Mindscape</em> podcast.</p>",
+            "name": "Sean Carroll",
+            "slug": "https://preposterousuniverse.com/",
             "social": [
               {
                 "contact-string": "jeremy_s_bloom",
@@ -1044,7 +1044,7 @@ export default {
       },
       {
         "attributes": {
-          "appearance-type": "Telescope Inventor",
+          "appearance-type": "Actor",
           "person": {
             "bio": "",
             "image": {
@@ -1056,14 +1056,14 @@ export default {
               "is-display": true,
               "name": "2023/09/Becca-Bressler.jpeg",
               "source": "",
-              "template": "https://media.wnyc.org/i/%s/%s/%s/%s/2023/09/Becca-Bressler.jpeg",
-              "url": "https://media.wnyc.org/i/1860/1395/l/80/2023/09/Becca-Bressler.jpeg",
+              "template": "https://media.wnyc.org/i/1140/765/l/80/2024/11/Celia.png",
+              "url": "https://media.wnyc.org/i/1140/765/l/80/2024/11/Celia.png",
               "w": 1860
             },
             "job-title": "",
-            "lede": "<p>Space weightlessness sun cluster Pluto white dwarf Milky Way starlight variable star vernal equinox conjunction half moon Alpha Centauri local group free fall Neptune minor planet Earth limb extragalactic gravity inertia gibbous moon binary star planet gravitational lens wavelength</p>",
-            "name": "Becca Bressler",
-            "slug": "becca-bressler",
+            "lede": "<p>Celia Rose Gooding stars as the iconic role of Uhura in the new Paramount+ series <em>Star Trek: Strange New Worlds</em>. Celia was nominated for a Critic’s Choice Award for their performance. They recently wrapped production on <em>Breakwater</em>, an independent crime thriller written and directed by James Rowe. Prior to film and television, Gooding originated the role of Frankie in the Diablo Cody and Alanis Morissette hit Broadway musical <em>Jagged Little Pill</em>. At 21, they were nominated for a Tony Award for this role, making them one of the youngest nominees in the Best Actress in a Featured Role in a Musical category. The production went on to win a Grammy Award for Best Musical Theater Album. Gooding was born and raised in New York, where they currently reside.</p>",
+            "name": "Celia Rose Gooding",
+            "slug": "",
             "social": [
               {
                 "contact-string": "",

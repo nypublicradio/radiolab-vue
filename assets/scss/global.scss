@@ -312,6 +312,12 @@ section {
     @include blue-button();
   }
 }
+.p-button:hover,
+.p-button:enabled:hover {
+  background: var(--black500);
+  border-color: transparent;
+  color: var(--primary-color);
+}
 
 // style-mode over rides
 

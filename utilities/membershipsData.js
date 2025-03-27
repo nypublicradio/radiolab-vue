@@ -310,7 +310,7 @@ export const options = [
                 tier: 'Mantis Shrimp',
                 check: false,
                 text: 'Exclusive “Lab” Tote',
-                image: '/the-lab/tote.jpg',
+                image: '/the-lab/rl_black_tote.jpg',
             },
         ]
     },
