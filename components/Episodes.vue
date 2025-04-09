@@ -4,6 +4,7 @@ import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/librar
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
+import { get } from '@vueuse/core'
 
 const { $analytics } = useNuxtApp()
 const route = useRoute()
@@ -22,10 +23,6 @@ const props = defineProps({
     default: null,
   },
   api: {
-    type: String,
-    default: null,
-  },
-  path: {
     type: String,
     default: null,
   },
@@ -131,8 +128,12 @@ onBeforeMount(async () => {
         : `${props.api}?page=${startPageNumber.value}&pageSize=${cardCountCalc.value}`
     )
     .then((response) => {
-      episodes.value = response.data.episodes.data
-      totalCount.value = response.data.episodes?.meta?.pagination?.count || 1
+      if (props.bucket) {
+        episodes.value = response.data.data.attributes.bucketItems
+      } else {
+        episodes.value = response.data.episodes.data
+      }
+      totalCount.value = response.data?.episodes?.meta?.pagination?.count || 1
       dataLoaded.value = true
     })
     .catch(function () {
@@ -175,7 +176,7 @@ const onCardClick = (episode, elm) => {
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',
     component: `Episode Card - ${elm}`,
-    event_label: episode.title,
+    event_label: episode.attributes.title,
   })
 }
 </script>
@@ -207,17 +208,45 @@ const onCardClick = (episode, elm) => {
                     <client-only>
                       <v-card
                         :image="
-                          formatPublisherImageUrl(episode.listingImage.template)
+                          formatPublisherImageUrl(
+                            bucket
+                              ? episode.attributes.imageMain.template
+                              : episode.listingImage.template
+                          )
                         "
                         :width="320"
                         :height="240"
-                        :alt="episode.listingImage.altText"
-                        :title="episode.title"
-                        :titleLink="`/podcast/${episode.meta.slug}`"
-                        :eyebrow="formatDate(episode.publicationDate)"
-                        :blurb="episode.tease"
-                        :max-width="episode.listingImage.w"
-                        :max-height="episode.listingImage.h"
+                        :alt="
+                          bucket
+                            ? episode.attributes.imageMain.altText
+                            : episode.listingImage.altText
+                        "
+                        :title="
+                          bucket ? episode.attributes.title : episode.title
+                        "
+                        :titleLink="`/podcast/${
+                          bucket ? episode.attributes.slug : episode.meta.slug
+                        }`"
+                        :eyebrow="
+                          formatDate(
+                            bucket
+                              ? episode.attributes.publishAt
+                              : episode.publicationDate
+                          )
+                        "
+                        :blurb="
+                          bucket ? episode.attributes.tease : episode.tease
+                        "
+                        :max-width="
+                          bucket
+                            ? episode.attributes.imageMain.w
+                            : episode.listingImage.w
+                        "
+                        :max-height="
+                          bucket
+                            ? episode.attributes.imageMain.h
+                            : episode.listingImage.h
+                        "
                         responsive
                         :ratio="[3, 2]"
                         :sizes="[2]"
@@ -228,7 +257,7 @@ const onCardClick = (episode, elm) => {
                         @image-click="onCardClick(episode, 'image')"
                       >
                         <div class="divider"></div>
-                        <play-selector :episode="episode" :kids="kids" />
+                        <play-selector :episode="episode" bucket :kids="kids" />
                       </v-card>
                     </client-only>
                   </div>

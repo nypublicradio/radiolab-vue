@@ -65,6 +65,7 @@ const { data, pending } = await useFetch(
                     ></div>
                   </v-flexible-link>
                   <div
+                    v-if="data.episodes.data[0].tease"
                     v-html="data.episodes.data[0].tease"
                     class="latest-episode-tease mb-5 html-formatting type-body truncate t3lines"
                   ></div>

@@ -118,7 +118,6 @@ const onYearFilter = (yearValue) => {
       :row-count="4"
       :rowsPerAd="2"
       :api="apiUrl"
-      path="episodes.data"
       :paginate="true"
     />
     <div class="htlad-radiolab_in-content_2 mb-8" />
