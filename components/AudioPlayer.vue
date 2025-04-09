@@ -49,13 +49,15 @@ const switchEpisode = () => {
 
 // computed property for the episode title
 const episodeTitle = computed(() => {
-  return currentEpisode.value?.title || currentEpisode.value.attributes.title
+  return currentEpisode.value?.title || currentEpisode.value?.attributes?.title
 })
 
 // computed property for the episode slug
 const episodeSlug = computed(() => {
   return (
-    currentEpisode.value?.meta?.slug || currentEpisode.value.attributes.slug
+    currentEpisode.value?.meta?.slug ||
+    currentEpisode.value?.attributes?.slug ||
+    currentEpisode.value?.slug
   )
 })
 
@@ -63,33 +65,40 @@ const episodeSlug = computed(() => {
 const episodeImage = computed(() => {
   return (
     currentEpisode.value?.['showTitle'] ||
-    currentEpisode.value.attributes['showTitle']
+    currentEpisode.value.attributes?.['showTitle'] ||
+    currentEpisode.value?.title
   )
 })
 
 // computed property for the episode description
 const episodeDescription = computed(() => {
-  return currentEpisode.value?.tease || currentEpisode.value.attributes.tease
+  return (
+    currentEpisode.value?.tease ||
+    currentEpisode.value?.attributes?.tease ||
+    currentEpisode.value?.tease
+  )
 })
 
 // computed property for the episode image template
 const episodeImageTemplate = computed(() => {
   return (
     currentEpisode.value?.image?.template ||
-    currentEpisode.value.attributes.imageMain.template
+    currentEpisode.value?.attributes?.imageMain?.template ||
+    currentEpisode.value?.['image-main']?.url
   )
 })
 
 // computed property for the episode audio file
 const episodeAudio = computed(() => {
-  return currentEpisode.value?.audio || currentEpisode.value.attributes.audio
+  return currentEpisode.value?.audio || currentEpisode.value?.attributes?.audio
 })
 
 // computed property for the episode estimated duration
 const episodeEstimatedDuration = computed(() => {
   return (
     currentEpisode.value?.estimatedDuration ||
-    currentEpisode.value.attributes.estimatedDuration
+    currentEpisode.value?.attributes?.estimatedDuration ||
+    currentEpisode.value?.['estimated-duration']
   )
 })
 

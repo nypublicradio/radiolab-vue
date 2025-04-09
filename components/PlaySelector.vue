@@ -58,13 +58,19 @@ const launchService = (service) => {
 // computed property for the currentEpisode slug
 const currentEpisodeSlug = computed(() => {
   return (
-    currentEpisode.value?.meta?.slug || currentEpisode.value?.attributes?.slug
+    currentEpisode.value?.meta?.slug ||
+    currentEpisode.value?.attributes?.slug ||
+    currentEpisode.value?.slug
   )
 })
 
 // computed property for the props.episode slug
 const propEpisodesSlug = computed(() => {
-  return props.episode?.meta?.slug || props.episode?.attributes?.slug
+  return (
+    props.episode?.meta?.slug ||
+    props.episode?.attributes?.slug ||
+    props.episode?.slug
+  )
 })
 
 // This is where the magic happens.
