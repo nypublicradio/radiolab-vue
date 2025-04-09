@@ -47,6 +47,52 @@ const switchEpisode = () => {
   }, delay)
 }
 
+// computed property for the episode title
+const episodeTitle = computed(() => {
+  return currentEpisode.value?.title || currentEpisode.value.attributes.title
+})
+
+// computed property for the episode slug
+const episodeSlug = computed(() => {
+  return (
+    currentEpisode.value?.meta?.slug || currentEpisode.value.attributes.slug
+  )
+})
+
+// computed property for the episode station
+const episodeImage = computed(() => {
+  return (
+    currentEpisode.value?.['showTitle'] ||
+    currentEpisode.value.attributes['showTitle']
+  )
+})
+
+// computed property for the episode description
+const episodeDescription = computed(() => {
+  return currentEpisode.value?.tease || currentEpisode.value.attributes.tease
+})
+
+// computed property for the episode image template
+const episodeImageTemplate = computed(() => {
+  return (
+    currentEpisode.value?.image?.template ||
+    currentEpisode.value.attributes.imageMain.template
+  )
+})
+
+// computed property for the episode audio file
+const episodeAudio = computed(() => {
+  return currentEpisode.value?.audio || currentEpisode.value.attributes.audio
+})
+
+// computed property for the episode estimated duration
+const episodeEstimatedDuration = computed(() => {
+  return (
+    currentEpisode.value?.estimatedDuration ||
+    currentEpisode.value.attributes.estimatedDuration
+  )
+})
+
 watch(currentEpisode, () => {
   switchEpisode()
 })
@@ -63,13 +109,13 @@ watch(togglePlayTrigger, () => {
         ref="playerRef"
         v-if="showPlayer"
         :auto-play="true"
-        :title="currentEpisode.title"
-        :title-link="`/podcast/${currentEpisode.meta.slug}`"
-        :station="currentEpisode['showTitle']"
-        :description="currentEpisode.tease"
-        :image="formatPublisherImageUrl(currentEpisode.image.template)"
-        :file="currentEpisode.audio"
-        :duration-seconds="currentEpisode.estimatedDuration"
+        :title="episodeTitle"
+        :title-link="`/podcast/${episodeSlug}`"
+        :station="episodeTitle"
+        :description="episodeDescription"
+        :image="formatPublisherImageUrl(episodeImageTemplate)"
+        :file="episodeAudio"
+        :duration-seconds="episodeEstimatedDuration"
         :show-download="true"
         :show-skip="true"
         :can-minimize="true"

@@ -257,7 +257,11 @@ const onCardClick = (episode, elm) => {
                         @image-click="onCardClick(episode, 'image')"
                       >
                         <div class="divider"></div>
-                        <play-selector :episode="episode" bucket :kids="kids" />
+                        <play-selector
+                          :episode="episode"
+                          :bucket="bucket"
+                          :kids="kids"
+                        />
                       </v-card>
                     </client-only>
                   </div>
