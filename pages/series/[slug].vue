@@ -12,7 +12,7 @@ const logo = ref('')
 
 const route = useRoute()
 
-const apiUrl = `${config.API_URL}/api/v3/channel/series/${route.params.slug}/`
+const apiUrl = `${config.API_URL}/api/series/${route.params.slug}/`
 
 onBeforeMount(async () => {
   await axios
@@ -71,14 +71,7 @@ onBeforeMount(async () => {
         <skeleton-general-content v-else />
       </div>
     </section>
-    <episodes
-      class="mb-4"
-      :row-count="100"
-      :rowsPerAd="2"
-      :api="apiUrl"
-      path="data.included"
-      bucket
-    />
+    <episodes class="mb-4" :row-count="100" :rowsPerAd="2" :api="apiUrl" />
     <div class="htlad-radiolab_leaderboard_2 mb-8" />
   </div>
 </template>

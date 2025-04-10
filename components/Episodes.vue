@@ -128,11 +128,10 @@ onBeforeMount(async () => {
         : `${props.api}?page=${startPageNumber.value}&pageSize=${cardCountCalc.value}`
     )
     .then((response) => {
-      if (props.bucket) {
-        episodes.value = response.data.data.attributes.bucketItems
-      } else {
-        episodes.value = response.data.episodes.data
-      }
+      episodes.value =
+        response.data?.episodes?.data ||
+        response.data?.data?.attributes?.bucketItems ||
+        response.data?.included
       totalCount.value = response.data?.episodes?.meta?.pagination?.count || 1
       dataLoaded.value = true
     })
@@ -209,7 +208,7 @@ const onCardClick = (episode, elm) => {
                       <v-card
                         :image="
                           formatPublisherImageUrl(
-                            bucket
+                            episode?.attributes
                               ? episode.attributes.imageMain.template
                               : episode.listingImage.template
                           )
@@ -217,33 +216,39 @@ const onCardClick = (episode, elm) => {
                         :width="320"
                         :height="240"
                         :alt="
-                          bucket
+                          episode?.attributes
                             ? episode.attributes.imageMain.altText
                             : episode.listingImage.altText
                         "
                         :title="
-                          bucket ? episode.attributes.title : episode.title
+                          episode?.attributes
+                            ? episode.attributes.title
+                            : episode.title
                         "
                         :titleLink="`/podcast/${
-                          bucket ? episode.attributes.slug : episode.meta.slug
+                          episode?.attributes
+                            ? episode.attributes.slug
+                            : episode.meta.slug
                         }`"
                         :eyebrow="
                           formatDate(
-                            bucket
+                            episode?.attributes
                               ? episode.attributes.publishAt
                               : episode.publicationDate
                           )
                         "
                         :blurb="
-                          bucket ? episode.attributes.tease : episode.tease
+                          episode?.attributes
+                            ? episode.attributes.tease
+                            : episode.tease
                         "
                         :max-width="
-                          bucket
+                          episode?.attributes
                             ? episode.attributes.imageMain.w
                             : episode.listingImage.w
                         "
                         :max-height="
-                          bucket
+                          episode?.attributes
                             ? episode.attributes.imageMain.h
                             : episode.listingImage.h
                         "

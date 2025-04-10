@@ -16,7 +16,6 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/buckets/radiolab-popular-ep
       :row-count="1"
       :startCount="1"
       :api="recentEpisodesApiUrl"
-      path="episodes.data"
     />
     <div class="htlad-radiolab_in-content_1 mb-8" />
     <cms-edit-button

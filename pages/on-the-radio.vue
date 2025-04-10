@@ -32,6 +32,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
       :api="apiUrl"
       path="data.included"
       :paginate="true"
+      :bucket="true"
     />
   </div>
 </template>
