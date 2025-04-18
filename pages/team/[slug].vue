@@ -1,59 +1,68 @@
 <script setup>
+import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import { formatPublisherImageUrl } from '~/utilities/helpers'
 
 const config = useRuntimeConfig()
 const dataLoaded = ref(false)
-const person = ref([])
+const people = ref([])
 const route = useRoute()
 
 onBeforeMount(async () => {
   await axios
-    .get(`${config.API_URL}/api/people/publisher/${route.params.slug}/`)
+    .get(`${config.API_URL}/api/team/publisher/radiolab`)
     .then((response) => {
-      person.value = response.data
+      people.value = response.data.included
       dataLoaded.value = true
     })
-    .catch(() => {
-      throw createError({
-        statusCode: 404,
-        statusMessage: 'Page Not Found',
-        fatal: true,
-      })
-    })
+})
+
+const matchingPerson = computed(() => {
+  if (!people.value || !people.value.length) return null
+  return people.value.find((p) => {
+    // Check if attributes.person.slug matches the route.params.slug
+    return p.attributes?.person?.slug === route.params.slug
+  })
 })
 </script>
 
 <template>
-  <div class="thin-content-width">
-    <div v-if="dataLoaded">
+  <div class="team-member thin-content-width">
+    <div v-if="dataLoaded && matchingPerson">
       <Html lang="en">
         <Head>
-          <Title>{{ person.name }} | Radiolab | WNYC Studios</Title>
+          <Title>
+            {{ matchingPerson.attributes.person.name }} | Radiolab | WNYC
+            Studios
+          </Title>
           <Meta
             name="og:title"
-            :content="`${person.name} | Radiolab | WNYC Studios`"
+            :content="`${matchingPerson.attributes.person.name} | Radiolab | WNYC Studios`"
           />
           <Meta
             name="og:image"
-            :content="person.shows[0].about.people[0].image.url"
+            :content="
+              formatPublisherImageUrl(
+                matchingPerson.attributes.person.image.template
+              )
+            "
           />
           <Meta
             name="og:image:width"
-            :content="`${person.shows[0].about.people[0].image.w}`"
+            :content="`${matchingPerson.attributes.person.image.image.w}`"
           />
           <Meta
             name="og:image:height"
-            :content="`${person.shows[0].about.people[0].image.h}`"
+            :content="`${matchingPerson.attributes.person.image.image.h}`"
           />
           <Meta
             name="twitter:title"
-            :content="`${person.name} | Radiolab | WNYC Studios`"
+            :content="`${matchingPerson.attributes.person.name} | Radiolab | WNYC Studios`"
           />
           <Meta
             name="twitter:image"
-            :content="person.shows[0].about.people[0].image.url"
+            :content="matchingPerson.attributes.person.image.image.url"
           />
         </Head>
       </Html>
@@ -61,8 +70,12 @@ onBeforeMount(async () => {
         <div class="content pb-0">
           <div class="grid">
             <div class="col-12">
-              <h1 class="h2 mt-4 mb-2 font-normal">{{ person.name }}</h1>
-              <h3 v-if="person.jobTitle">{{ person.jobTitle }}</h3>
+              <h1 class="h2 mt-4 mb-2 font-normal">
+                {{ matchingPerson.attributes.person.name }}
+              </h1>
+              <h3 v-if="matchingPerson.attributes.person.jobTitle">
+                {{ matchingPerson.attributes.person.jobTitle }}
+              </h3>
             </div>
           </div>
         </div>
@@ -70,27 +83,19 @@ onBeforeMount(async () => {
       <section>
         <div class="content mb-4 pt-0">
           <div>
-            <client-only>
-              <v-card
-                :image="
-                  formatPublisherImageUrl(
-                    person.shows[0].about.people[0].image.template
-                  )
-                "
-                :width="800"
-                :height="533"
-                :alt="person.name"
-                :max-width="person.shows[0].about.people[0].image.w"
-                :max-height="person.shows[0].about.people[0].image.h"
-                responsive
-                :ratio="[3, 2]"
-                :sizes="[1]"
-                flat-quality
-                bp="max"
-                class="mb-6"
-              />
-            </client-only>
-            <div v-html="person.biography" class="team-bio html-formatting" />
+            <img
+              :src="matchingPerson.attributes.person.image.url"
+              height="533"
+              :alt="matchingPerson.attributes.person.name"
+              class="mb-6"
+            />
+            <div
+              v-html="
+                matchingPerson.attributes.person.bio ||
+                matchingPerson.attributes.person.lede
+              "
+              class="team-bio html-formatting"
+            />
           </div>
         </div>
       </section>
@@ -98,3 +103,10 @@ onBeforeMount(async () => {
     <skeleton-general-content v-else />
   </div>
 </template>
+
+<style lang="scss" scoped>
+.team-member img {
+  max-width: 100%;
+  height: auto;
+}
+</style>

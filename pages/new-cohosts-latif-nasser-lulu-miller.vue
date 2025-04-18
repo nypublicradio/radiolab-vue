@@ -6,6 +6,6 @@ const config = useRuntimeConfig()
 <template>
   <flat-page
     title="New Co-Hosts: Latif Nasser & Lulu Miller"
-    :api="`${config.API_URL}/api/v3/channel/shows/radiolab/new-cohosts-latif-nasser-lulu-miller`"
+    :api="`${config.API_URL}/api/pages/publisher/1393/`"
   />
 </template>

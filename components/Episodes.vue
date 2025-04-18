@@ -132,7 +132,10 @@ onBeforeMount(async () => {
         response.data?.episodes?.data ||
         response.data?.data?.attributes?.bucketItems ||
         response.data?.included
-      totalCount.value = response.data?.episodes?.meta?.pagination?.count || 1
+      totalCount.value =
+        response.data?.episodes?.meta?.pagination?.count ||
+        response.data?.data?.attributes?.totalCount ||
+        1
       dataLoaded.value = true
     })
     .catch(function () {
@@ -156,7 +159,10 @@ async function onPage(event) {
   await axios
     .get(`${props.api}?page=${event.page + 1}&pageSize=${cardCountCalc.value}`)
     .then((response) => {
-      episodes.value = response.data.episodes.data
+      episodes.value =
+        response.data?.episodes?.data ||
+        response.data?.data?.attributes?.bucketItems ||
+        response.data?.included
       dataLoaded.value = true
       // set startPageNumber var for page url param
       startPageNumber.value = event.page + 1

@@ -1,5 +1,6 @@
 <script setup>
-const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
+const config = useRuntimeConfig()
+const apiUrl = `${config.API_URL}/api/radio-shows/radiolab/`
 </script>
 
 <template>
@@ -26,14 +27,7 @@ const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/radio-shows/`
         </div>
       </div>
     </section>
-    <episodes
-      class="mb-4"
-      :row-count="4"
-      :api="apiUrl"
-      path="data.included"
-      :paginate="true"
-      :bucket="true"
-    />
+    <episodes class="mb-4" :row-count="4" :api="apiUrl" />
   </div>
 </template>
 
