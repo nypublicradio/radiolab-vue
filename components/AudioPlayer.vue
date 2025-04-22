@@ -61,15 +61,6 @@ const episodeSlug = computed(() => {
   )
 })
 
-// computed property for the episode station
-const episodeImage = computed(() => {
-  return (
-    currentEpisode.value?.['showTitle'] ||
-    currentEpisode.value.attributes?.['showTitle'] ||
-    currentEpisode.value?.title
-  )
-})
-
 // computed property for the episode description
 const episodeDescription = computed(() => {
   return (

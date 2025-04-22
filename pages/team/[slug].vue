@@ -1,7 +1,6 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
-import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
 import { formatPublisherImageUrl } from '~/utilities/helpers'
 
 const config = useRuntimeConfig()
