@@ -6,7 +6,11 @@ import {
   useTogglePlayTrigger,
   usePlayServicePreference,
 } from '~/composables/states'
-import { playServices, playServicesKids, lsSelectedPlayService } from '~/utilities/constants'
+import {
+  playServices,
+  playServicesKids,
+  lsSelectedPlayService,
+} from '~/utilities/constants'
 const { $analytics } = useNuxtApp()
 const props = defineProps({
   menuClass: {
@@ -18,6 +22,10 @@ const props = defineProps({
     type: Object,
   },
   kids: {
+    type: Boolean,
+    default: false,
+  },
+  bucket: {
     type: Boolean,
     default: false,
   },
@@ -41,9 +49,29 @@ const launchService = (service) => {
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',
     component: `Launch Audio Service: ${service.name}`,
-    event_label: props.episode.title,
+    event_label: props.bucket
+      ? props.episode.attributes.title
+      : props.episode.title,
   })
 }
+
+// computed property for the currentEpisode slug
+const currentEpisodeSlug = computed(() => {
+  return (
+    currentEpisode.value?.meta?.slug ||
+    currentEpisode.value?.attributes?.slug ||
+    currentEpisode.value?.slug
+  )
+})
+
+// computed property for the props.episode slug
+const propEpisodesSlug = computed(() => {
+  return (
+    props.episode?.meta?.slug ||
+    props.episode?.attributes?.slug ||
+    props.episode?.slug
+  )
+})
 
 // This is where the magic happens.
 // if this instances props.episode.slug matches the currentEpisode.value.slug, this method now handles the play toggle and the setting of 2 global vars that control the persistent player and the display of the listen/play/pause button
@@ -51,11 +79,13 @@ const launchEpisode = () => {
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',
     component: 'Launch Audio Player',
-    event_label: props.episode.title,
+    event_label: props.bucket
+      ? props.episode.attributes.title
+      : props.episode.title,
   })
   if (
     currentEpisode.value &&
-    currentEpisode.value.slug === props.episode.slug
+    currentEpisodeSlug.value === propEpisodesSlug.value
   ) {
     // toggle global isEpisodePlaying state
     isEpisodePlaying.value = !isEpisodePlaying.value
@@ -70,7 +100,7 @@ const launchEpisode = () => {
 const checkEpisodeMatchAndPlaying = computed(() => {
   if (currentEpisode.value) {
     if (
-      currentEpisode.value.slug === props.episode.slug &&
+      currentEpisodeSlug.value === propEpisodesSlug.value &&
       isEpisodePlaying.value
     ) {
       return true
@@ -81,7 +111,7 @@ const checkEpisodeMatchAndPlaying = computed(() => {
 
 const checkEpisodeMatch = computed(() => {
   if (currentEpisode.value) {
-    if (currentEpisode.value.slug === props.episode.slug) {
+    if (currentEpisodeSlug.value === propEpisodesSlug.value) {
       return true
     }
   }
@@ -141,10 +171,7 @@ const checkEpisodeMatch = computed(() => {
               :src="'/play-service-icons/' + slotProps.option.icon + '.svg'"
             />
             <div>{{ slotProps.option.name }}</div>
-            <div
-              class="hack-click"
-              @click="launchService(slotProps.option)"
-            ></div>
+            <div class="hack-click" @click="launchService(slotProps.option)" />
           </div>
         </template>
       </Dropdown>

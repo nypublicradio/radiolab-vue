@@ -1,9 +1,6 @@
 <script setup>
-import { useRuntimeConfig } from '#app'
-
 const config = useRuntimeConfig()
-const apiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab-kids/podcasts/`
-// const apiUrl = `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab-kids/podcasts/`
+const apiUrl = `${config.API_URL}/api/show/radiolab-kids`
 </script>
 
 <template>

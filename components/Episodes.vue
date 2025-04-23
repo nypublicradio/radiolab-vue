@@ -1,14 +1,10 @@
 <script setup>
-import { onMounted, onBeforeMount, ref, computed, watch } from 'vue'
-import {
-  formatDate,
-  traverseObjectByString,
-  formatPublisherImageUrl,
-} from '~/utilities/helpers'
+import { formatDate, formatPublisherImageUrl } from '~/utilities/helpers'
 import breakpoint from '@nypublicradio/nypr-design-system-vue3/src/assets/library/breakpoints.module.scss'
 import axios from 'axios'
 import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import VCard from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VCard.vue'
+
 const { $analytics } = useNuxtApp()
 const route = useRoute()
 
@@ -26,10 +22,6 @@ const props = defineProps({
     default: null,
   },
   api: {
-    type: String,
-    default: null,
-  },
-  path: {
     type: String,
     default: null,
   },
@@ -103,7 +95,7 @@ const insertAD = (index) => {
 }
 
 /*
-func to determin how many cards to show
+func to determine how many cards to show
 */
 const cardCountCalc = computed(() => {
   return props.startCount
@@ -132,13 +124,17 @@ onBeforeMount(async () => {
     .get(
       props.bucket
         ? props.api
-        : `${props.api}${startPageNumber.value}?limit=${cardCountCalc.value}`
+        : `${props.api}?page=${startPageNumber.value}&pageSize=${cardCountCalc.value}`
     )
-
     .then((response) => {
-      //console.log('response = ', response)
-      episodes.value = traverseObjectByString(props.path, response)
-      totalCount.value = response.data.data.attributes['total-count']
+      episodes.value =
+        response.data?.episodes?.data ||
+        response.data?.data?.attributes?.bucketItems ||
+        response.data?.included
+      totalCount.value =
+        response.data?.episodes?.meta?.pagination?.count ||
+        response.data?.data?.attributes?.totalCount ||
+        1
       dataLoaded.value = true
     })
     .catch(function () {
@@ -160,9 +156,12 @@ async function onPage(event) {
   //event.pageCount: Total number of pages
   dataLoaded.value = false
   await axios
-    .get(`${props.api}${event.page + 1}?limit=${cardCountCalc.value}`)
+    .get(`${props.api}?page=${event.page + 1}&pageSize=${cardCountCalc.value}`)
     .then((response) => {
-      episodes.value = traverseObjectByString(props.path, response)
+      episodes.value =
+        response.data?.episodes?.data ||
+        response.data?.data?.attributes?.bucketItems ||
+        response.data?.included
       dataLoaded.value = true
       // set startPageNumber var for page url param
       startPageNumber.value = event.page + 1
@@ -214,18 +213,50 @@ const onCardClick = (episode, elm) => {
                       <v-card
                         :image="
                           formatPublisherImageUrl(
-                            episode.attributes['image-main'].template
+                            episode?.attributes
+                              ? episode.attributes.imageMain.template
+                              : episode.listingImage.template
                           )
                         "
                         :width="320"
                         :height="240"
-                        :alt="episode.attributes['image-main']['alt-text']"
-                        :title="episode.attributes.title"
-                        :titleLink="`/podcast/${episode.attributes.slug}`"
-                        :eyebrow="formatDate(episode.attributes['publish-at'])"
-                        :blurb="episode.attributes.tease"
-                        :max-width="episode.attributes['image-main'].w"
-                        :max-height="episode.attributes['image-main'].h"
+                        :alt="
+                          episode?.attributes
+                            ? episode.attributes.imageMain.altText
+                            : episode.listingImage.altText
+                        "
+                        :title="
+                          episode?.attributes
+                            ? episode.attributes.title
+                            : episode.title
+                        "
+                        :titleLink="`/podcast/${
+                          episode?.attributes
+                            ? episode.attributes.slug
+                            : episode.meta.slug
+                        }`"
+                        :eyebrow="
+                          formatDate(
+                            episode?.attributes
+                              ? episode.attributes.publishAt
+                              : episode.publicationDate
+                          )
+                        "
+                        :blurb="
+                          episode?.attributes
+                            ? episode.attributes.tease
+                            : episode.tease
+                        "
+                        :max-width="
+                          episode?.attributes
+                            ? episode.attributes.imageMain.w
+                            : episode.listingImage.w
+                        "
+                        :max-height="
+                          episode?.attributes
+                            ? episode.attributes.imageMain.h
+                            : episode.listingImage.h
+                        "
                         responsive
                         :ratio="[3, 2]"
                         :sizes="[2]"
@@ -236,7 +267,11 @@ const onCardClick = (episode, elm) => {
                         @image-click="onCardClick(episode, 'image')"
                       >
                         <div class="divider"></div>
-                        <play-selector :episode="episode.attributes" :kids="kids" />
+                        <play-selector
+                          :episode="episode"
+                          :bucket="bucket"
+                          :kids="kids"
+                        />
                       </v-card>
                     </client-only>
                   </div>

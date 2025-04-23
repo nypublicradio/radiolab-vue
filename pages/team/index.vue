@@ -12,10 +12,7 @@ const totalCount = ref(null)
 
 onBeforeMount(async () => {
   await axios
-    .get(
-      `${config.API_URL}/api/v3/channel/shows/radiolab/the-team/1?limit=50`
-      // `https://private-anon-26d14f4b2b-nyprpublisher.apiary-proxy.com/api/v3/channel/shows/radiolab/the-team/1?limit=50`
-    )
+    .get(`${config.API_URL}/api/team/publisher/radiolab`)
     .then((response) => {
       people.value = response.data.included
       totalCount.value = response.data.data.attributes['total-count']
@@ -60,8 +57,8 @@ onBeforeMount(async () => {
                     person.attributes.person.image.template
                   )
                 "
-                :width="320"
-                :height="240"
+                :max-width="person.attributes.person.image.w"
+                :max-height="person.attributes.person.image.h"
                 :alt="person.attributes.person.name"
                 :title="person.attributes.person.name"
                 :titleLink="`/team/${person.attributes.person.slug}`"
@@ -69,8 +66,8 @@ onBeforeMount(async () => {
                 :blurb="
                   person.attributes.person.lede || person.attributes.person.bio
                 "
-                :max-width="person.attributes.person.image.w"
-                :max-height="person.attributes.person.image.h"
+                :width="320"
+                :height="240"
                 :ratio="[3, 2]"
                 :sizes="[2]"
                 flat-quality

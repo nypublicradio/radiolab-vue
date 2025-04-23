@@ -1,8 +1,8 @@
 <script setup>
 import { useRuntimeConfig } from '#app'
 const config = useRuntimeConfig()
-const recentEpisodesApiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
-const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular-episodes/`
+const recentEpisodesApiUrl = `${config.API_URL}/api/show/radiolab`
+const popularEpisodesApiUrl = `${config.API_URL}/api/buckets/radiolab-popular-episodes/`
 </script>
 
 <template>
@@ -16,7 +16,6 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
       :row-count="1"
       :startCount="1"
       :api="recentEpisodesApiUrl"
-      path="data.included"
     />
     <div class="htlad-radiolab_in-content_1 mb-8" />
     <cms-edit-button
@@ -53,7 +52,6 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular
       button-link="/popular"
       :row-count="1"
       :api="popularEpisodesApiUrl"
-      path="data.data.attributes.bucket-items"
       bucket
       :bucket-limit="3"
     />

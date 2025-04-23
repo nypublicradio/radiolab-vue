@@ -5,7 +5,7 @@ const config = useRuntimeConfig()
 
 <template>
   <flat-page
-    :api="`${config.API_URL}/api/v3/channel/shows/radiolab/15957`"
+    :api="`${config.API_URL}/api/pages/publisher/1471/`"
     title="About"
   />
 </template>
