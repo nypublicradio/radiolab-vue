@@ -30,5 +30,3 @@ const apiUrl = `${config.API_URL}/api/radio-shows/radiolab/`
     <episodes class="mb-4" :row-count="4" :api="apiUrl" />
   </div>
 </template>
-
-<style lang="scss"></style>

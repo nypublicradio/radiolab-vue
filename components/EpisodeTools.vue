@@ -27,7 +27,7 @@ const dotsItems = ref([
     label: 'Download',
     icon: 'pi pi-download',
     command: () => {
-      window.open(props.episode['audio'], '_blank')
+      window.open(props.episode.audio, '_blank')
       createToast(
         {
           title: 'Download started...',
@@ -60,7 +60,7 @@ const shareItems = ref([
     label: 'Twitter',
     icon: 'pi pi-twitter',
     command: () => {
-      var twitterShare = document.getElementsByClassName('twitterShareRef')
+      const twitterShare = document.getElementsByClassName('twitterShareRef')
       twitterShare[0].click()
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
@@ -73,7 +73,7 @@ const shareItems = ref([
     label: 'Facebook',
     icon: 'pi pi-facebook',
     command: () => {
-      var facebookShare = document.getElementsByClassName('facebookShareRef')
+      const facebookShare = document.getElementsByClassName('facebookShareRef')
       facebookShare[0].click()
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
@@ -86,7 +86,7 @@ const shareItems = ref([
     label: 'Email',
     icon: 'pi pi-envelope',
     command: () => {
-      var emailShare = document.getElementsByClassName('emailShareRef')
+      const emailShare = document.getElementsByClassName('emailShareRef')
       emailShare[0].click()
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
