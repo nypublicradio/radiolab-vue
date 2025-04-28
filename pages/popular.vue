@@ -41,5 +41,3 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/buckets/radiolab-popular-ep
     <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>
 </template>
-
-<style lang="scss"></style>

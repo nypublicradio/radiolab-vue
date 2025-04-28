@@ -27,7 +27,7 @@ const searching = async () => {
     query: searchTerm.value,
     requestOptions: {
       page: searchPage.value,
-      filters: filters,
+      filters,
     },
   }).then(() => {
     searchResults.value = result.value
@@ -40,7 +40,7 @@ const searching = async () => {
 // fired when the user presses enter
 const onSearch = async (term) => {
   searchTerm.value = term
-  searching()
+  await searching()
 }
 // fired every time the search input is updated except with the enter key, this then detects if the field is empty && no year is selected, and to clear the results
 const onUpdate = (event) => {

@@ -72,6 +72,15 @@ const cardsPerRow = ref(3) // based on grid col-4 on (>= lg breakpoint)
 
 const rowsPerAdArr = []
 
+/*
+func to determine how many cards to show
+*/
+const cardCountCalc = computed(() => {
+  return props.startCount
+    ? props.startCount + props.rowCount * cardsPerRow.value
+    : props.rowCount * cardsPerRow.value // (3 cards per )
+})
+
 onMounted(() => {
   let currentCardsPerRow = cardsPerRow.value
   // when less than breakpoint.lg, we are showing 2 cards per row, update currentCardsPerRow var
@@ -94,17 +103,11 @@ const insertAD = (index) => {
   return rowsPerAdArr.includes(index)
 }
 
-/*
-func to determine how many cards to show
-*/
-const cardCountCalc = computed(() => {
-  return props.startCount
-    ? props.startCount + props.rowCount * cardsPerRow.value
-    : props.rowCount * cardsPerRow.value // (3 cards per )
-})
-
 // handle the episodes array based on startCount and buckeltlimit props
 const getEpisodes = computed(() => {
+  if (episodes.value.length === 0) {
+    return []
+  }
   // if using startCount, we need to offset the episodes array
   return props.startCount
     ? episodes.value.slice(props.startCount, cardCountCalc.value)
@@ -137,15 +140,15 @@ onBeforeMount(async () => {
         1
       dataLoaded.value = true
     })
-    .catch(function () {
+    .catch(() => {
       axiosSuccessful.value = false
     })
 })
 
 // a watcher to update the route page query when startPageNumber changes
-watch(startPageNumber, (page, prev) => {
+watch(startPageNumber, (page) => {
   navigateTo({
-    query: { page: page },
+    query: { page },
   })
 })
 
@@ -171,11 +174,12 @@ async function onPage(event) {
         event_label: `Page ${event.page + 1}`,
       })
     })
-    .catch(function () {
+    .catch(() => {
       axiosSuccessful.value = false
     })
 }
 
+// function to handle card clicks and send analytics event
 const onCardClick = (episode, elm) => {
   $analytics.sendEvent('click_tracking', {
     event_category: 'Click Tracking',
