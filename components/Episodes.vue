@@ -105,6 +105,9 @@ const cardCountCalc = computed(() => {
 
 // handle the episodes array based on startCount and buckeltlimit props
 const getEpisodes = computed(() => {
+  if (episodes.value.length === 0) {
+    return []
+  }
   // if using startCount, we need to offset the episodes array
   return props.startCount
     ? episodes.value.slice(props.startCount, cardCountCalc.value)

@@ -26,7 +26,10 @@ const { data, pending } = await useFetch(
       <div class="content px-3 pt-2">
         <div class="grid">
           <div class="col">
-            <div v-if="!pending" class="latest-episode grid grid-nogutter">
+            <div
+              v-if="!pending && data?.episodes?.data?.length > 0"
+              class="latest-episode grid grid-nogutter"
+            >
               <div class="col-12 md:col-7 lg:7 p-0">
                 <client-only>
                   <v-image-with-caption
