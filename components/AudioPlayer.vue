@@ -1,4 +1,5 @@
 <script setup>
+import { ref, watch } from 'vue'
 import VPersistentPlayer from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VPersistentPlayer.vue'
 import {
   useCurrentEpisode,
@@ -47,52 +48,6 @@ const switchEpisode = () => {
   }, delay)
 }
 
-// computed property for the episode title
-const episodeTitle = computed(() => {
-  return currentEpisode.value?.title || currentEpisode.value?.attributes?.title
-})
-
-// computed property for the episode slug
-const episodeSlug = computed(() => {
-  return (
-    currentEpisode.value?.meta?.slug ||
-    currentEpisode.value?.attributes?.slug ||
-    currentEpisode.value?.slug
-  )
-})
-
-// computed property for the episode description
-const episodeDescription = computed(() => {
-  return (
-    currentEpisode.value?.tease ||
-    currentEpisode.value?.attributes?.tease ||
-    currentEpisode.value?.tease
-  )
-})
-
-// computed property for the episode image template
-const episodeImageTemplate = computed(() => {
-  return (
-    currentEpisode.value?.image?.template ||
-    currentEpisode.value?.attributes?.imageMain?.template ||
-    currentEpisode.value?.['image-main']?.url
-  )
-})
-
-// computed property for the episode audio file
-const episodeAudio = computed(() => {
-  return currentEpisode.value?.audio || currentEpisode.value?.attributes?.audio
-})
-
-// computed property for the episode estimated duration
-const episodeEstimatedDuration = computed(() => {
-  return (
-    currentEpisode.value?.estimatedDuration ||
-    currentEpisode.value?.attributes?.estimatedDuration ||
-    currentEpisode.value?.['estimated-duration']
-  )
-})
-
 watch(currentEpisode, () => {
   switchEpisode()
 })
@@ -109,14 +64,14 @@ watch(togglePlayTrigger, () => {
         ref="playerRef"
         v-if="showPlayer"
         :auto-play="true"
-        :title="episodeTitle"
-        :title-link="`/podcast/${episodeSlug}`"
-        :station="episodeTitle"
-        :description="episodeDescription"
-        :image="formatPublisherImageUrl(episodeImageTemplate)"
-        :file="episodeAudio"
-        :duration-seconds="episodeEstimatedDuration"
-        :show-download="true"
+        :title="currentEpisode.title"
+        :title-link="`/podcast/${currentEpisode.slug}`"
+        :station="currentEpisode['show-title']"
+        :description="currentEpisode.tease"
+        :image="formatPublisherImageUrl(currentEpisode['image-main'].template)"
+        :file="currentEpisode.audio"
+        :duration-seconds="currentEpisode['estimated-duration']"
+        :show-download="currentEpisode['audio-may-download'] ? true : false"
         :show-skip="true"
         :can-minimize="true"
         @download="onDownload"

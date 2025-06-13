@@ -1,43 +1,49 @@
 <script setup>
+import { ref } from 'vue'
+import { useRuntimeConfig } from '#app'
 import { useEpisodePageTrackingData } from '~/utilities/metadata.ts'
 const { $analytics } = useNuxtApp()
 const config = useRuntimeConfig()
 const episode = ref([])
+
 const route = useRoute()
+const {
+  data: page,
+  pending,
+  error,
+} = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
 
-const { data, pending } = await useFetch(
-  `${config.API_URL}/api/v2/show/episode/publisher/${route.params.slug}`
-)
+episode.value = page.value.data.attributes
 
-const trackingData = useEpisodePageTrackingData(data.value)
+const trackingData = useEpisodePageTrackingData(episode.value)
 
 // if not a Radiolab show, route to 404
-// const showsToInclude = ['radiolab', 'radiolab-kids']
-// if (showsToInclude.indexOf(data.value.show) === -1) {
-//   nuxtError({
-//     statusCode: 404,
-//     statusMessage: 'Page not found',
-//     message: 'Page not found',
-//   })
-// }
+const showsToInclude = ['radiolab', 'radiolab-kids']
+if (showsToInclude.indexOf(episode.value.show) === -1) {
+  nuxtError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    message: 'Page not found',
+  })
+}
 
 useHead({
-  title: data.value?.title,
+  title: episode.value?.title,
   meta: [
     {
       name: 'theme-color',
       content: '#f4be2e',
     },
     { name: 'og:type', content: 'article' },
-    { name: 'og:title', content: data.value?.title },
-    { name: 'description', content: data.value?.tease },
-    { name: 'og:description', content: data.value?.tease },
-    { name: 'og:image', content: data.value?.['image-main']?.url },
-    { name: 'og:image:width', content: data.value?.['image-main']?.w },
-    { name: 'og:image:height', content: data.value?.['image-main']?.h },
-    { name: 'twitter:title', content: data.value?.title },
+    { name: 'og:title', content: episode.value?.title },
+    { name: 'description', content: episode.value?.tease },
+    { name: 'og:description', content: episode.value?.tease },
+    { name: 'og:image', content: episode.value?.['image-main']?.url },
+    { name: 'og:image:width', content: episode.value?.['image-main']?.w },
+    { name: 'og:image:height', content: episode.value?.['image-main']?.h },
+    { name: 'twitter:title', content: episode.value?.title },
     { name: 'twitter:description', content: episode?.value.tease },
-    { name: 'twitter:image', content: data.value?.['image-main']?.url },
+    { name: 'twitter:image', content: episode.value?.['image-main']?.url },
   ],
   bodyAttrs: {
     class: 'has-head-color',
@@ -56,13 +62,13 @@ onMounted(() => {
           <div class="col-12 xl:col-8">
             <div class="grid">
               <div class="col">
-                <EpisodeHead :pending="pending" :episode="data" />
+                <EpisodeHead :pending="pending" :episode="episode" />
               </div>
             </div>
             <div
               v-if="!pending"
               class="mt-5 html-formatting"
-              v-html="data.body"
+              v-html="episode.body"
             />
             <episode-body-text-skeleton v-else class="mt-6" />
           </div>

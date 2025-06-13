@@ -12,10 +12,14 @@ const dataLoaded = ref(false)
 const episodes = ref([])
 
 onBeforeMount(async () => {
-  await axios.get(`${config.API_URL}/api/v3/story/zoozve/`).then((response) => {
-    episodes.value = [response.data.data]
-    dataLoaded.value = true
-  })
+  await axios
+    .get(
+      `${config.API_URL}/api/v3/story/zoozve/`
+    )
+    .then((response) => {
+      episodes.value = [response.data.data]
+      dataLoaded.value = true
+    })
 })
 
 // track clicks on the cards
@@ -32,7 +36,7 @@ const onCardClick = (episode, elm) => {
   <div>
     <section>
       <div>
-        <div class="grid" v-if="episodes && episodes.length > 0">
+        <div class="grid">
           <div class="col">
             <div v-if="dataLoaded" class="latest-episode grid grid-nogutter">
               <div class="col-12 md:col-7 lg:7 p-0">
@@ -130,6 +134,6 @@ const onCardClick = (episode, elm) => {
 
 .latest-episode-tease {
   line-height: 24px;
-  color: #000000;
+  color:#000000;
 }
 </style>

@@ -1,11 +1,15 @@
 <script setup>
+import { ref } from 'vue'
+import { useRuntimeConfig } from '#app'
 import scssVars from '~/assets/scss/_exportedVariables.module.scss'
 import { formatPublisherImageUrl } from '~/utilities/helpers'
 import VSimpleResponsiveImage from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VSimpleResponsiveImage.vue'
-
 const config = useRuntimeConfig()
+const episode = ref([])
+
 const route = useRoute()
 const router = useRouter()
+
 const intersected = ref(true)
 const scrollTrigger = ref(null)
 const scrollTriggerOffset = ref(
@@ -24,27 +28,31 @@ onMounted(() => {
   observer.observe(scrollTrigger.value)
 })
 
-const { data, pending } = await useFetch(
-  `${config.API_URL}/api/v2/show/episode/publisher/${route.params.slug}`
-)
+const {
+  data: page,
+  pending,
+  error,
+} = await useFetch(`${config.API_URL}/api/v3/story/${route.params.slug}/`)
+
+episode.value = page.value.data.attributes
 
 useHead({
-  title: `${data.value?.title} - Transcript`,
+  title: `${episode.value?.title} - Transcript`,
   meta: [
     {
       name: 'theme-color',
       content: '#f4be2e',
     },
     { name: 'og:type', content: 'article' },
-    { name: 'og:title', content: `${data.value?.title} - Transcript` },
-    { name: 'description', content: data.value?.tease },
-    { name: 'og:description', content: data.value?.tease },
-    { name: 'og:image', content: data.value?.image?.url },
-    { name: 'og:image:width', content: data.value?.image?.w },
-    { name: 'og:image:height', content: data.value?.image?.h },
-    { name: 'twitter:title', content: `${data.value?.title} - Transcript` },
-    { name: 'twitter:description', content: data?.value.tease },
-    { name: 'twitter:image', content: data.value?.image?.url },
+    { name: 'og:title', content: `${episode.value?.title} - Transcript` },
+    { name: 'description', content: episode.value?.tease },
+    { name: 'og:description', content: episode.value?.tease },
+    { name: 'og:image', content: episode.value?.['image-main']?.url },
+    { name: 'og:image:width', content: episode.value?.['image-main']?.w },
+    { name: 'og:image:height', content: episode.value?.['image-main']?.h },
+    { name: 'twitter:title', content: `${episode.value?.title} - Transcript` },
+    { name: 'twitter:description', content: episode?.value.tease },
+    { name: 'twitter:image', content: episode.value?.['image-main']?.url },
   ],
   bodyAttrs: {
     class: 'has-head-color',
@@ -60,7 +68,11 @@ useHead({
           <div class="col-12 xl:col-8">
             <div class="grid">
               <div class="col">
-                <EpisodeHead :pending="pending" :episode="data" isTranscript />
+                <EpisodeHead
+                  :pending="pending"
+                  :episode="episode"
+                  isTranscript
+                />
               </div>
             </div>
             <div v-if="!pending" class="mt-5 relative">
@@ -76,7 +88,7 @@ useHead({
                   @click="
                     () =>
                       router.push({
-                        path: `/podcast/${data.meta.slug}`,
+                        path: `/podcast/${episode.slug}`,
                       })
                   "
                 />
@@ -87,11 +99,13 @@ useHead({
                   >
                     <VSimpleResponsiveImage
                       class="fixed-image"
-                      :src="formatPublisherImageUrl(data.image.template)"
+                      :src="
+                        formatPublisherImageUrl(episode['image-main'].template)
+                      "
                       :width="38"
                       :height="38"
                     />
-                    <div class="font-bold">{{ data.title }}</div>
+                    <div class="font-bold">{{ episode.title }}</div>
                   </div>
                 </Transition>
               </div>
@@ -99,10 +113,10 @@ useHead({
               <div class="transcript-panel flex gap-2 md:gap-4">
                 <div class="right">
                   <div
-                    v-if="data.transcript"
-                    v-html="data.transcript"
+                    v-if="!!episode['transcript']"
+                    v-html="episode['transcript']"
                     class="transcript-body html-formatting"
-                  />
+                  ></div>
                 </div>
               </div>
             </div>

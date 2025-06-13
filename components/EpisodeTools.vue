@@ -1,13 +1,16 @@
 <script setup>
+import { ref } from 'vue'
 import {
   copyToClipBoard,
   shareAPI,
   toastGlobalConfig,
+  convertHTMLtoPlainText,
 } from '~/utilities/helpers'
 import PlaySelector from '~/components/PlaySelector.vue'
 import { createToast } from 'mosha-vue-toastify'
 import { ShareNetwork } from 'vue-social-sharing'
-
+// import { emit } from 'process'
+const { $analytics } = useNuxtApp()
 const props = defineProps({
   episode: {
     type: Object,
@@ -20,6 +23,7 @@ const props = defineProps({
 })
 
 const toastConfig = ref(toastGlobalConfig())
+
 const dotsMenu = ref()
 const shareMenu = ref()
 const dotsItems = ref([
@@ -27,7 +31,7 @@ const dotsItems = ref([
     label: 'Download',
     icon: 'pi pi-download',
     command: () => {
-      window.open(props.episode.audio, '_blank')
+      window.open(props.episode['audio'], '_blank')
       createToast(
         {
           title: 'Download started...',
@@ -45,7 +49,10 @@ const dotsItems = ref([
     label: 'Embed',
     icon: 'pi pi-code',
     command: () => {
-      copyToClipBoard(props.episode.embedCode, 'Embed code copied to clipboard')
+      copyToClipBoard(
+        props.episode['embed-code'],
+        'Embed code copied to clipboard'
+      )
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
         component: 'Episode Tools',
@@ -60,7 +67,7 @@ const shareItems = ref([
     label: 'Twitter',
     icon: 'pi pi-twitter',
     command: () => {
-      const twitterShare = document.getElementsByClassName('twitterShareRef')
+      var twitterShare = document.getElementsByClassName('twitterShareRef')
       twitterShare[0].click()
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
@@ -73,7 +80,7 @@ const shareItems = ref([
     label: 'Facebook',
     icon: 'pi pi-facebook',
     command: () => {
-      const facebookShare = document.getElementsByClassName('facebookShareRef')
+      var facebookShare = document.getElementsByClassName('facebookShareRef')
       facebookShare[0].click()
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
@@ -86,7 +93,7 @@ const shareItems = ref([
     label: 'Email',
     icon: 'pi pi-envelope',
     command: () => {
-      const emailShare = document.getElementsByClassName('emailShareRef')
+      var emailShare = document.getElementsByClassName('emailShareRef')
       emailShare[0].click()
       $analytics.sendEvent('click_tracking', {
         event_category: 'Click Tracking',
@@ -99,9 +106,15 @@ const shareItems = ref([
     label: 'Copy link',
     icon: 'pi pi-link',
     command: () => {
+      console.log(
+        'link =',
+        `${props.episode['url']}${props.isTranscript ? 'transcript' : ''}`
+      )
       shareAPI(
         {
-          url: `${props.episode.url}${props.isTranscript ? 'transcript' : ''}`,
+          url: `${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`,
         },
         'Episode link copied to the clipboard'
       )
@@ -139,7 +152,7 @@ const toggleShare = (event) => {
     <div class="episode-tools-holder flex flex-wrap lg:flex-nowrap">
       <client-only>
         <play-selector
-          :episode="episode"
+          :episode="props.episode"
           menu-class="episode-tools-play-selector"
         />
       </client-only>
@@ -183,37 +196,40 @@ const toggleShare = (event) => {
         <ShareNetwork
           class="facebookShareRef"
           network="facebook"
-          :url="`${episode.url}${isTranscript ? 'transcript' : ''}`"
-          :title="episode.title"
-          :description="episode.tease"
-          :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="episode.tags.join()"
+          :url="`${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`"
+          :title="props.episode['title']"
+          :description="props.episode['tease']"
+          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="props.episode['tags'].join()"
+          >Share on Facebook</ShareNetwork
         >
-          Share on Facebook
-        </ShareNetwork>
         <ShareNetwork
           class="twitterShareRef"
           network="twitter"
-          :url="`${episode.url}${isTranscript ? 'transcript' : ''}`"
-          :title="episode.title"
-          :description="episode.tease"
-          :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="episode.tags.join()"
+          :url="`${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`"
+          :title="props.episode['title']"
+          :description="props.episode['tease']"
+          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="props.episode['tags'].join()"
           twitter-user="Radiolab"
+          >Share on Twitter</ShareNetwork
         >
-          Share on Twitter
-        </ShareNetwork>
         <ShareNetwork
           class="emailShareRef"
           network="email"
-          :url="`${episode.url}${isTranscript ? 'transcript' : ''}`"
-          :title="episode.title"
-          :description="episode.tease"
-          :quote="episode.tease.replace(/<\/?[^>]+(>|$)/g, '')"
-          :hashtags="episode.tags.join()"
+          :url="`${props.episode['url']}${
+            props.isTranscript ? 'transcript' : ''
+          }`"
+          :title="props.episode['title']"
+          :description="convertHTMLtoPlainText(props.episode['tease'])"
+          :quote="props.episode['show-tease'].replace(/<\/?[^>]+(>|$)/g, '')"
+          :hashtags="props.episode['tags'].join()"
+          >Share on Email</ShareNetwork
         >
-          Share on Email
-        </ShareNetwork>
       </div>
     </div>
   </div>

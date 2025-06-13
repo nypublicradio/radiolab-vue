@@ -5,11 +5,12 @@ import axios from 'axios'
 
 const dataLoaded = ref(false)
 const page = ref([])
+const router = useRouter()
 const config = useRuntimeConfig()
 
 onBeforeMount(async () => {
   await axios
-    .get(`${config.API_URL}/api/pages/publisher/1259/`)
+    .get(`${config.API_URL}/api/v3/flatpages/1259/`)
     .then((response) => {
       page.value = response.data.data.attributes
       dataLoaded.value = true
@@ -49,7 +50,7 @@ onBeforeMount(async () => {
           </Html>
           <div
             class="html-formatting"
-            v-html="page.superchunkHeadPlusContent"
+            v-html="page['superchunk-head-plus-content']"
           />
         </template>
         <skeleton-general-content v-else />

@@ -2,7 +2,7 @@
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
-const popularEpisodesApiUrl = `${config.API_URL}/api/buckets/radiolab-popular-episodes/`
+const popularEpisodesApiUrl = `${config.API_URL}/api/v3/buckets/radiolab-popular-episodes/`
 </script>
 
 <template>
@@ -36,8 +36,11 @@ const popularEpisodesApiUrl = `${config.API_URL}/api/buckets/radiolab-popular-ep
       :row-count="100"
       :rowsPerAd="2"
       :api="popularEpisodesApiUrl"
+      path="data.data.attributes.bucket-items"
       bucket
     />
     <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>
 </template>
+
+<style lang="scss"></style>

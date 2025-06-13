@@ -1,6 +1,9 @@
 <script setup>
+import { ref } from 'vue'
+import { useRuntimeConfig } from '#app'
+
 const config = useRuntimeConfig()
-const apiUrl = `${config.API_URL}/api/show/radiolab`
+const apiUrl = `${config.API_URL}/api/v3/channel/shows/radiolab/recent_stories/`
 /*Algolia Search START*/
 const { result, search } = useAlgoliaSearch(config.ALGOLIA_RADIOLAB_INDEX) // pass your index name as param
 const searchTerm = ref('')
@@ -27,7 +30,7 @@ const searching = async () => {
     query: searchTerm.value,
     requestOptions: {
       page: searchPage.value,
-      filters,
+      filters: filters,
     },
   }).then(() => {
     searchResults.value = result.value
@@ -40,7 +43,7 @@ const searching = async () => {
 // fired when the user presses enter
 const onSearch = async (term) => {
   searchTerm.value = term
-  await searching()
+  searching()
 }
 // fired every time the search input is updated except with the enter key, this then detects if the field is empty && no year is selected, and to clear the results
 const onUpdate = (event) => {
@@ -103,6 +106,7 @@ const onYearFilter = (yearValue) => {
         </div>
       </div>
     </section>
+
     <episodes-algolia
       v-if="searchResults"
       class="mb-4"
@@ -118,8 +122,11 @@ const onYearFilter = (yearValue) => {
       :row-count="4"
       :rowsPerAd="2"
       :api="apiUrl"
+      path="data.included"
       :paginate="true"
     />
     <div class="htlad-radiolab_in-content_2 mb-8" />
   </div>
 </template>
+
+<style lang="scss"></style>

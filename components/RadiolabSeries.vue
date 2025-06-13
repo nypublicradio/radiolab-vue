@@ -34,10 +34,7 @@ onBeforeMount(async () => {
                 <Button class="p-button-rounded p-button-sm">All Series</Button>
               </v-flexible-link>
             </div>
-            <div
-              v-if="dataLoaded && episodes && episodes.length > 0"
-              class="grid"
-            >
+            <div v-if="dataLoaded" class="grid">
               <div
                 v-for="(episode, index) in episodes.slice(0, 3)"
                 :key="index"
