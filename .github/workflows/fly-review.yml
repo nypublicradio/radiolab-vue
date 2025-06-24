@@ -29,15 +29,22 @@ jobs:
       - name: Get code
         uses: actions/checkout@v4
 
+      - name: Create .npmrc for GitHub Packages
+        run: |
+          echo "@nypublicradio:registry=https://npm.pkg.github.com" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+
       - name: Deploy PR app to Fly.io
         id: deploy
         uses: superfly/fly-pr-review-apps@1.5.0
         with:
+          secrets: |
+            ALGOLIA_ADMIN_API_KEY=${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+            VALID_TOKEN=${{ secrets.VALID_TOKEN }}
           build_args: |
             ENV=${{ env.ENV }}
             ALGOLIA_APP_ID=${{ secrets.ALGOLIA_APP_ID }}
             ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }}
-            ALGOLIA_ADMIN_API_KEY=${{ secrets.ALGOLIA_ADMIN_API_KEY }}
             ALGOLIA_RADIOLAB_INDEX=${{ env.ALGOLIA_RADIOLAB_INDEX }}
             API_URL=${{ env.API_URL }}
             HTL_IS_TESTING=${{ env.HTL_IS_TESTING }}
@@ -47,7 +54,6 @@ jobs:
             GTM_ID=${{ secrets.GTM_ID }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             ADMIN_CMS_ROOT=${{ env.ADMIN_CMS_ROOT }}
-            VALID_TOKEN=${{ secrets.VALID_TOKEN }}
             SIMPLECAST_URL=${{ env.SIMPLECAST_URL }}
 
       - name: Clean up GitHub environment
