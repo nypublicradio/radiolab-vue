@@ -6,7 +6,7 @@ primary_region = "iad"
 [build]
 
 [env]
-  PORT = "80"
+  PORT = "8080"
   TZ = "America/New_York"
 
 [http_service]
