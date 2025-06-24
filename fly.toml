@@ -1,0 +1,37 @@
+# fly.toml app configuration file generated for radiolab-vue
+
+app = "radiolab-vue"
+primary_region = "iad"
+
+[build]
+
+[env]
+  PORT = "80"
+  TZ = "America/New_York"
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[http_service.checks]]
+  interval = "10s"
+  grace_period = "5s"
+  method = "GET"
+  path = "/"
+  protocol = "http"
+  timeout = "2s"
+  tls_skip_verify = false
+
+[http_service.concurrency]
+  type = "connections"
+  hard_limit = 25
+  soft_limit = 20
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
