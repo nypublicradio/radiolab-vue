@@ -56,10 +56,25 @@ jobs:
             ADMIN_CMS_ROOT=${{ env.ADMIN_CMS_ROOT }}
             SIMPLECAST_URL=${{ env.SIMPLECAST_URL }}
 
+      - name: Send Slack notification
+        if: ${{ github.event.action != 'closed' }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_CHANNEL: '#pull-requests'
+          SLACK_COLOR: 'good'
+          SLACK_ICON_EMOJI: ':rocket:'
+          SLACK_TITLE: 'Review App Deployed'
+          SLACK_MESSAGE: |
+            **Pull Request:** <${{ github.event.pull_request.html_url }}|#${{ github.event.number }}: ${{ github.event.pull_request.title }}>
+            **Review App URL:** <${{ steps.deploy.outputs.url }}|${{ steps.deploy.outputs.url }}>
+            **Branch:** ${{ github.head_ref }}
+            **Author:** ${{ github.event.pull_request.user.login }}
+
       - name: Clean up GitHub environment
         uses: strumwolf/delete-deployment-environment@v2
         if: ${{ github.event.action == 'closed' }}
         with:
           # ⚠️ The provided token needs permission for admin write:org
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DELETE_ENV_PAT }}
           environment: pr-${{ github.event.number }}
