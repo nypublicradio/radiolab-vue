@@ -72,9 +72,15 @@ jobs:
             **Author:** ${{ github.event.pull_request.user.login }}
 
       - name: Clean up GitHub environment
-        uses: strumwolf/delete-deployment-environment@v2
         if: ${{ github.event.action == 'closed' }}
-        with:
-          # ⚠️ The provided token needs permission for admin write:org
-          token: ${{ secrets.DELETE_ENV_PAT }}
-          environment: pr-${{ github.event.number }}
+        run: |
+          # First, deactivate all deployments in the environment
+          gh api -X GET /repos/${{ github.repository }}/deployments \
+            --jq '.[] | select(.environment == "pr-${{ github.event.number }}") | .id' \
+            | xargs -I {} gh api -X POST /repos/${{ github.repository }}/deployments/{}/statuses \
+            --field state=inactive --field description="PR closed" || true
+          
+          # Then delete the environment
+          gh api -X DELETE /repos/${{ github.repository }}/environments/pr-${{ github.event.number }} || true
+        env:
+          GH_TOKEN: ${{ secrets.DELETE_ENV_PAT }}
