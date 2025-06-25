@@ -61,5 +61,5 @@ jobs:
         if: ${{ github.event.action == 'closed' }}
         with:
           # ⚠️ The provided token needs permission for admin write:org
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DELETE_ENV_PAT }}
           environment: pr-${{ github.event.number }}
