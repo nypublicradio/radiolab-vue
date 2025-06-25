@@ -93,7 +93,7 @@ jobs:
               }]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ env.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Clean up GitHub environment
         uses: strumwolf/delete-deployment-environment@v2
