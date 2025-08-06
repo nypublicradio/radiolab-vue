@@ -36,9 +36,11 @@ RUN apt-get update \
     curl \
     netcat-openbsd \
     nginx-extras \
-    python3-full \
-    unzip 
-RUN pip3 install supervisor
+    python3 \
+    python3-pip \
+    python3-setuptools \
+    supervisor \
+    unzip
 
 COPY scripts/entrypoint.sh ./scripts/entrypoint.sh
 RUN mkdir -p /etc/nginx
