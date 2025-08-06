@@ -36,9 +36,7 @@ RUN apt-get update \
     curl \
     netcat-openbsd \
     nginx-extras \
-    python3 \
-    python3-pip \
-    python3-setuptools \
+    python3-full \
     unzip 
 RUN pip3 install supervisor
 
