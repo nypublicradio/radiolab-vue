@@ -98,7 +98,7 @@ export const options = [
             },
         ]
     },
-    {
+    /*{
         label: 'Curated Playlists',
         showLabelInMobile: true,
         tiers: [
@@ -121,7 +121,7 @@ export const options = [
                 image: null,
             },
         ]
-    },
+    },*/
     {
         label: 'Ad-Free Special Series',
         showLabelInMobile: true,
@@ -170,7 +170,7 @@ export const options = [
             },
         ]
     },
-    {
+    /*{
         label: 'Annual Trivia Night Invitation',
         showLabelInMobile: true,
         tiers: [
@@ -193,7 +193,7 @@ export const options = [
                 image: null,
             },
         ]
-    },
+    },*/
     {
         label: 'Quarterly Email from Lulu & Latif',
         showLabelInMobile: true,
