@@ -39,7 +39,6 @@ RUN apt-get update \
     python3-setuptools \
     supervisor \
     unzip
-RUN pip3 install supervisor
 
 COPY scripts/entrypoint.sh ./scripts/entrypoint.sh
 RUN mkdir -p /etc/nginx
