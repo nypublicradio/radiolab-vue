@@ -1,4 +1,4 @@
-FROM node:16.14.2 as build
+FROM node:18-slim AS build
 
 ARG ENV
 ARG ALGOLIA_APP_ID
@@ -28,21 +28,22 @@ RUN npm install sass
 COPY . .
 RUN npm run build
 
-FROM node:16.14.2-slim as app
+FROM node:18-slim AS app
 WORKDIR /app
 
 RUN apt-get update \
     && apt-get install -y \
     curl \
-    netcat \
+    netcat-openbsd \
     nginx-extras \
-    python \
-    python-pip \
-    python-setuptools \
+    python3 \
+    python3-pip \
+    python3-setuptools \
     unzip 
-RUN pip install supervisor
+RUN pip3 install supervisor
 
 COPY scripts/entrypoint.sh ./scripts/entrypoint.sh
+RUN mkdir -p /etc/nginx
 COPY nginx/*.conf /etc/nginx/
 
 COPY --from=build /code/.output/ ./.output/
