@@ -233,7 +233,7 @@ export default [ {
     {
         label: 'FAQs',
         visible: false,
-        to: 'https://nypublicradio.force.com/wnyc/s/programming-help-and-feedback',
+        to: 'https://newyorkpublicradio.my.site.com/wnyc/s/',
         command: () => {
             const {
                 $analytics
