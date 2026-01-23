@@ -71,7 +71,7 @@ export default {
                   },
                   {
                     "href": "https://www.wnycstudios.org/podcasts/radiolab-kids",
-                    "title": "Radiolab for Kids"
+                    "title": "Terrestrials"
                   },
                   {
                     "href": null,
@@ -523,7 +523,7 @@ export default {
                   },
                   {
                     "href": "https://www.wnycstudios.org/podcasts/radiolab-kids",
-                    "title": "Radiolab for Kids"
+                    "title": "Terrestrials"
                   },
                   {
                     "href": null,

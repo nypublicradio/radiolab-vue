@@ -51,7 +51,7 @@ export const options = [
         ]
     },
     {
-        label: 'Listen Ad-Free',
+        label: 'Listen Sponsor-Free',
         showLabelInMobile: true,
         tiers: [
             {
@@ -123,7 +123,7 @@ export const options = [
         ]
     },*/
     {
-        label: 'Ad-Free Special Series',
+        label: 'Sponsor-Free Special Series',
         showLabelInMobile: true,
         tiers: [
             {
