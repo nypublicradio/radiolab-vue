@@ -112,8 +112,8 @@ export default [ {
         ]
     },
     {
-        label: 'Radiolab for Kids',
-        to: '/radiolab-kids',
+        label: 'Terrestrials',
+        url: 'https://www.wnycstudios.org/podcasts/radiolab-kids',
         class: 'alone',
         command: () => {
             const {
@@ -122,7 +122,7 @@ export default [ {
             $analytics.sendEvent( 'click_tracking', {
                 event_category: 'Click Tracking',
                 component: 'Navigation',
-                event_label: 'Podcasts: Radiolab for Kids',
+                event_label: 'Podcasts: Terrestrials',
             } )
         }
     },

@@ -133,12 +133,12 @@ const { $analytics } = useNuxtApp()
             </div>
 
             <div class="question">
-              <p>How do I access my ad-free version of Radiolab?</p>
+              <p>How do I access my sponsor-free version of Radiolab?</p>
               <p>
                 You can find
                 <v-flexible-link to="https://members.radiolab.org/help"
                   >detailed instructions</v-flexible-link
-                >&nbsp;on adding our ad-free version of Radiolab to your podcast
+                >&nbsp;on adding our sponsor-free version of Radiolab to your podcast
                 player
                 <v-flexible-link to="https://members.radiolab.org/help"
                   >here</v-flexible-link

@@ -10,10 +10,10 @@ const apiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab-kids/podcasts/
   <div>
     <Html lang="en">
       <Head>
-        <Title>Radiolab for Kids | Radiolab | WNYC Studios</Title>
+        <Title>Terrestrials | Radiolab | WNYC Studios</Title>
         <Meta
           name="og:title"
-          content="Radiolab for Kids | Radiolab | WNYC Studios"
+          content="Terrestrials | Radiolab | WNYC Studios"
         />
         <Meta
           name="og:description"
@@ -21,7 +21,7 @@ const apiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab-kids/podcasts/
         />
         <Meta
           name="twitter:title"
-          content="Radiolab for Kids | Radiolab | WNYC Studios"
+          content="Terrestrials | Radiolab | WNYC Studios"
         />
       </Head>
     </Html>
@@ -29,7 +29,7 @@ const apiUrl = `${ config.API_URL }/api/v3/channel/shows/radiolab-kids/podcasts/
       <div class="content xl:px-8 pb-0">
         <div class="grid">
           <div class="col">
-            <h1 class="mb-4 h2 font-normal">Radiolab for Kids</h1>
+            <h1 class="mb-4 h2 font-normal">Terrestrials</h1>
             <p class>
               Welcome, nature lovers, to the home of the Terrestrials podcast and family-friendly Radiolab episodes about nature. Every other week, host Lulu Miller will take you on a nature walk to encounter a plant or animal behaving in ways that will surprise you. Squirrels that can regrow their brains, octopuses that can outsmart their human captors, honeybees that can predict the future. You don't have to be a kid to listen, just someone who likes to see the world anew.<br>
               <a href="https://lnk.to/radiolabforkids!rlkidswebsite" target="_blank" rel="noopener noreferrer">Subscribe now!</a> 

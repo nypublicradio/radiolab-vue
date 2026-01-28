@@ -9,7 +9,7 @@ const { $analytics } = useNuxtApp()
     <h4 class="mb-4">Unlock member-only exclusives and support the show</h4>
     <h5>Exclusive Podcast Extras</h5>
     <h5>Entire Podcast Archive</h5>
-    <h5>Listen Ad-Free</h5>
+    <h5>Listen Sponsor-Free</h5>
     <h5>Behind-the-Scenes Content</h5>
     <h5>Video Extras</h5>
     <h5>Original Music & Playlists</h5>
