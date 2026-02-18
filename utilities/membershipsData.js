@@ -303,8 +303,8 @@ export const options = [
             {
                 tier: 'Butterflies',
                 check: false,
-                text: 'Exclusive “Lab” Patch',
-                image: '/the-lab/patch.jpg',
+                text: 'An exclusive Radiolab decal sticker',
+                image: '/the-lab/radiolab_bumpersticker_block_alt.png',
             },
             {
                 tier: 'Mantis Shrimp',
