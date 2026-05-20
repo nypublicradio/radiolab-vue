@@ -1,5 +1,4 @@
 <script setup>
-import VFlexibleLink from '@nypublicradio/nypr-design-system-vue3/v2/src/components/VFlexibleLink.vue'
 import colors from '~/assets/scss/colors.module.scss'
 
 useHead({
@@ -22,7 +21,6 @@ useHead({
   },*/
 })
 
-const { $analytics } = useNuxtApp()
 
 // Reactive data
 const userName = ref('')
@@ -62,7 +60,7 @@ const displayHometown = computed(() => userHometown.value || '[HOMETOWN]')
 const updateScript = () => {
   // This is handled by computed properties now
 }
-
+// Initialize audio recording and visualization
 const initAudio = async () => {
   if (!userName.value.trim() || !userEmail.value.trim() || !userHometown.value.trim()) {
     alert('Please fill in all required fields (*) before starting.')
@@ -78,6 +76,7 @@ const initAudio = async () => {
     analyser = audioContext.createAnalyser()
     audioContext.createMediaStreamSource(globalStream).connect(analyser)
     
+    // Start the microphone level meter loop
     const updateMeter = () => {
       const data = new Uint8Array(analyser.frequencyBinCount)
       analyser.getByteFrequencyData(data)
@@ -86,11 +85,12 @@ const initAudio = async () => {
       animationFrameId = requestAnimationFrame(updateMeter)
     }
     updateMeter()
-  } catch (e) { 
+  } catch () { 
     alert('Microphone access is required.') 
   }
 }
 
+// Start recording audio and handle data
 const startRecording = () => {
   // Expand script
   scriptWindowExpanded.value = true
@@ -140,6 +140,7 @@ const startRecording = () => {
   statusText.value = 'On Air'
 }
 
+// Stop recording and clean up resources
 const stopRecording = () => {
   mediaRecorder.stop()
   clearInterval(timerInterval)
@@ -169,6 +170,7 @@ const stopRecording = () => {
   expandLabel.value = 'Collapsed'
 }
 
+// Reset the studio to initial state for a new recording
 const resetStudio = () => {
   isPostViewVisible.value = false
   timer.value = '00:00'
@@ -179,6 +181,7 @@ const resetStudio = () => {
   stopBtnClass.value = 'w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center text-slate-400 cursor-not-allowed transition-all'
 }
 
+// Open Dropbox submission link in a new tab
 const openDropbox = () => {
   window.open('https://www.dropbox.com/request/zTfBA4cSYrg9YZJ3yVC5', '_blank')
 }
