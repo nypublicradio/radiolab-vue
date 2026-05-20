@@ -51,6 +51,8 @@ let timerInterval = null
 let audioContext = null
 let analyser = null
 let globalStream = null
+let animationFrameId = null
+let currentObjectUrl = null
 
 // Computed properties
 const displayName = computed(() => userName.value || '[NAME]')
@@ -81,7 +83,7 @@ const initAudio = async () => {
       analyser.getByteFrequencyData(data)
       const avg = data.reduce((a, b) => a + b, 0) / data.length
       micMeterWidth.value = Math.min(100, avg * 3)
-      requestAnimationFrame(updateMeter)
+      animationFrameId = requestAnimationFrame(updateMeter)
     }
     updateMeter()
   } catch (e) { 
@@ -101,7 +103,13 @@ const startRecording = () => {
   
   mediaRecorder.onstop = () => {
     const blob = new Blob(audioChunks, { type: 'audio/wav' })
+    
+    // Revoke previous object URL to prevent memory leaks
+    if (currentObjectUrl) {
+      URL.revokeObjectURL(currentObjectUrl)
+    }
     const url = URL.createObjectURL(blob)
+    currentObjectUrl = url
     
     const name = userName.value.replace(/[^a-z0-9]/gi, '_')
     const hometown = userHometown.value.replace(/[^a-z0-9]/gi, '_')
@@ -135,6 +143,25 @@ const startRecording = () => {
 const stopRecording = () => {
   mediaRecorder.stop()
   clearInterval(timerInterval)
+  
+  // Stop the animation frame loop
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId)
+    animationFrameId = null
+  }
+  
+  // Stop microphone stream tracks
+  if (globalStream) {
+    globalStream.getTracks().forEach(track => track.stop())
+    globalStream = null
+  }
+  
+  // Close the audio context
+  if (audioContext) {
+    audioContext.close()
+    audioContext = null
+  }
+  
   statusText.value = 'Captured'
   statusDotClass.value = 'w-3 h-3 rounded-full bg-green-500'
   // Collapse script slightly to make room for post-view
@@ -155,6 +182,22 @@ const resetStudio = () => {
 const openDropbox = () => {
   window.open('https://www.dropbox.com/request/zTfBA4cSYrg9YZJ3yVC5', '_blank')
 }
+
+onBeforeUnmount(() => {
+  clearInterval(timerInterval)
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId)
+  }
+  if (globalStream) {
+    globalStream.getTracks().forEach(track => track.stop())
+  }
+  if (audioContext) {
+    audioContext.close()
+  }
+  if (currentObjectUrl) {
+    URL.revokeObjectURL(currentObjectUrl)
+  }
+})
 </script>
 
 <template>
@@ -162,7 +205,7 @@ const openDropbox = () => {
   <div class="max-w-2xl w-full space-y-6">
     <div class="text-center space-y-2">
       <h1 class="text-3xl font-bold text-slate-800">Radiolab Credits Studio</h1>
-      <p class="text-slate-600 italic">Record your own version of the Radiolab staff credits. <br><br>By submitting content through this app, you are agreeing to our terms and conditions available at nypublicradio.org/terms. You're giving New York Public Radio permission to use your submission.<br><br></p>
+      <p class="text-slate-600 italic">Record your own version of the Radiolab staff credits. <br><br>By submitting content through this app, you are agreeing to our terms and conditions available at <a href="https://wnyc.org/terms/" target="_blank" rel="noopener noreferrer">https://wnyc.org/terms/</a>. You're giving New York Public Radio permission to use your submission.<br><br></p>
       <ol class="text-left text-slate-600 space-y-1 instructions">
         <li>Fill in your name, hometown, email address, and (optionally) Instagram handle. The information you add will become part of the script in the Staff Credits box.</li>
         <li>Click "Unlock Studio" to grant microphone access and reveal the recording interface.</li>
@@ -250,7 +293,7 @@ const openDropbox = () => {
           :disabled="isStartBtnDisabled"
           class="group relative w-16 h-16 bg-red-500 rounded-full border-4 border-white shadow-xl flex items-center justify-center text-white hover:bg-red-600 transition-all"
           :class="{ 'opacity-30 grayscale': isStartBtnDisabled }"
-          id="start-btn"
+          id="start-btn" aria-label="Start Recording"
         >
           <span class="sr-only"><!--Start recording--></span>
           <div class="w-6 h-6 bg-white rounded-full group-active:scale-90"></div>
@@ -259,7 +302,7 @@ const openDropbox = () => {
           @click="stopRecording"
           :disabled="isStopBtnDisabled" 
           :class="stopBtnClass"
-          id="stop-btn"
+          id="stop-btn" aria-label="Stop Recording"
         >
           <span class="sr-only"><!--Stop recording--></span>
           <div class="w-6 h-6 bg-current rounded-sm"></div>
