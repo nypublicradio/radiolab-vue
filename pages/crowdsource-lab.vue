@@ -85,7 +85,7 @@ const initAudio = async () => {
       animationFrameId = requestAnimationFrame(updateMeter)
     }
     updateMeter()
-  } catch () { 
+  } catch (e) { 
     alert('Microphone access is required.') 
   }
 }
