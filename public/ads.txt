@@ -1,4 +1,4 @@
-ownerdomain=radiolab.com
+ownerdomain=radiolab.org
 managerdomain=aditude.io
 #contact=adops@aditude.io
 
