@@ -39,7 +39,7 @@ const isStopBtnDisabled = ref(true)
 const stopBtnClass = ref('w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center text-slate-400 cursor-not-allowed transition-all')
 const scriptWindowExpanded = ref(false)
 const audioPlaybackSrc = ref('')
-const filenameDisplay = ref('')
+const filenameDisplay = ref('file-save-msg')
 const micMeterWidth = ref(0)
 
 // Audio recording variables
@@ -206,16 +206,17 @@ onBeforeUnmount(() => {
 <template>
   <div class="crowdsource-form">
   <div class="max-w-2xl w-full space-y-6">
-    <div class="text-center space-y-2">
+    <div class="text-center space-y-2 instructions-padding">
       <h1 class="text-3xl font-bold text-slate-800">Radiolab Credits Studio</h1>
       <p class="text-slate-600 italic">Record your own version of the Radiolab staff credits. <br><br>By submitting content through this app, you are agreeing to our terms and conditions available at <a href="https://wnyc.org/terms/" target="_blank" rel="noopener noreferrer">https://wnyc.org/terms/</a>. You're giving New York Public Radio permission to use your submission.<br><br></p>
       <ol class="text-left text-slate-600 space-y-1 instructions">
         <li>Fill in your name, hometown, email address, and (optionally) Instagram handle. The information you add will become part of the script in the Staff Credits box.</li>
         <li>Click "Unlock Studio" to grant microphone access and reveal the recording interface.</li>
+        <li>You will be prompted to allow microphone permissions from your browser to record audio.</li>
         <li>Press the red button to start recording, and read the staff credits script aloud.</li>
         <li>Once you're done, click the gray button to stop. Your recording will download to your device (i.e., phone or computer).</li>
         <li>The Review & Submit box will appear enabling you to listen to your recording, re-record it, and submit it to Radiolab's Dropbox.  You can review your take and submit it to our Dropbox.</li>
-        <li>If you like the recording, click the Submit to Radiolab Dropbox button and a new window/tab will appear.</li>
+        <li>If you like the recording, click the [NEXT] button and a new window/tab will appear.</li>
         <li>Click Add files or drag and drop your recording into the Dropbox window to save.</li>
         </ol>
     </div>
@@ -346,12 +347,12 @@ onBeforeUnmount(() => {
       </div>
       <audio :src="audioPlaybackSrc" controls class="w-full"></audio>
       <div class="bg-blue-600 p-6 rounded-lg text-white">
-        <p class="text-sm mb-4 italic">Recording saved as: <br><span class="font-mono bg-blue-700 px-1 rounded not-italic break-all">{{ filenameDisplay }}</span></p>
+        <p class="text-sm mb-4 italic file-save-msg">Recording saved as: <br><span class="font-mono bg-blue-700 px-1 rounded not-italic break-all">{{ filenameDisplay }}</span></p>
         <button 
           @click="openDropbox"
           class="w-full bg-white text-blue-600 py-3 rounded font-bold shadow-md hover:bg-blue-50 transition"
         >
-          Submit to Radiolab Dropbox
+          Continue to File Upload
         </button>
       </div>
     </div>
@@ -1075,5 +1076,16 @@ video {
     margin-bottom: 1.5rem;
     text-align: center;
     list-style-type: decimal;
+}
+.file-save-msg  {
+    font-size: 0.875rem;
+    color: #ffffff;
+    margin-top: 1rem;
+    text-align: center;
+}
+.instructions-padding {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 2rem;
 }
 </style>
