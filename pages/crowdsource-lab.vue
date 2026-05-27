@@ -216,7 +216,7 @@ onBeforeUnmount(() => {
         <li>Press the red button to start recording, and read the staff credits script aloud.</li>
         <li>Once you're done, click the gray button to stop. Your recording will download to your device (i.e., phone or computer).</li>
         <li>The Review & Submit box will appear enabling you to listen to your recording, re-record it, and submit it to Radiolab's Dropbox.  You can review your take and submit it to our Dropbox.</li>
-        <li>If you like the recording, click the [NEXT] button and a new window/tab will appear.</li>
+        <li>If you like the recording, click the Continue to File Upload button and a new window/tab will appear.</li>
         <li>Click Add files or drag and drop your recording into the Dropbox window to save.</li>
         </ol>
     </div>
