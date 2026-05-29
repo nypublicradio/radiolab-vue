@@ -208,9 +208,10 @@ onBeforeUnmount(() => {
   <div class="max-w-2xl w-full space-y-6">
     <div class="text-center space-y-2 instructions-padding">
       <h1 class="text-3xl font-bold text-slate-800">Radiolab Credits Studio</h1>
-      <p class="text-slate-600 italic">Record your own version of the Radiolab staff credits. <br><br>By submitting content through this app, you are agreeing to our terms and conditions available at <a href="https://wnyc.org/terms/" target="_blank" rel="noopener noreferrer">https://wnyc.org/terms/</a>. You're giving New York Public Radio permission to use your submission.<br><br></p>
+      <p class="text-slate-600 italic">Record your own version of the Radiolab staff credits. <br><br>By submitting content through this app, you are agreeing to our terms and conditions available at <a href="https://wnyc.org/terms/" target="_blank" rel="noopener noreferrer" class="html-formatting" style="color: #0454d6;">https://wnyc.org/terms/</a>. You're giving New York Public Radio permission to use your submission.<br><br></p>
       <ol class="text-left text-slate-600 space-y-1 instructions">
         <li>Fill in your name, hometown, email address, and (optionally) Instagram handle. The information you add will become part of the script in the Staff Credits box.</li>
+        <li>Please click on the Rehearse Script link to review the script below and practice aloud once or twice, clicking on the names you're unsure of how to pronounce to hear an example of how they sound. </li>
         <li>Click "Unlock Studio" to grant microphone access and reveal the recording interface.</li>
         <li>You will be prompted to allow microphone permissions from your browser to record audio.</li>
         <li>Press the red button to start recording, and read the staff credits script aloud.</li>
@@ -323,21 +324,49 @@ onBeforeUnmount(() => {
           3. Staff Credits Script
         </span>
         <span class="text-xs uppercase opacity-50 font-normal italic">{{ expandLabel }}</span>
+        <span class="text-xs uppercase opacity-50 font-normal italic"><a href="#open-rehearse" class="btn">Rehearse Script</a></span>
       </div>
+      <!-- Staff Credits Script Begins Here-->
+        <!-- Rehearsal Modal Begins Here-->
+       <div id="open-rehearse" class="rehearsal-window">
+        <div>
+          <!-- Close Link -->
+          <a href="#" title="Close" class="modal-close">Close</a>
+          <h1>Rehearse Script</h1>
+          <div 
+        id="script-window" 
+        class="p-8 text-slate-800 text-2xl leading-relaxed space-y-8"
+        :class="{ 'expanded': scriptWindowExpanded }"
+      >
+            <p>Hi, I'm <strong class="text-blue-600">{{ displayName }}</strong>, from <strong class="text-blue-600">{{ displayHometown }}</strong>, and here are the staff credits.</p>
+            <p>Radiolab is hosted by <a href="https://drive.google.com/file/d/1nGKNPMIr_eeWhHsOx3kMhoJ9pPMOLaET/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Lulu Miller</strong></a> and <a href="https://drive.google.com/file/d/14UnrbeAoyn736GUu-ZUpjz752EgpfVSF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Latif Nasser</strong></a>.</p>
+            <p><a href="https://drive.google.com/file/d/1ELEXcB0YFKpYdWdYajxLq6FjhqbCfGqj/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Soren Wheeler</strong></a> is our Executive Editor. <a href="https://drive.google.com/file/d/1MqMqHpkPJcnxIylmph6-6aAiuWfMyoIi/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Sarah Sandbach</strong></a> is our Executive Director.</p>
+            <p>Our Managing Editor is <a href="https://drive.google.com/file/d/13mVNnCxo-RSyVhnYlVHQEfRyrggUCmFk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Pat Walters</strong></a>.</p> <p><a href="https://drive.google.com/file/d/1f2YunLB4di_mLmR2LKldOR3MDaXSXcEt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Dylan Keefe</strong></a> is our director of sound design.</p>
+            <p>Our staff includes: <a href="https://drive.google.com/file/d/1c3n0l-lxZzAr9-OLpeIq7N3ZoB_smXWl/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jeremy Bloom</a>, <a href="https://drive.google.com/file/d/1wKDP842WdlAC91Dk8KGTVqtiV0aHWAgp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">W. Harry Fortuna</a>, <a href="https://drive.google.com/file/d/1wT-AW6w8O_8sXUfdfDecmdBw0vh0Orf4/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">David Gebel</a>, <a href="https://drive.google.com/file/d/1WPXJSdx_GRvUCPi85PvYIZ9dEp9qJr3r/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Maria Paz Gutiérrez</a>, <a href="https://drive.google.com/file/d/1AmSzeOWKWdPUHOrri3W7k849A0E3PzNN/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sindhu Gnanasambandan</a>, <a href="https://drive.google.com/file/d/10kzwa1sWggAMKbvomHog1YZHyVOQ0Tve/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Matt Kielty</a>, <a href="https://drive.google.com/file/d/1NI2go0cc1eE9KBPBDTWQKhAJOdQ6JWA-/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Mona Madgavkar</a>, <a href="https://drive.google.com/file/d/12uJdunm3Qp_Vlq1SJZbJ8GKNKIt1XorU/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Annie McEwen</a>, <a href="https://drive.google.com/file/d/1V9Y4pTMw7O4WoeHjwj8LkLUoDquJHbNL/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Alex Neason</a>, <a href="https://drive.google.com/file/d/1ukXtrHphA1zKLM22aoEh1n94fpcfAiD0/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sarah Qari</a>, <a href="https://drive.google.com/file/d/1EkSUgRlhPKhCpyBkUZ5vXpYrioCCXPCp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natalia Ramirez</a>, <a href="https://drive.google.com/file/d/1xWUHLClQOxVzMZNeUFKHqOlr3PScXFUH/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Rebecca Rand</a>, <a href="https://drive.google.com/file/d/1DZsPZ2hN2sisgAFVd7VvZkQoEu3PqOE1/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Anisa Vietze</a>, <a href="https://drive.google.com/file/d/1LGogYF1zfmQPkphXrjSSPBuliAjCLLpk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Arianne Wack</a>, <a href="https://drive.google.com/file/d/18Jry1GA0_hL_5FJ-fHKYnOEl5cfSQhNk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Molly Webster</a>, and <a href="https://drive.google.com/file/d/1y9PSdLcklaUhs4WEiGKGosw-ujhgbK7n/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jessica Yung</a>.</p>
+            <p>With help from <a href="https://drive.google.com/file/d/1tpdj42C-u2gnRq-F1Tu68DWWXk6kHGoS/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Gabby Santas</a>.</p>
+            <p>Our fact-checkers are <a href="https://drive.google.com/file/d/1MhkFY07b91lfpIFa6rCYpKo4UPCBMBDf/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Diane Kelly</a>, <a href="https://drive.google.com/file/d/1YnqX_6c8dxpkSzuunBbErypFd2xDh_o5/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Emily Krieger</a>, <a href="https://drive.google.com/file/d/1fFWdeQqtvHIfc3hOD905J1zFSV4Xy5-e/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natlie Middleton</a>, <a href="https://drive.google.com/file/d/1YGqTX6pvDbda--0MNjLJJkpGgIIhsavF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Angely Mercado</a>, and <a href="https://drive.google.com/file/d/1WEdieHPny0WcFVVPrLCDD7nNAFZl2VqE/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sophie Samiee</a>.</p>
+            <p>Leadership support for Radiolab's science programming is provided by the Simons Foundation and the John Templeton Foundation. Foundational support for Radiolab was provided by the Alfred P. Sloan Foundation.</p>
+            <div class="h-12"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Rehearsal Modal Ends Here-->
       <div 
         id="script-window" 
         class="p-8 text-slate-800 text-2xl leading-relaxed space-y-8"
         :class="{ 'expanded': scriptWindowExpanded }"
       >
         <p>Hi, I'm <strong class="text-blue-600">{{ displayName }}</strong>, from <strong class="text-blue-600">{{ displayHometown }}</strong>, and here are the staff credits.</p>
-        <p>Radiolab is hosted by <strong>Lulu Miller</strong> and <strong>Latif Nasser</strong>.</p>
-        <p><strong>Soren Wheeler</strong> is our Executive Editor. <strong>Sarah Sandbach</strong> is our Executive Director.</p>
-        <p>Our Managing Editor is <strong>Pat Walters</strong>. <strong>Dylan Keefe</strong> is our director of sound design.</p>
-        <p>Our staff includes: Jeremy Bloom, W. Harry Fortuna, David Gebel, Maria Paz Gutiérrez, Sindhu Gnanasambandan, Matt Kielty, Mona Madgavkar, Annie McEwen, Alex Neason, Sarah Qari, Rebecca Rand, Anisa Vietze, Arianne Wack, Molly Webster, and Jessica Yung.</p>
-        <p>Our fact-checkers are Diane Kelly, Emily Krieger, Natlee Middleton, Angely Mercado, and Sophie Samiee.</p>
+        <p>Radiolab is hosted by <a href="https://drive.google.com/file/d/1nGKNPMIr_eeWhHsOx3kMhoJ9pPMOLaET/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Lulu Miller</strong></a> and <a href="https://drive.google.com/file/d/14UnrbeAoyn736GUu-ZUpjz752EgpfVSF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Latif Nasser</strong></a>.</p>
+        <p><a href="https://drive.google.com/file/d/1ELEXcB0YFKpYdWdYajxLq6FjhqbCfGqj/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Soren Wheeler</strong></a> is our Executive Editor. <a href="https://drive.google.com/file/d/1MqMqHpkPJcnxIylmph6-6aAiuWfMyoIi/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Sarah Sandbach</strong></a> is our Executive Director.</p>
+        <p>Our Managing Editor is <a href="https://drive.google.com/file/d/13mVNnCxo-RSyVhnYlVHQEfRyrggUCmFk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Pat Walters</strong></a>.</p> <p><a href="https://drive.google.com/file/d/1f2YunLB4di_mLmR2LKldOR3MDaXSXcEt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Dylan Keefe</strong></a> is our director of sound design.</p>
+        <p>Our staff includes: <a href="https://drive.google.com/file/d/1c3n0l-lxZzAr9-OLpeIq7N3ZoB_smXWl/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jeremy Bloom</a>, <a href="https://drive.google.com/file/d/1wKDP842WdlAC91Dk8KGTVqtiV0aHWAgp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">W. Harry Fortuna</a>, <a href="https://drive.google.com/file/d/1wT-AW6w8O_8sXUfdfDecmdBw0vh0Orf4/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">David Gebel</a>, <a href="https://drive.google.com/file/d/1WPXJSdx_GRvUCPi85PvYIZ9dEp9qJr3r/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Maria Paz Gutiérrez</a>, <a href="https://drive.google.com/file/d/1AmSzeOWKWdPUHOrri3W7k849A0E3PzNN/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sindhu Gnanasambandan</a>, <a href="https://drive.google.com/file/d/10kzwa1sWggAMKbvomHog1YZHyVOQ0Tve/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Matt Kielty</a>, <a href="https://drive.google.com/file/d/1NI2go0cc1eE9KBPBDTWQKhAJOdQ6JWA-/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Mona Madgavkar</a>, <a href="https://drive.google.com/file/d/12uJdunm3Qp_Vlq1SJZbJ8GKNKIt1XorU/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Annie McEwen</a>, <a href="https://drive.google.com/file/d/1V9Y4pTMw7O4WoeHjwj8LkLUoDquJHbNL/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Alex Neason</a>, <a href="https://drive.google.com/file/d/1ukXtrHphA1zKLM22aoEh1n94fpcfAiD0/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sarah Qari</a>, <a href="https://drive.google.com/file/d/1EkSUgRlhPKhCpyBkUZ5vXpYrioCCXPCp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natalia Ramirez</a>, <a href="https://drive.google.com/file/d/1xWUHLClQOxVzMZNeUFKHqOlr3PScXFUH/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Rebecca Rand</a>, <a href="https://drive.google.com/file/d/1DZsPZ2hN2sisgAFVd7VvZkQoEu3PqOE1/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Anisa Vietze</a>, <a href="https://drive.google.com/file/d/1LGogYF1zfmQPkphXrjSSPBuliAjCLLpk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Arianne Wack</a>, <a href="https://drive.google.com/file/d/18Jry1GA0_hL_5FJ-fHKYnOEl5cfSQhNk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Molly Webster</a>, and <a href="https://drive.google.com/file/d/1y9PSdLcklaUhs4WEiGKGosw-ujhgbK7n/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jessica Yung</a>.</p>
+        <p>With help from <a href="https://drive.google.com/file/d/1tpdj42C-u2gnRq-F1Tu68DWWXk6kHGoS/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Gabby Santas</a>.</p>
+        <p>Our fact-checkers are <a href="https://drive.google.com/file/d/1MhkFY07b91lfpIFa6rCYpKo4UPCBMBDf/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Diane Kelly</a>, <a href="https://drive.google.com/file/d/1YnqX_6c8dxpkSzuunBbErypFd2xDh_o5/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Emily Krieger</a>, <a href="https://drive.google.com/file/d/1fFWdeQqtvHIfc3hOD905J1zFSV4Xy5-e/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natlie Middleton</a>, <a href="https://drive.google.com/file/d/1YGqTX6pvDbda--0MNjLJJkpGgIIhsavF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Angely Mercado</a>, and <a href="https://drive.google.com/file/d/1WEdieHPny0WcFVVPrLCDD7nNAFZl2VqE/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sophie Samiee</a>.</p>
         <p>Leadership support for Radiolab's science programming is provided by the Simons Foundation and the John Templeton Foundation. Foundational support for Radiolab was provided by the Alfred P. Sloan Foundation.</p>
         <div class="h-12"></div>
       </div>
+      <!-- Staff Credits Script Ends Here-->
     </div>
 
     <div v-show="isPostViewVisible" class="bg-white rounded-xl shadow-lg p-8 border-t-4 border-green-500 space-y-4">
@@ -794,8 +823,8 @@ video {
 }
 .space-y-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse:0;
-  margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom:calc(2rem * var(--tw-space-y-reverse))
+  margin-top:calc(1.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom:calc(1.75rem * var(--tw-space-y-reverse))
 }
 .overflow-hidden {
   overflow:hidden
@@ -1088,4 +1117,47 @@ video {
     padding-right: 5%;
     margin: 2rem;
 }
+.html-formatting a {
+    color: #0454d6;
+}
+a {
+  text-decoration: none; /* Removes default underline */
+}
+a:hover {
+  text-decoration: underline; /* Adds underline on hover */
+}
+
+/* Hidden by default */
+.rehearsal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background overlay */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+/* Show the modal when the URL hash matches its ID */
+.rehearsal-window:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Modal content box styling */
+.rehearsal-window > div {
+  width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 0.5em;
+}
+
 </style>
