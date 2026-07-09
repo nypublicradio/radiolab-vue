@@ -1,5 +1,8 @@
 <script setup>
+import axios from 'axios'
 import colors from '~/assets/scss/colors.module.scss'
+
+const config = useRuntimeConfig()
 
 useHead({
   title: 'Radiolab Credits Studio | Radiolab | WNYC Studios',
@@ -41,6 +44,7 @@ const scriptWindowExpanded = ref(false)
 const audioPlaybackSrc = ref('')
 const filenameDisplay = ref('file-save-msg')
 const micMeterWidth = ref(0)
+const newsletterOptIn = ref(true)
 
 // Audio recording variables
 let mediaRecorder = null
@@ -60,12 +64,32 @@ const displayHometown = computed(() => userHometown.value || '[HOMETOWN]')
 const updateScript = () => {
   // This is handled by computed properties now
 }
+// Subscribe to newsletter via email-proxy API
+const subscribeToNewsletter = () => {
+  if (!newsletterOptIn.value || !userEmail.value.trim()) return
+  axios
+    .post(`${config.API_URL}/email-proxy/subscribe`, {
+      list: '2fe8150dd6',
+      email: userEmail.value,
+      source: 'radiolab_read_credits',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .catch(() => {
+      // Silently fail - don't block the recording flow
+    })
+}
+
 // Initialize audio recording and visualization
 const initAudio = async () => {
   if (!userName.value.trim() || !userEmail.value.trim() || !userHometown.value.trim()) {
     alert('Please fill in all required fields (*) before starting.')
     return
   }
+
+  // Subscribe to newsletter if opted in
+  subscribeToNewsletter()
 
   try {
     globalStream = await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -267,6 +291,16 @@ onBeforeUnmount(() => {
             aria-label="Instagram Handle"
           >
         </div>
+      </div>
+      <div class="mt-4 text-left">
+        <label class="flex items-start gap-2 text-sm text-slate-600">
+          <input
+            v-model="newsletterOptIn"
+            type="checkbox"
+            class="mt-1"
+          >
+          <span>By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our <a href="https://wnyc.org/terms" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Terms</a>.</span>
+        </label>
       </div>
       <button 
         @click="initAudio" 
