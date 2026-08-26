@@ -5,7 +5,7 @@ import colors from '~/assets/scss/colors.module.scss'
 const config = useRuntimeConfig()
 
 useHead({
-  title: 'Radiolab Credits Studio | Radiolab | WNYC Studios',
+  title: 'Terrestrial\'s Submit Questions | Radiolab | WNYC Studios',
   meta: [
     {
       name: 'theme-color',
@@ -25,21 +25,6 @@ useHead({
 })
 
 
-// Accordion state
-const activeAccordions = ref(new Set())
-const toggleAccordion = (index) => {
-  if (activeAccordions.value.has(index)) {
-    activeAccordions.value.delete(index)
-  } else {
-    activeAccordions.value.add(index)
-  }
-  activeAccordions.value = new Set(activeAccordions.value) // trigger reactivity
-}
-const isAccordionActive = (index) => activeAccordions.value.has(index)
-const panelMaxHeight = (index, el) => {
-  return isAccordionActive(index) ? el?.scrollHeight + 'px' : null
-}
-
 // Reactive data
 const userName = ref('')
 const userHometown = ref('')
@@ -57,9 +42,16 @@ const isStopBtnDisabled = ref(true)
 const stopBtnClass = ref('w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center text-slate-400 cursor-not-allowed transition-all')
 const scriptWindowExpanded = ref(false)
 const audioPlaybackSrc = ref('')
+const videoPlaybackSrc = ref('')
 const filenameDisplay = ref('file-save-msg')
 const micMeterWidth = ref(0)
 const newsletterOptIn = ref(true)
+const recordVideo = ref(false)
+const currentRecordingExt = ref('wav')
+const currentMimeType = ref('audio/wav')
+
+// Template ref for live video preview
+const livePreview = ref(null)
 
 // Audio recording variables
 let mediaRecorder = null
@@ -96,8 +88,8 @@ const subscribeToNewsletter = () => {
     })
 }
 
-// Initialize audio recording and visualization
-const initAudio = async () => {
+// Initialize media recording (audio + optional video) and visualization
+const initMedia = async () => {
   if (!userName.value.trim() || !userEmail.value.trim() || !userHometown.value.trim()) {
     alert('Please fill in all required fields (*) before starting.')
     return
@@ -107,9 +99,17 @@ const initAudio = async () => {
   subscribeToNewsletter()
 
   try {
-    globalStream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    globalStream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: recordVideo.value ? { facingMode: 'user' } : false
+    })
     isRecordingViewActive.value = true
     isSetupViewHidden.value = true
+
+    // Show live video preview if recording video
+    if (recordVideo.value && livePreview.value) {
+      livePreview.value.srcObject = globalStream
+    }
     
     audioContext = new (window.AudioContext || window.webkitAudioContext)()
     analyser = audioContext.createAnalyser()
@@ -125,23 +125,65 @@ const initAudio = async () => {
     }
     updateMeter()
   } catch (e) { 
-    alert('Microphone access is required.') 
+    alert('Hardware access is required. Please check your camera and microphone permissions.') 
   }
 }
 
-// Start recording audio and handle data
+// Start recording audio/video and handle data
 const startRecording = () => {
   // Expand script
   scriptWindowExpanded.value = true
   expandLabel.value = 'Expanded Mode'
 
   audioChunks = []
-  mediaRecorder = new MediaRecorder(globalStream)
+
+  // Dynamic format negotiation
+  let options = {}
+  if (recordVideo.value) {
+    if (MediaRecorder.isTypeSupported('video/mp4')) {
+      options = { mimeType: 'video/mp4' }
+      currentRecordingExt.value = 'mp4'
+      currentMimeType.value = 'video/mp4'
+    } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')) {
+      options = { mimeType: 'video/webm;codecs=vp9,opus' }
+      currentRecordingExt.value = 'webm'
+      currentMimeType.value = 'video/webm'
+    } else if (MediaRecorder.isTypeSupported('video/webm')) {
+      options = { mimeType: 'video/webm' }
+      currentRecordingExt.value = 'webm'
+      currentMimeType.value = 'video/webm'
+    }
+  } else {
+    if (MediaRecorder.isTypeSupported('audio/mp4')) {
+      options = { mimeType: 'audio/mp4' }
+      currentRecordingExt.value = 'm4a'
+      currentMimeType.value = 'audio/mp4'
+    } else if (MediaRecorder.isTypeSupported('audio/webm')) {
+      options = { mimeType: 'audio/webm' }
+      currentRecordingExt.value = 'webm'
+      currentMimeType.value = 'audio/webm'
+    } else {
+      currentRecordingExt.value = 'wav'
+      currentMimeType.value = 'audio/wav'
+    }
+  }
+
+  try {
+    mediaRecorder = new MediaRecorder(globalStream, options)
+  } catch (e) {
+    mediaRecorder = new MediaRecorder(globalStream)
+    currentMimeType.value = mediaRecorder.mimeType
+    currentRecordingExt.value = recordVideo.value
+      ? (currentMimeType.value.includes('mp4') ? 'mp4' : 'webm')
+      : 'webm'
+  }
   
-  mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data)
+  mediaRecorder.ondataavailable = (e) => {
+    if (e.data.size > 0) audioChunks.push(e.data)
+  }
   
   mediaRecorder.onstop = () => {
-    const blob = new Blob(audioChunks, { type: 'audio/wav' })
+    const blob = new Blob(audioChunks, { type: currentMimeType.value })
     
     // Revoke previous object URL to prevent memory leaks
     if (currentObjectUrl) {
@@ -153,9 +195,15 @@ const startRecording = () => {
     const name = userName.value.replace(/[^a-z0-9]/gi, '_')
     const hometown = userHometown.value.replace(/[^a-z0-9]/gi, '_')
     const insta = userInsta.value.replace(/[^a-z0-9@]/gi, '_') || 'noinsta'
-    const filename = `Radiolab_${name}_${hometown}_${insta}.wav`
+    const filename = `Radiolab_${name}_${hometown}_${insta}.${currentRecordingExt.value}`
 
-    audioPlaybackSrc.value = url
+    if (recordVideo.value) {
+      videoPlaybackSrc.value = url
+      audioPlaybackSrc.value = ''
+    } else {
+      audioPlaybackSrc.value = url
+      videoPlaybackSrc.value = ''
+    }
     filenameDisplay.value = filename
     isPostViewVisible.value = true
     
@@ -212,6 +260,8 @@ const stopRecording = () => {
 // Reset the studio to initial state for a new recording
 const resetStudio = () => {
   isPostViewVisible.value = false
+  audioPlaybackSrc.value = ''
+  videoPlaybackSrc.value = ''
   timer.value = '00:00'
   statusText.value = 'Ready'
   statusDotClass.value = 'w-3 h-3 rounded-full bg-slate-300'
@@ -246,31 +296,27 @@ onBeforeUnmount(() => {
   <div class="crowdsource-form">
   <div class="max-w-2xl w-full space-y-6">
     <div class="text-center space-y-2 instructions-padding">
-      <h1 class="text-3xl font-bold text-slate-800">Radiolab Credits Studio</h1>
-      <p class="text-slate-600 italic">Record your own version of the Radiolab staff credits. <br><br>By submitting content through this app, you are agreeing to our terms and conditions available at <a href="https://wnyc.org/terms/" target="_blank" rel="noopener noreferrer" class="html-formatting" style="color: #0454d6;">https://wnyc.org/terms/</a>. You're giving New York Public Radio permission to use your submission.<br><br></p>
+      <img src="Badgers3x2_IzxHbjK.png" alt="Badgers -Submit Questions" class="mx-auto">
+      <div>(Tara Anand )</div>
+      <h1 class="text-3xl font-bold text-slate-800">Submit Questions</h1>
+      <p class="text-slate-600 italic">By submitting content through this app, you are agreeing to our terms and conditions available at <a href="https://wnyc.org/terms/" target="_blank" rel="noopener noreferrer" class="html-formatting" style="color: #0454d6;">https://wnyc.org/terms/</a>. You're giving New York Public Radio permission to use your submission.<br><br></p>
+      <p>At the end of every Terrestrials episode, listeners of all ages “badger” our experts with questions. It is often people's favorite part of the show. There is no question too big or too small. You never know what kind of answer you'll get. We invite you to submit your questions about the natural world. You can also submit ideas for topics you think Terrestrials should cover, cool people you think we should interview, or nature factoids that blew your mind.<br><br>
+      All ages are welcome! A parent/guardian should write us along with you, so we know you have their permission for badgering us, and for maybe even having your ideas mentioned on the show.<br><br></p>
+      <p>SUBMIT YOUR QUESTION HERE (voice notes or videos welcome!)<br><br></p>
+      <p class="text-slate-600 italic">All ages are welcome. A parent/guardian should write us along with you, so we know you have their permission for badgering us, and for maybe even having your ideas mentioned on the show.<br><br></p>
       <ol class="text-left text-slate-600 space-y-1 instructions">
-        <li>Fill in your name, hometown, email address, and (optionally) Instagram handle. The information you add will become part of the script in the Staff Credits box.</li>
-        <li>We recommend using the <a href="#open-rehearse" class="btn" style="color: #0454d6;">Rehearse Script</a> link to review the script below and practice aloud once or twice, clicking on the names you're unsure of how to pronounce to hear an example of how they sound. </li>
-      </ol>
-      <button 
-      class="accordion w-full mt-6 bg-blue-600 text-white py-3 rounded-full font-bold hover:bg-blue-700 transition shadow-md" 
-      :class="{ active: isAccordionActive(0) }" 
-      @click="toggleAccordion(0)"
-      >
-      Recording Instructions
-      </button>
-      <div class="panel" :style="{ maxHeight: isAccordionActive(0) ? '500px' : null }">
-        <ol class="text-left text-slate-600 space-y-1 instructions">
-          <li>Click "Unlock Studio" to grant microphone access and reveal the recording interface.</li>
-          <li>You will be prompted to allow microphone permissions from your browser to record audio.</li>
-          <li>Press the red button to start recording, and read the staff credits script aloud.</li>
-          <li>Once you're done, click the gray button to stop. Your recording will download to your device (i.e., phone or computer).</li>
-          <li>The Review & Submit box will appear enabling you to listen to your recording, re-record it, and submit it to Radiolab's Dropbox.  You can review your take and submit it to our Dropbox.</li>
-          <li>If you like the recording, click the Continue to File Upload button and a new window/tab will appear.</li>
-          <li>Click Add files or drag and drop your recording into the Dropbox window to save.</li>
+        <li>Fill in your name, hometown, email address, and (optionally) Instagram handle. The information you add will become part of the question script you can read.</li>
+        <li>Before you record please click on the Rehearse Script link to review the script below to practice out loud once or twice.</li>
+        <li>Click "Unlock Studio" to turn on the microphone and show the recording tools.</li>
+        <li>You will be asked to allow microphone or video permissions from your browser to record. To record video click the Record Video (Optional) checkbox.</li>
+        <li>Press the red button to start recording, and read your question script aloud.</li>
+        <li>Once you're done, click the gray button to stop. Your recording will download to your device (i.e., phone or computer).</li>
+        <li>The Review & Submit box will appear enabling you to listen to your recording, re-record it, and submit it to Terrestrial's Dropbox. You can review your take and submit it to our Dropbox.</li>
+        <li>If you like the recording, click the Continue to File Upload button and a new window/tab will appear.</li>
+        <li>Click Add files or drag and drop your recording into the Dropbox window to save.</li>
         </ol>
-      </div>
     </div>
+    
     <div v-show="!isSetupViewHidden" id="setup-view" class="bg-white rounded-xl shadow-lg p-8 border border-slate-200 items-center">
       <h2 class="text-xl font-bold text-slate-800 mb-4">1. Your Information</h2>
       <div class="crowdsource-grid crowdsource-grid-cols-1 md:crowdsource-grid-cols-2 gap-4 text-left">
@@ -327,8 +373,19 @@ onBeforeUnmount(() => {
           <span>By submitting your information, you're agreeing to receive communications from New York Public Radio in accordance with our <a href="https://wnyc.org/terms" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Terms</a>.</span>
         </label>
       </div>
+      <div class="mt-4 text-left bg-slate-50 p-4 rounded-lg border border-slate-100">
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input
+            v-model="recordVideo"
+            type="checkbox"
+            class="h-5 text-blue-600 rounded focus:ring-blue-500 border-slate-300"
+          >
+          <span class="text-sm font-bold text-slate-700">Record Video (Optional)</span>
+        </label>
+        <p class="text-xs text-slate-500 mt-1">Checking this will request camera access alongside your microphone.</p>
+      </div>
       <button 
-        @click="initAudio" 
+        @click="initMedia" 
         class="w-full mt-6 bg-blue-600 text-white py-3 rounded-full font-bold hover:bg-blue-700 transition shadow-md"
         id="init-btn"
       >
@@ -346,6 +403,16 @@ onBeforeUnmount(() => {
         <span class="text-sm font-bold uppercase tracking-widest text-slate-500 italic">{{ statusText }}</span>
         <span class="text-2xl font-mono text-slate-800 ml-4">{{ timer }}</span>
       </div>
+
+      <!-- Live Video Preview -->
+      <video
+        v-show="recordVideo"
+        ref="livePreview"
+        autoplay
+        muted
+        playsinline
+        class="live-preview w-full rounded-lg shadow-md mb-6"
+      ></video>
 
       <div id="mic-meter-container" class="mb-6">
         <div id="mic-meter-bar" :style="{ width: micMeterWidth + '%' }"></div>
@@ -397,14 +464,7 @@ onBeforeUnmount(() => {
         class="p-8 text-slate-800 text-2xl leading-relaxed space-y-8"
         :class="{ 'expanded': scriptWindowExpanded }"
       >
-            <p>Hi, I'm <strong class="text-blue-600">{{ displayName }}</strong>, from <strong class="text-blue-600">{{ displayHometown }}</strong>, and here are the staff credits.</p>
-            <p>Radiolab is hosted by <a href="https://drive.google.com/file/d/1nGKNPMIr_eeWhHsOx3kMhoJ9pPMOLaET/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Lulu Miller</strong></a> and <a href="https://drive.google.com/file/d/14UnrbeAoyn736GUu-ZUpjz752EgpfVSF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Latif Nasser</strong></a>.</p>
-            <p><a href="https://drive.google.com/file/d/1ELEXcB0YFKpYdWdYajxLq6FjhqbCfGqj/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Soren Wheeler</strong></a> is our Executive Editor. <a href="https://drive.google.com/file/d/1MqMqHpkPJcnxIylmph6-6aAiuWfMyoIi/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Sarah Sandbach</strong></a> is our Executive Director.</p>
-            <p>Our Managing Editor is <a href="https://drive.google.com/file/d/13mVNnCxo-RSyVhnYlVHQEfRyrggUCmFk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Pat Walters</strong></a>.</p> <p><a href="https://drive.google.com/file/d/1f2YunLB4di_mLmR2LKldOR3MDaXSXcEt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Dylan Keefe</strong></a> is our director of sound design.</p>
-            <p>Our staff includes: <a href="https://drive.google.com/file/d/1c3n0l-lxZzAr9-OLpeIq7N3ZoB_smXWl/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jeremy Bloom</a>, <a href="https://drive.google.com/file/d/1wKDP842WdlAC91Dk8KGTVqtiV0aHWAgp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">W. Harry Fortuna</a>, <a href="https://drive.google.com/file/d/1wT-AW6w8O_8sXUfdfDecmdBw0vh0Orf4/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">David Gebel</a>, <a href="https://drive.google.com/file/d/1WPXJSdx_GRvUCPi85PvYIZ9dEp9qJr3r/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Maria Paz Gutiérrez</a>, <a href="https://drive.google.com/file/d/1AmSzeOWKWdPUHOrri3W7k849A0E3PzNN/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sindhu Gnanasambandan</a>, <a href="https://drive.google.com/file/d/10kzwa1sWggAMKbvomHog1YZHyVOQ0Tve/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Matt Kielty</a>, <a href="https://drive.google.com/file/d/1NI2go0cc1eE9KBPBDTWQKhAJOdQ6JWA-/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Mona Madgavkar</a>, <a href="https://drive.google.com/file/d/12uJdunm3Qp_Vlq1SJZbJ8GKNKIt1XorU/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Annie McEwen</a>, <a href="https://drive.google.com/file/d/1V9Y4pTMw7O4WoeHjwj8LkLUoDquJHbNL/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Alex Neason</a>, <a href="https://drive.google.com/file/d/1ukXtrHphA1zKLM22aoEh1n94fpcfAiD0/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sarah Qari</a>, <a href="https://drive.google.com/file/d/1EkSUgRlhPKhCpyBkUZ5vXpYrioCCXPCp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natalia Ramirez</a>, <a href="https://drive.google.com/file/d/1xWUHLClQOxVzMZNeUFKHqOlr3PScXFUH/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Rebecca Rand</a>, <a href="https://drive.google.com/file/d/1DZsPZ2hN2sisgAFVd7VvZkQoEu3PqOE1/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Anisa Vietze</a>, <a href="https://drive.google.com/file/d/1LGogYF1zfmQPkphXrjSSPBuliAjCLLpk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Arianne Wack</a>, <a href="https://drive.google.com/file/d/18Jry1GA0_hL_5FJ-fHKYnOEl5cfSQhNk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Molly Webster</a>, and <a href="https://drive.google.com/file/d/1y9PSdLcklaUhs4WEiGKGosw-ujhgbK7n/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jessica Yung</a>.</p>
-            <p>With help from <a href="https://drive.google.com/file/d/1tpdj42C-u2gnRq-F1Tu68DWWXk6kHGoS/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Gabby Santas</a>.</p>
-            <p>Our fact-checkers are <a href="https://drive.google.com/file/d/1MhkFY07b91lfpIFa6rCYpKo4UPCBMBDf/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Diane Kelly</a>, <a href="https://drive.google.com/file/d/1YnqX_6c8dxpkSzuunBbErypFd2xDh_o5/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Emily Krieger</a>, <a href="https://drive.google.com/file/d/1fFWdeQqtvHIfc3hOD905J1zFSV4Xy5-e/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natlie Middleton</a>, <a href="https://drive.google.com/file/d/1YGqTX6pvDbda--0MNjLJJkpGgIIhsavF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Angely Mercado</a>, and <a href="https://drive.google.com/file/d/1WEdieHPny0WcFVVPrLCDD7nNAFZl2VqE/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sophie Samiee</a>.</p>
-            <p>Leadership support for Radiolab's science programming is provided by the Simons Foundation and the John Templeton Foundation. Foundational support for Radiolab was provided by the Alfred P. Sloan Foundation.</p>
+            <p>Hi, I'm <strong class="text-blue-600">{{ displayName }}</strong>, from <strong class="text-blue-600">{{ displayHometown }}</strong>, and my question is...</p>
             <div class="h-12"></div>
           </div>
         </div>
@@ -415,14 +475,7 @@ onBeforeUnmount(() => {
         class="p-8 text-slate-800 text-2xl leading-relaxed space-y-8"
         :class="{ 'expanded': scriptWindowExpanded }"
       >
-        <p>Hi, I'm <strong class="text-blue-600">{{ displayName }}</strong>, from <strong class="text-blue-600">{{ displayHometown }}</strong>, and here are the staff credits.</p>
-        <p>Radiolab is hosted by <a href="https://drive.google.com/file/d/1nGKNPMIr_eeWhHsOx3kMhoJ9pPMOLaET/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Lulu Miller</strong></a> and <a href="https://drive.google.com/file/d/14UnrbeAoyn736GUu-ZUpjz752EgpfVSF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Latif Nasser</strong></a>.</p>
-        <p><a href="https://drive.google.com/file/d/1ELEXcB0YFKpYdWdYajxLq6FjhqbCfGqj/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Soren Wheeler</strong></a> is our Executive Editor. <a href="https://drive.google.com/file/d/1MqMqHpkPJcnxIylmph6-6aAiuWfMyoIi/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Sarah Sandbach</strong></a> is our Executive Director.</p>
-        <p>Our Managing Editor is <a href="https://drive.google.com/file/d/13mVNnCxo-RSyVhnYlVHQEfRyrggUCmFk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Pat Walters</strong></a>.</p> <p><a href="https://drive.google.com/file/d/1f2YunLB4di_mLmR2LKldOR3MDaXSXcEt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;"><strong>Dylan Keefe</strong></a> is our director of sound design.</p>
-        <p>Our staff includes: <a href="https://drive.google.com/file/d/1c3n0l-lxZzAr9-OLpeIq7N3ZoB_smXWl/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jeremy Bloom</a>, <a href="https://drive.google.com/file/d/1wKDP842WdlAC91Dk8KGTVqtiV0aHWAgp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">W. Harry Fortuna</a>, <a href="https://drive.google.com/file/d/1wT-AW6w8O_8sXUfdfDecmdBw0vh0Orf4/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">David Gebel</a>, <a href="https://drive.google.com/file/d/1WPXJSdx_GRvUCPi85PvYIZ9dEp9qJr3r/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Maria Paz Gutiérrez</a>, <a href="https://drive.google.com/file/d/1AmSzeOWKWdPUHOrri3W7k849A0E3PzNN/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sindhu Gnanasambandan</a>, <a href="https://drive.google.com/file/d/10kzwa1sWggAMKbvomHog1YZHyVOQ0Tve/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Matt Kielty</a>, <a href="https://drive.google.com/file/d/1NI2go0cc1eE9KBPBDTWQKhAJOdQ6JWA-/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Mona Madgavkar</a>, <a href="https://drive.google.com/file/d/12uJdunm3Qp_Vlq1SJZbJ8GKNKIt1XorU/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Annie McEwen</a>, <a href="https://drive.google.com/file/d/1V9Y4pTMw7O4WoeHjwj8LkLUoDquJHbNL/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Alex Neason</a>, <a href="https://drive.google.com/file/d/1ukXtrHphA1zKLM22aoEh1n94fpcfAiD0/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sarah Qari</a>, <a href="https://drive.google.com/file/d/1EkSUgRlhPKhCpyBkUZ5vXpYrioCCXPCp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natalia Ramirez</a>, <a href="https://drive.google.com/file/d/1xWUHLClQOxVzMZNeUFKHqOlr3PScXFUH/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Rebecca Rand</a>, <a href="https://drive.google.com/file/d/1DZsPZ2hN2sisgAFVd7VvZkQoEu3PqOE1/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Anisa Vietze</a>, <a href="https://drive.google.com/file/d/1LGogYF1zfmQPkphXrjSSPBuliAjCLLpk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Arianne Wack</a>, <a href="https://drive.google.com/file/d/18Jry1GA0_hL_5FJ-fHKYnOEl5cfSQhNk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Molly Webster</a>, and <a href="https://drive.google.com/file/d/1y9PSdLcklaUhs4WEiGKGosw-ujhgbK7n/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Jessica Yung</a>.</p>
-        <p>With help from <a href="https://drive.google.com/file/d/1tpdj42C-u2gnRq-F1Tu68DWWXk6kHGoS/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Gabby Santas</a>.</p>
-        <p>Our fact-checkers are <a href="https://drive.google.com/file/d/1MhkFY07b91lfpIFa6rCYpKo4UPCBMBDf/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Diane Kelly</a>, <a href="https://drive.google.com/file/d/1YnqX_6c8dxpkSzuunBbErypFd2xDh_o5/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Emily Krieger</a>, <a href="https://drive.google.com/file/d/1fFWdeQqtvHIfc3hOD905J1zFSV4Xy5-e/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Natlie Middleton</a>, <a href="https://drive.google.com/file/d/1YGqTX6pvDbda--0MNjLJJkpGgIIhsavF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Angely Mercado</a>, and <a href="https://drive.google.com/file/d/1WEdieHPny0WcFVVPrLCDD7nNAFZl2VqE/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #0454d6;">Sophie Samiee</a>.</p>
-        <p>Leadership support for Radiolab's science programming is provided by the Simons Foundation and the John Templeton Foundation. Foundational support for Radiolab was provided by the Alfred P. Sloan Foundation.</p>
+        <p>Hi, I'm <strong class="text-blue-600">{{ displayName }}</strong>, from <strong class="text-blue-600">{{ displayHometown }}</strong>, and my question is...</p>
         <div class="h-12"></div>
       </div>
       <!-- Staff Credits Script Ends Here-->
@@ -433,7 +486,8 @@ onBeforeUnmount(() => {
         <h3 class="font-bold text-lg text-slate-800">Review & Submit</h3>
         <button @click="resetStudio" class="text-sm text-blue-600 font-bold hover:underline">Redo Take</button>
       </div>
-      <audio :src="audioPlaybackSrc" controls class="w-full"></audio>
+      <audio v-if="audioPlaybackSrc" :src="audioPlaybackSrc" controls class="w-full"></audio>
+      <video v-if="videoPlaybackSrc" :src="videoPlaybackSrc" controls class="w-full video-playback rounded-lg"></video>
       <div class="bg-blue-600 p-6 rounded-lg text-white">
         <p class="text-sm mb-4 italic file-save-msg">Recording saved as: <br><span class="font-mono bg-blue-700 px-1 rounded not-italic break-all">{{ filenameDisplay }}</span></p>
         <button 
@@ -464,6 +518,9 @@ onBeforeUnmount(() => {
 
     #mic-meter-container { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; width: 100%; max-width: 300px; margin: 0 auto; }
     #mic-meter-bar { height: 100%; width: 0%; background: #22c55e; transition: width 0.1s ease; }
+
+    .live-preview { max-width: 24rem; margin: 0 auto; background: #000; object-fit: cover; aspect-ratio: 16/9; }
+    .video-playback { max-height: 24rem; background: #000; object-fit: contain; aspect-ratio: 16/9; }
 
 *,
 ::before,
@@ -1219,32 +1276,4 @@ a:hover {
   border-radius: 0.5em;
 }
 
-/* Style the buttons that are used to open and close the accordion panel */
-.accordion {
-  background-color: #0347b6;
-  color: #fff;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-  text-align: center;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.panel {
-  padding: 0 30px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-
-</style>  
+</style>
