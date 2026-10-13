@@ -6,6 +6,6 @@ const config = useRuntimeConfig()
 <template>
   <flat-page
     title="Knology Bonus Content"
-    :api="`${config.API_URL}/api/v3/channel/shows/radiolab/knology-bonus-page`"
+    :api="`${config.API_URL}/api/v3/flatpages/1482/`"
   />
 </template>
