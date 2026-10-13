@@ -5,7 +5,7 @@ const config = useRuntimeConfig()
 
 <template>
   <flat-page
-    title="Knology Bonus Content"
+    title="Survey Bonus"
     :api="`${config.API_URL}/api/v3/flatpages/1482/`"
   />
 </template>
