@@ -1,4 +1,4 @@
-FROM node:18-slim AS build
+FROM node:22.23.4-slim AS build
 
 ARG ENV
 ARG ALGOLIA_APP_ID
@@ -28,7 +28,7 @@ RUN npm install sass
 COPY . .
 RUN npm run build
 
-FROM node:18-slim AS app
+FROM node:22.23.4-slim AS app
 WORKDIR /app
 
 RUN apt-get update \
