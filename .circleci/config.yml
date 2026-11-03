@@ -99,6 +99,6 @@ commands:
 executors:
   default:
     docker:
-      - image: cimg/node:18.20.8
+      - image: cimg/node:22.23.4
     environment: 
       JOBS: 2
