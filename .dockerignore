@@ -20,3 +20,7 @@ node_modules/
 
 CODEOWNERS
 README.md
+
+# Claude
+CLAUDE.md
+graphify-out/*

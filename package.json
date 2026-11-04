@@ -11,9 +11,11 @@
         "rebuildIndex": "esm ./search/algolia-index:cli rebuild-index"
     },
     "devDependencies": {
+        "@vitejs/plugin-vue": "^6.0.10",
         "jest-axe": "^5.0.1",
         "jsdom": "^20.0.3",
-        "nuxt": "^3.1.1"
+        "nuxt": "^3.1.1",
+        "vite": "^6.4.5"
     },
     "dependencies": {
         "@nuxt/test-utils": "^3.4.1",
@@ -33,7 +35,13 @@
         "primeicons": "^5.0.0",
         "primevue": "^3.21.0",
         "sass": "^1.57.1",
-        "vitest": "^0.26.3",
+        "vitest": "^5.1.0",
         "vue-social-sharing": "^4.0.0-alpha4"
+    },
+    "overrides": {
+        "@nypublicradio/nypr-design-system-vue3": {
+            "vitest": "^5.1.0"
+        },
+        "@types/node": "^22.0.0"
     }
 }
