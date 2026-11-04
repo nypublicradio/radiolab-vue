@@ -25,6 +25,21 @@ useHead({
 })
 
 
+// Accordion state
+const activeAccordions = ref(new Set())
+const toggleAccordion = (index) => {
+  if (activeAccordions.value.has(index)) {
+    activeAccordions.value.delete(index)
+  } else {
+    activeAccordions.value.add(index)
+  }
+  activeAccordions.value = new Set(activeAccordions.value) // trigger reactivity
+}
+const isAccordionActive = (index) => activeAccordions.value.has(index)
+const panelMaxHeight = (index, el) => {
+  return isAccordionActive(index) ? el?.scrollHeight + 'px' : null
+}
+
 // Reactive data
 const userName = ref('')
 const userHometown = ref('')
@@ -235,17 +250,27 @@ onBeforeUnmount(() => {
       <p class="text-slate-600 italic">Record your own version of the Radiolab staff credits. <br><br>By submitting content through this app, you are agreeing to our terms and conditions available at <a href="https://wnyc.org/terms/" target="_blank" rel="noopener noreferrer" class="html-formatting" style="color: #0454d6;">https://wnyc.org/terms/</a>. You're giving New York Public Radio permission to use your submission.<br><br></p>
       <ol class="text-left text-slate-600 space-y-1 instructions">
         <li>Fill in your name, hometown, email address, and (optionally) Instagram handle. The information you add will become part of the script in the Staff Credits box.</li>
-        <li>Please click on the Rehearse Script link to review the script below and practice aloud once or twice, clicking on the names you're unsure of how to pronounce to hear an example of how they sound. </li>
-        <li>Click "Unlock Studio" to grant microphone access and reveal the recording interface.</li>
-        <li>You will be prompted to allow microphone permissions from your browser to record audio.</li>
-        <li>Press the red button to start recording, and read the staff credits script aloud.</li>
-        <li>Once you're done, click the gray button to stop. Your recording will download to your device (i.e., phone or computer).</li>
-        <li>The Review & Submit box will appear enabling you to listen to your recording, re-record it, and submit it to Radiolab's Dropbox.  You can review your take and submit it to our Dropbox.</li>
-        <li>If you like the recording, click the Continue to File Upload button and a new window/tab will appear.</li>
-        <li>Click Add files or drag and drop your recording into the Dropbox window to save.</li>
+        <li>We recommend using the <a href="#open-rehearse" class="btn" style="color: #0454d6;">Rehearse Script</a> link to review the script below and practice aloud once or twice, clicking on the names you're unsure of how to pronounce to hear an example of how they sound. </li>
+      </ol>
+      <button 
+      class="accordion w-full mt-6 bg-blue-600 text-white py-3 rounded-full font-bold hover:bg-blue-700 transition shadow-md" 
+      :class="{ active: isAccordionActive(0) }" 
+      @click="toggleAccordion(0)"
+      >
+      Recording Instructions
+      </button>
+      <div class="panel" :style="{ maxHeight: isAccordionActive(0) ? '500px' : null }">
+        <ol class="text-left text-slate-600 space-y-1 instructions">
+          <li>Click "Unlock Studio" to grant microphone access and reveal the recording interface.</li>
+          <li>You will be prompted to allow microphone permissions from your browser to record audio.</li>
+          <li>Press the red button to start recording, and read the staff credits script aloud.</li>
+          <li>Once you're done, click the gray button to stop. Your recording will download to your device (i.e., phone or computer).</li>
+          <li>The Review & Submit box will appear enabling you to listen to your recording, re-record it, and submit it to Radiolab's Dropbox.  You can review your take and submit it to our Dropbox.</li>
+          <li>If you like the recording, click the Continue to File Upload button and a new window/tab will appear.</li>
+          <li>Click Add files or drag and drop your recording into the Dropbox window to save.</li>
         </ol>
+      </div>
     </div>
-    
     <div v-show="!isSetupViewHidden" id="setup-view" class="bg-white rounded-xl shadow-lg p-8 border border-slate-200 items-center">
       <h2 class="text-xl font-bold text-slate-800 mb-4">1. Your Information</h2>
       <div class="crowdsource-grid crowdsource-grid-cols-1 md:crowdsource-grid-cols-2 gap-4 text-left">
@@ -1194,4 +1219,32 @@ a:hover {
   border-radius: 0.5em;
 }
 
-</style>
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #0347b6;
+  color: #fff;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  text-align: center;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 30px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+</style>  
