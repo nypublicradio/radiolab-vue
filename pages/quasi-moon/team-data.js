@@ -545,11 +545,11 @@ export default {
                     "nav-slug": "projects",
                     "title": "Projects"
                   },
-                  {
+                  /*{
                     "href": null,
                     "nav-slug": "new-cohosts-latif-nasser-lulu-miller",
                     "title": "Announcements"
-                  },
+                  },*/
                   {
                     "href": null,
                     "nav-slug": "pitch-us",
