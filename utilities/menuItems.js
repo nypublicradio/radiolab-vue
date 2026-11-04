@@ -81,7 +81,7 @@ export default [ {
                     } )
                 }
             },
-            {
+           /* {
                 label: 'Announcements',
                 to: '/new-cohosts-latif-nasser-lulu-miller',
                 command: () => {
@@ -94,7 +94,7 @@ export default [ {
                         event_label: 'About: Announcements',
                     } )
                 }
-            },
+            },*/
             {
                 label: 'Pitch Us',
                 to: '/pitch-us',
